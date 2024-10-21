@@ -42,7 +42,6 @@ public class VirtualJoyStick : MonoBehaviour , IBeginDragHandler , IDragHandler 
         var inputDir = eventData.position - rectTransform.anchoredPosition;
         var clampDir = inputDir.magnitude > leverRange ? inputDir.normalized * leverRange : inputDir;
         lever.anchoredPosition = clampDir;
-        Debug.Log(clampDir.normalized);
         inputVector = clampDir.normalized;
     } 
     

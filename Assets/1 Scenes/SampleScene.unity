@@ -174,10 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e3e1f0eb2a3264ab2f248f32dcff7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instance: {fileID: 0}
-  TestObj: {fileID: 0}
-  characterController: {fileID: 1173068857}
   lever: {fileID: 676081625}
+  controllObject: {fileID: 2090444154}
+  isInput: 0
   leverRange: 40
 --- !u!114 &431337282
 MonoBehaviour:
@@ -14243,7 +14242,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1173068856}
-  - component: {fileID: 1173068857}
   m_Layer: 0
   m_Name: PlayerList
   m_TagString: Untagged
@@ -14267,18 +14265,6 @@ Transform:
   - {fileID: 2090444153}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1173068857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173068855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21e7c665dfcb9af4998fdba9991f6aa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1298930072
 GameObject:
   m_ObjectHideFlags: 0
@@ -14640,7 +14626,7 @@ GameObject:
   - component: {fileID: 2090444152}
   - component: {fileID: 2090444151}
   - component: {fileID: 2090444150}
-  - component: {fileID: 2090444149}
+  - component: {fileID: 2090444154}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -14648,21 +14634,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2090444149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090444148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b9bb6c9ea5799942b81344b1076de37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  targetList: {fileID: 2077401597}
-  speed: 3
 --- !u!50 &2090444150
 Rigidbody2D:
   serializedVersion: 4
@@ -14792,6 +14763,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1173068856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2090444154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090444148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165ded5fd5473a44c870c7b35a7dd011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: dc3e798e9f87d8945bb4e28157eb8bbf, type: 2}
+  targetList: {fileID: 2077401597}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
