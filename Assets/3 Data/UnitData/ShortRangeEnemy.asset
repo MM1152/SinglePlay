@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ba121b15cbd8344c87c6c7860363848, type: 3}
-  m_Name: Summoner
+  m_Name: ShortRangeEnemy
   m_EditorClassIdentifier: 
-  unitName: Summoner
-  hp: 150
-  mp: 50
-  damage: 50
-  speed: 2
-  attackRadious: 5
+  attackType: 2
+  unitName: Enemy1
+  attackSpeed: 1
+  hp: 10
+  mp: 0
+  damage: 2
+  speed: 1.6
+  attackRadious: 1

@@ -24,8 +24,9 @@ public class ProjecTile : MonoBehaviour
             PoolingManager.Instance.ReturnObject(gameObject);
 
         }
-        else if(!other.CompareTag(gameObject.tag)) {
+        else if(!other.CompareTag(gameObject.tag)) {            
             Debug.Log("Projectile Hitting Enemy");
+            other.GetComponent<IDamageAble>().Hit(unitData.damage);
             PoolingManager.Instance.ReturnObject(gameObject);
         }
     }
