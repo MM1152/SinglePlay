@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjecTile : MonoBehaviour
@@ -25,7 +27,7 @@ public class ProjecTile : MonoBehaviour
 
         }
         else if(!other.CompareTag(gameObject.tag)) {            
-            Debug.Log("Projectile Hitting Enemy");
+            Debug.Log("Projectile Hitting " + other.gameObject.tag);
             other.GetComponent<IDamageAble>().Hit(unitData.damage);
             PoolingManager.Instance.ReturnObject(gameObject);
         }

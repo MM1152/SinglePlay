@@ -7,6 +7,8 @@ public class Unit : MonoBehaviour {
     [SerializeField] protected UnitData unit;
     [SerializeField] protected float setInitAttackSpeed; // 초기화될 공격속도
     [SerializeField] protected float currentAttackSpeed; // 현재 공격까지 남은시간
+
+
     /**************Status****************/
     protected float hp;
     protected float mp;
@@ -21,8 +23,15 @@ public class Unit : MonoBehaviour {
     [SerializeField] protected GameObject target; // 공격할 대상
     [SerializeField] protected GameObject targetList; // 적이라면 Player를 담고있는 부모 , Player라면 적에 대한 정보를 담고있는 부모
     /************************************/
+
+    /*************TestCode***************/
+    [Space(10)]
+    [Header("TestCodes")]
+    public bool DontAttack;
+    /************************************/
     
     public void Awake() {
+        if(gameObject.CompareTag("Enemy")) targetList = GameObject.Find("PlayerList");
         hp = unit.hp;
         mp = unit.mp;
         damage = unit.damage;
@@ -69,26 +78,5 @@ public class Unit : MonoBehaviour {
         }
         
         return returnGameObject;
-    }
-
-    protected void Attack(){
-        if(target != null && unit.attackRadious > Vector2.Distance(target.transform.position , transform.position) && currentAttackSpeed <= 0 ) {
-            currentAttackSpeed = setInitAttackSpeed;
-            if(unit.attackType == AttackType.LongRange) {
-                GameObject attackObj = PoolingManager.Instance.ShowObject();
-                ProjecTile projecTile = attackObj.GetComponent<ProjecTile>();
-                
-                projecTile.tag = gameObject.tag;
-                projecTile.target = target.transform;
-                projecTile.unitData = unit;
-                attackObj.transform.position = this.gameObject.transform.position;
-
-                projecTile.SetDirecetion();
-                attackObj.SetActive(true);
-            }
-            else if(unit.attackType == AttackType.ShortRange) {
-                
-            }
-        }
     }
 }
