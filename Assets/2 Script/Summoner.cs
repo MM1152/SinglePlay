@@ -14,7 +14,8 @@ public class Summoner : LongRangeScript
     }
     private void Update() {
         base.Update();
-        SummonSkill();
+
+        if(SkillManager.Instance.SummonSkill) SummonSkill();
     }
 
     public void Move(Vector3 movePos)

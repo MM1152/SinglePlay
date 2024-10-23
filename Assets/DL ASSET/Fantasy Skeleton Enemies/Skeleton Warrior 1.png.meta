@@ -1,0 +1,215 @@
+fileFormatVersion: 2
+guid: ee5efa9e4762fcf4ca396cec3ea6bd8d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: IDLE
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 205
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab3eea1da34dac14484504b6df31177a
+      internalID: -1594409535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton Warrior 1_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 44
+        width: 3
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 480f3683ad9ac904ca2823160101e71c
+      internalID: -1512739102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      IDLE: -1594409535
+      Skeleton Warrior 1_0: -1512739102
+      Skeleton Warrior_1: -1306310348
+      Skeleton Warrior_10: 1997565864
+      Skeleton Warrior_11: -1306861692
+      Skeleton Warrior_12: -988886586
+      Skeleton Warrior_13: -1097274638
+      Skeleton Warrior_14: -36088589
+      Skeleton Warrior_15: -1080835976
+      Skeleton Warrior_16: 1458192943
+      Skeleton Warrior_17: 855014224
+      Skeleton Warrior_18: -1569138270
+      Skeleton Warrior_19: -153805539
+      Skeleton Warrior_2: -2043527399
+      Skeleton Warrior_20: -1907850592
+      Skeleton Warrior_21: -578615204
+      Skeleton Warrior_22: 554428067
+      Skeleton Warrior_23: 341259261
+      Skeleton Warrior_24: 268291579
+      Skeleton Warrior_25: 29987560
+      Skeleton Warrior_26: -240835707
+      Skeleton Warrior_27: -2147458554
+      Skeleton Warrior_28: 878796839
+      Skeleton Warrior_29: 1493904285
+      Skeleton Warrior_3: 2051304434
+      Skeleton Warrior_30: -416114238
+      Skeleton Warrior_31: -1058173955
+      Skeleton Warrior_32: -1095341277
+      Skeleton Warrior_33: 947124467
+      Skeleton Warrior_34: 646993437
+      Skeleton Warrior_35: -1220699780
+      Skeleton Warrior_36: 1415323052
+      Skeleton Warrior_37: 226347545
+      Skeleton Warrior_38: 1507551628
+      Skeleton Warrior_39: 1849810800
+      Skeleton Warrior_4: -714367682
+      Skeleton Warrior_40: -220492358
+      Skeleton Warrior_41: -631338120
+      Skeleton Warrior_42: -527026994
+      Skeleton Warrior_43: -1329903314
+      Skeleton Warrior_44: -195744926
+      Skeleton Warrior_5: 244784449
+      Skeleton Warrior_6: -1783999370
+      Skeleton Warrior_7: 1720359077
+      Skeleton Warrior_8: -824135953
+      Skeleton Warrior_9: -2124796176
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

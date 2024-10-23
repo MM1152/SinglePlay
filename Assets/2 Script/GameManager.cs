@@ -10,4 +10,12 @@ public class GameManager : MonoBehaviour
         if(Instance == null) Instance = this;
         
     }
+
+    public void StopGame(){
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame(){
+        Time.timeScale = 1;
+    }
 }
