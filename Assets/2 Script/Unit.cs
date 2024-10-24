@@ -7,9 +7,11 @@ public class Unit : MonoBehaviour {
     [SerializeField] protected UnitData unit;
     [SerializeField] protected float setInitAttackSpeed; // 초기화될 공격속도
     [SerializeField] protected float currentAttackSpeed; // 현재 공격까지 남은시간
-
+    [SerializeField] protected Animator ani;
+    [SerializeField] protected SpriteRenderer sp;
 
     /**************Status****************/
+    protected bool isAttack;
     protected float hp;
     protected float mp;
     protected float damage;
@@ -32,6 +34,9 @@ public class Unit : MonoBehaviour {
     
     public void Awake() {
         if(gameObject.CompareTag("Enemy")) targetList = GameObject.Find("PlayerList");
+        sp = GetComponent<SpriteRenderer>();
+        ani = GetComponent<Animator>();
+
         hp = unit.hp;
         mp = unit.mp;
         damage = unit.damage;
@@ -51,16 +56,17 @@ public class Unit : MonoBehaviour {
             // Trigger 끄기 , 추적안되게 하는 기능
         }
     }
-    
-    protected void FollowTarget(){
+    protected bool FollowTarget(){
         if(target != null && target.GetComponent<Unit>().isDie) target = null;
         if(target == null) {
             target = FindTarget(targetList);
-            return;
+            return false;
         }
-        if(Vector2.Distance(target.transform.position , transform.position) < unit.attackRadious) return;
+        if(Vector2.Distance(target.transform.position , transform.position) < unit.attackRadious) return false;
         
         transform.position += (target.transform.position - transform.position).normalized * unit.speed * Time.deltaTime;
+        Flip();
+        return true;
     }
 
     protected GameObject FindTarget(GameObject TargetList){
@@ -78,5 +84,9 @@ public class Unit : MonoBehaviour {
         }
         
         return returnGameObject;
+    }
+
+    protected void Flip(){
+        sp.flipX = (target.transform.position - transform.position).normalized.x >= 0 ? false : true;
     }
 }

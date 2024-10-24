@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class LongRangeScript : Unit, IDamageAble
 {
+    Animator ani;
     protected void Awake()
     {
         base.Awake();
+        ani = GetComponent<Animator>();
         Debug.Log($"hp {hp} , mp {mp} , damage {damage}");
     }
     protected void Update()
@@ -26,6 +28,7 @@ public class LongRangeScript : Unit, IDamageAble
 
         if (isAttack)
         {
+            
             currentAttackSpeed = setInitAttackSpeed;
 
             GameObject attackObj = PoolingManager.Instance.ShowObject();
@@ -38,6 +41,7 @@ public class LongRangeScript : Unit, IDamageAble
 
             projecTile.SetDirecetion();
             attackObj.SetActive(true);
+            
         }
     }
 }
