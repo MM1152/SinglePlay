@@ -27,6 +27,7 @@ public class Summoner : LongRangeScript
         if(skillCurrentTime <= 0 && SummonUnit.unitCount < 1){
             GameObject unit = Instantiate(summons , gameObject.transform.parent);
             unit.GetComponent<ISummonUnit>().summoner = this;
+            unit.tag = gameObject.tag;
             unit.transform.position = transform.position + Vector3.right;
             skillCurrentTime = skillCoolDown;
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 public class Unit : MonoBehaviour {
-    [SerializeField] protected UnitData unit;
+    [SerializeField] public UnitData unit;
     [SerializeField] protected float setInitAttackSpeed; // 초기화될 공격속도
     [SerializeField] protected float currentAttackSpeed; // 현재 공격까지 남은시간
     [SerializeField] protected Animator ani;

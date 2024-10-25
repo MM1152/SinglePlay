@@ -15,6 +15,7 @@ public class ProjecTile : MonoBehaviour
     private void Awake() {
         rg = GetComponent<Rigidbody2D>();
     }
+
     private void Update() {
         rg.AddForce(direction  , ForceMode2D.Impulse);
         Debug.Log("UPdate");

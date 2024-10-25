@@ -15,4 +15,5 @@ public class UnitData : ScriptableObject {
     public float damage;
     public float speed;
     public float attackRadious;
+    public float spawnProbabillity;
 }
