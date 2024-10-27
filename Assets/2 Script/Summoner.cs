@@ -8,14 +8,15 @@ public class Summoner : LongRangeScript
     [SerializeField] float skillCoolDown;
     [SerializeField] float skillCurrentTime;
     private void Awake() {
-        base.Awake();
+        base.Init();
         skillCoolDown = 2f;
         skillCurrentTime = skillCoolDown;
     }
     private void Update() {
-        base.Update();
-
+        base.KeepChcek();
+        if(!VirtualJoyStick.instance.isInput) FollowTarget();
         if(SkillManager.Instance.SummonSkill) SummonSkill();
+        Attack();
     }
 
     public void Move(Vector3 movePos)

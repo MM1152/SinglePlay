@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class LongRangeScript : Unit, IDamageAble
 {
-    Animator ani;
-    protected void Awake()
+    private void Awake()
     {
-        base.Awake();
-        ani = GetComponent<Animator>();
-        Debug.Log($"hp {hp} , mp {mp} , damage {damage}");
+        base.Init();
     }
-    protected void Update()
+    private void Update()
     {
-        base.Update();
+        base.KeepChcek();
         Attack();
-        if (!VirtualJoyStick.instance.isInput) FollowTarget();
+        FollowTarget();
     }
     public void Hit(float Damage)
     {
@@ -31,7 +28,7 @@ public class LongRangeScript : Unit, IDamageAble
             
             currentAttackSpeed = setInitAttackSpeed;
 
-            GameObject attackObj = PoolingManager.Instance.ShowObject();
+            GameObject attackObj = PoolingManager.Instance.ShowObject("Projectile");
             ProjecTile projecTile = attackObj.GetComponent<ProjecTile>();
 
             projecTile.tag = gameObject.tag;

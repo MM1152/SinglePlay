@@ -1,14 +1,15 @@
 
 using Unity.Profiling;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 public class Unit : MonoBehaviour {
     [SerializeField] public UnitData unit;
-    [SerializeField] protected float setInitAttackSpeed; // 초기화될 공격속도
-    [SerializeField] protected float currentAttackSpeed; // 현재 공격까지 남은시간
-    [SerializeField] protected Animator ani;
-    [SerializeField] protected SpriteRenderer sp;
+    protected float setInitAttackSpeed; // 초기화될 공격속도
+    protected float currentAttackSpeed; // 현재 공격까지 남은시간
+    protected Animator ani;
+    protected SpriteRenderer sp;
 
     /**************Status****************/
     protected bool isAttack;
@@ -22,7 +23,7 @@ public class Unit : MonoBehaviour {
 
     /************Targeting***************/
     public bool isDie;
-    [SerializeField] protected GameObject target; // 공격할 대상
+    protected GameObject target; // 공격할 대상
     [SerializeField] protected GameObject targetList; // 적이라면 Player를 담고있는 부모 , Player라면 적에 대한 정보를 담고있는 부모
     /************************************/
 
@@ -32,7 +33,8 @@ public class Unit : MonoBehaviour {
     public bool DontAttack;
     /************************************/
     
-    public void Awake() {
+    
+    public void Init() {
         if(gameObject.CompareTag("Enemy")) targetList = GameObject.Find("PlayerList");
         sp = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>();
@@ -44,7 +46,7 @@ public class Unit : MonoBehaviour {
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
     }
-    public void Update() {
+    public void KeepChcek() {
         currentAttackSpeed -= Time.deltaTime;
         Die();
     }
@@ -52,6 +54,10 @@ public class Unit : MonoBehaviour {
         if(hp <= 0) {
             isDie = true;
             gameObject.SetActive(false);
+            if(gameObject.CompareTag("Enemy")) {
+                PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
+                EnemySpawner.Instance.CheckDie();
+            }
             // 죽는 애니메이션 이후 없어지는 기능
             // Trigger 끄기 , 추적안되게 하는 기능
         }
@@ -89,4 +95,5 @@ public class Unit : MonoBehaviour {
     protected void Flip(){
         sp.flipX = (target.transform.position - transform.position).normalized.x >= 0 ? false : true;
     }
+
 }

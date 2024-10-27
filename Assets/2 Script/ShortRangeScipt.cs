@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShortRangeScipt : Unit , IDamageAble
@@ -7,13 +8,16 @@ public class ShortRangeScipt : Unit , IDamageAble
     GameObject attackprefeb;
     ShortRangeAttack shortRangeAttack;
     
+
+    public void OnEnable(){
+        isDie = false;
+    }
     public void Awake() {
-        base.Awake();
+        base.Init();
         attackprefeb = Resources.Load<GameObject>("Attack");
         shortRangeAttack = Instantiate(attackprefeb , transform).GetComponent<ShortRangeAttack>();
         shortRangeAttack.unit = unit;
         shortRangeAttack.gameObject.SetActive(false);
-        Debug.Log($"hp {hp} , mp {mp} , damage {damage}");
     }
     public void Hit(float Damage)
     {
@@ -23,7 +27,7 @@ public class ShortRangeScipt : Unit , IDamageAble
     protected void Update()
     {
         FollowTarget();
-        base.Update();
+        base.KeepChcek();
         Attack();
     }
 

@@ -4,30 +4,56 @@ using UnityEngine;
 
 public class PoolingManager : MonoBehaviour
 {
-    public static PoolingManager Instance { get; private set;}
-    private Queue<GameObject> pool = new Queue<GameObject>();
+    private static PoolingManager instance;
+    public static PoolingManager Instance {
+        get {
+            return instance;
+        }
+    }
+    Dictionary<string , Queue<GameObject>> pools = new Dictionary<string , Queue<GameObject>>();
 
     [SerializeField] GameObject prefeb;
     // Start is called before the first frame update
     void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
-    public GameObject ShowObject(){
+    public GameObject ShowObject(string objectName){
+        Debug.Log(objectName);
+        if(!pools.ContainsKey(objectName)) pools.Add(objectName , new Queue<GameObject>());
+
         GameObject poolingObj = null;
-        if(pool.Count > 0) {
-            poolingObj = pool.Dequeue();
+        if(pools[objectName].Count > 0) {
+            poolingObj = pools[objectName].Dequeue();
         }
         else {
             poolingObj = Instantiate(prefeb);
         }
         poolingObj.transform.SetParent(transform.root);
+        poolingObj.SetActive(true);
         return poolingObj;
     }
-    public void ReturnObject(GameObject returnObj){
+
+
+    public GameObject ShowObject(string objectName , GameObject prefebs){
+        Debug.Log(objectName);
+        if(!pools.ContainsKey(objectName)) pools.Add(objectName , new Queue<GameObject>());
+
+        GameObject poolingObj = null;
+        if(pools[objectName].Count > 0) {
+            poolingObj = pools[objectName].Dequeue();
+        }
+        else {
+            poolingObj = Instantiate(prefebs);
+        }
+        poolingObj.transform.SetParent(transform.root);
+        poolingObj.SetActive(true);
+        return poolingObj;
+    }
+    public void ReturnObject(string objectName , GameObject returnObj){
         returnObj.transform.SetParent(this.transform);
         returnObj.SetActive(false);
-        pool.Enqueue(returnObj);
+        pools[objectName].Enqueue(returnObj);
     }
 }

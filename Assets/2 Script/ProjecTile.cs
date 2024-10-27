@@ -24,13 +24,13 @@ public class ProjecTile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Wall")) {
             Debug.Log("Projectile Hitting Wall");
-            PoolingManager.Instance.ReturnObject(gameObject);
+            PoolingManager.Instance.ReturnObject("Projectile" , gameObject);
 
         }
         else if(!other.CompareTag(gameObject.tag)) {            
             Debug.Log("Projectile Hitting " + other.gameObject.tag);
             other.GetComponent<IDamageAble>().Hit(unitData.damage);
-            PoolingManager.Instance.ReturnObject(gameObject);
+            PoolingManager.Instance.ReturnObject("Projectile" , gameObject);
         }
     }
 
