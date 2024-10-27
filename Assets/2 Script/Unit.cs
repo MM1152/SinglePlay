@@ -1,23 +1,26 @@
 
+using System.Collections;
 using Unity.Profiling;
 using Unity.VisualScripting;
 using UnityEngine;
 
 
 public class Unit : MonoBehaviour {
-    [SerializeField] public UnitData unit;
+    public UnitData unit;
     protected float setInitAttackSpeed; // 초기화될 공격속도
-    protected float currentAttackSpeed; // 현재 공격까지 남은시간
-    protected Animator ani;
+    [SerializeField] protected float currentAttackSpeed; // 현재 공격까지 남은시간
+    protected Animator ani = null;
     protected SpriteRenderer sp;
 
     /**************Status****************/
-    protected bool isAttack;
-    protected float hp;
+    public bool canAttack;
+    public bool isAttack;
+    [SerializeField] protected float hp;
     protected float mp;
     protected float damage;
     protected float speed;
     protected float attackRadious;
+    protected float maxHp;
     /************************************/
 
 
@@ -33,67 +36,111 @@ public class Unit : MonoBehaviour {
     public bool DontAttack;
     /************************************/
     
-    
-    public void Init() {
+    protected void Respawn(){
+        isDie = false;
+        hp = maxHp;
+    }
+    protected virtual void Init(float setStatus) {
         if(gameObject.CompareTag("Enemy")) targetList = GameObject.Find("PlayerList");
-        sp = GetComponent<SpriteRenderer>();
-        ani = GetComponent<Animator>();
+        sp ??= GetComponent<SpriteRenderer>() ;
+        ani ??= GetComponent<Animator>() ?  GetComponent<Animator>() : null;
 
-        hp = unit.hp;
+        hp = unit.hp * setStatus;
         mp = unit.mp;
-        damage = unit.damage;
+        damage = unit.damage * setStatus;
         speed = unit.speed;
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
+        
+        maxHp = hp;
     }
-    public void KeepChcek() {
+    protected virtual void Init(Summoner summoner , float precent) {
+        if(gameObject.CompareTag("Enemy")) targetList = GameObject.Find("PlayerList");
+        sp ??= GetComponent<SpriteRenderer>() ;
+        ani ??= GetComponent<Animator>() ?  GetComponent<Animator>() : null;
+
+        hp = summoner.hp * precent;
+        mp = unit.mp;
+        damage = summoner.damage * precent;
+        speed = unit.speed;
+        attackRadious = unit.attackRadious;
+        setInitAttackSpeed = unit.attackSpeed;
+        
+        maxHp = hp;
+    }
+    
+    
+    protected virtual void Attack(){
+        canAttack = !DontAttack && target != null && attackRadious > Vector2.Distance(target.transform.position, transform.position) && currentAttackSpeed <= 0;
+        
+        if(canAttack) {
+            isAttack = true;
+            ani?.SetBool("Attack" , true);
+            currentAttackSpeed = setInitAttackSpeed;
+            StartCoroutine(WaitForAttackAnimationCorutine());
+        }
+        
+    }
+    protected virtual void KeepChcek() {
+        FollowTarget();
         currentAttackSpeed -= Time.deltaTime;
         Die();
+        Flip();
     }
     protected void Die(){
+        //:fix DieAnimation 이후 SpawnEnemyCount-- 해주기
         if(hp <= 0) {
             isDie = true;
-            gameObject.SetActive(false);
+            ani?.SetBool("Die" , isDie);
+            target = null;
             if(gameObject.CompareTag("Enemy")) {
-                PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
                 EnemySpawner.Instance.CheckDie();
             }
-            // 죽는 애니메이션 이후 없어지는 기능
-            // Trigger 끄기 , 추적안되게 하는 기능
+            StartCoroutine(WaitForDieAnimationCorutine());
         }
     }
     protected bool FollowTarget(){
+        if(isAttack) return false;
         if(target != null && target.GetComponent<Unit>().isDie) target = null;
         if(target == null) {
             target = FindTarget(targetList);
             return false;
         }
-        if(Vector2.Distance(target.transform.position , transform.position) < unit.attackRadious) return false;
-        
-        transform.position += (target.transform.position - transform.position).normalized * unit.speed * Time.deltaTime;
-        Flip();
+        if(Vector2.Distance(target.transform.position , transform.position) < attackRadious || isAttack) return false;
+
+        transform.position += (target.transform.position - transform.position).normalized * speed * Time.deltaTime;
         return true;
     }
-
-    protected GameObject FindTarget(GameObject TargetList){
-        
+    protected GameObject FindTarget(GameObject TargetList){  
         if(target != null) return target;
         
         GameObject returnGameObject = null;
         float minDistance = 9999999f;
 
         foreach(Transform targets in TargetList.transform) {
+            
             if(Vector2.Distance(targets.position , transform.position) < minDistance && !targets.GetComponent<Unit>().isDie) {
                 minDistance = Vector2.Distance(targets.position , transform.position);
                 returnGameObject = targets.gameObject;
             }
         }
-        
         return returnGameObject;
     }
-
     protected void Flip(){
-        sp.flipX = (target.transform.position - transform.position).normalized.x >= 0 ? false : true;
+        if(target != null) sp.flipX = (target.transform.position - transform.position).normalized.x >= 0 ? false : true;
+        
     }
+
+    protected IEnumerator WaitForDieAnimationCorutine(){ 
+        if(ani != null) yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("DIE") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+        PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
+    }
+    protected IEnumerator WaitForAttackAnimationCorutine(){ 
+        if(ani != null) yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("ATTACK") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+        else yield return new WaitForSeconds(0.2f);
+        ani?.SetBool("Attack" , false);
+        isAttack = false;
+    }
+
 
 }

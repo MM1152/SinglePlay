@@ -162,9 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 11400000, guid: 60096f22e76524442ae5c2536a380eec, type: 2}
-  setInitAttackSpeed: 0
-  currentAttackSpeed: 0
+  ani: {fileID: 0}
+  hp: 0
   isDie: 0
-  target: {fileID: 0}
   targetList: {fileID: 0}
-  DontAttack: 1
+  DontAttack: 0

@@ -18,17 +18,15 @@ public class ProjecTile : MonoBehaviour
 
     private void Update() {
         rg.AddForce(direction  , ForceMode2D.Impulse);
-        Debug.Log("UPdate");
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Wall")) {
-            Debug.Log("Projectile Hitting Wall");
             PoolingManager.Instance.ReturnObject("Projectile" , gameObject);
 
         }
-        else if(!other.CompareTag(gameObject.tag)) {            
-            Debug.Log("Projectile Hitting " + other.gameObject.tag);
+        else if(other.GetComponent<IDamageAble>() != null && !other.CompareTag(gameObject.tag) && !other.GetComponent<Unit>().isDie) {       
+            Debug.Log($"Get OtherIDamageAble : {other.GetComponent<IDamageAble>()}");     
             other.GetComponent<IDamageAble>().Hit(unitData.damage);
             PoolingManager.Instance.ReturnObject("Projectile" , gameObject);
         }
@@ -36,6 +34,5 @@ public class ProjecTile : MonoBehaviour
 
     public void SetDirecetion(){
         direction = (target.transform.position - transform.position).normalized;
-        Debug.Log("SetDirection");
     }
 }

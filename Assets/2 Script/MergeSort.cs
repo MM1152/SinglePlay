@@ -1,13 +1,20 @@
 
 using System.Collections.Generic;
 using Unity.VisualScripting;
-
+/// <summary>
+/// 게임오브젝트를 유닛의 생성확률에 맞춰 정렬해준다.
+/// </summary>
 public class MergeSort{
     float[] sortedList;
     Unit[] sortedUnitList;
     Unit[] units;
     List<float> unitSpawnprobabillity = new List<float>();
-    public MergeSort(Unit[] units) {
+
+    /// <summary>
+    /// 정렬할 Unit들 배열로 넣어주기
+    /// </summary>
+    /// <param name="units"></param>
+    public MergeSort(Unit[] units) { 
         this.units = units;
         
         sortedList = new float[units.Length];
@@ -19,7 +26,11 @@ public class MergeSort{
 
         Merge(unitSpawnprobabillity , 0 , unitSpawnprobabillity.Count - 1);
     }
-    public Unit[] get(){
+    /// <summary>
+    /// 정렬된 Unit배열 받기
+    /// </summary>
+    /// <returns></returns>
+    public Unit[] get(){ 
         return units;
     }
     public void Merge(List<float> unitSpawnProbabillity , int left , int right){

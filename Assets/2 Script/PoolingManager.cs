@@ -11,7 +11,7 @@ public class PoolingManager : MonoBehaviour
         }
     }
     Dictionary<string , Queue<GameObject>> pools = new Dictionary<string , Queue<GameObject>>();
-
+    
     [SerializeField] GameObject prefeb;
     // Start is called before the first frame update
     void Awake()
@@ -20,7 +20,6 @@ public class PoolingManager : MonoBehaviour
     }
 
     public GameObject ShowObject(string objectName){
-        Debug.Log(objectName);
         if(!pools.ContainsKey(objectName)) pools.Add(objectName , new Queue<GameObject>());
 
         GameObject poolingObj = null;
@@ -37,7 +36,6 @@ public class PoolingManager : MonoBehaviour
 
 
     public GameObject ShowObject(string objectName , GameObject prefebs){
-        Debug.Log(objectName);
         if(!pools.ContainsKey(objectName)) pools.Add(objectName , new Queue<GameObject>());
 
         GameObject poolingObj = null;

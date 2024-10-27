@@ -46,6 +46,8 @@ public class EnemySpawner : MonoBehaviour
                 GameObject Enemy;
                 sum += spawnProbabillity[j];
                 if(sum >= spawnEnemy) {
+                    //:fix 적 캐릭터 생성위치 변경 필요 , 캐릭터가 맵 끝쪽에 있을때 맵안쪽에 소환할 수 있도록 변경
+
                     Enemy = PoolingManager.Instance.ShowObject(Enemys[j].gameObject.name +"(Clone)" , Enemys[j].gameObject);
                     Enemy.transform.position = player.transform.position + new Vector3(Random.Range(-5f , 5f) , Random.Range(-5f , 5f));
                     Enemy.transform.SetParent(spawntrans);

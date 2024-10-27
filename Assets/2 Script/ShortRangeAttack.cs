@@ -5,17 +5,22 @@ using UnityEngine;
 public class ShortRangeAttack : MonoBehaviour
 {   
     public UnitData unit;
+    public Unit parent;
     public Vector2 target;
+    private void Awake() {
+        parent = transform.parent.GetComponent<Unit>();    
+    }
     private void OnEnable() {
-        transform.localPosition = (target - (Vector2)transform.parent.position).normalized;
+        transform.position = target;
         StartCoroutine(DisappearCorutine());
     }
     IEnumerator DisappearCorutine(){
-        yield return new WaitForSeconds(0.5f);  // 애니메이션 추가되면 공격 애니메이션 끝날때까지 대기
+        yield return new WaitWhile(() => parent.isAttack);
+            
         gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        if(!other.CompareTag(transform.parent.tag)) {
+        if(other.GetComponent<IDamageAble>() != null && !other.CompareTag(transform.parent.tag) && !other.GetComponent<Unit>().isDie) {
             other.GetComponent<IDamageAble>().Hit(unit.damage);
         }
     }

@@ -2,27 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SummonUnit : ShortRangeScipt , IDamageAble , ISummonUnit
+public class SummonUnit : ShortRangeScipt , ISummonUnit , IDamageAble
 {
-    public static int unitCount;
-    public Summoner summoner { get; set; }
+    
+    public Summoner summoner { get ; set ; }
 
-    public void Awake() { // 소환물은 프리팹이라 인스펙터창에서 드래그로 적용을 못시켜줘서 targetList 설정필요
-        base.Awake();
-        unitCount++;
-        targetList = GameObject.Find("EnemyList").gameObject;
-        Debug.Log($"hp {hp} , mp {mp} , damage {damage}");
+
+    private void OnEnable() {
+        Respawn();
     }
+
+    private void Awake() { // 소환물은 프리팹이라 인스펙터창에서 드래그로 적용을 못시켜줘서 targetList 설정필요
+
+        ++ISummonUnit.unitCount;
+        targetList = GameObject.Find("EnemyList").gameObject;
+    }
+    private void Start() {
+        base.Init(summoner , 0.2f);
+    }
+
     private void Update()
     {
-        ani.SetBool("Move" , FollowTarget());
-        base.Update();
+        if(!isDie) {
+            base.KeepChcek();
+        }
     }
+
     private void OnDisable() {
-        unitCount--;
+        --ISummonUnit.unitCount;
     }
-    public void Hit(float Damage)
-    {
-        hp -= Damage;
-    }
+
 }

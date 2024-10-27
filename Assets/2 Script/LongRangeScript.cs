@@ -4,30 +4,33 @@ using UnityEngine;
 
 public class LongRangeScript : Unit, IDamageAble
 {
+    int spawnProjecTileCount = 0;
+    private void OnEnable() {
+        Respawn();
+    }
     private void Awake()
     {
-        base.Init();
+        Init(GameManager.Instance.gmaeLevel);
     }
     private void Update()
     {
-        base.KeepChcek();
-        Attack();
-        FollowTarget();
+        if (!isDie)
+        {
+            KeepChcek();
+        }
+
     }
     public void Hit(float Damage)
     {
         hp -= Damage;
     }
 
-    protected void Attack()
+    protected override void Attack()
     {
-        bool isAttack = !DontAttack && target != null && unit.attackRadious > Vector2.Distance(target.transform.position, transform.position) && currentAttackSpeed <= 0;
-
-        if (isAttack)
+        base.Attack();
+        
+        if (canAttack)
         {
-            
-            currentAttackSpeed = setInitAttackSpeed;
-
             GameObject attackObj = PoolingManager.Instance.ShowObject("Projectile");
             ProjecTile projecTile = attackObj.GetComponent<ProjecTile>();
 
@@ -38,7 +41,19 @@ public class LongRangeScript : Unit, IDamageAble
 
             projecTile.SetDirecetion();
             attackObj.SetActive(true);
-            
+            if(gameObject.name == "Summon1(Clone)") {
+            Debug.Log($"Attack {gameObject.name}");
         }
+        }
+        
+        
+    }
+    protected override void Init(float setStatus) {
+        base.Init(setStatus);
+    }
+    protected override void KeepChcek()
+    {
+        base.KeepChcek();
+        Attack();
     }
 }
