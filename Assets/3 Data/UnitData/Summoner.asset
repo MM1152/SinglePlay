@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba121b15cbd8344c87c6c7860363848, type: 3}
   m_Name: Summoner
   m_EditorClassIdentifier: 
-  attackType: 1
-  unitName: Summoner
-  attackSpeed: 2
-  hp: 150
+  attackSpeed: 1.2
+  hp: 350
   mp: 50
   damage: 50
-  speed: 2
-  attackRadious: 2.3
+  speed: 1.2
+  attackRadious: 2.5
+  spawnProbabillity: 0

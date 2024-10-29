@@ -5,7 +5,9 @@ using UnityEngine;
 public class LongRangeScript : Unit, IDamageAble
 {
     int spawnProjecTileCount = 0;
-    private void OnEnable() {
+    [Range(0f, 1f)] public float attackObjectShowTime;
+    private void OnEnable()
+    {
         Respawn();
     }
     private void Awake()
@@ -28,27 +30,30 @@ public class LongRangeScript : Unit, IDamageAble
     protected override void Attack()
     {
         base.Attack();
-        
+
         if (canAttack)
         {
-            GameObject attackObj = PoolingManager.Instance.ShowObject("Projectile");
-            ProjecTile projecTile = attackObj.GetComponent<ProjecTile>();
-
-            projecTile.tag = gameObject.tag;
-            projecTile.target = target.transform;
-            projecTile.unitData = unit;
-            attackObj.transform.position = this.gameObject.transform.position;
-
-            projecTile.SetDirecetion();
-            attackObj.SetActive(true);
-            if(gameObject.name == "Summon1(Clone)") {
-            Debug.Log($"Attack {gameObject.name}");
+            StartCoroutine(WaitForAttackAnimation());
         }
-        }
-        
-        
     }
-    protected override void Init(float setStatus) {
+    // 설정된 attackObjectShowTime 시간에 맞춰 원거리투사체 발사
+    IEnumerator WaitForAttackAnimation()
+    {
+        if(ani != null)yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("ATTACK") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= attackObjectShowTime);
+        else yield return null;
+        GameObject attackObj = PoolingManager.Instance.ShowObject("Projectile");
+        ProjecTile projecTile = attackObj.GetComponent<ProjecTile>();
+
+        projecTile.tag = gameObject.tag;
+        projecTile.target = target.transform;
+        projecTile.unitData = unit;
+        attackObj.transform.position = this.gameObject.transform.position;
+
+        projecTile.SetDirecetion();
+        attackObj.SetActive(true);
+    }
+    protected override void Init(float setStatus)
+    {
         base.Init(setStatus);
     }
     protected override void KeepChcek()

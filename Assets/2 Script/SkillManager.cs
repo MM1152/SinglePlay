@@ -11,6 +11,7 @@ public class SkillManager : MonoBehaviour
 
     public bool SummonSkill;
     public bool UpgradeSummonSkill;
+    public int UpgradeMaxSummonCount = 2; //MaxSpawnCount;
 
     private float sumPosiboillity = 0;
     MergeSort merge;
@@ -28,6 +29,11 @@ public class SkillManager : MonoBehaviour
             case "UpgradeSummonSkill" :
                 UpgradeSummonSkill = true;
                 break;
+
+            case "UpgradeMaxSummonCount" :
+                UpgradeMaxSummonCount++;
+                break;
+
         }
         if(!skillDatas.ContainsKey(data)) {
             skillDatas.Add(data , 1);

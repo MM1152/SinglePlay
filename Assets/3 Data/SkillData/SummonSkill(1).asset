@@ -15,6 +15,6 @@ MonoBehaviour:
   skillName: "\uD574\uACE8 \uC18C\uD658"
   coolTime: 2
   skillLevel: 0
-  maxSkillLevel: 5
+  maxSkillLevel: 3
   skillExplain: "\uD574\uACE8\uC744 \uC18C\uD658\uD574 \uC804\uD22C\uB97C \uB3D5\uB3C4\uB85D
     \uD569\uB2C8\uB2E4."

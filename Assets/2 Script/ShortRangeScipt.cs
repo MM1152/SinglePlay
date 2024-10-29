@@ -42,12 +42,10 @@ public class ShortRangeScipt : Unit, IDamageAble
     protected override void KeepChcek()
     {
         base.KeepChcek();
-        ani?.SetBool("Move", FollowTarget());
         Attack();
     }
     public void Hit(float Damage)
     {
-        Debug.Log($"Hit {gameObject.name}");
         hp -= Damage;
     }
     // Update is called once per frame

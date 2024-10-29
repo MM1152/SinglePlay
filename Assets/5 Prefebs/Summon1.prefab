@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 466295612177919787}
   - component: {fileID: 6601578977930350853}
   - component: {fileID: -1755694238537729159}
+  - component: {fileID: 1951396699736333109}
   m_Layer: 0
   m_Name: Summon1
   m_TagString: Player
@@ -120,8 +121,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 11400000, guid: 61472013393349a4386060ece8b1c495, type: 2}
+  currentAttackSpeed: 0
+  canAttack: 0
   isAttack: 0
   hp: 0
   isDie: 0
   targetList: {fileID: 0}
   DontAttack: 0
+  attackObjectShowTime: 0
+--- !u!61 &1951396699736333109
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399103644165832959}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.13, y: -0.17672038}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.2631578, y: 1.2631578}
+    newSize: {x: 1.2631578, y: 1.2631578}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.39999998, y: 0.64655924}
+  m_EdgeRadius: 0

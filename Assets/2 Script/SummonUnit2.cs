@@ -31,9 +31,4 @@ public class SummonUnit2 : LongRangeScript , ISummonUnit , IDamageAble
     private void OnDisable() {
         --ISummonUnit.unitCount;
     }
-    //:fix 공격 중간쯤 공격이 나갈 수 있도록 설정해줘야함.
-    IEnumerator WaitForAttackAnimationCorutine(){
-        yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("ATTACK") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f);
-        base.Attack();
-    }
 }

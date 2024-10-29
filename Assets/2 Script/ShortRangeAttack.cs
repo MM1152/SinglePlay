@@ -10,18 +10,20 @@ public class ShortRangeAttack : MonoBehaviour
     private void Awake() {
         parent = transform.parent.GetComponent<Unit>();    
     }
+    private void OnDisable(){
+        gameObject.SetActive(false);
+    }
     private void OnEnable() {
         transform.position = target;
         StartCoroutine(DisappearCorutine());
     }
     IEnumerator DisappearCorutine(){
         yield return new WaitWhile(() => parent.isAttack);
-            
         gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.GetComponent<IDamageAble>() != null && !other.CompareTag(transform.parent.tag) && !other.GetComponent<Unit>().isDie) {
-            other.GetComponent<IDamageAble>().Hit(unit.damage);
+            other.GetComponent<IDamageAble>().Hit(parent.damage);
         }
     }
     

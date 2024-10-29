@@ -8,16 +8,17 @@ public class ProjecTile : MonoBehaviour
 {
     public UnitData unitData;
     public Transform target;
-
+    [Range(1f , 100f)] [SerializeField] float speed;
     private Rigidbody2D rg;
     private Vector3 direction;
+    
     
     private void Awake() {
         rg = GetComponent<Rigidbody2D>();
     }
 
     private void Update() {
-        rg.AddForce(direction  , ForceMode2D.Impulse);
+        rg.AddForce(direction  * Time.deltaTime * speed , ForceMode2D.Impulse);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
