@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba121b15cbd8344c87c6c7860363848, type: 3}
   m_Name: Enemy2
   m_EditorClassIdentifier: 
-  attackType: 2
-  unitName: Enemy1
   attackSpeed: 1
   hp: 50
   mp: 0
-  damage: 14
+  damage: 7
   speed: 0.8
   attackRadious: 0.6
   spawnProbabillity: 80

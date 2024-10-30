@@ -12,7 +12,7 @@ public class Exp : MonoBehaviour
     {
         level = GameObject.FindObjectOfType<Level>();
         slider = GetComponent<Slider>();
-        slider.maxValue = 500f;
+        slider.maxValue = 100;
         slider.value = 0;
     }
 

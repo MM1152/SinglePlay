@@ -71,6 +71,15 @@ public class Unit : MonoBehaviour {
         
         maxHp = hp;
     }
+    protected void ChangeStats(Summoner summoner , float precent){
+        hp = summoner.hp * precent;
+        mp = unit.mp;
+        damage = summoner.damage * precent;
+        speed = unit.speed;
+        attackRadious = unit.attackRadious;
+        setInitAttackSpeed = unit.attackSpeed;
+        maxHp = hp;
+    }
     protected virtual void Attack(){
         canAttack = !DontAttack && target != null && attackRadious > Vector2.Distance(target.transform.position, transform.position) && currentAttackSpeed <= 0;
         

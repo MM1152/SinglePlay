@@ -9,6 +9,8 @@ public class SummonUnit : ShortRangeScipt , ISummonUnit , IDamageAble
     public int count;
     private void OnEnable() {
         count = ++ISummonUnit.unitCount;
+        Debug.Log("precent : " + 0.2f * SkillManager.Instance.skillDatas["해골 소환"]);
+        if(summoner != null) ChangeStats(summoner , 0.2f * SkillManager.Instance.skillDatas["해골 소환"]);
         Respawn();
     }
 

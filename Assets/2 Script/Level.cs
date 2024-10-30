@@ -17,6 +17,7 @@ public class Level : MonoBehaviour
 
     public void LevelUp(){
         level++;
+        SkillManager.Instance.statPoint++;
         levelText.text = level.ToString();
     }
 }

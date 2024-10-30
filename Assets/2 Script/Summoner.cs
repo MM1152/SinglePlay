@@ -9,7 +9,7 @@ public class Summoner : LongRangeScript, IDamageAble
     private void Awake()
     {
         base.Init(1);
-        skillCoolDown = 2f;
+        skillCoolDown = 5f;
         skillCurrentTime = skillCoolDown;
     }
     private void Update()
@@ -42,7 +42,6 @@ public class Summoner : LongRangeScript, IDamageAble
             skillCurrentTime -= Time.deltaTime;
         }
     }
-
     IEnumerator WaitForSkillAnimationCorutine()
     {
         yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("SKILL") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);

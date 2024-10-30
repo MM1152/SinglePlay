@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ba121b15cbd8344c87c6c7860363848, type: 3}
-  m_Name: SummoUnit1
+  m_Script: {fileID: 11500000, guid: 0d7fd31d3eb4684478fccf7dfb96f5dd, type: 3}
+  m_Name: AttackSkill(1)
   m_EditorClassIdentifier: 
-  attackSpeed: 2
-  hp: 50
-  mp: 0
-  damage: 100
-  speed: 0.3
-  attackRadious: 0.8
-  spawnProbabillity: 80
+  skillName: 
+  coolTime: 0
+  skillLevel: 0
+  maxSkillLevel: 0
+  skillExplain: 
