@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7fd31d3eb4684478fccf7dfb96f5dd, type: 3}
   m_Name: AttackSkill(1)
   m_EditorClassIdentifier: 
-  skillName: 
-  coolTime: 0
+  skillName: "\uBC88\uAC1C \uACF5\uACA9"
+  coolTime: 2
   skillLevel: 0
-  maxSkillLevel: 0
-  skillExplain: 
+  maxSkillLevel: 1
+  skillExplain: "\uC801\uC5D0\uAC8C \uBC88\uAC1C\uACF5\uACA9\uC744 \uC2DC\uC804\uD569\uB2C8\uB2E4"

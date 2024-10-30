@@ -8,7 +8,7 @@ public class Summoner : LongRangeScript, IDamageAble
     [SerializeField] float skillCurrentTime;
     private void Awake()
     {
-        base.Init(1);
+        Init(1);
         skillCoolDown = 5f;
         skillCurrentTime = skillCoolDown;
     }
@@ -16,7 +16,8 @@ public class Summoner : LongRangeScript, IDamageAble
     {
         if (!isDie)
         {
-            base.KeepChcek();
+            KeepChcek();
+            if (!SkillManager.Instance.LightningAttack) Attack();
             if (SkillManager.Instance.SummonSkill) SummonSkill();
         }
     }

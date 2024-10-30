@@ -28,7 +28,7 @@ public class Unit : MonoBehaviour {
 
     /************Targeting***************/
     public bool isDie;
-    protected GameObject target; // 공격할 대상
+    public GameObject target; // 공격할 대상
     [SerializeField] protected GameObject targetList; // 적이라면 Player를 담고있는 부모 , Player라면 적에 대한 정보를 담고있는 부모
     /************************************/
 

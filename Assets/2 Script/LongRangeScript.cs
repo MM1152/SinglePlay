@@ -19,6 +19,7 @@ public class LongRangeScript : Unit, IDamageAble
         if (!isDie)
         {
             KeepChcek();
+            Attack();
         }
 
     }
@@ -51,14 +52,5 @@ public class LongRangeScript : Unit, IDamageAble
 
         projecTile.SetDirecetion();
         attackObj.SetActive(true);
-    }
-    protected override void Init(float setStatus)
-    {
-        base.Init(setStatus);
-    }
-    protected override void KeepChcek()
-    {
-        base.KeepChcek();
-        Attack();
     }
 }
