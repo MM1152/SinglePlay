@@ -5,13 +5,25 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set;}
-    public int gmaeLevel = 1;
+    public int gameLevel = 1;
+    public int clearMonseter = 15;
+    public bool gameClear;
+
+    [SerializeField] GameObject nextStage;
 
     private void Awake() {
-        if(Instance == null) Instance = this;
-        
+        if(Instance == null) Instance = this;    
     }
-
+    private void Update() {
+        if(clearMonseter <= 0) ClearLevel();
+    }
+    public void ClearLevel(){
+        
+        gameClear = true;
+        clearMonseter = 15;
+        gameLevel++;
+        nextStage.SetActive(true);
+    }
     public void StopGame(){
         Time.timeScale = 0;
     }

@@ -17,7 +17,7 @@ public class ShortRangeScipt : Unit, IDamageAble
 
     private void Awake()
     {
-        Init(GameManager.Instance.gmaeLevel);
+        Init(GameManager.Instance.gameLevel);
     }
 
     protected override void Init(float setStatus)

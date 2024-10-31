@@ -17,6 +17,7 @@ public class Exp : MonoBehaviour
     }
 
     public void SetExpValue(float value){
+    
         slider.value += value;
         if(slider.value >= slider.maxValue) {
             slider.value = 0;

@@ -81,7 +81,7 @@ public class Unit : MonoBehaviour {
         maxHp = hp;
     }
     protected virtual void Attack(){
-        canAttack = !DontAttack && target != null && attackRadious > Vector2.Distance(target.transform.position, transform.position) && currentAttackSpeed <= 0;
+        canAttack = !isAttack && !DontAttack && target != null && attackRadious > Vector2.Distance(target.transform.position, transform.position) && currentAttackSpeed <= 0;
         
         if(canAttack) {
             isAttack = true;
@@ -92,18 +92,20 @@ public class Unit : MonoBehaviour {
         
     }
     protected virtual void KeepChcek() {
+        if(GameManager.Instance.gameClear) target = null; 
         currentAttackSpeed -= Time.deltaTime;
         Die();
         Flip();
         if(gameObject.name == "Player" && VirtualJoyStick.instance.isInput) {
-            Debug.Log("Stop");
+            target = FindTarget(targetList);
+            ani.SetBool("Move" , true);
             return;
         } else {
             FollowTarget();
             ani?.SetBool("Move", FollowTarget());
         }
     }
-
+    
     protected void Die(){
         //:fix DieAnimation 이후 SpawnEnemyCount-- 해주기
         if(hp <= 0) {
@@ -116,6 +118,9 @@ public class Unit : MonoBehaviour {
             
             StartCoroutine(WaitForDieAnimationCorutine());
         }
+        if(gameObject.CompareTag("Enemy") && GameManager.Instance.gameClear && hp > 0) {
+            hp = 0;
+        }
     }
 
     protected bool FollowTarget(){
@@ -126,9 +131,8 @@ public class Unit : MonoBehaviour {
             return false;
         }
 
-        if(!isAttack) {
-            target = FindTarget(targetList);
-        }
+        
+        target = FindTarget(targetList);
         
         if(Vector2.Distance(target.transform.position , transform.position) < attackRadious || isAttack) return false;
 
@@ -137,7 +141,7 @@ public class Unit : MonoBehaviour {
     }
 
     protected GameObject FindTarget(GameObject TargetList){  
-
+       
         GameObject returnGameObject = null;
         float minDistance = 9999999f;
 
@@ -156,12 +160,12 @@ public class Unit : MonoBehaviour {
         
     }
 
-    protected IEnumerator WaitForDieAnimationCorutine(){ 
+    private IEnumerator WaitForDieAnimationCorutine(){ 
         if(ani != null) yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("DIE") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         StopAllCoroutines();
         PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
     }
-    protected IEnumerator WaitForAttackAnimationCorutine(){ 
+    private IEnumerator WaitForAttackAnimationCorutine(){ 
         if(ani != null) yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("ATTACK") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         else yield return new WaitForSeconds(0.2f);
         ani?.SetBool("Attack" , false);

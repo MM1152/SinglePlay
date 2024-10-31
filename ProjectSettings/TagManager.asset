@@ -16,7 +16,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - InteractLight
   - 
   - 
   - 
@@ -44,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: InteractLight
+    uniqueID: 4107920653
     locked: 0

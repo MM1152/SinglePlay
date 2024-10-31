@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
     }
     
     private void Update(){
-        if(currentSpawnTimer <= 0) {
+        if(currentSpawnTimer <= 0 && !GameManager.Instance.gameClear) {
             currentSpawnTimer = spawnTimer;
             RespawnEnemy();
         }
@@ -76,7 +76,10 @@ public class EnemySpawner : MonoBehaviour
     }
 
     public void CheckDie(){
-        exp.SetExpValue(10f);
-        currentEnemyNumber--;
+        if(!GameManager.Instance.gameClear){
+            exp.SetExpValue(10f);
+            currentEnemyNumber--;
+            GameManager.Instance.clearMonseter--;
+        }
     }
 }

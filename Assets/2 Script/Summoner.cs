@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Summoner : LongRangeScript, IDamageAble
 {
     [SerializeField] float skillCoolDown;
     [SerializeField] float skillCurrentTime;
+
+    AttackSkill attack;
     private void Awake()
     {
         Init(1);
+        attack = GetComponent<AttackSkill>();
         skillCoolDown = 5f;
         skillCurrentTime = skillCoolDown;
     }
@@ -25,7 +29,6 @@ public class Summoner : LongRangeScript, IDamageAble
     {
         transform.position += movePos * Time.deltaTime * unit.speed;
     }
-
     public float getHp()
     {
         return hp;

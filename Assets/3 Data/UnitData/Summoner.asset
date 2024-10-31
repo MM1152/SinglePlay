@@ -17,5 +17,5 @@ MonoBehaviour:
   mp: 50
   damage: 50
   speed: 1.2
-  attackRadious: 2.5
+  attackRadious: 5
   spawnProbabillity: 0

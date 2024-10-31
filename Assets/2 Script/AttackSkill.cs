@@ -7,6 +7,7 @@ public class AttackSkill : MonoBehaviour
     [SerializeField] GameObject skillPrefeb;
     
     Summoner summoner;
+    Animator ani;
 
     float damagePercent = 1.2f;
     float skillCoolTime = 2f;
@@ -14,15 +15,17 @@ public class AttackSkill : MonoBehaviour
 
     private void Awake()
     {
+        ani = GetComponent<Animator>();
         summoner = GetComponent<Summoner>();
         currentSkillCoolTime = skillCoolTime;
     }
     private void Update() {
         Skill();
+        
     }
-    private void Skill()
+    public void Skill()
     {
-        if (SkillManager.Instance.LightningAttack)
+        if (SkillManager.Instance.LightningAttack && summoner.target != null && !summoner.isDie)
         {
             if(currentSkillCoolTime <= 0){
                 GameObject lightning = PoolingManager.Instance.ShowObject(skillPrefeb.name +"(Clone)" , skillPrefeb);   
@@ -36,9 +39,8 @@ public class AttackSkill : MonoBehaviour
 
                 summoner.target.GetComponent<IDamageAble>().Hit(summoner.damage * damagePercent);
                 currentSkillCoolTime = skillCoolTime;
-
             }
-              
+            
             currentSkillCoolTime -= Time.deltaTime;
         }
     }

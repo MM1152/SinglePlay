@@ -5,6 +5,7 @@ using UnityEngine;
 public class LongRangeScript : Unit, IDamageAble
 {
     int spawnProjecTileCount = 0;
+    int attackCount = 0;
     [Range(0f, 1f)] public float attackObjectShowTime;
     private void OnEnable()
     {
@@ -12,7 +13,7 @@ public class LongRangeScript : Unit, IDamageAble
     }
     private void Awake()
     {
-        Init(GameManager.Instance.gmaeLevel);
+        Init(GameManager.Instance.gameLevel);
     }
     private void Update()
     {
@@ -31,7 +32,6 @@ public class LongRangeScript : Unit, IDamageAble
     protected override void Attack()
     {
         base.Attack();
-
         if (canAttack)
         {
             StartCoroutine(WaitForAttackAnimation());
@@ -42,6 +42,8 @@ public class LongRangeScript : Unit, IDamageAble
     {
         if(ani != null)yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("ATTACK") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= attackObjectShowTime);
         else yield return null;
+
+        Debug.Log("ShowObject LongRangeScript");
         GameObject attackObj = PoolingManager.Instance.ShowObject("Projectile");
         ProjecTile projecTile = attackObj.GetComponent<ProjecTile>();
 
