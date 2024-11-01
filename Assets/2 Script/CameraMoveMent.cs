@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraMoveMent : MonoBehaviour
 {
     [SerializeField] Transform target; // Player를 담은 부모오브젝트 , 항상 첫번째 자식이 카메라의 타깃이 됌
+    [SerializeField] Transform nextMapHole;
     public float smooting;
     void Awake()
     {
@@ -14,7 +15,14 @@ public class CameraMoveMent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.Lerp(transform.position , new Vector2(target.position.x , target.position.y) , smooting);
-        transform.position += Vector3.back * 10f;
+        if(!GameManager.Instance.playingShader) {
+            transform.position = Vector2.Lerp(transform.position , target.position , smooting);
+            transform.position += Vector3.back * 10f;
+        }
+        else {
+            transform.position = Vector2.Lerp(transform.position , nextMapHole.position , smooting);
+            transform.position += Vector3.back * 10f;
+        }
+        
     }
 }

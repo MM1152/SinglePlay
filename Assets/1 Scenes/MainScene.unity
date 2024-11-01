@@ -1284,6 +1284,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1378,6 +1379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1173068856}
+  nextMapHole: {fileID: 1852228122}
   smooting: 0.2
 --- !u!114 &519420034
 MonoBehaviour:
@@ -1423,6 +1425,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4327d662eb1b0542846d56b5c865c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmout: 0.05
 --- !u!1 &542454439
 GameObject:
   m_ObjectHideFlags: 0
@@ -26297,7 +26312,8 @@ MonoBehaviour:
   gameLevel: 1
   clearMonseter: 15
   gameClear: 0
-  nextStage: {fileID: 0}
+  playingShader: 0
+  nextStage: {fileID: 1852228120}
 --- !u!1 &931653708
 GameObject:
   m_ObjectHideFlags: 0
@@ -28144,7 +28160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1649221968
 Transform:
   m_ObjectHideFlags: 0
@@ -30557,13 +30573,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1852228122}
   - component: {fileID: 1852228121}
+  - component: {fileID: 1852228123}
   m_Layer: 0
   m_Name: NextStage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1852228121
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30632,6 +30649,21 @@ Transform:
   - {fileID: 1649221968}
   m_Father: {fileID: 865983695}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 47}
+--- !u!114 &1852228123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852228120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe27e3e17f0202d40b7deb7736d48107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  showNextMapShader: {fileID: 0}
+  fade: 0
 --- !u!1 &1895290990
 GameObject:
   m_ObjectHideFlags: 0

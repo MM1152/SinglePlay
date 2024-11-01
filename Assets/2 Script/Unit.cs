@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class Unit : MonoBehaviour {
+public class Unit : MonoBehaviour , IFollowTarget {
     public UnitData unit;
     protected float setInitAttackSpeed; // 초기화될 공격속도
     [SerializeField] protected float currentAttackSpeed; // 현재 공격까지 남은시간
@@ -28,6 +28,7 @@ public class Unit : MonoBehaviour {
 
     /************Targeting***************/
     public bool isDie;
+    public bool canFollow { get ; set ; }
     public GameObject target; // 공격할 대상
     [SerializeField] protected GameObject targetList; // 적이라면 Player를 담고있는 부모 , Player라면 적에 대한 정보를 담고있는 부모
     /************************************/
@@ -36,12 +37,15 @@ public class Unit : MonoBehaviour {
     [Space(10)]
     [Header("TestCodes")]
     public bool DontAttack;
-    /************************************/
     
+
+    /************************************/
+
     protected void Respawn(){
         isDie = false;
         isAttack = false;
         hp = maxHp;
+        canFollow = true;
     }
     protected virtual void Init(float setStatus) {
         if(gameObject.CompareTag("Enemy")) targetList = GameObject.Find("PlayerList");
@@ -92,7 +96,7 @@ public class Unit : MonoBehaviour {
         
     }
     protected virtual void KeepChcek() {
-        if(GameManager.Instance.gameClear) target = null; 
+        if(GameManager.Instance.gameClear && target.name != "NextStage") target = null; 
         currentAttackSpeed -= Time.deltaTime;
         Die();
         Flip();
@@ -110,6 +114,7 @@ public class Unit : MonoBehaviour {
         //:fix DieAnimation 이후 SpawnEnemyCount-- 해주기
         if(hp <= 0) {
             isDie = true;
+            canFollow = false;
             ani?.SetBool("Die" , isDie);
             target = null;
             if(gameObject.CompareTag("Enemy")) {
@@ -124,17 +129,19 @@ public class Unit : MonoBehaviour {
     }
 
     protected bool FollowTarget(){
-        if(isAttack) return false;
-        if(target != null && target.GetComponent<Unit>().isDie) target = null;
+        
+        if(target != null && !target.GetComponent<IFollowTarget>().canFollow) target = null;
         if(target == null) {
             target = FindTarget(targetList);
             return false;
         }
-
         
-        target = FindTarget(targetList);
+        if(target.name != "NextStage") {
+            target = FindTarget(targetList);
+            if(Vector2.Distance(target.transform.position , transform.position) < attackRadious || isAttack) return false;
+        }
         
-        if(Vector2.Distance(target.transform.position , transform.position) < attackRadious || isAttack) return false;
+        if(isAttack) return false;
 
         transform.position += (target.transform.position - transform.position).normalized * speed * Time.deltaTime;
         return true;

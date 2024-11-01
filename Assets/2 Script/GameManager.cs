@@ -8,8 +8,9 @@ public class GameManager : MonoBehaviour
     public int gameLevel = 1;
     public int clearMonseter = 15;
     public bool gameClear;
+    public bool playingShader;
 
-    [SerializeField] GameObject nextStage;
+    public GameObject nextStage;
 
     private void Awake() {
         if(Instance == null) Instance = this;    
@@ -18,7 +19,6 @@ public class GameManager : MonoBehaviour
         if(clearMonseter <= 0) ClearLevel();
     }
     public void ClearLevel(){
-        
         gameClear = true;
         clearMonseter = 15;
         gameLevel++;

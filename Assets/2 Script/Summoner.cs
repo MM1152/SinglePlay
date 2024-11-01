@@ -20,10 +20,20 @@ public class Summoner : LongRangeScript, IDamageAble
     {
         if (!isDie)
         {
+            if (GameManager.Instance.gameClear && !GameManager.Instance.playingShader)
+            {
+                target = GameManager.Instance.nextStage;
+            }
+            else
+            {
+                if (!SkillManager.Instance.LightningAttack) Attack();
+                if (SkillManager.Instance.SummonSkill) SummonSkill();
+            }
+
             KeepChcek();
-            if (!SkillManager.Instance.LightningAttack) Attack();
-            if (SkillManager.Instance.SummonSkill) SummonSkill();
         }
+
+
     }
     public void Move(Vector3 movePos)
     {
@@ -33,6 +43,8 @@ public class Summoner : LongRangeScript, IDamageAble
     {
         return hp;
     }
+
+
 
     public void SummonSkill()
     {
@@ -50,7 +62,7 @@ public class Summoner : LongRangeScript, IDamageAble
     {
         yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("SKILL") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
         ani.SetBool("Skill", false);
-        
+
         GameObject unit = SkillManager.Instance.GetSummonGameObjet();
         unit = PoolingManager.Instance.ShowObject(unit.name + "(Clone)", unit);
         unit.transform.SetParent(transform.parent);
@@ -61,5 +73,5 @@ public class Summoner : LongRangeScript, IDamageAble
         skillCurrentTime = skillCoolDown;
     }
 
-    
+
 }
