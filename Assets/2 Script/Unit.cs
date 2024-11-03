@@ -16,6 +16,7 @@ public class Unit : MonoBehaviour , IFollowTarget {
     [Header("Status")]
     public bool canAttack;
     public bool isAttack;
+    public bool isSkill;
     public float hp;
     public float mp;
     public float damage;
@@ -96,7 +97,7 @@ public class Unit : MonoBehaviour , IFollowTarget {
         
     }
     protected virtual void KeepChcek() {
-        if(GameManager.Instance.gameClear && target.name != "NextStage") target = null; 
+        if(GameManager.Instance.gameClear && target?.name != "NextStage") target = null; 
         currentAttackSpeed -= Time.deltaTime;
         Die();
         Flip();
@@ -109,7 +110,6 @@ public class Unit : MonoBehaviour , IFollowTarget {
             ani?.SetBool("Move", FollowTarget());
         }
     }
-    
     protected void Die(){
         //:fix DieAnimation 이후 SpawnEnemyCount-- 해주기
         if(hp <= 0) {
@@ -127,7 +127,6 @@ public class Unit : MonoBehaviour , IFollowTarget {
             hp = 0;
         }
     }
-
     protected bool FollowTarget(){
         
         if(target != null && !target.GetComponent<IFollowTarget>().canFollow) target = null;
@@ -141,12 +140,11 @@ public class Unit : MonoBehaviour , IFollowTarget {
             if(Vector2.Distance(target.transform.position , transform.position) < attackRadious || isAttack) return false;
         }
         
-        if(isAttack) return false;
+        if(isAttack || isSkill) return false;
 
         transform.position += (target.transform.position - transform.position).normalized * speed * Time.deltaTime;
         return true;
     }
-
     protected GameObject FindTarget(GameObject TargetList){  
        
         GameObject returnGameObject = null;
@@ -154,7 +152,7 @@ public class Unit : MonoBehaviour , IFollowTarget {
 
         foreach(Transform targets in TargetList.transform) {
             
-            if(Vector2.Distance(targets.position , transform.position) < minDistance && !targets.GetComponent<Unit>().isDie) {
+            if(Vector2.Distance(targets.position , transform.position) < minDistance && targets.GetComponent<IFollowTarget>().canFollow) {
                 minDistance = Vector2.Distance(targets.position , transform.position);
                 returnGameObject = targets.gameObject;
             }

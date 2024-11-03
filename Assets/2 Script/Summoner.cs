@@ -8,6 +8,9 @@ public class Summoner : LongRangeScript, IDamageAble
     [SerializeField] float skillCoolDown;
     [SerializeField] float skillCurrentTime;
 
+    public delegate void Function();
+    public Function function;
+
     AttackSkill attack;
     private void Awake()
     {
@@ -39,19 +42,20 @@ public class Summoner : LongRangeScript, IDamageAble
     {
         transform.position += movePos * Time.deltaTime * unit.speed;
     }
-    public float getHp()
-    {
-        return hp;
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.name == "NextStage") {
+            target = null;
+            ani.Play("InNextMap");
+            StartCoroutine(GameManager.Instance.WaitForNextMap(() => SpawnMapPlayer()));
+        }
     }
-
-
-
     public void SummonSkill()
     {
         if (!ani.GetCurrentAnimatorStateInfo(0).IsName("SKILL") && ISummonUnit.unitCount < SkillManager.Instance.UpgradeMaxSummonCount)
         {
             if (skillCurrentTime <= 0)
             {
+                isSkill = true;
                 ani?.SetBool("Skill", true);
                 StartCoroutine(WaitForSkillAnimationCorutine());
             }
@@ -71,7 +75,12 @@ public class Summoner : LongRangeScript, IDamageAble
         unit.transform.position = transform.position + Vector3.right;
 
         skillCurrentTime = skillCoolDown;
+        isSkill = false;
     }
 
-
+    private void SpawnMapPlayer(){
+        transform.position = Vector3.zero;
+        ani.Play("SpawnMap");
+        function?.Invoke();
+    }
 }

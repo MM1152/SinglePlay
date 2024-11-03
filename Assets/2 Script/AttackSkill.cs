@@ -25,7 +25,7 @@ public class AttackSkill : MonoBehaviour
     }
     public void Skill()
     {
-        if (SkillManager.Instance.LightningAttack && summoner.target != null && !summoner.isDie)
+        if (SkillManager.Instance.LightningAttack && summoner.target != null && !summoner.isDie && summoner.target.name != "NextStage")
         {
             if(currentSkillCoolTime <= 0){
                 GameObject lightning = PoolingManager.Instance.ShowObject(skillPrefeb.name +"(Clone)" , skillPrefeb);   

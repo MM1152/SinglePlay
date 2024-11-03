@@ -13,11 +13,7 @@ public class ShortRangeScipt : Unit, IDamageAble
     private void OnEnable()
     {
         Respawn();
-    }
-
-    private void Awake()
-    {
-        Init(GameManager.Instance.gameLevel);
+        Init(GameManager.Instance.gameLevel * 0.1f);
     }
 
     protected override void Init(float setStatus)

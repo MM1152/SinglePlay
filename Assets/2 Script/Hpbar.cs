@@ -15,6 +15,6 @@ public class Hpbar : MonoBehaviour
     }
 
     private void Update() {
-        slider.value = player.getHp();
+        slider.value = player.hp;
     }
 }
