@@ -6,6 +6,7 @@ public class LongRangeScript : Unit, IDamageAble
 {
     int spawnProjecTileCount = 0;
     int attackCount = 0;
+    [SerializeField] GameObject projectile;
     [Range(0f, 1f)] public float attackObjectShowTime;
     private void OnEnable()
     {
@@ -43,13 +44,12 @@ public class LongRangeScript : Unit, IDamageAble
         if(ani != null)yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("ATTACK") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= attackObjectShowTime);
         else yield return null;
 
-        Debug.Log("ShowObject LongRangeScript");
-        GameObject attackObj = PoolingManager.Instance.ShowObject("Projectile");
+        GameObject attackObj = PoolingManager.Instance.ShowObject(projectile.name, projectile);
         ProjecTile projecTile = attackObj.GetComponent<ProjecTile>();
 
         projecTile.tag = gameObject.tag;
         projecTile.target = target.transform;
-        projecTile.unitData = unit;
+        projecTile.unitData = this;
         attackObj.transform.position = this.gameObject.transform.position;
 
         projecTile.SetDirecetion();

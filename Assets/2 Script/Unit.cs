@@ -164,8 +164,8 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
     }
 
     protected void Flip(){
-        if(target != null) sp.flipX = (target.transform.position - transform.position).normalized.x >= 0 ? false : true;
-        
+        if(target != null && gameObject.name != "LongRangeEnemy(Clone)") sp.flipX = (target.transform.position - transform.position).normalized.x >= 0 ? false : true;
+        else if(target != null) sp.flipX = (target.transform.position - transform.position).normalized.x >= 0 ? true : false;
     }
 
     private IEnumerator WaitForDieAnimationCorutine(){ 

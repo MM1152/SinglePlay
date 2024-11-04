@@ -166,6 +166,7 @@ MonoBehaviour:
   currentAttackSpeed: 0
   canAttack: 0
   isAttack: 0
+  isSkill: 0
   hp: 0
   mp: 0
   damage: 0

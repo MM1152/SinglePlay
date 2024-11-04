@@ -6,8 +6,11 @@ public class RewardManager : MonoBehaviour , ISpawnPosibillity
 {
     public static RewardManager Instance{get ; private set ;}
     public float spawnProbabillity { get ; set ; }
-    public Dictionary<string , int> rewardDictionary = new Dictionary<string , int>();
     public GameObject rewardViewer;
+
+    public delegate void Function(string key , float value);
+    public Function SetSummonerStat;
+
     [SerializeField] List<float> probabillityList = new List<float>();
     [SerializeField] ClearRewardData[] rewardData;
     
@@ -30,6 +33,7 @@ public class RewardManager : MonoBehaviour , ISpawnPosibillity
     public ClearRewardData GetRewardData(){
         float value = 0;
         float item = Random.Range(0f , 1f);
+        Debug.Log(item);
         for(int i = 0; i < probabillityList.Count; i++) {
             value += probabillityList[i];
             if(value >= item) return rewardData[i];

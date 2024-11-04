@@ -334,7 +334,7 @@ MonoBehaviour:
   target: {fileID: 0}
   targetList: {fileID: 0}
   DontAttack: 0
-  attackObjectShowTime: 0
+  attackObjectShowTime: 0.744
 --- !u!58 &5859871287998348551
 CircleCollider2D:
   m_ObjectHideFlags: 0

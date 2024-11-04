@@ -14,12 +14,16 @@ public class Summoner : LongRangeScript
     public Function function;
 
     AttackSkill attack;
+    private void Start() {
+        RewardManager.Instance.SetSummonerStat = ChangeStat;
+    }
     private void Awake()
     {
         Init(1);
         attack = GetComponent<AttackSkill>();
         skillCoolDown = 5f;
         skillCurrentTime = skillCoolDown;
+
     }
     private void Update()
     {
@@ -85,19 +89,22 @@ public class Summoner : LongRangeScript
         function?.Invoke();
     }
     public void ChangeStat(string key , float value){
+        Debug.Log("key : " + key + "  value " + value);
         switch(key) {
-            case "hp":
+            case "HP":
                 maxHp += maxHp * value;
+                hp += hp * value;
                 break;
             
-            case "damage":
+            case "DAMAGE":
                 damage += damage * value;
                 break;
 
-            case "speed":
+            case "SPEED":
                 speed += speed * value;
                 break;
-            case "attackspeed":
+
+            case "ATTACKSPEED":
                 setInitAttackSpeed -= setInitAttackSpeed * value; 
                 break;
         }
