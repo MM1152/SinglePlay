@@ -17,18 +17,21 @@ public class EnemySpawner : MonoBehaviour
     float avg;
 
     Exp exp;
-    List<float> spawnProbabillity = new List<float>();
+    public List<float> spawnProbabillity = new List<float>();
     Transform spawntrans;
-    MergeSort sort;
+    MergeSort<Unit> sort;
     private void Awake()
     {
         Instance = this;
-        Enemys = Resources.LoadAll<Unit>("Enemys/");
 
         exp = GameObject.FindObjectOfType<Exp>();
         spawntrans = GameObject.Find("EnemyList").transform;
 
-        sort = new MergeSort(Enemys);
+        Enemys = Resources.LoadAll<Unit>("Enemys/");
+        SettingUnitProbabillity();
+        
+
+        sort = new MergeSort<Unit>(Enemys);
         Enemys = sort.get();
 
         SetSpawnProbabillity();
@@ -99,6 +102,14 @@ public class EnemySpawner : MonoBehaviour
             exp.SetExpValue(10f);
             currentEnemyNumber--;
             GameManager.Instance.clearMonseter--;
+        }
+    }
+
+    private void SettingUnitProbabillity(){
+        for(int i = 0 ; i < Enemys.Length; i++) {
+            if(Enemys[i].spawnProbabillity == 0) {
+                Enemys[i].spawnProbabillity = Enemys[i].unit.spawnProbabillity;
+            }
         }
     }
 }

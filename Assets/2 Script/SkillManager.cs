@@ -32,8 +32,10 @@ public class SkillManager : MonoBehaviour
             statPointText.text = "Point : " + _statPoint;
         }
     }
+
+
     private float sumPosiboillity = 0;
-    MergeSort merge;
+    MergeSort<Unit> merge;
 
     private void Awake() {
         Instance = this;
@@ -68,7 +70,7 @@ public class SkillManager : MonoBehaviour
 
     public void AddSummonsUnit(Unit summonUnit){
         summons.Add(summonUnit);
-        merge = new MergeSort(summons.ToArray());
+        merge = new MergeSort<Unit>(summons.ToArray());
         sumPosiboillity = 0;
 
         for(int i = 0; i < summons.Count; i++) {
@@ -91,5 +93,13 @@ public class SkillManager : MonoBehaviour
         }
         
         return unit;
+    }
+
+    private void SettingUnitProbabillity(){
+        for(int i = 0 ; i < summons.Count; i++) {
+            if(summons[i].spawnProbabillity == 0) {
+                summons[i].spawnProbabillity = summons[i].unit.spawnProbabillity;
+            }
+        }
     }
 }

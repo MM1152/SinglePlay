@@ -13,22 +13,10 @@ public class ShortRangeScipt : Unit, IDamageAble
     private void OnEnable()
     {
         Respawn();
-        Init(GameManager.Instance.gameLevel * 0.1f);
+        Init(1f + (GameManager.Instance.gameLevel * 0.1f));
     }
-
-    protected override void Init(float setStatus)
-    {
-        base.Init(setStatus);
-        isDie = false;
-        attackprefeb = Resources.Load<GameObject>("Attack");
-        shortRangeAttack = Instantiate(attackprefeb, transform).GetComponent<ShortRangeAttack>();
-        shortRangeAttack.unit = unit;
-        shortRangeAttack.gameObject.SetActive(false);
-    }
-    protected override void Init(Summoner summoner , float precent)
-    {
-        base.Init(summoner ,precent);
-        isDie = false;
+    
+    protected void Awake() {
         attackprefeb = Resources.Load<GameObject>("Attack");
         shortRangeAttack = Instantiate(attackprefeb, transform).GetComponent<ShortRangeAttack>();
         shortRangeAttack.unit = unit;

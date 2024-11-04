@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
-public class Summoner : LongRangeScript, IDamageAble
+public class Summoner : LongRangeScript
 {
+    
     [SerializeField] float skillCoolDown;
     [SerializeField] float skillCurrentTime;
 
@@ -77,10 +79,28 @@ public class Summoner : LongRangeScript, IDamageAble
         skillCurrentTime = skillCoolDown;
         isSkill = false;
     }
-
     private void SpawnMapPlayer(){
         transform.position = Vector3.zero;
         ani.Play("SpawnMap");
         function?.Invoke();
     }
+    public void ChangeStat(string key , float value){
+        switch(key) {
+            case "hp":
+                maxHp += maxHp * value;
+                break;
+            
+            case "damage":
+                damage += damage * value;
+                break;
+
+            case "speed":
+                speed += speed * value;
+                break;
+            case "attackspeed":
+                setInitAttackSpeed -= setInitAttackSpeed * value; 
+                break;
+        }
+    }
+
 }

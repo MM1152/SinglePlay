@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ba121b15cbd8344c87c6c7860363848, type: 3}
-  m_Name: Enemy1
+  m_Name: Test
   m_EditorClassIdentifier: 
-  attackSpeed: 2
-  hp: 25
+  attackSpeed: 1
+  hp: 50
   mp: 0
-  damage: 5
-  speed: 0.7
-  attackRadious: 2.5
-  spawnProbabillity: 20
+  damage: 7
+  speed: 0.8
+  attackRadious: 0.8
+  spawnProbabillity: 50

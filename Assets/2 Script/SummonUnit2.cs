@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SummonUnit2 : LongRangeScript , ISummonUnit , IDamageAble
+public class SummonUnit2 : LongRangeScript , ISummonUnit
 
 {
     public Summoner summoner { get ; set ; }
 
     private void OnEnable() {
+        if (summoner) base.Init(summoner , 0.25f * SkillManager.Instance.skillDatas["해골 마법사 소환"]);
         Respawn();
-        
     }
     // Start is called before the first frame update
     void Awake()
@@ -19,13 +19,16 @@ public class SummonUnit2 : LongRangeScript , ISummonUnit , IDamageAble
     }
 
     private void Start() {
-        base.Init(summoner , 0.2f);
+        base.Init(summoner , 0.25f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        base.KeepChcek();
+        if(!isDie) {
+            base.KeepChcek();
+            Attack();
+        }
     }
 
     private void OnDisable() {

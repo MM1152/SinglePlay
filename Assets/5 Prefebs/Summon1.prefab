@@ -209,7 +209,8 @@ GameObject:
   - component: {fileID: 466295612177919787}
   - component: {fileID: 6601578977930350853}
   - component: {fileID: -1755694238537729159}
-  - component: {fileID: 1951396699736333109}
+  - component: {fileID: 5859871287998348551}
+  - component: {fileID: 4752477032443340591}
   m_Layer: 0
   m_Name: Summon1
   m_TagString: Player
@@ -322,6 +323,7 @@ MonoBehaviour:
   currentAttackSpeed: 0
   canAttack: 0
   isAttack: 0
+  isSkill: 0
   hp: 0
   mp: 0
   damage: 0
@@ -329,11 +331,12 @@ MonoBehaviour:
   attackRadious: 0
   maxHp: 0
   isDie: 0
+  target: {fileID: 0}
   targetList: {fileID: 0}
   DontAttack: 0
   attackObjectShowTime: 0
---- !u!61 &1951396699736333109
-BoxCollider2D:
+--- !u!58 &5859871287998348551
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -364,19 +367,36 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.13, y: -0.17672038}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2631578, y: 1.2631578}
-    newSize: {x: 1.2631578, y: 1.2631578}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: -0.15, y: -0.15}
   serializedVersion: 2
-  m_Size: {x: 0.39999998, y: 0.64655924}
-  m_EdgeRadius: 0
+  m_Radius: 0.2
+--- !u!50 &4752477032443340591
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399103644165832959}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &9162557605329238539
 GameObject:
   m_ObjectHideFlags: 0

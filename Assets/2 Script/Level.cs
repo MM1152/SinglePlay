@@ -19,5 +19,6 @@ public class Level : MonoBehaviour
         level++;
         SkillManager.Instance.statPoint++;
         levelText.text = level.ToString();
+        RewardManager.Instance.ShowRewardView();
     }
 }

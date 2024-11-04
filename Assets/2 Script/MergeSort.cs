@@ -1,37 +1,38 @@
 
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEngine;
 /// <summary>
 /// 게임오브젝트를 유닛의 생성확률에 맞춰 정렬해준다.
 /// </summary>
-public class MergeSort{
+public class MergeSort<T> where T : ISpawnPosibillity{
     float[] sortedList;
-    Unit[] sortedUnitList;
-    Unit[] units;
+    T[] sortedDataList;
+    T[] datas;
     List<float> unitSpawnprobabillity = new List<float>();
 
     /// <summary>
     /// 정렬할 Unit들 배열로 넣어주기
     /// </summary>
     /// <param name="units"></param>
-    public MergeSort(Unit[] units) { 
-        this.units = units;
+    public MergeSort(T[] units) { 
+        this.datas = units;
         
         sortedList = new float[units.Length];
-        sortedUnitList = new Unit[units.Length];
+        sortedDataList = new T[units.Length];
 
-        foreach(Unit unit in this.units) {
-            unitSpawnprobabillity.Add(unit.unit.spawnProbabillity);
+        foreach(T unit in this.datas) {
+            unitSpawnprobabillity.Add(unit.spawnProbabillity);
+            Debug.Log(unitSpawnprobabillity);
         }   
 
         Merge(unitSpawnprobabillity , 0 , unitSpawnprobabillity.Count - 1);
     }
     /// <summary>
-    /// 정렬된 Unit배열 받기
+    /// 정렬된 배열 받기
     /// </summary>
     /// <returns></returns>
-    public Unit[] get(){ 
-        return units;
+    public T[] get(){ 
+        return datas;
     }
     public void Merge(List<float> unitSpawnProbabillity , int left , int right){
         
@@ -50,32 +51,32 @@ public class MergeSort{
         int j = mid + 1;
         int k = left;
 
-        while(i <= mid && j <= right){
+        while(i <= mid && j <= right){ 
             if(unitSpawnProbabillity[i] <= unitSpawnProbabillity[j]) {
-                sortedUnitList[k] = units[j];
+                sortedDataList[k] = datas[j];
                 sortedList[k++] = unitSpawnProbabillity[j++];
             }
             else {
-                sortedUnitList[k] = units[i];
+                sortedDataList[k] = datas[i];
                 sortedList[k++] = unitSpawnProbabillity[i++];
             }
         }
 
         if(i <= mid) {
             for(int l = i; i <= mid; i++){
-                sortedUnitList[k] = units[l];
+                sortedDataList[k] = datas[l];
                 sortedList[k++] = unitSpawnProbabillity[l];
             }
         }
         else {
             for(int l = j; j <= right; j++) {
-                sortedUnitList[k] = units[l];
+                sortedDataList[k] = datas[l];
                 sortedList[k++] = unitSpawnProbabillity[l];
             }
         }
 
         for(int l = left; l <= right; l++) {
-            units[l] = sortedUnitList[l];
+            datas[l] = sortedDataList[l];
             unitSpawnProbabillity[l] = sortedList[l];
         }
     }

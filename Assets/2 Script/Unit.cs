@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class Unit : MonoBehaviour , IFollowTarget {
+public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
     public UnitData unit;
     protected float setInitAttackSpeed; // 초기화될 공격속도
     [SerializeField] protected float currentAttackSpeed; // 현재 공격까지 남은시간
@@ -23,6 +23,7 @@ public class Unit : MonoBehaviour , IFollowTarget {
     public float speed;
     public float attackRadious;
     public float maxHp;
+    public float spawnProbabillity { get ; set ; }
     [Space(75)]
     /************************************/
 
@@ -30,6 +31,8 @@ public class Unit : MonoBehaviour , IFollowTarget {
     /************Targeting***************/
     public bool isDie;
     public bool canFollow { get ; set ; }
+
+
     public GameObject target; // 공격할 대상
     [SerializeField] protected GameObject targetList; // 적이라면 Player를 담고있는 부모 , Player라면 적에 대한 정보를 담고있는 부모
     /************************************/
@@ -67,13 +70,13 @@ public class Unit : MonoBehaviour , IFollowTarget {
         sp ??= GetComponent<SpriteRenderer>() ;
         ani ??= GetComponent<Animator>() ?  GetComponent<Animator>() : null;
 
-        hp = summoner.hp * precent;
+        hp = summoner.maxHp * precent;
         mp = unit.mp;
         damage = summoner.damage * precent;
         speed = unit.speed;
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
-        
+
         maxHp = hp;
     }
     protected void ChangeStats(Summoner summoner , float precent){
