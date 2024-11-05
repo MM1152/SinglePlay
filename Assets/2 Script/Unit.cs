@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
     public UnitData unit;
-    protected float setInitAttackSpeed; // 초기화될 공격속도
-    [SerializeField] protected float currentAttackSpeed; // 현재 공격까지 남은시간
+    public float setInitAttackSpeed; // 초기화될 공격속도
+    public float currentAttackSpeed; // 현재 공격까지 남은시간
     protected Animator ani = null;
     protected SpriteRenderer sp;
 
@@ -114,7 +114,6 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
         }
     }
     protected void Die(){
-        //:fix DieAnimation 이후 SpawnEnemyCount-- 해주기
         if(hp <= 0) {
             isDie = true;
             canFollow = false;

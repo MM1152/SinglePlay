@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public static EnemySpawner Instance { get; private set; }
 
     [SerializeField] Unit[] Enemys;
+    [SerializeField] Unit[] Boss;
     [SerializeField] Transform[] spawnPos;
     [Space(100)]
     [SerializeField] float spawnTimer;
@@ -29,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
 
         Enemys = Resources.LoadAll<Unit>("Enemys/");
         SettingUnitProbabillity();
-        
+
 
         sort = new MergeSort<Unit>(Enemys);
         Enemys = sort.get();
@@ -39,17 +40,25 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.Instance.gameClear)
+        if (GameManager.Instance.gameLevel % 10 != 0)
         {
-            if (currentSpawnTimer <= 0)
+            if (!GameManager.Instance.gameClear)
             {
-                currentSpawnTimer = spawnTimer;
-                RespawnEnemy();
+                if (currentSpawnTimer <= 0)
+                {
+                    currentSpawnTimer = spawnTimer;
+                    RespawnEnemy();
+                }
+                currentSpawnTimer -= Time.deltaTime;
             }
-            currentSpawnTimer -= Time.deltaTime;
-        }else if(GameManager.Instance.gameClear) {
-            currentEnemyNumber = 0;
-            currentSpawnTimer = spawnTimer;    
+            else if (GameManager.Instance.gameClear)
+            {
+                currentEnemyNumber = 0;
+                currentSpawnTimer = spawnTimer;
+            }
+        }
+        else {
+            Unit boss = Instantiate(Boss[GameManager.Instance.gameLevel / 10] , spawntrans);
         }
 
     }
@@ -105,9 +114,12 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void SettingUnitProbabillity(){
-        for(int i = 0 ; i < Enemys.Length; i++) {
-            if(Enemys[i].spawnProbabillity == 0) {
+    private void SettingUnitProbabillity()
+    {
+        for (int i = 0; i < Enemys.Length; i++)
+        {
+            if (Enemys[i].spawnProbabillity == 0)
+            {
                 Enemys[i].spawnProbabillity = Enemys[i].unit.spawnProbabillity;
             }
         }

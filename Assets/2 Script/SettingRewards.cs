@@ -10,7 +10,7 @@ public class SettingRewards : MonoBehaviour
     private void OnEnable() {
         
         for(int i = 0; i < selectReward.Length; i++) {
-            selectReward[i].rewardData = RewardManager.Instance.GetRewardData();
+            selectReward[i].SetRewardData(RewardManager.Instance.GetRewardData());
         }
         StartCoroutine(WaitForAnimationCorutine());
     }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SummonUnit : ShortRangeScipt , ISummonUnit
 {
-    //\\TODO 타켓이 NULL 일때 플레이어 옆에 있도록 만들어야됌
     //\\TODO 이걸 SummonUnit을 상속받은 다른 스크립트를 여러개만들까.... 고민되네
     public Summoner summoner { get ; set ; }
     private void OnEnable() {

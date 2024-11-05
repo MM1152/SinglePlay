@@ -26,9 +26,6 @@ public class SelectReward : MonoBehaviour
         }
     }
     //:fix reward 데이터 설정 전에 OnEnable 실행으로 자꾸 오류뜨는거같음 해결 필요
-    private void OnEnable() {
-        SetRewardData();
-    }
 
     private void Awake() {
         bnt = GetComponent<Button>();
@@ -51,13 +48,13 @@ public class SelectReward : MonoBehaviour
     
     private void GetReward(){
         if(isSelect && Input.GetTouch(0).tapCount >= 2){
-            //\\TODO 능력치 적용시켜주는 로직 필요 어떤식으로 구현해야되지 하..
             Debug.Log(rewardData.type.ToString());
             RewardManager.Instance.SetSummonerStat.Invoke(rewardData.type.ToString() , rewardData.percent);
             transform.parent.gameObject.SetActive(false);
         }
     }
-    public void SetRewardData() {
+    public void SetRewardData(ClearRewardData data) {
+        rewardData = data;
         rewardImage.sprite = rewardData.image;
     }
 }

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int gameLevel = 1;
     public int clearMonseter = 15;
     public bool gameClear;
+    public bool playingAnimation;
     public bool playingShader;
 
     public GameObject nextStage;

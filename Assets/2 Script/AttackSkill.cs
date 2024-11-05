@@ -21,13 +21,12 @@ public class AttackSkill : MonoBehaviour
     }
     private void Update() {
         Skill();
-        
     }
     public void Skill()
     {
         if (SkillManager.Instance.LightningAttack && summoner.target != null && !summoner.isDie && summoner.target.name != "NextStage")
         {
-            if(currentSkillCoolTime <= 0){
+            if(summoner.currentAttackSpeed <= 0){
                 GameObject lightning = PoolingManager.Instance.ShowObject(skillPrefeb.name +"(Clone)" , skillPrefeb);   
                 float distance = Vector2.Distance(summoner.target.transform.position , transform.position);
 
@@ -38,10 +37,11 @@ public class AttackSkill : MonoBehaviour
                 lightning.transform.right = direction;
 
                 summoner.target.GetComponent<IDamageAble>().Hit(summoner.damage * damagePercent);
-                currentSkillCoolTime = skillCoolTime;
+                summoner.currentAttackSpeed = summoner.setInitAttackSpeed;
             }
             
-            currentSkillCoolTime -= Time.deltaTime;
+            summoner.currentAttackSpeed -= Time.deltaTime;
         }
     }
+
 }
