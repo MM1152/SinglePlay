@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject curtain;
     
     public static GameManager Instance {get; private set;}
-    public int gameLevel = 1;
+    public int gameLevel = 10;
     public int clearMonseter = 15;
     public bool gameClear;
     public bool playingAnimation;

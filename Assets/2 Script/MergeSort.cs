@@ -22,7 +22,6 @@ public class MergeSort<T> where T : ISpawnPosibillity{
 
         foreach(T unit in this.datas) {
             unitSpawnprobabillity.Add(unit.spawnProbabillity);
-            Debug.Log(unitSpawnprobabillity);
         }   
 
         Merge(unitSpawnprobabillity , 0 , unitSpawnprobabillity.Count - 1);

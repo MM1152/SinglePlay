@@ -38,13 +38,23 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
     /************************************/
 
     /*************TestCode***************/
-    [Space(10)]
-    [Header("TestCodes")]
-    public bool DontAttack;
     
 
     /************************************/
-
+    protected virtual void Awake(){
+        if(gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss")) targetList = GameObject.Find("PlayerList");
+        sp ??= GetComponent<SpriteRenderer>() ;
+        ani ??= GetComponent<Animator>() ?  GetComponent<Animator>() : null;
+        canFollow = true;
+    }
+    protected virtual void Update(){
+        if(GameManager.Instance.playingAnimation || GameManager.Instance.playingShader) return;
+        currentAttackSpeed -= Time.deltaTime;
+        Die();
+        Flip();
+        FollowTarget();
+        ani?.SetBool("Move", FollowTarget());
+    }
     protected void Respawn(){
         isDie = false;
         isAttack = false;
@@ -52,10 +62,6 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
         canFollow = true;
     }
     protected virtual void Init(float setStatus) {
-        if(gameObject.CompareTag("Enemy")) targetList = GameObject.Find("PlayerList");
-        sp ??= GetComponent<SpriteRenderer>() ;
-        ani ??= GetComponent<Animator>() ?  GetComponent<Animator>() : null;
-
         hp = unit.hp * setStatus;
         mp = unit.mp;
         damage = unit.damage * setStatus;
@@ -66,10 +72,6 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
         maxHp = hp;
     }
     protected virtual void Init(Summoner summoner , float precent) {
-        if(gameObject.CompareTag("Enemy")) targetList = GameObject.Find("PlayerList");
-        sp ??= GetComponent<SpriteRenderer>() ;
-        ani ??= GetComponent<Animator>() ?  GetComponent<Animator>() : null;
-
         hp = summoner.maxHp * precent;
         mp = unit.mp;
         damage = summoner.damage * precent;
@@ -89,7 +91,7 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
         maxHp = hp;
     }
     protected virtual void Attack(){
-        canAttack = !isAttack && !DontAttack && target != null && attackRadious > Vector2.Distance(target.transform.position, transform.position) && currentAttackSpeed <= 0;
+        canAttack = !isAttack && target != null && attackRadious > Vector2.Distance(target.transform.position, transform.position) && currentAttackSpeed <= 0;
         
         if(canAttack) {
             isAttack = true;
@@ -99,20 +101,18 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
         }
         
     }
+    /*
     protected virtual void KeepChcek() {
         if(GameManager.Instance.gameClear && target?.name != "NextStage") target = null; 
-        currentAttackSpeed -= Time.deltaTime;
-        Die();
-        Flip();
+        
+        
         if(gameObject.name == "Player" && VirtualJoyStick.instance.isInput) {
             target = FindTarget(targetList);
             ani.SetBool("Move" , true);
             return;
-        } else {
-            FollowTarget();
-            ani?.SetBool("Move", FollowTarget());
-        }
+        } 
     }
+    */
     protected void Die(){
         if(hp <= 0) {
             isDie = true;

@@ -14,6 +14,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int maxEnemyNumber;
     [SerializeField] int currentEnemyNumber;
 
+    bool isBossSpawn;
+
     float currentSpawnTimer;
     float avg;
 
@@ -58,7 +60,12 @@ public class EnemySpawner : MonoBehaviour
             }
         }
         else {
-            Unit boss = Instantiate(Boss[GameManager.Instance.gameLevel / 10] , spawntrans);
+            if(!isBossSpawn){
+                Unit boss = Instantiate(Boss[GameManager.Instance.gameLevel / 10 - 1] , spawntrans);
+                boss.transform.position = spawnPos[1].transform.position; 
+                isBossSpawn = true;
+            }
+            
         }
 
     }

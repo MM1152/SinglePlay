@@ -7,7 +7,7 @@ using UnityEngine;
 public class ShortRangeScipt : Unit, IDamageAble
 {
     GameObject attackprefeb;
-    [SerializeField] ShortRangeAttack shortRangeAttack;
+    ShortRangeAttack shortRangeAttack;
 
 
     private void OnEnable()
@@ -16,30 +16,27 @@ public class ShortRangeScipt : Unit, IDamageAble
         Init(1f + (GameManager.Instance.gameLevel * 0.1f));
     }
     
-    protected void Awake() {
+    protected override void Awake() {
+        base.Awake();
         attackprefeb = Resources.Load<GameObject>("Attack");
         shortRangeAttack = Instantiate(attackprefeb, transform).GetComponent<ShortRangeAttack>();
         shortRangeAttack.unit = unit;
         shortRangeAttack.gameObject.SetActive(false);
     }
-    
-    protected override void KeepChcek()
+    protected override void Update()
     {
-        base.KeepChcek();
-        Attack();
+        if (!isDie)
+        {
+            base.Update();
+            Attack();
+        }
     }
+    
     public void Hit(float Damage)
     {
         hp -= Damage;
     }
-    // Update is called once per frame
-    private void Update()
-    {
-        if (!isDie)
-        {
-            KeepChcek();
-        }
-    }
+
     protected override void Attack()
     {
         base.Attack();

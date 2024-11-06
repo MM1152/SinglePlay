@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LongRangeScript : Unit, IDamageAble
@@ -11,16 +12,13 @@ public class LongRangeScript : Unit, IDamageAble
     private void OnEnable()
     {
         Respawn();
-    }
-    private void Awake()
-    {
         Init(GameManager.Instance.gameLevel);
     }
     private void Update()
     {
         if (!isDie)
         {
-            KeepChcek();
+            base.Update();
             Attack();
         }
 

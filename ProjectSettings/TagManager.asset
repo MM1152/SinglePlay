@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Skill
   - Talent
+  - Boss
   layers:
   - Default
   - TransparentFX

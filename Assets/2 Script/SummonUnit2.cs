@@ -26,7 +26,6 @@ public class SummonUnit2 : LongRangeScript , ISummonUnit
     void Update()
     {
         if(!isDie) {
-            base.KeepChcek();
             Attack();
         }
     }

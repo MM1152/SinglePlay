@@ -6,43 +6,40 @@ using UnityEngine;
 
 public class Summoner : LongRangeScript
 {
-    
     [SerializeField] float skillCoolDown;
     [SerializeField] float skillCurrentTime;
 
     public delegate void Function();
     public Function function;
-
-    AttackSkill attack;
+    private void OnEnable() { }
     private void Start() {
         RewardManager.Instance.SetSummonerStat = ChangeStat;
     }
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Init(1);
-        attack = GetComponent<AttackSkill>();
-        skillCoolDown = 5f;
+        skillCoolDown = 5f; //:fix 각 스킬 쿨타임 연결해서 관리해줘야됌
         skillCurrentTime = skillCoolDown;
-
     }
-    private void Update()
+    protected override void Update()
     {
         if (!isDie)
         {
+            base.Update();
+            if(GameManager.Instance.gameClear && target?.name != "NextStage") target = null; 
+
             if (GameManager.Instance.gameClear && !GameManager.Instance.playingShader)
             {
                 target = GameManager.Instance.nextStage;
             }
             else
             {
-                if (!SkillManager.Instance.LightningAttack) Attack();
+                if (!SkillManager.Instance.LightningAttack && target?.name != "NextStage") Attack();
                 if (SkillManager.Instance.SummonSkill) SummonSkill();
-            }
-
-            KeepChcek();
+            } 
+            
         }
-
-
     }
     public void Move(Vector3 movePos)
     {
