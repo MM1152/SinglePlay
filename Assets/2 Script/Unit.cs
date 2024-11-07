@@ -48,9 +48,12 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
         canFollow = true;
     }
     protected virtual void Update(){
-        if(GameManager.Instance.playingAnimation || GameManager.Instance.playingShader) return;
-        currentAttackSpeed -= Time.deltaTime;
         Die();
+        if(GameManager.Instance.playingAnimation || GameManager.Instance.playingShader) {
+            ani.SetBool("Move" , false);
+            return;
+        }
+        currentAttackSpeed -= Time.deltaTime;
         Flip();
         FollowTarget();
         ani?.SetBool("Move", FollowTarget());
@@ -125,7 +128,7 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
             
             StartCoroutine(WaitForDieAnimationCorutine());
         }
-        if(gameObject.CompareTag("Enemy") && GameManager.Instance.gameClear && hp > 0) {
+        if(gameObject.CompareTag("Enemy") && GameManager.Instance.gameClear && hp >= 0) {
             hp = 0;
         }
     }

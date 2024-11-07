@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     }
     public void ClearLevel(){
         gameClear = true;
-        clearMonseter = 15;
         nextStage.SetActive(true);
     }
     public void StopGame(){
@@ -38,7 +37,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator WaitForNextMap(Action action) {
 
         yield return new WaitForSeconds(0.3f);
-
+        clearMonseter = 15;
         curtain.SetActive(true);
         nextStage.SetActive(false);
 
@@ -56,7 +55,9 @@ public class GameManager : MonoBehaviour
         
         curtain.SetActive(false);
         gameLevel++;
+        
         image.color = color;
         gameClear = false;
     }
+
 }

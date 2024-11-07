@@ -8,8 +8,8 @@ public class RewardManager : MonoBehaviour , ISpawnPosibillity
     public float spawnProbabillity { get ; set ; }
     public GameObject rewardViewer;
 
-    public delegate void Function(string key , float value);
-    public Function SetSummonerStat;
+    public delegate void Function(string key , float value); 
+    public Function SetSummonerStat; // 리워드 선택시 Player의 GetReward 함수를 호출하도록 구현
 
     [SerializeField] List<float> probabillityList = new List<float>();
     [SerializeField] ClearRewardData[] rewardData;

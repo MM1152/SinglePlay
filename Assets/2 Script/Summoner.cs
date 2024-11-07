@@ -9,6 +9,8 @@ public class Summoner : LongRangeScript
     [SerializeField] float skillCoolDown;
     [SerializeField] float skillCurrentTime;
 
+    private Dictionary<string , float> additionalStats = new Dictionary<string , float>();
+
     public delegate void Function();
     public Function function;
     private void OnEnable() { }
@@ -31,7 +33,7 @@ public class Summoner : LongRangeScript
 
             if (GameManager.Instance.gameClear && !GameManager.Instance.playingShader)
             {
-                target = GameManager.Instance.nextStage;
+                target = GameManager.Instance.nextStage;   
             }
             else
             {
@@ -86,25 +88,30 @@ public class Summoner : LongRangeScript
         function?.Invoke();
     }
     public void ChangeStat(string key , float value){
-        Debug.Log("key : " + key + "  value " + value);
+        if(additionalStats.ContainsKey(key)) additionalStats[key] += value;
+        else additionalStats.Add(key , value);
+
+
         switch(key) {
             case "HP":
-                maxHp += maxHp * value;
+                maxHp = unit.hp * (additionalStats[key] + 1);
                 hp += hp * value;
                 break;
             
             case "DAMAGE":
-                damage += damage * value;
+                damage = unit.damage * (additionalStats[key] + 1);
                 break;
 
             case "SPEED":
-                speed += speed * value;
+                speed = unit.speed * (additionalStats[key] + 1);
                 break;
 
             case "ATTACKSPEED":
-                setInitAttackSpeed -= setInitAttackSpeed * value; 
+                setInitAttackSpeed -= unit.attackSpeed - unit.attackSpeed * additionalStats[key];
                 break;
         }
     }
-
+    public void TestCode(){
+        unit.hp += 100f;
+    }
 }

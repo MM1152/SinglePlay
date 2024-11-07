@@ -5,11 +5,15 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner Instance { get; private set; }
-
+    
+    [Header("참조")]
+    [Space(30)]
+    [Header("적 / 보스 / 리스폰 위치 설정")]
     [SerializeField] Unit[] Enemys;
     [SerializeField] Unit[] Boss;
     [SerializeField] Transform[] spawnPos;
-    [Space(100)]
+    [Space(30)]
+    [Header("적 리스폰 설정")]
     [SerializeField] float spawnTimer;
     [SerializeField] int maxEnemyNumber;
     [SerializeField] int currentEnemyNumber;
@@ -19,8 +23,10 @@ public class EnemySpawner : MonoBehaviour
     float currentSpawnTimer;
     float avg;
 
-    Exp exp;
+
     public List<float> spawnProbabillity = new List<float>();
+
+    Exp exp;
     Transform spawntrans;
     MergeSort<Unit> sort;
     private void Awake()

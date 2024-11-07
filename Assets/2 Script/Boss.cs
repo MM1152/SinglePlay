@@ -5,17 +5,26 @@ using UnityEngine;
 
 public class Boss : ShortRangeScipt
 {
+    [Space(50)]
+    [Header("보스 설정")]
+    [SerializeField] Sprite ShowingImage; // 보스 소개장면에서 보여질 이미지 설정
+    [SerializeField] BossShowAnimation BossShow; // 보스 소개하는 애니메이션 접근 ( image 와 Text 설정해줌 )
     [SerializeField] GameObject wideRangeSkillPrefeb;
-    public float wideRangeSkillCoolTime = 5f;
-    public float teleportSkillCoolTime = 1000f;
 
+    [Space(30)]
+    [Header("광범위 공격 스킬 설정")]
+    public float wideRangeSkillCoolTime = 5f;
     public  float currenwideRangeSkillCoolTime;
+    
+    [Space(30)]
+    [Header("순간이동 공격 스킬 설정")]
+    public float teleportSkillCoolTime = 1000f;
     public  float currentteleportSkillCoolTime;
 
     private void OnEnable(){ }
     protected void Start()
     {
-
+        BossShow = GameObject.FindAnyObjectByType<BossShowAnimation>();
         currenwideRangeSkillCoolTime = wideRangeSkillCoolTime;
         currentteleportSkillCoolTime = teleportSkillCoolTime;
         StartCoroutine(WaitForAnimationCorutine());
@@ -44,9 +53,18 @@ public class Boss : ShortRangeScipt
     {
         GameManager.Instance.playingAnimation = true;
         
-        yield return new WaitUntil(() => MovePosInAniamtion());
+        yield return new WaitUntil(() => MovePosInAniamtion()); 
         yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("SPAWN") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         ani.SetBool("PlaySpawnAni", false);
+
+        BossShow.setBossImage = ShowingImage;
+        BossShow.setBossName = "KING";
+        BossShow.setBossData = this;
+        BossShow.SetAnimation(true);
+
+        yield return new WaitUntil(() => BossShow.IsPlayAnimation());
+
+        BossShow.SetAnimation(false);
         GameManager.Instance.playingAnimation = false;
     }
 

@@ -42,7 +42,7 @@ public class LongRangeScript : Unit, IDamageAble
         if(ani != null)yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("ATTACK") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= attackObjectShowTime);
         else yield return null;
 
-        GameObject attackObj = PoolingManager.Instance.ShowObject(projectile.name, projectile);
+        GameObject attackObj = PoolingManager.Instance.ShowObject(projectile.name+"(Clone)", projectile);
         ProjecTile projecTile = attackObj.GetComponent<ProjecTile>();
 
         projecTile.tag = gameObject.tag;
