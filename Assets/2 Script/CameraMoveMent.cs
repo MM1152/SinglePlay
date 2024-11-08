@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class CameraMoveMent : MonoBehaviour
@@ -8,8 +10,10 @@ public class CameraMoveMent : MonoBehaviour
     [SerializeField] Transform nextMapHole;
     [SerializeField] Transform boss;
     public float smooting;
+    float size;
     void Awake()
     {
+        size = Camera.main.orthographicSize;
         target = target.transform.GetChild(0);
     }
 
@@ -20,10 +24,16 @@ public class CameraMoveMent : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position , nextMapHole.position , smooting);
             transform.position += Vector3.back * 10f;
         }else if(GameManager.Instance.playingAnimation){
-            boss ??= GameObject.FindWithTag("Boss").transform;
-            transform.position = Vector2.Lerp(transform.position , nextMapHole.position , smooting);
+            boss = EnemySpawner.Instance.Boss[GameManager.Instance.gameLevel / 10 - 1].transform;
+            transform.position = Vector2.Lerp(transform.position , boss.position , smooting);
             transform.position += Vector3.back * 10f;
-        }else {
+        }else if(target.GetComponent<Unit>().hp <= 0){
+            GameManager.Instance.SlowGame(0.4f);
+            size -= 0.01f;
+            size = Math.Clamp(size , 1.5f , 5);
+            Camera.main.orthographicSize = size;
+        }
+        else {
             transform.position = Vector2.Lerp(transform.position , target.position , smooting);
             transform.position += Vector3.back * 10f;
         }

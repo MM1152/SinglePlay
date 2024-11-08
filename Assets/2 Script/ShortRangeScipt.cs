@@ -5,7 +5,7 @@ public class ShortRangeScipt : Unit, IDamageAble
 {
     GameObject attackprefeb;
     ShortRangeAttack shortRangeAttack;
-
+    protected bool attackPattenChange;
 
     private void OnEnable()
     {
@@ -15,6 +15,7 @@ public class ShortRangeScipt : Unit, IDamageAble
     
     protected override void Awake() {
         base.Awake();
+        attackPattenChange = false;
         attackprefeb = Resources.Load<GameObject>("Attack");
         shortRangeAttack = Instantiate(attackprefeb, transform).GetComponent<ShortRangeAttack>();
         shortRangeAttack.unit = unit;
@@ -38,7 +39,7 @@ public class ShortRangeScipt : Unit, IDamageAble
     {
         base.Attack();
 
-        if (isAttack && target != null)
+        if (isAttack && target != null && !attackPattenChange)
         {
             shortRangeAttack.target = target.transform.position;
             shortRangeAttack.gameObject.SetActive(true);

@@ -33,7 +33,9 @@ public class GameManager : MonoBehaviour
     public void ResumeGame(){
         Time.timeScale = 1;
     }
-
+    public void SlowGame(float size){
+        Time.timeScale = size;
+    }
     public IEnumerator WaitForNextMap(Action action) {
 
         yield return new WaitForSeconds(0.3f);

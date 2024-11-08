@@ -17,6 +17,8 @@ public class PoolingManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        GameObject show = ShowObject(prefeb.name+"(Clone)" , prefeb);
+        ReturnObject(prefeb.name+"(Clone)" , show);
     }
 
     public GameObject ShowObject(string objectName){

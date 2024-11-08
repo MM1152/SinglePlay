@@ -197,7 +197,7 @@ Transform:
   m_GameObject: {fileID: 4249249356766342088}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.47, y: -0.86, z: 0}
+  m_LocalPosition: {x: 3.91, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -307,9 +307,10 @@ MonoBehaviour:
   ShowingImage: {fileID: 936261144, guid: b94f1c5bed246be459cf7be574cf9587, type: 3}
   BossShow: {fileID: 0}
   wideRangeSkillPrefeb: {fileID: 783905485114024512, guid: efe28ef548cd83b41af55eaffec49260, type: 3}
-  wideRangeSkillCoolTime: 15
+  WarningArea: {fileID: 0}
+  wideRangeSkillCoolTime: 8
   currenwideRangeSkillCoolTime: 0
-  teleportSkillCoolTime: 1000
+  teleportSkillCoolTime: 14
   currentteleportSkillCoolTime: 0
 --- !u!61 &-1224931509711615865
 BoxCollider2D:
@@ -382,4 +383,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
