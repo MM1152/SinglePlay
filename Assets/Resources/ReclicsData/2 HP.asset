@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 588f38e4ca0792d4f8e311e74d40b6b2, type: 3}
+  m_Name: 2 HP
+  m_EditorClassIdentifier: 
+  itemclass: 50
+  image: {fileID: 0}
+  reclicsType: 2
+  reclicsExplain: "\uC0AC\uC6A9\uC790\uC758 \uCCB4\uB825\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  inItPercent: 20
+  levelUpPercent: 5

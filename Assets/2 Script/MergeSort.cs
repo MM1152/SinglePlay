@@ -11,7 +11,7 @@ public class MergeSort<T> where T : ISpawnPosibillity{
     List<float> unitSpawnprobabillity = new List<float>();
 
     /// <summary>
-    /// 정렬할 Unit들 배열로 넣어주기
+    /// 정렬할 데이터들 배열로 넣어주기
     /// </summary>
     /// <param name="units"></param>
     public MergeSort(T[] units) { 
@@ -61,7 +61,7 @@ public class MergeSort<T> where T : ISpawnPosibillity{
             }
         }
 
-        if(i <= mid) {
+         if(i <= mid) {
             for(int l = i; i <= mid; i++){
                 sortedDataList[k] = datas[l];
                 sortedList[k++] = unitSpawnProbabillity[l];

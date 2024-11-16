@@ -8,11 +8,14 @@ public class Summoner : LongRangeScript
 {
     [SerializeField] float skillCoolDown;
     [SerializeField] float skillCurrentTime;
+    [SerializeField] GameObject DieTitle;
 
     private Dictionary<string , float> additionalStats = new Dictionary<string , float>();
 
+    
     public delegate void Function();
     public Function function;
+    bool oneTime;
     private void OnEnable() { }
     private void Start() {
         RewardManager.Instance.SetSummonerStat = ChangeStat;
@@ -28,6 +31,9 @@ public class Summoner : LongRangeScript
     {
         if (!isDie)
         {
+            if(VirtualJoyStick.instance.isInput) {
+                return;
+            }
             base.Update();
             if(GameManager.Instance.gameClear && target?.name != "NextStage") target = null; 
 
@@ -42,10 +48,21 @@ public class Summoner : LongRangeScript
             } 
             
         }
+        else {
+            if(!oneTime) {
+                StartCoroutine(DieAnimation());
+                oneTime = true;
+            }
+        }
     }
     public void Move(Vector3 movePos)
     {
-        transform.position += movePos * Time.deltaTime * unit.speed;
+        transform.position += movePos * Time.deltaTime * speed;
+        isAttack = false;
+        ani.SetBool("Attack" , false);
+        ani.SetBool("Move" , true);
+        sp.flipX = movePos.normalized.x <= 0;
+        
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.name == "NextStage") {
@@ -111,7 +128,17 @@ public class Summoner : LongRangeScript
                 break;
         }
     }
-    public void TestCode(){
-        unit.hp += 100f;
+    private IEnumerator DieAnimation(){
+        if(isDie) {
+            
+            
+            GameManager.Instance.SlowGame(0.6f);
+            yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.98f);
+            DieTitle.SetActive(true);
+            GameManager.Instance.StopGame();  
+            
+            yield return new WaitUntil(() => Input.touchCount >= 1);
+            GameManager.Instance.ReturnToMenu();
+        }
     }
 }

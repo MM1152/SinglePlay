@@ -11,8 +11,8 @@ public class BackButtonScript : MonoBehaviour
         bnt = GetComponent<Button>();
         disableObject = transform.parent.gameObject;
         
-        bnt.onClick.AddListener(delegate {DisAble();});
-        bnt.onClick.AddListener(delegate {GameManager.Instance.ResumeGame();});
+        bnt.onClick.AddListener(DisAble);
+        bnt.onClick.AddListener(GameManager.Instance.ResumeGame);
     }   
 
     void DisAble(){

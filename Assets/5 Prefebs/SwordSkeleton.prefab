@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 1311005814705098}
   - component: {fileID: 5751976604324641678}
   m_Layer: 0
-  m_Name: Summon
+  m_Name: SwordSkeleton
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

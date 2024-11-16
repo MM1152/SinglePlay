@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -15,9 +17,15 @@ public class GameManager : MonoBehaviour
     public bool playingShader;
 
     public GameObject nextStage;
-
+    
     private void Awake() {
-        if(Instance == null) Instance = this;    
+        if(Instance == null) {
+            Instance = this;    
+            DontDestroyOnLoad(this);
+        }
+        else  {
+            Destroy(this);
+        }
     }
     private void Update() {
         if(clearMonseter <= 0) ClearLevel();
@@ -35,6 +43,14 @@ public class GameManager : MonoBehaviour
     }
     public void SlowGame(float size){
         Time.timeScale = size;
+    }
+    public void ReturnToMenu() {
+        SceneManager.LoadScene("MenuScene");
+        ResumeGame();
+    }
+    public void ReturnToMain(){
+        SceneManager.LoadScene("MainScene");
+        ResumeGame();
     }
     public IEnumerator WaitForNextMap(Action action) {
 

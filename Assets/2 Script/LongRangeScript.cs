@@ -14,7 +14,7 @@ public class LongRangeScript : Unit, IDamageAble
         Respawn();
         Init(GameManager.Instance.gameLevel);
     }
-    private void Update()
+    protected override void Update()
     {
         if (!isDie)
         {

@@ -68,6 +68,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else {
             if(!isBossSpawn){
+                Debug.Log("Spawn Boss");
                 Unit boss = Instantiate(Boss[GameManager.Instance.gameLevel / 10 - 1] , spawntrans);
                 boss.transform.position = spawnPos[1].transform.position; 
                 isBossSpawn = true;

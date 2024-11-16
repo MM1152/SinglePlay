@@ -1,11 +1,12 @@
 
 using UnityEngine;
 
-public class SummonUnit : ShortRangeScipt , ISummonUnit
+public class SwordSkeleton : ShortRangeScipt , ISummonUnit
 {
     //\\TODO 이걸 SummonUnit을 상속받은 다른 스크립트를 여러개만들까.... 고민되네
     public Summoner summoner { get ; set ; }
     
+     
     private void OnEnable() {
         ++ISummonUnit.unitCount;
         if(summoner != null) ChangeStats(summoner , 0.2f * SkillManager.Instance.skillDatas["해골 소환"]);

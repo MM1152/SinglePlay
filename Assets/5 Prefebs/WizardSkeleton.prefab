@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 5859871287998348551}
   - component: {fileID: 4752477032443340591}
   m_Layer: 0
-  m_Name: Summon1
+  m_Name: WizardSkeleton
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

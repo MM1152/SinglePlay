@@ -28,7 +28,6 @@ public class CameraMoveMent : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position , boss.position , smooting);
             transform.position += Vector3.back * 10f;
         }else if(target.GetComponent<Unit>().hp <= 0){
-            GameManager.Instance.SlowGame(0.4f);
             size -= 0.01f;
             size = Math.Clamp(size , 1.5f , 5);
             Camera.main.orthographicSize = size;

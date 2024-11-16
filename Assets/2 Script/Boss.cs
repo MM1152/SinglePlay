@@ -52,10 +52,6 @@ public class Boss : ShortRangeScipt
             WideRangeSkill();
             TelePortAttack();
         }
-        else
-        {
-
-        }
 
     }
 
@@ -109,6 +105,8 @@ public class Boss : ShortRangeScipt
     IEnumerator WaitForAttackSkillAnimation(string animationParameter, float normalizedTime)
     {
         yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName(animationParameter) && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= normalizedTime);
+        isAttack = false; 
+        ani.SetBool("Attack" , false);
         if (animationParameter == "SKILL")
         {
             for (float i = 0.2f; i <= 1f; i += 0.2f)
