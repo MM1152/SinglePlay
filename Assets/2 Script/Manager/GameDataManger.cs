@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Collections;
+using Unity.VisualScripting;
 
 [Serializable] 
 public class GameData{
@@ -21,13 +22,13 @@ public class GameDataManger : MonoBehaviour
     
     [SerializeField] GameData data = null;
     private string filePath;
-    private bool dataDownLoad;
+    public bool dataDownLoad;
     private void Awake() {
         
         filePath  = Application.persistentDataPath + "/data.txt";
         
         Debug.Log(filePath);
-        data = LoadData();
+        
         if(Instance == null) {
             Instance = this;
             DontDestroyOnLoad(this);
@@ -36,11 +37,16 @@ public class GameDataManger : MonoBehaviour
             Destroy(this);
         }
     }
-
+    private void Start() {
+        data = LoadData();
+    }
     public GameData LoadData(){
         GameData LoadData = new GameData();
+
+        //저장된 파일이 없을때 실행
         if(!File.Exists(filePath)) {
             LoadData.unLockMap.Add(true);
+           
             for(int i = 0; i < ReclicsManager.Instance.reclicsDatas.Length; i++) {
                 LoadData.reclicsLevel.Add(0);
                 LoadData.reclicsCount.Add(0);
@@ -51,6 +57,15 @@ public class GameDataManger : MonoBehaviour
             string JsonData = JsonUtility.ToJson(LoadData);
 
             File.WriteAllText(filePath , JsonData);
+        }
+
+        //파일 로드시 유물데이터의 갯수와 내가 저장한 데이터의 길이가 다를때 실행된다.
+        //EX ) 유물데이터 추가 등
+        if(ReclicsManager.Instance.reclicsDatas.Length != LoadData.reclicsCount.Count) {
+            for(int i = 0 ; i < ReclicsManager.Instance.reclicsDatas.Length - LoadData.reclicsCount.Count; i++){
+                LoadData.reclicsCount.Add(0);
+                LoadData.reclicsLevel.Add(0);
+            }
         }
 
         string data = File.ReadAllText(filePath);
@@ -69,4 +84,5 @@ public class GameDataManger : MonoBehaviour
     public GameData GetGameData(){
         return data;
     }
+
 }

@@ -62,13 +62,13 @@ public class MergeSort<T> where T : ISpawnPosibillity{
         }
 
          if(i <= mid) {
-            for(int l = i; i <= mid; i++){
+            for(int l = i; l <= mid; l++){
                 sortedDataList[k] = datas[l];
                 sortedList[k++] = unitSpawnProbabillity[l];
             }
         }
         else {
-            for(int l = j; j <= right; j++) {
+            for(int l = j; l <= right; l++) {
                 sortedDataList[k] = datas[l];
                 sortedList[k++] = unitSpawnProbabillity[l];
             }

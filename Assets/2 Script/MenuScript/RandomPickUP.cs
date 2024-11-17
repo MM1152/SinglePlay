@@ -39,7 +39,8 @@ public class RandomPickUP : MonoBehaviour
 
                 if(posibillity <= sum) {
                     ReclicsManager.Instance.reclicsDatas[j].PickUp();
-                    Instantiate(ReclicsManager.Instance.reclicsDatas[j] , showItemsTransform.transform);
+                    ReclicsInfo info = Instantiate(ReclicsManager.Instance.reclicsDatas[j] , showItemsTransform.transform);
+                    info.parentReclicsInfo = ReclicsManager.Instance.reclicsDatas[j];
                     break;
                 }
             }
