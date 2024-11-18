@@ -9,17 +9,21 @@ public class ExplainTab : MonoBehaviour
     public ReclicsInfo reclicsInfo {
         set { 
             _reclicsInfo = value;
-
-            levelText.text = value.GetReclicsLevel() + "";
+            if(levelText != null) {
+                 levelText.text = value.GetReclicsLevel() + "";
+                 reclicsSliderText.text = value.GetReclicsCount() + "\t" + value.GetReclicsMaxCount() + "";
+                 
+            }
+           
             slider.maxValue = value.GetReclicsMaxCount();
             slider.value = value.GetReclicsCount();
-            reclicsSliderText.text = value.GetReclicsCount() + "\t" + value.GetReclicsMaxCount() + "";
+            
 
 
             ReclicsData data = _reclicsInfo.GetReclicsData();
             reclicsImage.sprite = data.image;
             explainText.text = data.reclicsExplain;
-            percentText.text = data.inItPercent + (data.levelUpPercent * value.GetReclicsLevel()) + " ";
+            percentText.text = data.inItPercent + (data.levelUpPercent * value.GetReclicsLevel() - 1) + " ";
             percentText.text += "<color=green> (+ "+data.levelUpPercent +")</color> %";
             
         }

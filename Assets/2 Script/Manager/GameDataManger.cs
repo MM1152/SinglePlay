@@ -10,6 +10,10 @@ public class GameData{
     public int soul;
     public int gem;
     public List<bool> unLockMap = new List<bool>();
+
+    /// <summary>
+    /// 0 : Damage , 1 : HP , 2 : SummonUnitHp , 3 : AttackSpeed , 4 : MoveSpeed , 5 : BonusTalent , 6 : BonusGoods
+    /// </summary>
     public List<int> reclicsLevel = new List<int>();
     public List<int> reclicsCount = new List<int>();
 }
@@ -59,26 +63,32 @@ public class GameDataManger : MonoBehaviour
             File.WriteAllText(filePath , JsonData);
         }
 
-        //파일 로드시 유물데이터의 갯수와 내가 저장한 데이터의 길이가 다를때 실행된다.
+        string data = File.ReadAllText(filePath);
+        LoadData = JsonUtility.FromJson<GameData>(data);
+
+        //데이터 로드시 유물데이터의 갯수와 내가 저장한 데이터의 길이가 다를때 실행된다.
         //EX ) 유물데이터 추가 등
         if(ReclicsManager.Instance.reclicsDatas.Length != LoadData.reclicsCount.Count) {
-            for(int i = 0 ; i < ReclicsManager.Instance.reclicsDatas.Length - LoadData.reclicsCount.Count; i++){
+            for(int i = 0 ; i <= ReclicsManager.Instance.reclicsDatas.Length - LoadData.reclicsCount.Count; i++){
                 LoadData.reclicsCount.Add(0);
                 LoadData.reclicsLevel.Add(0);
             }
+            this.data = LoadData;
+            SaveData();
+            this.LoadData();
         }
-
-        string data = File.ReadAllText(filePath);
-        LoadData = JsonUtility.FromJson<GameData>(data);
+        
         dataDownLoad = true;
         return LoadData;
     }   
-
+    //fix : 데이터 로드이후 게임 접근시 유물 slider maxValue 설정 오류
     public void SaveData(){
         string jsonData = JsonUtility.ToJson(data);
 
         if(File.Exists(filePath)) File.WriteAllText(filePath , jsonData);
         
+        dataDownLoad = false;
+        this.data = LoadData();
         Debug.Log(filePath);
     }
     public GameData GetGameData(){

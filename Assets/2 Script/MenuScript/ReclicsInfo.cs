@@ -8,7 +8,8 @@ using UnityEngine.UI;
 
 public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillity
 {
-    [HideInInspector] public ReclicsInfo parentReclicsInfo;
+     public ReclicsInfo parentReclicsInfo;
+    [SerializeField] ReclicsTab reclicsTab;
     [SerializeField] ReclicsData reclicsData;
     [SerializeField] GameObject lockObj;
     [SerializeField] Text levelText;
@@ -21,27 +22,32 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
 
     public Action setSlider;
 
-    bool onClick;
+    public bool onClick;
     private void Update(){
         Check();
     }
     private void Awake() {
         spawnProbabillity = reclicsData.reclicsType;
+        reclicsTab = GameObject.FindObjectOfType<ReclicsTab>();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if(onClick) {
             if(parentReclicsInfo != null) {
-                ReclicsTab.setInfo(parentReclicsInfo); 
+                reclicsTab.setInfo(parentReclicsInfo); 
                 return;
             }
-            ReclicsTab.setInfo(this); 
+            reclicsTab.setInfo(this); 
         }
     }
 
     public void PickUp() {
         _reclicsCount++;
+        if(_reclicsLevel == 0) {
+            _reclicsLevel = 1;
+            levelText.text = _reclicsLevel + "";
+        }
         ChangeStatus();
     }
      

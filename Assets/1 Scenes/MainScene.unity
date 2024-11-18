@@ -412,6 +412,7 @@ GameObject:
   - component: {fileID: 59054976}
   - component: {fileID: 59054975}
   - component: {fileID: 59054974}
+  - component: {fileID: 59054977}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -521,6 +522,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59054972}
   m_CullTransparentMesh: 1
+--- !u!114 &59054977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59054972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f1efd072510324499f701750fb0835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &88386742
 GameObject:
   m_ObjectHideFlags: 0
@@ -27785,7 +27798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &867794179
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33969,6 +33982,7 @@ GameObject:
   - component: {fileID: 2090444150}
   - component: {fileID: 2090444154}
   - component: {fileID: 2090444156}
+  - component: {fileID: 2090444157}
   - component: {fileID: 2090444155}
   m_Layer: 7
   m_Name: Player
@@ -34173,6 +34187,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillPrefeb: {fileID: 999340268088552731, guid: 4a4c908582412cf48afa5e516f065052, type: 3}
+--- !u!114 &2090444157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090444148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f66921ca7544eb44b1849566f0cb354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2093336442
 GameObject:
   m_ObjectHideFlags: 0

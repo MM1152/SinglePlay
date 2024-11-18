@@ -25,7 +25,6 @@ public class SelectReward : MonoBehaviour
             else outline.effectColor = new Color(1, 0, 0, 0);
         }
     }
-    //:fix reward 데이터 설정 전에 OnEnable 실행으로 자꾸 오류뜨는거같음 해결 필요
 
     private void Awake() {
         bnt = GetComponent<Button>();

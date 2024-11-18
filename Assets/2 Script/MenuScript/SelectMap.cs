@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SelectMap : MonoBehaviour
+public class SelectMap : MonoBehaviour , IPointerClickHandler
 {   
     public string mapName;
     bool onClick;
@@ -24,19 +25,20 @@ public class SelectMap : MonoBehaviour
         }
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(onClick) {
+            infomationTab.SetActive(true);
+        }
+    }
+
     private void Awake() {
         image = GetComponent<Image>();
         lockGameObj = transform.GetChild(0).gameObject;
         unLock = false;
     }
 
-    public void UnLock(){
-        unLock = true;
-    }
-
     private void Update() {
-        if(onClick) {
-            infomationTab.SetActive(true);
-        }
+        
     }
 }

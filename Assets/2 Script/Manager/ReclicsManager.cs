@@ -13,12 +13,7 @@ public class ReclicsManager : MonoBehaviour
     private void Awake() {
         if(Instance == null) {
             Instance = this;
-            DontDestroyOnLoad(this);
-        } 
-        else {
-            Destroy(this);
         }
-        
     }
     void Start()
     {
@@ -38,7 +33,6 @@ public class ReclicsManager : MonoBehaviour
         GameData data = GameDataManger.Instance.GetGameData();
 
         for(int i = 0; i < data.reclicsCount.Count; i++){
-            Debug.Log(data.reclicsCount[i] + "");
             reclicsDatas[i].Setting(data.reclicsLevel[i] , data.reclicsCount[i]);
         }
     }
