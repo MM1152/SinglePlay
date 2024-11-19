@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class TabScript : MonoBehaviour
 {
     [SerializeField] GameObject childObject;
+    [SerializeField] Sprite initImage;
+    [SerializeField] Sprite selectedImage;
     Button button;
     Image image; 
 
@@ -15,12 +17,14 @@ public class TabScript : MonoBehaviour
     bool isSelect {
         set {
             if(value) {
-                image.color = selectColor;
-                //button.interactable = false;
+                //image.color = selectColor;
+                image.sprite = selectedImage;
+                button.interactable = false;
             }
             else {
-                image.color = noneSelectColor;
-                //button.interactable = true;
+                //image.color = noneSelectColor;
+                image.sprite = initImage;
+                button.interactable = true;
             }
         }
     }
