@@ -14,9 +14,6 @@ public class ReclicsManager : MonoBehaviour
         if(Instance == null) {
             Instance = this;
         }
-    }
-    void Start()
-    {
         //\\TODO 외부 데이터가 존재하면 외부데이터 불러와 사용 가능하도록 구현해줘야됌
         reclicsDatas = GameObject.FindObjectsOfType<ReclicsInfo>();
         for(int i = 0 ; i < reclicsDatas.Length; i++){
@@ -25,6 +22,10 @@ public class ReclicsManager : MonoBehaviour
         MergeSort<ReclicsInfo> mergeSort = new MergeSort<ReclicsInfo>(reclicsDatas);
         reclicsDatas = mergeSort.get();
         Array.Reverse(reclicsDatas);
+        
+    }
+    void Start()
+    {
         StartCoroutine(SetReclicsInfoCorutine());
     }
 
@@ -34,6 +35,7 @@ public class ReclicsManager : MonoBehaviour
 
         for(int i = 0; i < data.reclicsCount.Count; i++){
             reclicsDatas[i].Setting(data.reclicsLevel[i] , data.reclicsCount[i]);
+            GameManager.Instance.reclicsDatas.Add(reclicsDatas[i].GetReclicsData());
         }
     }
 }

@@ -14,6 +14,7 @@ public class RandomPickUP : MonoBehaviour
     [SerializeField] GameObject showItemsTransform;
     [SerializeField] GameObject reclicsPrefeb;
 
+    public List<float> spawnPosibillity = new List<float>();
     public float maxPosibillity = 0;
     GameData data;
     private void Awake() {
@@ -24,6 +25,10 @@ public class RandomPickUP : MonoBehaviour
     private void Start() {
         for(int i = 0 ; i < ReclicsManager.Instance.reclicsDatas.Length; i++) {
             maxPosibillity += (int) ReclicsManager.Instance.reclicsDatas[i].GetReclicsData().itemclass;
+        }
+
+        for(int i = 0 ; i < ReclicsManager.Instance.reclicsDatas.Length; i++) {
+            spawnPosibillity.Add((int) ReclicsManager.Instance.reclicsDatas[i].GetReclicsData().itemclass / maxPosibillity);
         }
     }
 

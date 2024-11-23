@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject curtain;
-    
+    public List<ReclicsData> reclicsDatas;
     public static GameManager Instance {get; private set;}
     public int gameLevel = 10;
     public int clearMonseter = 15;
@@ -77,5 +77,4 @@ public class GameManager : MonoBehaviour
         image.color = color;
         gameClear = false;
     }
-
 }

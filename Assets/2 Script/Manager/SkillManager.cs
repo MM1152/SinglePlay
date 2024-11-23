@@ -39,6 +39,7 @@ public class SkillManager : MonoBehaviour
 
     private void Awake() {
         Instance = this;
+        _statPoint += (int) (GameManager.Instance.reclicsDatas[5].inItPercent + (GameManager.Instance.reclicsDatas[5].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[5]));
         statPointText.text = "Point : " + statPoint;
     }
 
@@ -48,11 +49,9 @@ public class SkillManager : MonoBehaviour
             case "해골 소환" : 
                 SummonSkill = true;
                 break;
-
             case "해골 마법사 소환" :
                 UpgradeSummonSkill = true;
                 break;
-
             case "최대 소환횟수 증가" :
                 UpgradeMaxSummonCount++;
                 break;

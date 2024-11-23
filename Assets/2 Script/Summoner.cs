@@ -27,7 +27,7 @@ public class Summoner : LongRangeScript
         skillCoolDown = 5f; //:fix 각 스킬 쿨타임 연결해서 관리해줘야됌
         skillCurrentTime = skillCoolDown;
     }
-    protected override void Update()
+    private void Update()
     {
         if (!isDie)
         {
@@ -35,7 +35,7 @@ public class Summoner : LongRangeScript
                 return;
             }
             base.Update();
-            if(GameManager.Instance.gameClear && target?.name != "NextStage") target = null; 
+            if(GameManager.Instance.gameClear && target?.name.Split(' ')[0] != "NextStage") target = null; 
 
             if (GameManager.Instance.gameClear && !GameManager.Instance.playingShader)
             {
@@ -43,7 +43,7 @@ public class Summoner : LongRangeScript
             }
             else
             {
-                if (!SkillManager.Instance.LightningAttack && target?.name != "NextStage") Attack();
+                if (!SkillManager.Instance.LightningAttack && target?.name.Split(' ')[0] != "NextStage") Attack();
                 if (SkillManager.Instance.SummonSkill) SummonSkill();
             } 
             
@@ -111,20 +111,20 @@ public class Summoner : LongRangeScript
 
         switch(key) {
             case "HP":
-                maxHp = unit.hp * (additionalStats[key] + 1);
+                maxHp += unit.hp * (value + 1);
                 hp += hp * value;
                 break;
             
             case "DAMAGE":
-                damage = unit.damage * (additionalStats[key] + 1);
+                damage += unit.damage * (value + 1);
                 break;
 
             case "SPEED":
-                speed = unit.speed * (additionalStats[key] + 1);
+                speed += unit.speed * (value + 1);
                 break;
 
             case "ATTACKSPEED":
-                setInitAttackSpeed -= unit.attackSpeed - unit.attackSpeed * additionalStats[key];
+                setInitAttackSpeed -= unit.attackSpeed * additionalStats[key];
                 break;
         }
     }

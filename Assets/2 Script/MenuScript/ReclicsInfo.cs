@@ -6,19 +6,23 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillity
+public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillity , IClassColor
 {
-     public ReclicsInfo parentReclicsInfo;
+    public ReclicsInfo parentReclicsInfo;
     [SerializeField] ReclicsTab reclicsTab;
     [SerializeField] ReclicsData reclicsData;
     [SerializeField] GameObject lockObj;
     [SerializeField] Text levelText;
 
     public float spawnProbabillity { get; set; } // 순서 정렬용
+    public ItemClass itemClass { get; set; }
+
     [SerializeField] private int _reclicsLevel;
     [SerializeField] private int _reclicsCount;
     [SerializeField] private int _reclicsMaxCount = 2;
     
+
+
 
     public Action setSlider;
 
@@ -27,6 +31,7 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         Check();
     }
     private void Awake() {
+        itemClass = reclicsData.itemclass;
         spawnProbabillity = reclicsData.reclicsType;
         reclicsTab = GameObject.FindObjectOfType<ReclicsTab>();
     }

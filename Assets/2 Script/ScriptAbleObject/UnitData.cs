@@ -7,6 +7,8 @@ public enum AttackType {
 }
 [CreateAssetMenu(fileName = "UnitData", menuName = "UnitData", order = 0)]
 public class UnitData : ScriptableObject {
+    public ItemClass type;
+    public Sprite image;
     public float attackSpeed;
     public float hp;
     public float mp;

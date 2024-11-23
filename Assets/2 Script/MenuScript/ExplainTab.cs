@@ -35,6 +35,7 @@ public class ExplainTab : MonoBehaviour
     [SerializeField] Button levelUpButton;
     [SerializeField] Text levelText;
     [SerializeField] Slider slider;
+    
     private void Awake() {
         levelUpButton.onClick.AddListener(ReclicsLevelUp);
     }

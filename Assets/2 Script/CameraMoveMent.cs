@@ -15,8 +15,8 @@ public class CameraMoveMent : MonoBehaviour
     {
         size = Camera.main.orthographicSize;
         target = target.transform.GetChild(0);
+        nextMapHole = GameManager.Instance.nextStage.transform;
     }
-
     // Update is called once per frame
     void Update()
     {

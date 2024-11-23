@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba121b15cbd8344c87c6c7860363848, type: 3}
   m_Name: Enemy2
   m_EditorClassIdentifier: 
+  type: 50
+  image: {fileID: 0}
   attackSpeed: 1
   hp: 50
   mp: 0
