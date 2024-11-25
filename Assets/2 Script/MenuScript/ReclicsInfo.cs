@@ -57,9 +57,8 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
     }
      
     public void Setting(int reclicsLevel , int reclicsCount){
-        if(reclicsLevel == 0 && reclicsCount == 0) {
-            return;
-        }
+        if(reclicsLevel == 0 && reclicsCount == 0) return;
+        
         _reclicsLevel = reclicsLevel;
         _reclicsCount = reclicsCount;
         _reclicsMaxCount = reclicsLevel * 2;

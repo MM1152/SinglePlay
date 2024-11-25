@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ExplainTab : MonoBehaviour
+public class ReclisExplainTab : MonoBehaviour
 {
+    
     private ReclicsInfo _reclicsInfo;
     public ReclicsInfo reclicsInfo {
         set { 

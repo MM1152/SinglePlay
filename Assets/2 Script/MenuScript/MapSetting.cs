@@ -26,9 +26,7 @@ public class MapSetting : MonoBehaviour
     }
 
     IEnumerator WaitForDownLoadData(){
-        Debug.Log("WaitData");
         yield return new WaitUntil(() => GameDataManger.Instance.dataDownLoad);
-        Debug.Log("DataDownLoadFin");
         Setting(GameDataManger.Instance.GetGameData().unLockMap);
     }
 }

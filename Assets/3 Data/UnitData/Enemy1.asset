@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Enemy1
   m_EditorClassIdentifier: 
   type: 50
-  image: {fileID: 0}
+  typenumber: 1
+  image: {fileID: -1382200326, guid: 7488ace66b45c9d4b878db21a75e843c, type: 3}
   attackSpeed: 2
   hp: 25
   mp: 0

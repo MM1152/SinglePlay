@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba121b15cbd8344c87c6c7860363848, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
+  type: 1
+  typenumber: 3
+  image: {fileID: 0}
   attackSpeed: 2
   hp: 1500
   mp: 0

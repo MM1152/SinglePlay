@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject curtain;
     public List<ReclicsData> reclicsDatas;
+    public List<SoulsInfo> soulsInfo;
     public static GameManager Instance {get; private set;}
     public int gameLevel = 10;
     public int clearMonseter = 15;

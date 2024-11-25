@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingClassToColor : MonoBehaviour
+public class SettingColor : MonoBehaviour
 {
     Image backGroundImageColor;
     ItemClass item;
@@ -11,12 +11,12 @@ public class SettingClassToColor : MonoBehaviour
     Color UnCommonColor = Color.blue;
     Color UniqueColor = new Color(0.8257728f , 0 , 0.8301887f);
     Color LegendColor = Color.yellow;
-    private void Awake() {
-        item = GetComponent<IClassColor>().itemClass;
-        backGroundImageColor = GetComponent<Image>();
-    }
+
     void Start()
     {
+        item = GetComponent<IClassColor>().itemClass;
+        backGroundImageColor = GetComponent<Image>();
+        
         switch(item) {
             case ItemClass.COMMON :
                 backGroundImageColor.color = CommonColor;

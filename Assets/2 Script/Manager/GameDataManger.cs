@@ -16,6 +16,8 @@ public class GameData{
     /// </summary>
     public List<int> reclicsLevel = new List<int>();
     public List<int> reclicsCount = new List<int>();
+    public List<int> soulsLevel = new List<int>();
+    public List<int> soulsCount = new List<int>();
 }
 
 
@@ -50,11 +52,17 @@ public class GameDataManger : MonoBehaviour
         //저장된 파일이 없을때 실행
         if(!File.Exists(filePath)) {
             LoadData.unLockMap.Add(true);
-           
+
+            for(int i = 0 ; i < SoulsManager.Instance.soulsInfos.Length; i++) {
+                LoadData.soulsLevel.Add(0);
+                LoadData.soulsCount.Add(0);
+            }
+            
             for(int i = 0; i < ReclicsManager.Instance.reclicsDatas.Length; i++) {
                 LoadData.reclicsLevel.Add(0);
                 LoadData.reclicsCount.Add(0);
             }
+
             LoadData.gem = 0;
             LoadData.soul = 0;
 
@@ -66,8 +74,17 @@ public class GameDataManger : MonoBehaviour
         string data = File.ReadAllText(filePath);
         LoadData = JsonUtility.FromJson<GameData>(data);
 
-        //데이터 로드시 유물데이터의 갯수와 내가 저장한 데이터의 길이가 다를때 실행된다.
-        //EX ) 유물데이터 추가 등
+        //데이터 로드시 데이터의 갯수와 내가 저장한 데이터의 길이가 다를때 실행된다.
+        //EX ) 데이터 추가 등
+        if(SoulsManager.Instance.soulsInfos.Length != 0 && SoulsManager.Instance.soulsInfos.Length != LoadData.soulsCount.Count) {
+            for(int i = 0 ; i <= SoulsManager.Instance.soulsInfos.Length - LoadData.soulsCount.Count; i++) {
+                LoadData.soulsCount.Add(0);
+                LoadData.soulsLevel.Add(0);
+            }
+            this.data = LoadData;
+            SaveData();
+        }
+
         if(ReclicsManager.Instance.reclicsDatas.Length != 0 && ReclicsManager.Instance.reclicsDatas.Length != LoadData.reclicsCount.Count) {
             for(int i = 0 ; i <= ReclicsManager.Instance.reclicsDatas.Length - LoadData.reclicsCount.Count; i++){
                 LoadData.reclicsCount.Add(0);

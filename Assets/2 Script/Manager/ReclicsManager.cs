@@ -16,9 +16,6 @@ public class ReclicsManager : MonoBehaviour
         }
         //\\TODO 외부 데이터가 존재하면 외부데이터 불러와 사용 가능하도록 구현해줘야됌
         reclicsDatas = GameObject.FindObjectsOfType<ReclicsInfo>();
-        for(int i = 0 ; i < reclicsDatas.Length; i++){
-            Debug.Log(reclicsDatas[i].name);
-        }
         MergeSort<ReclicsInfo> mergeSort = new MergeSort<ReclicsInfo>(reclicsDatas);
         reclicsDatas = mergeSort.get();
         Array.Reverse(reclicsDatas);
