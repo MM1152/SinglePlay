@@ -15,7 +15,7 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
     [SerializeField] Text levelText;
 
     public float spawnProbabillity { get; set; } // 순서 정렬용
-    public ItemClass itemClass { get; set; }
+    public ClassStruct color { get; set; }
 
     [SerializeField] private int _reclicsLevel;
     [SerializeField] private int _reclicsCount;
@@ -31,7 +31,8 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         Check();
     }
     private void Awake() {
-        itemClass = reclicsData.itemclass;
+        reclicsData.classStruct = new ClassStruct(reclicsData.itemclass);
+        color = reclicsData.classStruct;
         spawnProbabillity = reclicsData.reclicsType;
         reclicsTab = GameObject.FindObjectOfType<ReclicsTab>();
     }

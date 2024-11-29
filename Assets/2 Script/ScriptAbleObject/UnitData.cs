@@ -8,6 +8,7 @@ public enum AttackType {
 [CreateAssetMenu(fileName = "UnitData", menuName = "UnitData", order = 0)]
 public class UnitData : ScriptableObject {
     public ItemClass type;
+    public ClassStruct classStruct;
     public int typenumber;
     public Sprite image;
     public float attackSpeed;
@@ -17,4 +18,9 @@ public class UnitData : ScriptableObject {
     public float speed;
     public float attackRadious;
     public float spawnProbabillity;
+
+    [Header ("소환수로 부릴 시 사용되는 탭")]
+    [TextArea]
+    public string explainText;
+    public Sprite[] skillImage;
 }

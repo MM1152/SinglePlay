@@ -22,3 +22,7 @@ MonoBehaviour:
   speed: 0.8
   attackRadious: 0.8
   spawnProbabillity: 80
+  explainText: "Lv.3   \uCCB4\uB825 10% \uC99D\uAC00\nLv.6   \uBAA8\uB4E0\uC18D\uB3C4
+    10% \uC99D\uAC00\nLv.9   \uACF5\uACA9\uB825 10% \uC99D\uAC00\nLv.12 \uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4
+    \uB3C4\uBC1C\uC2A4\uD0AC\uC744 \uC0AC\uC6A9"
+  skillImage: []

@@ -22,8 +22,7 @@ public class GameData{
 
 
 public class GameDataManger : MonoBehaviour
-{   //\\TODO : 서버든 오프라인으로 저장해놓은 데이터들 불러와서 일괄적으로 적용시켜줘야함
-    //  유물 데이터 , 맵 데이터 , 재화 정보 , 수집한 영혼 정보 등.
+{   
     public static GameDataManger Instance { get ; private set;}
     
     [SerializeField] GameData data = null;

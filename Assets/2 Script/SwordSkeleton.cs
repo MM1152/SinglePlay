@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class SwordSkeleton : ShortRangeScipt , ISummonUnit
 {
-    //\\TODO 이걸 SummonUnit을 상속받은 다른 스크립트를 여러개만들까.... 고민되네
     public Summoner summoner { get ; set ; }
     
      

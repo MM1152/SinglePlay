@@ -244,7 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d28258ccf88044cb2479ff5f3f6d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitData: {fileID: 11400000, guid: 60096f22e76524442ae5c2536a380eec, type: 2}
+  soulsTab: {fileID: 0}
+  unitData: {fileID: 11400000, guid: 1a835f09fde8ef1459ee398de53a58ad, type: 2}
   soulImage: {fileID: 1537411221584626761}
   levelText: {fileID: 1279710923507099556}
   slider: {fileID: 5063293805660473515}

@@ -9,9 +9,11 @@ public delegate void SettingSlider();
 [DefaultExecutionOrder(0)]
 public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillity , IClassColor
 {
-    [SerializeField] UnitData unitData;
+    
     [Space(50)]
     [Header("직접 설정")]
+    [SerializeField] SoulsTab soulsTab;
+    [SerializeField] UnitData unitData;
     [SerializeField] Image soulImage;
     [SerializeField] Text levelText;
     [SerializeField] Slider slider;
@@ -20,21 +22,30 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     public int soulLevel {private set; get;}
     public int soulCount {private set; get;}
     public int soulMaxCount {private set; get;}
+    public float soulInintPercent {private set; get;}
+    public float soulLevelUpPercent {private set; get;}
 
     public float spawnProbabillity { get ; set ; }
-    public ItemClass itemClass { get ; set ; }
+    public ClassStruct color { get ; set ; }
 
     public SettingSlider settingslider;
+    bool unLock;
+
     private void Awake() {
+        unitData.classStruct = new ClassStruct(unitData.type);
+        soulInintPercent = unitData.classStruct.soulInintPercent;
+        soulLevelUpPercent = unitData.classStruct.soulLevelUpPercent;
+
         spawnProbabillity = unitData.typenumber;      
         Init();
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        
+        //\\TODO lock 일때는 확인 X 풀려있어야 확인 가능하도록 해줘야함
+        soulsTab.settingSoul(this);
     }
     private void Init(){
-        itemClass = unitData.type;
+        color = unitData.classStruct;
         soulImage.sprite = unitData.image;
     }
     public void Setting(int soulCount , int soulLevel){
@@ -47,10 +58,26 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
 
         levelText.text = soulLevel + "";
         lockObejct.SetActive(false);
-
+        unLock = true;
+    }
+    public SoulsInfo LevelUp(){
+        soulLevel++;
+        soulCount -= soulMaxCount;
+        soulMaxCount = soulLevel * 2;
+        levelText.text = soulLevel + "";
+        ChangeStatus();
+        return this;
+    }
+    public void ChangeStatus(){
+        GameData data = GameDataManger.Instance.GetGameData();
+        data.soulsLevel[unitData.typenumber - 1] = soulLevel;
+        data.soulsCount[unitData.typenumber - 1] = soulCount;
+        GameDataManger.Instance.SaveData();
     }
 
-    
+    public UnitData GetUnitData(){
+        return unitData;
+    }
     
     public SoulsInfo GetSoulsInfo(){
         return this;

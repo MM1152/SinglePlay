@@ -15,6 +15,6 @@ public class SettingReclicsDataInPlayer : MonoBehaviour
         player.setInitAttackSpeed -= player.unit.attackSpeed * ((GameManager.Instance.reclicsDatas[3].inItPercent + GameManager.Instance.reclicsDatas[3].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[3]) / 100f);
         player.speed += player.unit.speed * (( GameManager.Instance.reclicsDatas[4].inItPercent + GameManager.Instance.reclicsDatas[4].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[4]) / 100f);
 
-        //\\TODO scriptable 오브젝트로 생성한 유물 데이터에 접근해서 데이터 적용시켜주기
+
     }
 }

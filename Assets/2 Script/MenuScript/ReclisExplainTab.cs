@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,12 +11,8 @@ public class ReclisExplainTab : MonoBehaviour
     public ReclicsInfo reclicsInfo {
         set { 
             _reclicsInfo = value;
-            if(levelText != null) {
-                 levelText.text = value.GetReclicsLevel() + "";
-                 reclicsSliderText.text = value.GetReclicsCount() + "\t" + value.GetReclicsMaxCount() + "";
-                 
-            }
-           
+            levelText.text = value.GetReclicsLevel() + "";
+            reclicsSliderText.text = value.GetReclicsCount() + "\t" + value.GetReclicsMaxCount() + "";
             slider.maxValue = value.GetReclicsMaxCount();
             slider.value = value.GetReclicsCount();
             
@@ -36,9 +33,10 @@ public class ReclisExplainTab : MonoBehaviour
     [SerializeField] Button levelUpButton;
     [SerializeField] Text levelText;
     [SerializeField] Slider slider;
-    
+
     private void Awake() {
         levelUpButton.onClick.AddListener(ReclicsLevelUp);
+
     }
     private void Update() {
        if(_reclicsInfo.GetReclicsCount() >= _reclicsInfo.GetReclicsMaxCount()) {

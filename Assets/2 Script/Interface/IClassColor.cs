@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IClassColor
 {
-    public ItemClass itemClass { get ; set ; }
+    public ClassStruct color { get ; set ; }
 }
