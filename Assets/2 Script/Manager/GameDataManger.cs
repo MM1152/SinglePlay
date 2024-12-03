@@ -18,6 +18,7 @@ public class GameData{
     public List<int> reclicsCount = new List<int>();
     public List<int> soulsLevel = new List<int>();
     public List<int> soulsCount = new List<int>();
+    public List<int> soulsEquip = new List<int>();
 }
 
 
@@ -62,6 +63,9 @@ public class GameDataManger : MonoBehaviour
                 LoadData.reclicsCount.Add(0);
             }
 
+            for(int i = 0; i < 5; i++) {
+                LoadData.soulsEquip.Add(0);
+            }
             LoadData.gem = 0;
             LoadData.soul = 0;
 
@@ -92,6 +96,14 @@ public class GameDataManger : MonoBehaviour
             this.data = LoadData;
             SaveData();
         }
+
+        if(LoadData.soulsEquip.Count != 5) {
+            for(int i = 0 ; i < 5; i++) {
+                LoadData.soulsEquip.Add(0);
+            }
+            this.data = LoadData;
+            SaveData();
+        }
         
         dataDownLoad = true;
         return LoadData;
@@ -109,5 +121,5 @@ public class GameDataManger : MonoBehaviour
     public GameData GetGameData(){
         return data;
     }
-
+    
 }

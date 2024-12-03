@@ -20,7 +20,7 @@ public class UnitData : ScriptableObject {
     public float spawnProbabillity;
 
     [Header ("소환수로 부릴 시 사용되는 탭")]
+    public SoulsSkillData[] soulsSkillData;
     [TextArea]
     public string explainText;
-    public Sprite[] skillImage;
 }

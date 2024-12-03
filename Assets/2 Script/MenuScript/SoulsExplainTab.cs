@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,9 +29,39 @@ public class SoulsExplainTab : MonoBehaviour
             Image.sprite = data.image;
             explainText.text = data.explainText;
             
+            //스킬 이미지 꺼놓기
+            for(int i = 0 ; i < skillImagesObject.Count; i++) {
+                skillImagesObject[i].SetActive(false);
+            }
+
+            if(data.soulsSkillData.Length > 0) {
+                if(skillImagesObject.Count >= data.soulsSkillData.Length) {
+                    for(int i = 0 ; i < data.soulsSkillData.Length; i++) {
+                        skillImagesObject[i].GetComponent<Image>().sprite = data.soulsSkillData[i].skillImages;
+                        skillImagesObject[i].GetComponent<SkillExplain>().skillData = data.soulsSkillData[i];
+                        skillImagesObject[i].SetActive(true);
+                    }
+                }
+                else {
+                    for(int i = 0; i < skillImagesObject.Count; i++) {
+                        skillImagesObject[i].GetComponent<Image>().sprite = data.soulsSkillData[i].skillImages;
+                        skillImagesObject[i].GetComponent<SkillExplain>().skillData = data.soulsSkillData[i];
+                        skillImagesObject[i].SetActive(true);
+                    }
+
+                    for(int i = skillImagesObject.Count; i < data.soulsSkillData.Length; i++){
+                        GameObject prefebSkill = Instantiate(SkillImage , skillImageParent);
+                        prefebSkill.GetComponent<Image>().sprite = data.soulsSkillData[i].skillImages;
+                        prefebSkill.GetComponent<SkillExplain>().skillData = data.soulsSkillData[i];
+                        skillImagesObject.Add(prefebSkill);
+                    }
+                }
+            }
             //\\TODO 스킬 이미지가 존재한다면 스킬이미지 넣어주고 스킬 클릭하면 어떤 효과인지 확인 가능하게 해줘야함
         }
     }
+
+    List<GameObject> skillImagesObject = new List<GameObject>();
 
     [SerializeField] Text SliderText;
     [SerializeField] Image Image;
@@ -41,7 +72,12 @@ public class SoulsExplainTab : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] Slider slider;
     [SerializeField] Button equipButton;
-
+    /// <summary>
+    /// Skill보여주는 프리팹
+    /// </summary>
+    [SerializeField] GameObject SkillImage;
+    [SerializeField] Transform skillImageParent;
+    public GameObject skillExplain;
     public Action SetEquip;
     private void Awake() {
         levelUpButton.onClick.AddListener(LevelUp);
@@ -58,5 +94,8 @@ public class SoulsExplainTab : MonoBehaviour
         if(UnitData.soulCount >= UnitData.soulMaxCount) {
             UnitData = UnitData.LevelUp();
         }
+    }
+    private void Update() {
+        
     }
 }

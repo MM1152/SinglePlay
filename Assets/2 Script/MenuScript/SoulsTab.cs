@@ -8,7 +8,7 @@ public class SoulsTab : MonoBehaviour
     [SerializeField] SoulsExplainTab soulsExplainTab;
     private SoulsInfo currentSoulInfo;
     public Action<SoulsInfo> settingSoul;
-    public Dictionary<EquipSouls , SoulsInfo> equipDic = new Dictionary<EquipSouls , SoulsInfo>();
+    
     private void Start()
     {
         settingSoul += SetInfo;
@@ -25,6 +25,9 @@ public class SoulsTab : MonoBehaviour
     public void StartCoroutine(){
         StartCoroutine(WaitForTouch());
     }
+    private void Update() {
+        
+    }
     IEnumerator WaitForTouch()
     {
         yield return new WaitUntil(() => Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary);
@@ -37,10 +40,25 @@ public class SoulsTab : MonoBehaviour
 
             if (selectObject.TryGetComponent<EquipSouls>(out equipSouls))
             {
-                //\\TODO 클릭시 이미 존재하는 소환수면 지워주고 위치 이동 /
+                int changesiblingIndex = -1;
 
+                if(SoulsManager.Instance.equipDic.ContainsKey(currentSoulInfo)) {
+                    changesiblingIndex = SoulsManager.Instance.equipDic[currentSoulInfo].transform.GetSiblingIndex();
+
+                    SoulsManager.Instance.equipDic[currentSoulInfo].SetSoulInfo(null);
+                    SoulsManager.Instance.equipDic[currentSoulInfo] = equipSouls;
+                }
+                else {
+                    SoulsManager.Instance.equipDic.Add(currentSoulInfo , equipSouls);
+                }
                 equipSouls.SetSoulInfo(currentSoulInfo);
+
+                GameData data = GameDataManger.Instance.GetGameData();
+                if(changesiblingIndex != -1) data.soulsEquip[changesiblingIndex] = 0;
+                data.soulsEquip[equipSouls.transform.GetSiblingIndex()] = currentSoulInfo.GetUnitData().typenumber;
+                GameDataManger.Instance.SaveData();
             }
+
             EquipSouls.isEquip = false;
             currentSoulInfo = null;
         }
@@ -50,4 +68,5 @@ public class SoulsTab : MonoBehaviour
             currentSoulInfo = null;
         }
     }
+
 }

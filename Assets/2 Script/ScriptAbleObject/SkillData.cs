@@ -10,3 +10,4 @@ public class SkillData : ScriptableObject
     public int maxSkillLevel;
     public string skillExplain;
 }
+

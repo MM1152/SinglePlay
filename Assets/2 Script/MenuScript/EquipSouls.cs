@@ -12,13 +12,16 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
     {
         set
         {
+            
             if(value == null) {
                 _soulInfo = null;
                 soulImage.sprite = null;
+                soulImage.color = new Color(0 , 0 , 0 , 0);
                 return;
             }
             _soulInfo = value;
             soulImage.sprite = value.GetUnitData().image;
+            soulImage.color = new Color(1 , 1 , 1 , 1);
             //\\ Image 넣어주기 , 해당하는 칸 클릭시 해당하는 소울 상태창 뜨게 만들어주기
         }
     }
@@ -29,6 +32,7 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
     private void Awake()
     {
         isEquip = false;
+        soulsInfo = null;
     }
     public void SetSoulInfo(SoulsInfo soulsInfo)
     {
@@ -41,7 +45,7 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(Input.GetTouch(0).phase == TouchPhase.Began && !isEquip) soulsTab.settingSoul(_soulInfo);
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !isEquip) soulsTab.settingSoul(_soulInfo);
     }
-
+    
 }

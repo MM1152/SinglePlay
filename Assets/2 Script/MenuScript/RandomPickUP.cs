@@ -13,6 +13,7 @@ public class RandomPickUP : MonoBehaviour
     [SerializeField] GameObject showItems;
     [SerializeField] GameObject showItemsTransform;
     [SerializeField] GameObject reclicsPrefeb;
+    [SerializeField] Animator pickUpAnimation;
 
     public List<float> spawnPosibillity = new List<float>();
     public float maxPosibillity = 0;
@@ -34,6 +35,18 @@ public class RandomPickUP : MonoBehaviour
 
     void PickUp(int count) {
         // 아이템 확률로 뽑아오는 코드
+        //\\TODO 현재 재화에 맞춰 뽑기 실행하도록 해야함
+
+        
+        StartCoroutine(ShowingReclics(count));
+
+    }
+    IEnumerator ShowingReclics(int count){
+        pickUpAnimation.SetBool("PickUp" , true);
+        yield return new WaitUntil(() => pickUpAnimation.GetCurrentAnimatorStateInfo(0).IsName("PickUpAnimation") && pickUpAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+
+        pickUpAnimation.SetBool("PickUp" , false);
+
         showItems.SetActive(true);
         for(int i = 0 ; i < count; i++) {
             float posibillity = Random.Range(0f , 1f);
@@ -41,18 +54,16 @@ public class RandomPickUP : MonoBehaviour
 
             for(int j = 0; j < ReclicsManager.Instance.reclicsDatas.Length; j++) {
                 sum += (int) ReclicsManager.Instance.reclicsDatas[j].GetReclicsData().itemclass / maxPosibillity;
-
+                
                 if(posibillity <= sum) {
                     ReclicsManager.Instance.reclicsDatas[j].PickUp();
                     ReclicsInfo info = Instantiate(ReclicsManager.Instance.reclicsDatas[j] , showItemsTransform.transform);
                     info.parentReclicsInfo = ReclicsManager.Instance.reclicsDatas[j];
+                    yield return new WaitForSeconds(0.2f);
                     break;
                 }
             }
                     
         }
-        /*if(data.soul >= count * 100) {
-            
-        }*/
     }
 }
