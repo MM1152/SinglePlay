@@ -1,12 +1,26 @@
  
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum AttackType {
     None , LongRange , ShortRange
 }
+public struct Status {
+    public float attackStat;
+    public float hpStat;
+    public float speedStat;
+}
+
+[Serializable]
+public class SkillUnLockLevel{
+    public int level;
+    public SoulsSkillData skillData;
+}
+
 [CreateAssetMenu(fileName = "UnitData", menuName = "UnitData", order = 0)]
 public class UnitData : ScriptableObject {
+    public string name;
     public ItemClass type;
     public ClassStruct classStruct;
     public int typenumber;
@@ -20,7 +34,11 @@ public class UnitData : ScriptableObject {
     public float spawnProbabillity;
 
     [Header ("소환수로 부릴 시 사용되는 탭")]
-    public SoulsSkillData[] soulsSkillData;
+    public SkillUnLockLevel[] soulsSkillData;
+    public GameObject SummonPrefeb;
     [TextArea]
     public string explainText;
+    public string[] stat;
+    public Status bonusStat = new Status();
+    public Status curStat = new Status();
 }

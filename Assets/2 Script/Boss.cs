@@ -33,7 +33,7 @@ public class Boss : ShortRangeScipt
         currenwideRangeSkillCoolTime = wideRangeSkillCoolTime;
         currentteleportSkillCoolTime = teleportSkillCoolTime;
         StartCoroutine(WaitForAnimationCorutine());
-        Init(1);
+        Spawn(1);
     }
     protected override void Update()
     {

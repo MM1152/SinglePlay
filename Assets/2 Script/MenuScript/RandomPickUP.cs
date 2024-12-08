@@ -34,12 +34,8 @@ public class RandomPickUP : MonoBehaviour
     }
 
     void PickUp(int count) {
-        // 아이템 확률로 뽑아오는 코드
         //\\TODO 현재 재화에 맞춰 뽑기 실행하도록 해야함
-
-        
         StartCoroutine(ShowingReclics(count));
-
     }
     IEnumerator ShowingReclics(int count){
         pickUpAnimation.SetBool("PickUp" , true);

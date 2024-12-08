@@ -1,13 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
 public class Summoner : LongRangeScript
 {
-    [SerializeField] float skillCoolDown;
-    [SerializeField] float skillCurrentTime;
+    Vector2[] spawnPosition = new Vector2[] {
+        new Vector2(1f , 0f) ,
+        new Vector2(0.8f , -0.5f) ,
+        new Vector2(0.5f , -1f) ,
+        new Vector2(0.8f , 0.5f) ,
+        new Vector2(0.5f , 1f)
+    };
+
+    [SerializeField] GameObject EnemySpawn;
     [SerializeField] GameObject DieTitle;
 
     private Dictionary<string , float> additionalStats = new Dictionary<string , float>();
@@ -23,9 +31,14 @@ public class Summoner : LongRangeScript
     protected override void Awake()
     {
         base.Awake();
-        Init(1);
-        skillCoolDown = 5f; //:fix 각 스킬 쿨타임 연결해서 관리해줘야됌
-        skillCurrentTime = skillCoolDown;
+        Spawn(1);
+        int i = 0;
+        foreach(string key in GameManager.Instance.soulsInfo.Keys) {
+            SummonUnit SpawnUnit = Instantiate(EnemySpawn).GetComponent<SummonUnit>();
+            SpawnUnit.transform.position = spawnPosition[i++] + (Vector2)transform.position;
+            SpawnUnit.tag = tag;
+            SpawnUnit.Setting(GameManager.Instance.soulsInfo[key].SummonPrefeb , SpawnUnit.transform.position , transform.parent , this);
+        }
     }
     private void Update()
     {
@@ -44,7 +57,7 @@ public class Summoner : LongRangeScript
             else
             {
                 if (!SkillManager.Instance.LightningAttack && target?.name.Split(' ')[0] != "NextStage") Attack();
-                if (SkillManager.Instance.SummonSkill) SummonSkill();
+                //if (SkillManager.Instance.SummonUpgradeSkill) SummonSkill();
             } 
             
         }
@@ -71,19 +84,6 @@ public class Summoner : LongRangeScript
             StartCoroutine(GameManager.Instance.WaitForNextMap(() => SpawnMapPlayer()));
         }
     }
-    public void SummonSkill()
-    {
-        if (!ani.GetCurrentAnimatorStateInfo(0).IsName("SKILL") && ISummonUnit.unitCount < SkillManager.Instance.UpgradeMaxSummonCount)
-        {
-            if (skillCurrentTime <= 0)
-            {
-                isSkill = true;
-                ani?.SetBool("Skill", true);
-                StartCoroutine(WaitForSkillAnimationCorutine());
-            }
-            skillCurrentTime -= Time.deltaTime;
-        }
-    }
     IEnumerator WaitForSkillAnimationCorutine()
     {
         yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("SKILL") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
@@ -96,7 +96,6 @@ public class Summoner : LongRangeScript
         unit.tag = gameObject.tag;
         unit.transform.position = transform.position + Vector3.right;
 
-        skillCurrentTime = skillCoolDown;
         isSkill = false;
     }
     private void SpawnMapPlayer(){

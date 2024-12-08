@@ -12,6 +12,7 @@ public class SelectMap : MonoBehaviour , IPointerClickHandler
     Image image;
     GameObject lockGameObj;
     [SerializeField] GameObject infomationTab;
+    MapInfomationTab mapInfomationTab;
     Color InitColor = new Color(0f , 0f , 0f , 0.7f);
     Color UnLockColor = new Color(1f , 1f , 1f , 1f);
     public bool unLock {
@@ -28,17 +29,15 @@ public class SelectMap : MonoBehaviour , IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         if(onClick) {
+            mapInfomationTab.name = mapName;
             infomationTab.SetActive(true);
         }
     }
 
     private void Awake() {
+        mapInfomationTab = infomationTab.GetComponent<MapInfomationTab>();
         image = GetComponent<Image>();
         lockGameObj = transform.GetChild(0).gameObject;
         unLock = false;
-    }
-
-    private void Update() {
-        
     }
 }

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class SkillManager : MonoBehaviour
 {
+    //\\TODO 소환수 생성은 Equip 소환수들할꺼고 기존에 소환수 생성 스킬 제거후 변경예정
+
     [SerializeField] Text statPointText;
 
     public static SkillManager Instance { get ; private set ;}
@@ -14,8 +16,8 @@ public class SkillManager : MonoBehaviour
     public Dictionary<string , int> skillDatas = new Dictionary<string , int>();
     [Space(50)]
     [Header("SummonSkill")]
-    public bool SummonSkill;    
-    public bool UpgradeSummonSkill;
+    public bool UpgradeSummonUnitSkill;    
+    public bool UpgradeAutoRepair;
     public int UpgradeMaxSummonCount = 2; //MaxSpawnCount;
 
     [Space(50)]
@@ -46,11 +48,11 @@ public class SkillManager : MonoBehaviour
     public void UnLockSkill(string data) {
         
         switch (data) {
-            case "해골 소환" : 
-                SummonSkill = true;
+            case "소환수 강화" : 
+                UpgradeSummonUnitSkill = true;
                 break;
-            case "해골 마법사 소환" :
-                UpgradeSummonSkill = true;
+            case "자동 회복" :
+                UpgradeAutoRepair = true;
                 break;
             case "최대 소환횟수 증가" :
                 UpgradeMaxSummonCount++;

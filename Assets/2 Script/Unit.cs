@@ -34,7 +34,7 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
 
 
     public GameObject target; // 공격할 대상
-    [SerializeField] protected GameObject targetList; // 적이라면 Player를 담고있는 부모 , Player라면 적에 대한 정보를 담고있는 부모
+    public GameObject targetList; // 적이라면 Player를 담고있는 부모 , Player라면 적에 대한 정보를 담고있는 부모
     /************************************/
 
     /*************TestCode***************/
@@ -42,11 +42,12 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
 
     /************************************/
     protected virtual void Awake(){
-        if(gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss")) targetList = GameObject.Find("PlayerList");
+        
         sp ??= GetComponent<SpriteRenderer>() ;
         ani ??= GetComponent<Animator>() ?  GetComponent<Animator>() : null;
         canFollow = true;
     }
+    
     protected virtual void Update(){
         Die();
         if(GameManager.Instance.playingAnimation || GameManager.Instance.playingShader) {
@@ -58,40 +59,50 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
         FollowTarget();
         ani?.SetBool("Move", FollowTarget());
     }
+
     protected void Respawn(){
+        if(gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss")) targetList = GameObject.Find("PlayerList");
+        if(gameObject.CompareTag("Player")) targetList = GameObject.Find("EnemyList");
         isDie = false;
         isAttack = false;
         hp = maxHp;
         canFollow = true;
     }
-    protected virtual void Init(float setStatus) {
-        hp = unit.hp * setStatus;
+    protected virtual void Spawn(float setStatus) {
+        maxHp = unit.hp + (unit.hp * setStatus * 0.1f);
         mp = unit.mp;
-        damage = unit.damage * setStatus;
+        damage = unit.damage + (unit.damage * setStatus * 0.1f);
         speed = unit.speed;
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
         
-        maxHp = hp;
+        hp = maxHp;
     }
-    protected virtual void Init(Summoner summoner , float precent) {
-        hp = summoner.maxHp * precent;
+    protected virtual void SummonerSpawn(Summoner summoner , float attackPrecent , float hpPercent) {
+        if(SkillManager.Instance.UpgradeSummonUnitSkill) {
+            attackPrecent += SkillManager.Instance.skillDatas["소환수 강화"] * 0.1f;
+            hpPercent += SkillManager.Instance.skillDatas["소환수 강화"] * 0.1f;
+        }
+        maxHp = summoner.maxHp * hpPercent;
         mp = unit.mp;
-        damage = summoner.damage * precent;
+        damage = summoner.damage * attackPrecent;
         speed = unit.speed;
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
 
-        maxHp = hp;
+        hp = maxHp;
     }
-    protected void ChangeStats(Summoner summoner , float precent){
-        hp = summoner.hp * precent;
+    protected void ChangeStats(Summoner summoner , float attackPrecent , float hpPercen){
+        float thisHpPercent = hp / maxHp;
+
+        maxHp = summoner.hp * hpPercen;
         mp = unit.mp;
-        damage = summoner.damage * precent;
+        damage = summoner.damage * attackPrecent;
         speed = unit.speed;
         attackRadious = unit.attackRadious;
-        setInitAttackSpeed = unit.attackSpeed;
-        maxHp = hp;
+        setInitAttackSpeed = unit.attackSpeed; 
+
+        hp = maxHp * thisHpPercent;
     }
     protected virtual void Attack(){
         canAttack = !isAttack && target != null && attackRadious > Vector2.Distance(target.transform.position, transform.position) && currentAttackSpeed <= 0;
@@ -122,8 +133,9 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
             canFollow = false;
             ani?.SetBool("Die" , isDie);
             target = null;
-            if(gameObject.CompareTag("Enemy")) {
+            if(gameObject.CompareTag("Enemy") && !GameManager.Instance.gameClear) {
                 EnemySpawner.Instance.CheckDie();
+                DropSoul();
             }
             
             StartCoroutine(WaitForDieAnimationCorutine());
@@ -166,14 +178,19 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
     }
 
     protected void Flip(){
-        if(target != null && gameObject.name != "LongRangeEnemy(Clone)") sp.flipX = (target.transform.position - transform.position).normalized.x >= 0 ? false : true;
+        if(target != null && gameObject.name != "Demon(Clone)") sp.flipX = (target.transform.position - transform.position).normalized.x >= 0 ? false : true;
         else if(target != null) sp.flipX = (target.transform.position - transform.position).normalized.x >= 0 ? true : false;
     }
 
     private IEnumerator WaitForDieAnimationCorutine(){ 
         if(ani != null) yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("DIE") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         StopAllCoroutines();
-        PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
+        if(gameObject.CompareTag("Enemy")) {
+            PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
+        }else {
+            Destroy(gameObject);
+        }
+       
     }
     private IEnumerator WaitForAttackAnimationCorutine(){ 
         if(ani != null) yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("ATTACK") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
@@ -182,5 +199,12 @@ public class Unit : MonoBehaviour , IFollowTarget , ISpawnPosibillity {
         isAttack = false;
     }
 
+    private void DropSoul(){
+        float rand = Random.Range(0f , 1f);
+        Debug.Log("Soul Drop Percent : " + rand);
 
+        if(unit.classStruct.dropSoulpercent >= rand) {
+            GameManager.Instance.dropSoul?.Invoke(unit);
+        }
+    }
 }

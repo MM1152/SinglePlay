@@ -28,7 +28,6 @@ public class UIShakingAnimation : MonoBehaviour
         float count = 3f;
 
         while(EquipSouls.isEquip) {
-            Debug.Log("play corutine");
             if(rotation >= 5f) turnleft = true;
             else if(rotation <= -5f) turnleft = false;
 

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Experimental.Rendering;
 using UnityEngine.UI;
 
 public class EquipSouls : MonoBehaviour , IPointerEnterHandler
@@ -12,7 +10,6 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
     {
         set
         {
-            
             if(value == null) {
                 _soulInfo = null;
                 soulImage.sprite = null;
@@ -22,7 +19,6 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
             _soulInfo = value;
             soulImage.sprite = value.GetUnitData().image;
             soulImage.color = new Color(1 , 1 , 1 , 1);
-            //\\ Image 넣어주기 , 해당하는 칸 클릭시 해당하는 소울 상태창 뜨게 만들어주기
         }
     }
     [SerializeField] Image soulImage;
@@ -37,6 +33,15 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
     public void SetSoulInfo(SoulsInfo soulsInfo)
     {
         this.soulsInfo = soulsInfo;
+        if(soulsInfo == null) {
+            GameData data = GameDataManger.Instance.GetGameData();
+            data.soulsEquip[transform.GetSiblingIndex()] = 0;
+            GameDataManger.Instance.SaveData();
+        }
+        if(soulsInfo != null && !GameManager.Instance.soulsInfo.ContainsKey(soulsInfo.GetUnitData().name)){
+            Debug.Log(soulsInfo.gameObject.name);
+            GameManager.Instance.soulsInfo.Add(soulsInfo.GetUnitData().name , soulsInfo.GetUnitData());
+        }
     }
     public SoulsInfo GetSoulInfo()
     {
@@ -45,7 +50,7 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !isEquip) soulsTab.settingSoul(_soulInfo);
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !isEquip) soulsTab.settingSoul(_soulInfo , false , this);
     }
     
 }

@@ -1,54 +1,32 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SkillExplain : MonoBehaviour , IPointerClickHandler 
+public class SkillExplain : MonoBehaviour
 
 {
-    [SerializeField] GameObject ExplainTab;
-    private RectTransform explainTabRect;
-    private Text text;
-    private bool isOpen;
     public SoulsSkillData skillData;
-    public string enemy1;
-    public string enemy2;
+    public string skillText;
     
     private void OnEnable() {
-        enemy1 = $"공격시 {skillData.skillInitPercent}% 확률로 가까운 적 3명을 공격합니다.";
-        enemy2 = $"{skillData.skillCoolTime} 주변 50px 의 적을 도발합니다.";
-        isOpen = false;
-        explainTabRect.anchoredPosition = new Vector2(50f , -50f);
+        skillText = skillData.skillExplainText;
+        ChangeWord("skillInitPercent");
+        ChangeWord("skillCoolTime");
     }
-    private void OnDisable() {
-        
+    public void SetSkillExplain(GameObject explainTab , Text text , RectTransform rect){
+        explainTab.transform.SetParent(transform);
+        rect.anchoredPosition = Vector2.zero + new Vector2(50f , -50f);
+        text.text = skillText;
+        explainTab.SetActive(true);
     }
-    public void Awake(){
-        ExplainTab = transform.parent.parent.GetComponent<SoulsExplainTab>().skillExplain;
-        explainTabRect = ExplainTab.GetComponent<RectTransform>();
-        text = ExplainTab.transform.GetChild(0).GetComponent<Text>();
+    private void ChangeWord(string word){ 
+        int first = skillData.skillExplainText.IndexOf(word);
+        if(first != -1){
+            skillText = skillText.Replace(word , skillData.GetType().GetField(word).GetValue(skillData).ToString());
+        } 
     }
-    private void Update() {
-        ExplainTab.SetActive(isOpen);
-        if(Input.touchCount > 0) {
-            RaycastHit2D hit;
-            if(hit = Physics2D.Raycast(Input.GetTouch(0).position , Camera.main.transform.forward)) {
-                if(hit.collider.gameObject != gameObject){
-                    isOpen = false;
-                    ExplainTab.transform.SetParent(transform.parent.parent);   
-                }
-            }
-            else {
-                ExplainTab.transform.SetParent(transform);
-            }
-        }    
-    }
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        isOpen = true;
-        text.text = enemy1;
-    }
-    //\\TODO 다른데 클릭하면 없애줘야됌
 }

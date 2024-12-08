@@ -32,12 +32,13 @@ public class EnemySpawner : MonoBehaviour
     MergeSort<Unit> sort;
     private void Awake()
     {
+        currentSpawnTimer = spawnTimer;
         Instance = this;
 
         exp = GameObject.FindObjectOfType<Exp>();
         spawntrans = GameObject.Find("EnemyList").transform;
 
-        Enemys = Resources.LoadAll<Unit>("Enemys/");
+        Enemys = Resources.LoadAll<Unit>(GameManager.Instance.mapName + "Enemy");
         SettingUnitProbabillity();
 
 
@@ -121,12 +122,11 @@ public class EnemySpawner : MonoBehaviour
 
     public void CheckDie()
     {
-        if (!GameManager.Instance.gameClear)
-        {
-            exp.SetExpValue(10f);
-            currentEnemyNumber--;
-            GameManager.Instance.clearMonseter--;
-        }
+
+        exp.SetExpValue(10f);
+        currentEnemyNumber--;
+        GameManager.Instance.clearMonseter--;
+        
     }
 
     private void SettingUnitProbabillity()
