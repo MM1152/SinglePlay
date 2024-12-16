@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class SkillManager : MonoBehaviour
 {
-    //\\TODO 소환수 생성은 Equip 소환수들할꺼고 기존에 소환수 생성 스킬 제거후 변경예정
-
     [SerializeField] Text statPointText;
 
     public static SkillManager Instance { get ; private set ;}

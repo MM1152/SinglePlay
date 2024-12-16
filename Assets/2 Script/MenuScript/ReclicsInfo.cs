@@ -13,10 +13,10 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
     [SerializeField] ReclicsData reclicsData;
     [SerializeField] GameObject lockObj;
     [SerializeField] Text levelText;
-
+    [SerializeField] Image reclicsImage;
     public float spawnProbabillity { get; set; } // 순서 정렬용
     public ClassStruct color { get; set; }
-
+    
     [SerializeField] private int _reclicsLevel;
     [SerializeField] private int _reclicsCount;
     [SerializeField] private int _reclicsMaxCount = 2;
@@ -31,6 +31,7 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         Check();
     }
     private void Awake() {
+        reclicsImage.sprite = reclicsData.image;
         reclicsData.classStruct = new ClassStruct(reclicsData.itemclass);
         color = reclicsData.classStruct;
         spawnProbabillity = reclicsData.reclicsType;

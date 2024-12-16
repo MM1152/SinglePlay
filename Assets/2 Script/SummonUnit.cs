@@ -11,8 +11,10 @@ public class SummonUnit : MonoBehaviour
     Transform parent;
     Animator ani;
     Summoner summoner;
+    CreateSummonUnitViewer summonUnitViewer;
     private void Awake() {
         ani = GetComponent<Animator>();
+        summonUnitViewer = GameObject.FindObjectOfType<CreateSummonUnitViewer>();
     }
     public void Setting(GameObject spawnEnemy , Vector2 spawnPos , Transform parent , Summoner summoner){
         this.spawnEnemy = spawnEnemy;
@@ -36,7 +38,8 @@ public class SummonUnit : MonoBehaviour
         
         
         unit.SetActive(true);
-
+        summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
         gameObject.SetActive(false);
     }
+
 }

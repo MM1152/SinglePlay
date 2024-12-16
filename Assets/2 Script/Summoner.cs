@@ -20,14 +20,12 @@ public class Summoner : LongRangeScript
 
     private Dictionary<string , float> additionalStats = new Dictionary<string , float>();
 
-    
-    public delegate void Function();
-    public Function function;
     bool oneTime;
     private void OnEnable() { }
     private void Start() {
         RewardManager.Instance.SetSummonerStat = ChangeStat;
     }
+
     protected override void Awake()
     {
         base.Awake();
@@ -101,7 +99,6 @@ public class Summoner : LongRangeScript
     private void SpawnMapPlayer(){
         transform.position = Vector3.zero;
         ani.Play("SpawnMap");
-        function?.Invoke();
     }
     public void ChangeStat(string key , float value){
         if(additionalStats.ContainsKey(key)) additionalStats[key] += value;

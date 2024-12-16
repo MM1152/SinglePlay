@@ -2,23 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MulityPlyAttack : SkillParent
+public class MultiplyAttack : SkillParent
 {
-    public SoulsSkillData soulsSkillData;
     LongRangeScript longRangeUnit;
-
+    bool executeSkill;
+    public GameObject currentTarget;
+    public GameObject otherTarget;
+    public GameObject checkTarget;
     public override void UseSkill()
     {
         
-        if (longRangeUnit.isAttack)
+        if (longRangeUnit.isAttack && !executeSkill)
         {
+            executeSkill = true;
+
             float mulityPlyAttackPercent = Random.Range(0f, 1f);
 
-            if (soulsSkillData.attackPercent / 100f <= mulityPlyAttackPercent)
+            if (soulsSkillData.skillInitPercent / 100f <= mulityPlyAttackPercent)
             {
-                
-                GameObject currentTarget = longRangeUnit.target;
-                GameObject otherTarget = default;
+                //\\TODO 공격 데미지는 soulsSkillData.attackPercent 만큼만 주도록 설정
+                currentTarget = longRangeUnit.target;
+                otherTarget = default;
+                checkTarget = default; 
                 for (int i = 0; i < 2; i++)
                 {
                     float minDistance = 999999f;
@@ -26,8 +31,8 @@ public class MulityPlyAttack : SkillParent
                     {
                         bool findMinDistance = Vector2.Distance(targets.position, transform.position) < minDistance  // 거리가 가장 짧은지
                                                && targets.GetComponent<IFollowTarget>().canFollow // Follow 가능한 상태인지
-                                               && targets != currentTarget // 이미 선택된 타켓이 아닌지
-                                               && targets != otherTarget // 두번째로 선택된 타켓이 아닌지
+                                               && targets.gameObject != currentTarget // 이미 선택된 타켓이 아닌지
+                                               && targets.gameObject != otherTarget // 두번째로 선택된 타켓이 아닌지
                                                && Vector2.Distance(targets.position , transform.position) <= longRangeUnit.unit.attackRadious;
                         if (findMinDistance)
                         {
@@ -35,12 +40,17 @@ public class MulityPlyAttack : SkillParent
                             otherTarget = targets.gameObject;
                         }
                     }
-                    Debug.Log("other Target :" + otherTarget);
+                    
+                    if(checkTarget == otherTarget) return;
+                
+                    checkTarget = otherTarget;
+
                     StartCoroutine(longRangeUnit.WaitForAttackAnimation(otherTarget));
                 }
-                
+               
             }
         }
+        else if(!longRangeUnit.isAttack) executeSkill = false;
     }
 
     private void Awake()
@@ -50,5 +60,10 @@ public class MulityPlyAttack : SkillParent
     private void Update()
     {
        UseSkill();
+    }
+
+    public override float GetSkillCoolTime()
+    {
+        return -1;
     }
 }

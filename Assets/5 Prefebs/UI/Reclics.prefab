@@ -468,6 +468,7 @@ MonoBehaviour:
   reclicsData: {fileID: 11400000, guid: 4de2af543190f1e4695195f8f7839ba8, type: 2}
   lockObj: {fileID: 2731722165173348909}
   levelText: {fileID: 4833476706267569167}
+  reclicsImage: {fileID: 5518503945158599772}
   _reclicsLevel: 0
   _reclicsCount: 0
   _reclicsMaxCount: 2

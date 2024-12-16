@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Type {
+public enum RewardType {
     HP , DAMAGE , SPEED , ATTACKSPEED
 }
 
 [CreateAssetMenu(fileName = "RewardData" , menuName = "RewardData")]
 public class ClearRewardData : ScriptableObject , ISpawnPosibillity
 {
-    public Type type;
+    public RewardType type;
     public Sprite image;
     [TextArea] public string explain;
     public float percent;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-public class MushRoom : ShortRangeScipt, ISummonUnit
+public class MushRoom : ShortRangeScipt, ISummonUnit , IFollowTarget
 {
     public Summoner summoner { get; set; }
 

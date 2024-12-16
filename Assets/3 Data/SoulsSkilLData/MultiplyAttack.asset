@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: MultiplyAttack
   m_EditorClassIdentifier: 
   skillImages: {fileID: 21300000, guid: bf953563e6c02264b906e1c5182acfee, type: 3}
-  skillName: "\uB2E4\uC911 \uACF5\uACA9"
-  skillUnLockLevel: 12
+  skillName: MultiplyAttack
   skillExplainText: "\uACF5\uACA9\uC2DC skillInitPercent% \uD655\uB960\uB85C \uAC00\uAE4C\uC6B4
     \uC801 3\uBA85\uC744 \uACF5\uACA9\uD569\uB2C8\uB2E4."
   skillInitPercent: 10

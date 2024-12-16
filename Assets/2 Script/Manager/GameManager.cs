@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public bool soulsFin;
     public static GameManager Instance {get; private set;}
     public int gameLevel = 10;
-    public int clearMonseter = 15;
+    public int clearMonseter;
     public bool gameClear;
     public bool playingAnimation;
     public bool playingShader;
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator WaitForNextMap(Action action) {
 
         yield return new WaitForSeconds(0.3f);
-        clearMonseter = 15;
+        clearMonseter = 50;
         curtain.SetActive(true);
         nextStage.SetActive(false);
 

@@ -39,7 +39,6 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
             GameDataManger.Instance.SaveData();
         }
         if(soulsInfo != null && !GameManager.Instance.soulsInfo.ContainsKey(soulsInfo.GetUnitData().name)){
-            Debug.Log(soulsInfo.gameObject.name);
             GameManager.Instance.soulsInfo.Add(soulsInfo.GetUnitData().name , soulsInfo.GetUnitData());
         }
     }

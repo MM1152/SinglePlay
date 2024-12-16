@@ -28,13 +28,13 @@ public struct ClassStruct {
                 thisItemColor = Color.clear;
                 break;
             case ItemClass.COMMON :
-                dropSoulpercent = 0.5f;
+                dropSoulpercent = 0.05f;
                 soulInintPercent = 30f;
                 soulLevelUpPercent = 5f;
                 thisItemColor = Color.white;
                 break;
             case ItemClass.UNCOMMON :
-                dropSoulpercent = 0.05f;
+                dropSoulpercent = 0.008f;
                 soulInintPercent = 40f;
                 soulLevelUpPercent = 8f;
                 thisItemColor = Color.green;

@@ -29,7 +29,7 @@ public class BossShowAnimation : MonoBehaviour
 
     public Unit setBossData {
         set {
-            slider.GetComponent<Hpbar>().player = value;
+            slider.GetComponent<Hpbar>().target = value;
             slider.gameObject.SetActive(true);
         }
     }

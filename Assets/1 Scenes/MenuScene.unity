@@ -10240,7 +10240,7 @@ MonoBehaviour:
   reclisFin: 0
   soulsFin: 0
   gameLevel: 1
-  clearMonseter: 15
+  clearMonseter: 50
   gameClear: 0
   playingAnimation: 0
   playingShader: 0

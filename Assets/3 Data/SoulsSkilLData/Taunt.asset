@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Taunt
   m_EditorClassIdentifier: 
   skillImages: {fileID: -1102068333, guid: 9638e07773dc30641ac5c44968997fa4, type: 3}
-  skillName: "\uB3C4\uBC1C"
-  skillExplainText: "skillCoolTime\uCD08\uB9C8\uB2E4 \uC8FC\uBCC0 50px\uC758 \uC801\uC744
-    \uB3C4\uBC1C\uD569\uB2C8\uB2E4."
+  skillName: Taunt
+  skillExplainText: "skillCoolTime\uCD08\uB9C8\uB2E4 \uC8FC\uBCC0 \uC801\uC744 \uB3C4\uBC1C\uD569\uB2C8\uB2E4."
   skillInitPercent: 0
   attackPercent: 0
   skillCoolTime: 10
