@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EquipSouls : MonoBehaviour , IPointerEnterHandler
 {
-    private SoulsInfo _soulInfo;
+    [SerializeField] private SoulsInfo _soulInfo;
     SoulsInfo soulsInfo
     {
         set
@@ -32,15 +32,20 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
     }
     public void SetSoulInfo(SoulsInfo soulsInfo)
     {
+        if(_soulInfo != null)  SoulsManager.Instance.equipDic.Remove(_soulInfo);
         this.soulsInfo = soulsInfo;
+        
         if(soulsInfo == null) {
             GameData data = GameDataManger.Instance.GetGameData();
             data.soulsEquip[transform.GetSiblingIndex()] = 0;
             GameDataManger.Instance.SaveData();
         }
+        
+        
         if(soulsInfo != null && !GameManager.Instance.soulsInfo.ContainsKey(soulsInfo.GetUnitData().name)){
             GameManager.Instance.soulsInfo.Add(soulsInfo.GetUnitData().name , soulsInfo.GetUnitData());
         }
+    
     }
     public SoulsInfo GetSoulInfo()
     {

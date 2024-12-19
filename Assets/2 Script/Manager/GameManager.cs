@@ -9,14 +9,18 @@ public delegate void DropSoul(UnitData unitData);
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance {get; private set;}
     [SerializeField] GameObject curtain;
-    public string mapName;
+
+    /// <summary>
+    /// 1: Attack , 2: Hp , 3: SummonUnitHp , 4: AttackSpeed  , 5: MoveSpeed , 6: BonusTalent , 7: BonusGoods
+    /// </summary>
     public List<ReclicsData> reclicsDatas;
     public bool reclisFin;
     public Dictionary<string , UnitData> soulsInfo = new Dictionary<string, UnitData>();
     public bool soulsFin;
-    public static GameManager Instance {get; private set;}
-    public int gameLevel = 10;
+    
+    public int currentStage = 10;
     public int clearMonseter;
     public bool gameClear;
     public bool playingAnimation;
@@ -25,6 +29,14 @@ public class GameManager : MonoBehaviour
     public DropSoul dropSoul;
     public GameObject nextStage;
     
+
+    public string mapName;
+    public int maxStage;
+    public float obtainablegoods;
+    public Dictionary<int , int> dropSoulList = new Dictionary<int, int>();
+
+    //\\TODO maxStaget 클리어시 GameManager에서 게임 클리어및 종료 신호 보내줘야함;
+    // 획득 재화량은 currentStage / maxStaget
     private void Awake() {
         if(Instance == null) {
             Instance = this;    
@@ -54,15 +66,25 @@ public class GameManager : MonoBehaviour
     }
     public void ReturnToMenu() {
         SceneManager.LoadScene("MenuScene");
+        //\\TODO 여기다가 결과창 보여주면 될거같은데.
+        // 우짜지 ㅅㅂ..
+        //\\TODO 업적시스템 추가
+        //\\플레이어 자체 레벨 시스템 구현
+        //\\레벨당 보상 구현 ㄱ 
         Delegate[] dele = dropSoul.GetInvocationList();
+
+        // DropSoul에 참조된 모든 함수 제거
         foreach(DropSoul function in dele) {
             dropSoul -= function;
-        }
+        }  
+        dropSoulList.Clear();
         ResumeGame();
     }
     public void ReturnToMain(){
         dropSoul += delegate(UnitData unitData) {
             GameData gameData = GameDataManger.Instance.GetGameData();
+            if(dropSoulList.ContainsKey(unitData.typenumber - 1)) dropSoulList[unitData.typenumber-1]++;
+            else dropSoulList.Add(unitData.typenumber - 1 , 1);
             gameData.soulsCount[unitData.typenumber - 1]++;
             GameDataManger.Instance.SaveData();
         };
@@ -89,7 +111,7 @@ public class GameManager : MonoBehaviour
         }
         
         curtain.SetActive(false);
-        gameLevel++;
+        currentStage++;
         
         image.color = color;
         gameClear = false;

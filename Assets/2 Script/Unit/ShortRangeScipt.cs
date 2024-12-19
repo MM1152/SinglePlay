@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class ShortRangeScipt : Unit, IDamageAble
+public class ShortRangeScipt : Unit
 {
     //\\TODO MUSHROOM 스크립스 생성후 머시룸에 붙여줘서 사용하도록 , ISummonUnit 상속받아 소환가능한 객체로 만들기
     GameObject attackprefeb;
@@ -29,11 +29,6 @@ public class ShortRangeScipt : Unit, IDamageAble
             Attack();
         }
     }
-    
-    public void Hit(float Damage)
-    {
-        hp -= Damage;
-    }
 
     protected override void Attack()
     {
@@ -45,5 +40,5 @@ public class ShortRangeScipt : Unit, IDamageAble
             shortRangeAttack.gameObject.SetActive(true);
         }
     }
-
+    
 }

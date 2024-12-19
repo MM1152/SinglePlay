@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1560b42418549ca4caaa6f7cbfb3433b, type: 3}
+  m_Name: Teleport
+  m_EditorClassIdentifier: 
+  skillImages: {fileID: 21300000, guid: bc35c32228ba0ca4fb4faf8bfdab7388, type: 3}
+  skillName: Teleport
+  skillExplainText: "skillCoolTime\uCD08\uB9C8\uB2E4 \uD0C0\uCF13\uC73C\uB85C \uC21C\uAC04\uC774\uB3D9\uD574
+    \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  skillInitPercent: 0
+  attackPercent: 150
+  skillCoolTime: 15

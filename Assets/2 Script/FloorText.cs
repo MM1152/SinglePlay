@@ -10,6 +10,6 @@ public class FloorText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        floorText.text = GameManager.Instance.gameLevel + " 층";
+        floorText.text = GameManager.Instance.currentStage + " 층";
     }
 }

@@ -49,7 +49,7 @@ public class Taunt : SkillParent
         useSkill = true;
 
         FindTarget();
-        ani.Play("Base Layer.TauntAnimation" , 0 , 0f);
+        ani.Play("TauntAnimation" , 0 , 0f);
         yield return new WaitUntil(() =>ani.GetCurrentAnimatorStateInfo(0).IsName("TauntAnimation") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
 
         tauntRadious.SetActive(false);
@@ -63,8 +63,7 @@ public class Taunt : SkillParent
             if(Vector2.Distance(enemy.transform.position , transform.position) <= 10f) {
                 Unit unit = enemy.GetComponent<Unit>();
                 unit.target = this.gameObject;
-                //fix 1: 키값을 미리 정의해둔 상태. 근데 이러면 다른 유닛이 도발 사용시 또 오류나는데.. static으로?
-                unit.statusEffectMuchine.SetStatusEffect(new TauntEffect());
+                unit.statusEffectMuchine.SetStatusEffect(new TauntEffect() , unit);
             }
         }
     }

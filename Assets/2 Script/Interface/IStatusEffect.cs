@@ -31,7 +31,22 @@ public class StatusEffect
         statusEffect[value.ToString()].Init(unit);
 
     }
+    public void SetStatusEffect(IStatusEffect value , Unit applyUnit)
+    {
 
+        foreach (string key in statusEffect.Keys)
+        {
+            if (key == value.ToString())
+            {
+                statusEffect[key].Init(unit , applyUnit);
+                return;
+            }
+        }
+
+        statusEffect.Add(value.ToString(), value);
+        statusEffect[value.ToString()].Init(unit , applyUnit);
+
+    }
     public void Update()
     {
         foreach (string key in statusEffect.Keys)
@@ -64,11 +79,13 @@ public class TauntEffect : IStatusEffect
     public int overlapCount { get; set; }
     GameObject tauntobj;
     Unit unit;
+    Unit tauntUnit;
 
-    public void Init(Unit unit)
+    public void Init(Unit unit , Unit tauntUnit = null)
     {
         this.unit = unit;
         isExit = false;
+        this.tauntUnit = tauntUnit;
         if (overlapCount <= 0)
         {
             if (pools.Count != 0)
@@ -93,7 +110,7 @@ public class TauntEffect : IStatusEffect
     public void Run()
     {
         currentDuration -= Time.deltaTime;
-        
+        if(tauntUnit != null && tauntUnit.isDie) Exit();
         if (currentDuration > 0)
         {
             tauntobj.transform.position = unit.transform.position;
@@ -106,7 +123,6 @@ public class TauntEffect : IStatusEffect
 
     public void Exit()
     {
-        Debug.Log("isExit : " + isExit);
         if (!isExit)
         {
             isExit = true;
@@ -117,6 +133,7 @@ public class TauntEffect : IStatusEffect
 
 
     }
+
 }
 
 
@@ -124,7 +141,7 @@ public interface IStatusEffect
 {
     public int overlapCount { get; set; }
     public float currentDuration { get; set; }
-    public void Init(Unit unit);
+    public void Init(Unit unit , Unit tauntUnit = null);
     public void Run();
     public void Exit();
 }

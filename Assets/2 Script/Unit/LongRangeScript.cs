@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LongRangeScript : Unit, IDamageAble
+public class LongRangeScript : Unit
 {
     public GameObject projectile;
     [Range(0f, 1f)] public float attackObjectShowTime;
@@ -19,10 +19,6 @@ public class LongRangeScript : Unit, IDamageAble
             Attack();
         }
 
-    }
-    public void Hit(float Damage)
-    {
-        hp -= Damage;
     }
 
     protected override void Attack()

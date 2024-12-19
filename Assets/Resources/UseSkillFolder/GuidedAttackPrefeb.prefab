@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 735654749527121527}
   - component: {fileID: 7583814820668062091}
   m_Layer: 0
-  m_Name: BossSkill1
+  m_Name: GuidedAttackPrefeb
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

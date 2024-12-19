@@ -38,7 +38,7 @@ public class SoulsTab : MonoBehaviour
             if (selectObject.TryGetComponent<EquipSouls>(out equipSouls))
             {
                 int changesiblingIndex = -1;
-
+                
                 if(SoulsManager.Instance.equipDic.ContainsKey(currentSoulInfo)) {
                     changesiblingIndex = SoulsManager.Instance.equipDic[currentSoulInfo].transform.GetSiblingIndex();
 

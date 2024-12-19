@@ -36,6 +36,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Skill2
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Die
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5855595335774284947}
   m_Solo: 0
@@ -73,7 +76,7 @@ AnimatorStateMachine:
     m_Position: {x: 440, y: 250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7180804461651401510}
-    m_Position: {x: 810, y: 330, z: 0}
+    m_Position: {x: 860, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1430445217951087989}
     m_Position: {x: 160, y: 240, z: 0}
@@ -481,6 +484,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Skill
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Die
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3705090199560503402}

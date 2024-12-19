@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class SelectMap : MonoBehaviour , IPointerClickHandler
 {   
     public string mapName;
+    public float obtainablegoodds;
+    public int maxStage;
+    [TextArea] public string infomationText;
     bool onClick;
 
     Image image;
@@ -30,6 +33,10 @@ public class SelectMap : MonoBehaviour , IPointerClickHandler
     {
         if(onClick) {
             mapInfomationTab.name = mapName;
+            mapInfomationTab.infomation = infomationText;
+            mapInfomationTab.obtainablegoods = obtainablegoodds;
+            mapInfomationTab.maxStage = maxStage;
+            
             infomationTab.SetActive(true);
         }
     }

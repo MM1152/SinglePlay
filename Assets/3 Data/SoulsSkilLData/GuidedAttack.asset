@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1560b42418549ca4caaa6f7cbfb3433b, type: 3}
-  m_Name: Soul 3 SkillData (1)
+  m_Name: GuidedAttack
   m_EditorClassIdentifier: 
   skillImages: {fileID: 21300000, guid: bc35c32228ba0ca4fb4faf8bfdab7388, type: 3}
-  skillName: "\uC21C\uAC04\uC774\uB3D9 \uACF5\uACA9"
-  skillUnLockLevel: 3
-  skillExplainText: 
+  skillName: GuidedAttack
+  skillExplainText: "skillCoolTime\uCD08\uB9C8\uB2E4 \uD0C0\uCF13\uC744 \uB530\uB77C\uAC00\uB294
+    \uBE5B\uACF5\uACA9\uC744 \uC2DC\uB3C4\uD569\uB2C8\uB2E4."
   skillInitPercent: 0
   attackPercent: 150
-  skillCoolTime: 15
+  skillCoolTime: 20

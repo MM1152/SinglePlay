@@ -1,20 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameStatText : MonoBehaviour
 {
-    Text clearMonsetertext;
-    
+    [SerializeField] Text clearMonsetertext;
+    Slider slider;
+
+    int maxClearCount;
     void Awake()
     {
-        clearMonsetertext = GetComponent<Text>();
+        slider = GetComponent<Slider>();
     }
-
-    // Update is called once per frame
+    void Start(){
+        maxClearCount = GameManager.Instance.clearMonseter;
+        slider.maxValue = maxClearCount;
+    }
     void Update()
     {
-        clearMonsetertext.text = "Clear : " + GameManager.Instance.clearMonseter;
+        slider.value = GameManager.Instance.clearMonseter;  
+        clearMonsetertext.text = GameManager.Instance.clearMonseter + " / " + maxClearCount;
     }
 }

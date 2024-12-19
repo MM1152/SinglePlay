@@ -24,12 +24,13 @@ public class Summoner : LongRangeScript
     private void OnEnable() { }
     private void Start() {
         RewardManager.Instance.SetSummonerStat = ChangeStat;
+        
     }
 
     protected override void Awake()
     {
-        base.Awake();
         Spawn(1);
+        base.Awake();
         int i = 0;
         foreach(string key in GameManager.Instance.soulsInfo.Keys) {
             SummonUnit SpawnUnit = Instantiate(EnemySpawn).GetComponent<SummonUnit>();
@@ -107,27 +108,25 @@ public class Summoner : LongRangeScript
 
         switch(key) {
             case "HP":
-                maxHp += unit.hp * (value + 1);
+                maxHp += unit.hp * value;
                 hp += hp * value;
                 break;
             
             case "DAMAGE":
-                damage += unit.damage * (value + 1);
+                damage += unit.damage * value;
                 break;
 
             case "SPEED":
-                speed += unit.speed * (value + 1);
+                speed += unit.speed * value;
                 break;
 
             case "ATTACKSPEED":
-                setInitAttackSpeed -= unit.attackSpeed * additionalStats[key];
+                setInitAttackSpeed -= unit.attackSpeed * value;
                 break;
         }
     }
     private IEnumerator DieAnimation(){
         if(isDie) {
-            
-            
             GameManager.Instance.SlowGame(0.6f);
             yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.98f);
             DieTitle.SetActive(true);

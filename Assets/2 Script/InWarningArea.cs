@@ -8,8 +8,7 @@ public class InWarningArea : MonoBehaviour
     public Unit unit;
     public float percent;    
     public float attackDelay = 1.0f;
-    
-    private GameObject hitObject;
+    List<GameObject> hitObject = new List<GameObject>();
     public void Setting(float percent , float attackDelay , Unit unit){
         this.percent = percent;
         this.attackDelay = attackDelay; 
@@ -19,19 +18,25 @@ public class InWarningArea : MonoBehaviour
     private void Update() {
         attackDelay -= Time.deltaTime;
         if(attackDelay <= 0f) {
-            if(hitObject != null) hitObject.GetComponent<IDamageAble>().Hit(unit.damage * percent);
+            if(hitObject.Count > 0) {
+                foreach(GameObject hit in hitObject) {
+                    Debug.Log(hit);
+                    hit.GetComponent<IDamageAble>().Hit(unit.damage * percent);
+                }
+            } 
+
             PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
         }
     }    
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Player")) {
-            hitObject = other.gameObject;
+        if(!other.CompareTag(unit.gameObject.tag)) {
+            hitObject.Add(other.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D other) {
-         if(other.CompareTag("Player")) {
-            hitObject = null;
+         if(!other.CompareTag(unit.gameObject.tag)) {
+            hitObject.Remove(other.gameObject);
         }
     }
     public void SetPosition(Vector2 pos){

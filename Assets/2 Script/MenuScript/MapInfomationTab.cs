@@ -7,14 +7,35 @@ using UnityEngine.UI;
 public class MapInfomationTab : MonoBehaviour
 {
     [SerializeField] Button enterButton;
+    [SerializeField] Text infomationText;
+    [SerializeField] Transform getSoulListTransform;
+
     public string name;
-    // Start is called before the first frame update
+    public string infomation;
+    public int maxStage;
+    public float obtainablegoods;
+
+    private void OnEnable() {
+        infomationText.text = infomation;
+        Unit[] enemys = Resources.LoadAll<Unit>( name + "Enemy");
+
+        for(int i = 0; i < enemys.Length; i++) {
+            GameObject soulInfo = Instantiate(SoulsManager.Instance.soulsInfos[enemys[i].unit.typenumber - 1].gameObject , getSoulListTransform);
+        }
+    }
+    private void OnDisable() {
+        foreach(Transform soulinfo in getSoulListTransform ) {
+            Destroy(soulinfo.gameObject);
+        }
+    }
     void Awake()
     {
         enterButton.onClick.AddListener(EnterMap);
     }
     void EnterMap(){
         GameManager.Instance.mapName = name;
+        GameManager.Instance.maxStage = maxStage;
+        GameManager.Instance.obtainablegoods = obtainablegoods;
         GameManager.Instance.ReturnToMain();
     }
 }

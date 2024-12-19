@@ -21,7 +21,7 @@ public class ReclisExplainTab : MonoBehaviour
             ReclicsData data = _reclicsInfo.GetReclicsData();
             reclicsImage.sprite = data.image;
             explainText.text = data.reclicsExplain;
-            percentText.text = data.inItPercent + (data.levelUpPercent * value.GetReclicsLevel() - 1) + " ";
+            percentText.text = data.inItPercent + (data.levelUpPercent * value.GetReclicsLevel()) + " ";
             percentText.text += "<color=green> (+ "+data.levelUpPercent +")</color> %";
             
         }

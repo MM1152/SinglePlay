@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity
+public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 {
     public UnitData unit;
     public float setInitAttackSpeed; // 초기화될 공격속도
@@ -20,6 +20,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity
     public bool isAttack;
     public bool isSkill;
     public float hp;
+    public float shild;
     public float mp;
     public float damage;
     public float speed;
@@ -55,17 +56,20 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity
 
     protected virtual void Update()
     {
-        Die();
-        statusEffectMuchine?.Update();
-        if (GameManager.Instance.playingAnimation || GameManager.Instance.playingShader)
+        if (!isDie)
         {
-            ani.SetBool("Move", false);
-            return;
+            Die();
+            statusEffectMuchine?.Update();
+            if (GameManager.Instance.playingAnimation || GameManager.Instance.playingShader)
+            {
+                ani.SetBool("Move", false);
+                return;
+            }
+            if (!isAttack && !isSkill) currentAttackSpeed -= Time.deltaTime;
+            Flip();
+            ani?.SetBool("Move", FollowTarget());
         }
-        currentAttackSpeed -= Time.deltaTime;
-        Flip();
-        FollowTarget();
-        ani?.SetBool("Move", FollowTarget());
+
     }
 
     protected void Respawn()
@@ -88,16 +92,28 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity
 
         hp = maxHp;
     }
-    protected virtual void SummonerSpawn(Summoner summoner, float attackPrecent, float hpPercent)
+    protected virtual void SummonerSpawn(Summoner summoner, string unitName)
     {
+        float attackPrecent = GameManager.Instance.soulsInfo[unitName].curStat.attackStat / 100f;
+        float hpPercent = GameManager.Instance.soulsInfo[unitName].curStat.hpStat / 100f;
+
+        float bonusAttack = 0;
+        float bonusHp = 0;
         if (SkillManager.Instance.UpgradeSummonUnitSkill)
         {
-            attackPrecent += SkillManager.Instance.skillDatas["소환수 강화"] * 0.1f;
-            hpPercent += SkillManager.Instance.skillDatas["소환수 강화"] * 0.1f;
+            bonusAttack = SkillManager.Instance.skillDatas["소환수 강화"] * 0.1f;
+            bonusHp = (SkillManager.Instance.skillDatas["소환수 강화"] * 0.1f);
         }
-        maxHp = summoner.maxHp * hpPercent;
+        bonusHp += (GameManager.Instance.reclicsDatas[1].inItPercent +
+                    (GameManager.Instance.reclicsDatas[1].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[1]))
+                    / 100f;
+
+        bonusAttack += (GameManager.Instance.reclicsDatas[0].inItPercent +
+                    (GameManager.Instance.reclicsDatas[0].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[0]))
+                    / 100f;
+        maxHp = summoner.maxHp * (hpPercent + bonusHp);
         mp = unit.mp;
-        damage = summoner.damage * attackPrecent;
+        damage = summoner.damage * (attackPrecent + bonusAttack);
         speed = unit.speed;
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
@@ -119,7 +135,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity
     }
     protected virtual void Attack()
     {
-        canAttack = !isAttack && target != null && attackRadious > Vector2.Distance(target.transform.position, transform.position) && currentAttackSpeed <= 0;
+        canAttack = !isSkill && !isAttack && target != null && attackRadious > Vector2.Distance(target.transform.position, transform.position) && currentAttackSpeed <= 0;
 
         if (canAttack)
         {
@@ -146,7 +162,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity
     {
         if (hp <= 0)
         {
-            
+
             isDie = true;
             canFollow = false;
             ani?.SetBool("Die", isDie);
@@ -166,20 +182,21 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity
     }
     protected bool FollowTarget()
     {
-
+        
         if (target != null && !target.GetComponent<IFollowTarget>().canFollow) target = null;
-        if (target == null)
-        {
+
+        if (target == null) {
             target = FindTarget(targetList);
             return false;
-        }
+        }   
 
-        if (target.name != "NextStage" && statusEffectMuchine.GetStatusEffect(new TauntEffect()))
-        { // 도발 상태이상에 걸린 상태라면 FindTarget을 수행하지 않도록 변경
+        // 도발 상태이상에 걸린 상태라면 FindTarget을 수행하지 않도록 변경
+        if (target?.name != "NextStage" && statusEffectMuchine.GetStatusEffect(new TauntEffect()))
+        {
             target = FindTarget(targetList);
-            if (Vector2.Distance(target.transform.position, transform.position) < attackRadious || isAttack) return false;
         }
 
+        if (Vector2.Distance(target.transform.position, transform.position) < attackRadious || isAttack) return false;
         if (isAttack || isSkill) return false;
 
         transform.position += (target.transform.position - transform.position).normalized * speed * Time.deltaTime;
@@ -242,5 +259,14 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity
         }
     }
 
+    public void Hit(float Damage)
+    {
+        if (shild >= Damage) shild -= Damage;
+        else if (shild < Damage)
+        {
+            hp -= (Damage - shild);
+            shild = 0;
+        }
+    }
 
 }

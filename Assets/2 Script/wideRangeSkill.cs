@@ -20,7 +20,8 @@ public class WideRangeSkill : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Player")) {
+        if(!other.CompareTag(unit.gameObject.tag)) {
+            //fix :: skillDamage랑 연동시켜야함
             other.GetComponent<IDamageAble>().Hit(unit.damage * 1.3f);
         }
     }

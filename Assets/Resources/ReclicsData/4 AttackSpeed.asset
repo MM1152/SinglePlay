@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4 AttackSpeed
   m_EditorClassIdentifier: 
   itemclass: 50
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 2f549b99c71e7494baad5c538da6c04a, type: 3}
   reclicsType: 4
   reclicsExplain: "\uC0AC\uC6A9\uC790\uC758 \uACF5\uACA9\uC18D\uB3C4\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   inItPercent: 5

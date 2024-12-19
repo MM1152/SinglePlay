@@ -14,15 +14,16 @@ public class SummonUnitViewer : MonoBehaviour
         {
             image.sprite = value.unit.image;
             hpbar.target = value;
-
+            shildBar.target = value;
+            
             StartCoroutine(WaitForSettingSkill(value));
         }
     }
-
+    [SerializeField] ShildBar shildBar;
     [SerializeField] Image image;
     [SerializeField] Hpbar hpbar;
     [SerializeField] GameObject skill_Infomation;
-
+    [SerializeField] Transform skillInfomationParent;
     IEnumerator WaitForSettingSkill(Unit unit)
     {
         yield return new WaitUntil(() => unit.SkillSetting);
@@ -34,7 +35,7 @@ public class SummonUnitViewer : MonoBehaviour
                 string findclass = unit.unit.soulsSkillData[i].skillData.skillName;
                 SkillParent skilldata = unit.gameObject.GetComponent(Type.GetType(findclass)) as SkillParent;
 
-                GameObject skill_Infomation = Instantiate(this.skill_Infomation, transform);
+                GameObject skill_Infomation = Instantiate(this.skill_Infomation, skillInfomationParent);
                 
                 skill_Infomation.GetComponent<SkillInfomationSkillCoolTime>().Setting(skilldata , unit.unit.soulsSkillData[i].skillData);
             }
