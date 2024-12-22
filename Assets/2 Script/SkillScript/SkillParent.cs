@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public abstract class SkillParent : MonoBehaviour {
-    public SoulsSkillData soulsSkillData;
-    public abstract void UseSkill();
-    public abstract float GetSkillCoolTime();
+public interface SkillParent {
+    public SoulsSkillData soulsSkillData { get; set; }
+    public void UseSkill();
+    public float GetSkillCoolTime();
 } 

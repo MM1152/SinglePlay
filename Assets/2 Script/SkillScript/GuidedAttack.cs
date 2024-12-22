@@ -2,32 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuidedAttack : SkillParent
+public class GuidedAttack : MonoBehaviour , SkillParent
 {
     public float skillCoolTime;
     Unit unit;
     Animator ani;
     GameObject guidedSkillPrefeb;
+
+    public SoulsSkillData soulsSkillData { get ; set ; }
+
     private void Awake()
     {
         unit = GetComponent<Unit>();
         ani = GetComponent<Animator>();
         guidedSkillPrefeb = Resources.Load<GameObject>("UseSkillFolder/GuidedAttackPrefeb");
     }
-    private void Update()
-    {
-        UseSkill();
-    }
+
     private void Start()
     {
         skillCoolTime = soulsSkillData.skillCoolTime;
     }
-    public override float GetSkillCoolTime()
+    public float GetSkillCoolTime()
     {
         return skillCoolTime;
     }
 
-    public override void UseSkill()
+    public void UseSkill()
     {
         skillCoolTime -= Time.deltaTime;
         if (skillCoolTime <= 0 && !unit.isSkill && !unit.isAttack)

@@ -12,7 +12,7 @@ public class ReturnMainMenu : MonoBehaviour
     {
         mainMenuButton = GetComponent<Button>();
         mainMenuButton.onClick.AddListener(() => {
-            SceneManager.LoadScene("MenuScene");
+            GameManager.Instance.ReturnToMenu();
         });
     }
 

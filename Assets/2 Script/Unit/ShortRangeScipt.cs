@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 
 public class ShortRangeScipt : Unit
@@ -37,8 +38,12 @@ public class ShortRangeScipt : Unit
         if (isAttack && target != null && !attackPattenChange)
         {
             shortRangeAttack.target = target.transform.position;
-            shortRangeAttack.gameObject.SetActive(true);
+            StartCoroutine(ShowAttack());
         }
     }
-    
+    IEnumerator ShowAttack(){
+        yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("ATTACK") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= attackObjectShowTime);
+
+        shortRangeAttack.gameObject.SetActive(true);
+    }    
 }

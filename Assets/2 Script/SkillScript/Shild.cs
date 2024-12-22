@@ -2,22 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shild : SkillParent
+public class Shild : MonoBehaviour , SkillParent
 {
     float skillCoolTime;
     Unit unit;
+
+    public SoulsSkillData soulsSkillData { get ; set ; }
+
     private void Awake() {
         unit = GetComponent<Unit>();
     }
     private void Start() {
         skillCoolTime = soulsSkillData.skillCoolTime;
     }
-    public override float GetSkillCoolTime()
+    public float GetSkillCoolTime()
     {
         return skillCoolTime;
     }
 
-    public override void UseSkill()
+    public void UseSkill()
     {   
         skillCoolTime -= Time.deltaTime;
 
@@ -25,8 +28,5 @@ public class Shild : SkillParent
             unit.shild += unit.maxHp * (soulsSkillData.skillInitPercent / 100f);
             skillCoolTime = soulsSkillData.skillCoolTime;
         }
-    }
-    private void Update() {
-        UseSkill();
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class LongRangeScript : Unit
 {
     public GameObject projectile;
-    [Range(0f, 1f)] public float attackObjectShowTime;
+   
     protected void OnEnable()
     {
         Respawn();

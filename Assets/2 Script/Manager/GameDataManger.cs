@@ -4,9 +4,12 @@ using UnityEngine;
 using System.IO;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 [Serializable] 
 public class GameData{
+
+
     public int soul;
     public int gem;
     public List<bool> unLockMap = new List<bool>();
@@ -25,14 +28,13 @@ public class GameData{
 public class GameDataManger : MonoBehaviour
 {   
     public static GameDataManger Instance { get ; private set;}
-    
+
     [SerializeField] GameData data = null;
     private string filePath;
     public bool dataDownLoad;
     private void Awake() {
         
         filePath  = Application.persistentDataPath + "/data.txt";
-        
         Debug.Log(filePath);
         
         if(Instance == null) {
@@ -105,6 +107,7 @@ public class GameDataManger : MonoBehaviour
             SaveData();
         }
         
+
         dataDownLoad = true;
         return LoadData;
     }   

@@ -9,10 +9,14 @@ using UnityEngine;
 public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 {
     public UnitData unit;
+    public List<SkillParent> skillData = new List<SkillParent>();
+    [Range(0f, 1f)]
+    public float attackObjectShowTime;
     public float setInitAttackSpeed; // 초기화될 공격속도
     public float currentAttackSpeed; // 현재 공격까지 남은시간
     protected Animator ani = null;
     protected SpriteRenderer sp;
+
 
     /**************Status****************/
     [Header("Status")]
@@ -66,8 +70,16 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
                 return;
             }
             if (!isAttack && !isSkill) currentAttackSpeed -= Time.deltaTime;
+            if (!isAttack && !isSkill && !GameManager.Instance.gameClear && target != null)
+            {
+                foreach (SkillParent skill in skillData)
+                {
+                    skill.UseSkill();
+                }
+            }
             Flip();
             ani?.SetBool("Move", FollowTarget());
+
         }
 
     }
@@ -182,22 +194,24 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     }
     protected bool FollowTarget()
     {
+            if (target != null && !target.GetComponent<IFollowTarget>().canFollow) target = null;
+
+            if (target == null)
+            {
+                target = FindTarget(targetList);
+                return false;
+            }
+
+            // 도발 상태이상에 걸린 상태라면 FindTarget을 수행하지 않도록 변경
+            if (target?.name != "NextStage" && statusEffectMuchine.GetStatusEffect(new TauntEffect()))
+            {
+                target = FindTarget(targetList);
+            }
+
+            if (target?.name != "NextStage" && Vector2.Distance(target.transform.position, transform.position) < attackRadious || isAttack) return false;
+            if (isAttack || isSkill) return false;
+
         
-        if (target != null && !target.GetComponent<IFollowTarget>().canFollow) target = null;
-
-        if (target == null) {
-            target = FindTarget(targetList);
-            return false;
-        }   
-
-        // 도발 상태이상에 걸린 상태라면 FindTarget을 수행하지 않도록 변경
-        if (target?.name != "NextStage" && statusEffectMuchine.GetStatusEffect(new TauntEffect()))
-        {
-            target = FindTarget(targetList);
-        }
-
-        if (Vector2.Distance(target.transform.position, transform.position) < attackRadious || isAttack) return false;
-        if (isAttack || isSkill) return false;
 
         transform.position += (target.transform.position - transform.position).normalized * speed * Time.deltaTime;
         return true;

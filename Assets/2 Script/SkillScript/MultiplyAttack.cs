@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiplyAttack : SkillParent
+public class MultiplyAttack : MonoBehaviour , SkillParent
 {
     LongRangeScript longRangeUnit;
     bool executeSkill;
     public GameObject currentTarget;
     public GameObject otherTarget;
     public GameObject checkTarget;
-    public override void UseSkill()
+
+    public SoulsSkillData soulsSkillData { get ; set ; }
+
+    public void UseSkill()
     {
         
         if (longRangeUnit.isAttack && !executeSkill)
@@ -57,12 +60,8 @@ public class MultiplyAttack : SkillParent
     {
         longRangeUnit = GetComponent<LongRangeScript>();
     }
-    private void Update()
-    {
-       UseSkill();
-    }
 
-    public override float GetSkillCoolTime()
+    public float GetSkillCoolTime()
     {
         return -1;
     }

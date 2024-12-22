@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set;}
     [SerializeField] GameObject curtain;
-
+    [SerializeField] GameObject rewardViewer;
     /// <summary>
     /// 1: Attack , 2: Hp , 3: SummonUnitHp , 4: AttackSpeed  , 5: MoveSpeed , 6: BonusTalent , 7: BonusGoods
     /// </summary>
@@ -33,7 +33,10 @@ public class GameManager : MonoBehaviour
     public string mapName;
     public int maxStage;
     public float obtainablegoods;
-    public Dictionary<int , int> dropSoulList = new Dictionary<int, int>();
+    /// <summary>
+    /// 현재 맵에서 드랍된 유닛 소울
+    /// </summary>
+    public Dictionary<UnitData , int> dropSoulList = new Dictionary<UnitData, int>();
 
     //\\TODO maxStaget 클리어시 GameManager에서 게임 클리어및 종료 신호 보내줘야함;
     // 획득 재화량은 currentStage / maxStaget
@@ -65,7 +68,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = size;
     }
     public void ReturnToMenu() {
-        SceneManager.LoadScene("MenuScene");
+        rewardViewer.SetActive(true);
         //\\TODO 여기다가 결과창 보여주면 될거같은데.
         // 우짜지 ㅅㅂ..
         //\\TODO 업적시스템 추가
@@ -83,8 +86,8 @@ public class GameManager : MonoBehaviour
     public void ReturnToMain(){
         dropSoul += delegate(UnitData unitData) {
             GameData gameData = GameDataManger.Instance.GetGameData();
-            if(dropSoulList.ContainsKey(unitData.typenumber - 1)) dropSoulList[unitData.typenumber-1]++;
-            else dropSoulList.Add(unitData.typenumber - 1 , 1);
+            if(dropSoulList.ContainsKey(unitData)) dropSoulList[unitData]++;
+            else dropSoulList.Add(unitData , 1);
             gameData.soulsCount[unitData.typenumber - 1]++;
             GameDataManger.Instance.SaveData();
         };

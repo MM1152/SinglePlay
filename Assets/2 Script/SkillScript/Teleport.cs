@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Teleport : SkillParent
+public class Teleport : MonoBehaviour , SkillParent 
 {
     public float skillCoolTime;
     Unit unit;
     Animator ani;
+
+    public SoulsSkillData soulsSkillData { get ; set ; }
+
     private void Awake()
     {
         unit = GetComponent<Unit>();
@@ -16,15 +19,12 @@ public class Teleport : SkillParent
     {
         skillCoolTime = soulsSkillData.skillCoolTime;
     }
-    public override float GetSkillCoolTime()
+    public float GetSkillCoolTime()
     {
         return skillCoolTime;
     }
 
-    private void Update() {
-        UseSkill();
-    }
-    public override void UseSkill()
+    public void UseSkill()
     {
         skillCoolTime -= Time.deltaTime;
         if (skillCoolTime <= 0 && !unit.isSkill && !unit.isAttack)

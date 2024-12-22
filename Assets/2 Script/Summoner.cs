@@ -47,7 +47,7 @@ public class Summoner : LongRangeScript
                 return;
             }
             base.Update();
-            if(GameManager.Instance.gameClear && target?.name.Split(' ')[0] != "NextStage") target = null; 
+            if(GameManager.Instance.gameClear && target?.name != "NextStage") target = null; 
 
             if (GameManager.Instance.gameClear && !GameManager.Instance.playingShader)
             {
@@ -55,7 +55,7 @@ public class Summoner : LongRangeScript
             }
             else
             {
-                if (!SkillManager.Instance.LightningAttack && target?.name.Split(' ')[0] != "NextStage") Attack();
+                if (!SkillManager.Instance.LightningAttack && target?.name != "NextStage") Attack();
                 //if (SkillManager.Instance.SummonUpgradeSkill) SummonSkill();
             } 
             
@@ -77,7 +77,7 @@ public class Summoner : LongRangeScript
         
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.name == "NextStage") {
+        if(other.name == "NextStage" && !GameManager.Instance.playingShader) {
             target = null;
             ani.Play("InNextMap");
             StartCoroutine(GameManager.Instance.WaitForNextMap(() => SpawnMapPlayer()));

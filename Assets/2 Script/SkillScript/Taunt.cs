@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Taunt : SkillParent
+public class Taunt : MonoBehaviour , SkillParent
 {
     Unit unit;
 
@@ -11,6 +11,8 @@ public class Taunt : SkillParent
 
     float skillCoolTime;
     bool useSkill;
+
+    public SoulsSkillData soulsSkillData { get ; set ; }
 
     private void OnDisable() {
         StopAllCoroutines();     
@@ -30,11 +32,7 @@ public class Taunt : SkillParent
         tauntRadious.SetActive(false);
     }
 
-    private void Update() {
-        UseSkill();
-    }
-
-    public override void UseSkill()
+    public void UseSkill()
     {
         if(skillCoolTime > 0 && !useSkill) skillCoolTime -= Time.deltaTime;
         else if(!useSkill){
@@ -68,7 +66,7 @@ public class Taunt : SkillParent
         }
     }
 
-    public override float GetSkillCoolTime()
+    public float GetSkillCoolTime()
     {
         return skillCoolTime;
     }
