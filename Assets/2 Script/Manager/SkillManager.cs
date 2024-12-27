@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ public class SkillManager : MonoBehaviour
 
     public static SkillManager Instance { get ; private set ;}
     public List<Unit> summons = new List<Unit>();
-    public Dictionary<string , int> skillDatas = new Dictionary<string , int>();
+    public Dictionary<SkillData , int> skillDatas = new Dictionary<SkillData , int>();
     [Space(50)]
     [Header("SummonSkill")]
     public bool UpgradeSummonUnitSkill;    
@@ -21,6 +22,9 @@ public class SkillManager : MonoBehaviour
     [Space(50)]
     [Header("AttackSkill")]
     public bool LightningAttack;
+    public bool batAttack;
+    public bool batUpgradeAttackPercent;
+    public bool batUpgradeCoolTime;
 
     private int _statPoint = 1;
     public int statPoint {
@@ -39,13 +43,19 @@ public class SkillManager : MonoBehaviour
 
     private void Awake() {
         Instance = this;
-        _statPoint += (int) (GameManager.Instance.reclicsDatas[5].inItPercent + (GameManager.Instance.reclicsDatas[5].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[5]));
+        if(GameDataManger.Instance.GetGameData().reclicsLevel[5] > 0 || GameDataManger.Instance.GetGameData().reclicsCount[5] > 0) {
+            _statPoint += (int) (GameManager.Instance.reclicsDatas[5].inItPercent + (GameManager.Instance.reclicsDatas[5].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[5]));
+        }
         statPointText.text = "Point : " + statPoint;
     }
 
-    public void UnLockSkill(string data) {
-        
-        switch (data) {
+    public void UnLockSkill(SkillData data) {
+        if(!skillDatas.ContainsKey(data)) {
+            skillDatas.Add(data , 1);
+        } 
+        else skillDatas[data]++;
+
+        switch (data.skillName) {
             case "소환수 강화" : 
                 UpgradeSummonUnitSkill = true;
                 break;
@@ -58,11 +68,16 @@ public class SkillManager : MonoBehaviour
             case "번개 공격" :
                 LightningAttack = true;
                 break;
+            case "박쥐 소환" :
+                batAttack = true;
+                break;
+            case "박쥐 공격확률 증가" :
+                batUpgradeAttackPercent = true;
+                break;
+            case "박쥐 생성속도 증가" :
+                batUpgradeCoolTime = true;
+                break;
         }
-        if(!skillDatas.ContainsKey(data)) {
-            skillDatas.Add(data , 1);
-        } 
-        else skillDatas[data]++;
 
         statPoint--;
     }
@@ -100,5 +115,14 @@ public class SkillManager : MonoBehaviour
                 summons[i].spawnProbabillity = summons[i].unit.spawnProbabillity;
             }
         }
+    }
+
+    public SkillData GetSkillData(string skillName){
+        foreach(SkillData data in skillDatas.Keys) {
+            if(data.skillName == skillName) {
+                return data;
+            }
+        }
+        return null;
     }
 }

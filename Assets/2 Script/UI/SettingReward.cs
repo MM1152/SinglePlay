@@ -11,5 +11,7 @@ public class SettingReward : MonoBehaviour
     public void Setting(Sprite image , int count){
         rewardImage.sprite = image;
         countText.text = count + "";
+
+        countText.gameObject.SetActive(true);
     }
 }

@@ -44,7 +44,7 @@ public class TalentSelect : MonoBehaviour
         if(transform.parent.GetComponent<TalentSelect>()) parentSkill = transform.parent.GetComponent<TalentSelect>();
         
 
-        skillLevel = skilldata.skillLevel;
+        skillLevel = 0;
         skillCoolDown = skilldata.coolTime;
         outline = GetComponent<Outline>();
         button = GetComponent<Button>();
@@ -73,7 +73,7 @@ public class TalentSelect : MonoBehaviour
         if(isSelect && Input.touchCount > 0) {
             if(Input.GetTouch(0).tapCount >= 2 && SkillManager.Instance.statPoint > 0) {
                 skillLevelText.text = ++skillLevel + " / " + skilldata.maxSkillLevel;
-                SkillManager.Instance.UnLockSkill(skilldata.skillName);
+                SkillManager.Instance.UnLockSkill(skilldata);
                 ReachMaxSkillLevel(skillLevel);
             }
         }

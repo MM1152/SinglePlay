@@ -1,17 +1,19 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner Instance { get; private set; }
-    
-    
+
+
     [Header("참조")]
     [Space(30)]
     [Header("적 / 보스 / 리스폰 위치 설정")]
-    [SerializeField] Unit[] Enemys;
-    public Unit[] Boss;
+    Stack<Unit> unitList;
+    List<Unit> Enemys = new List<Unit>();
+    List<Unit> Boss = new List<Unit>();
     [SerializeField] Transform[] spawnPos;
     [Space(30)]
     [Header("적 리스폰 설정")]
@@ -29,7 +31,10 @@ public class EnemySpawner : MonoBehaviour
 
     Exp exp;
     Transform spawntrans;
+    public Transform boss;
     MergeSort<Unit> sort;
+
+
     private void Awake()
     {
         currentSpawnTimer = spawnTimer;
@@ -38,12 +43,26 @@ public class EnemySpawner : MonoBehaviour
         exp = GameObject.FindObjectOfType<Exp>();
         spawntrans = GameObject.Find("EnemyList").transform;
 
-        Enemys = Resources.LoadAll<Unit>(GameManager.Instance.mapName + "Enemy");
+        unitList = new Stack<Unit>(Resources.LoadAll<Unit>(GameManager.Instance.mapName + "Enemy"));
+
+        while (unitList.Count > 0)
+        {
+            for (int i = 0; i < unitList.Count; i++)
+            {
+                Unit currUnit = unitList.Pop();    
+                Debug.Log(currUnit);
+                if (currUnit.CompareTag("Boss")) Boss.Add(currUnit);
+                else Enemys.Add(currUnit);
+            }
+        }
+
         SettingUnitProbabillity();
 
 
-        sort = new MergeSort<Unit>(Enemys);
-        Enemys = sort.get();
+
+
+        sort = new MergeSort<Unit>(Enemys.ToArray());
+        Enemys = sort.get().ToList();
 
         SetSpawnProbabillity();
     }
@@ -67,14 +86,17 @@ public class EnemySpawner : MonoBehaviour
                 currentSpawnTimer = spawnTimer;
             }
         }
-        else {
-            if(!isBossSpawn){
+        else
+        {
+            if (!isBossSpawn)
+            {
                 Debug.Log("Spawn Boss");
-                Unit boss = Instantiate(Boss[GameManager.Instance.currentStage / 10 - 1] , spawntrans);
-                boss.transform.position = spawnPos[1].transform.position; 
+                Unit boss = Instantiate(Boss[GameManager.Instance.currentStage / 10 - 1], spawntrans);
+                this.boss = boss.transform;
+                boss.transform.position = spawnPos[1].transform.position;
                 isBossSpawn = true;
             }
-            
+
         }
 
     }
@@ -109,12 +131,12 @@ public class EnemySpawner : MonoBehaviour
 
     void SetSpawnProbabillity()
     {
-        for (int i = 0; i < Enemys.Length; i++)
+        for (int i = 0; i < Enemys.Count; i++)
         {
             avg += Enemys[i].unit.spawnProbabillity;
         }
 
-        for (int i = 0; i < Enemys.Length; i++)
+        for (int i = 0; i < Enemys.Count; i++)
         {
             spawnProbabillity.Add(Enemys[i].unit.spawnProbabillity / avg);
         }
@@ -126,12 +148,12 @@ public class EnemySpawner : MonoBehaviour
         exp.SetExpValue(10f);
         currentEnemyNumber--;
         GameManager.Instance.clearMonseter--;
-        
+
     }
 
     private void SettingUnitProbabillity()
     {
-        for (int i = 0; i < Enemys.Length; i++)
+        for (int i = 0; i < Enemys.Count; i++)
         {
             if (Enemys[i].spawnProbabillity == 0)
             {

@@ -24,7 +24,7 @@ public class CameraMoveMent : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position , nextMapHole.position , smooting);
             transform.position += Vector3.back * 10f;
         }else if(GameManager.Instance.playingAnimation){
-            boss = EnemySpawner.Instance.Boss[GameManager.Instance.currentStage / 10 - 1].transform;
+            boss = EnemySpawner.Instance.boss;
             transform.position = Vector2.Lerp(transform.position , boss.position , smooting);
             transform.position += Vector3.back * 10f;
         }else if(target.GetComponent<Unit>().hp <= 0){

@@ -9,7 +9,7 @@ public class MapInfomationTab : MonoBehaviour
     [SerializeField] Button enterButton;
     [SerializeField] Text infomationText;
     [SerializeField] Transform getSoulListTransform;
-
+    [SerializeField] GameObject rewardPrefeb;
     public string name;
     public string infomation;
     public int maxStage;
@@ -19,9 +19,13 @@ public class MapInfomationTab : MonoBehaviour
         infomationText.text = infomation;
         Unit[] enemys = Resources.LoadAll<Unit>( name + "Enemy");
 
+        SettingReward reward = Instantiate(rewardPrefeb , getSoulListTransform).GetComponent<SettingReward>();
         for(int i = 0; i < enemys.Length; i++) {
-            GameObject soulInfo = Instantiate(SoulsManager.Instance.soulsInfos[enemys[i].unit.typenumber - 1].gameObject , getSoulListTransform);
+            SoulsInfo soulInfo = Instantiate(SoulsManager.Instance.soulsInfos[enemys[i].unit.typenumber - 1].gameObject , getSoulListTransform).GetComponent<SoulsInfo>(); 
+            soulInfo.levelText.transform.position += Vector3.down * 35f;
         }
+
+        
     }
     private void OnDisable() {
         foreach(Transform soulinfo in getSoulListTransform ) {

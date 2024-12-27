@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class Summoner : LongRangeScript
@@ -24,7 +21,6 @@ public class Summoner : LongRangeScript
     private void OnEnable() { }
     private void Start() {
         RewardManager.Instance.SetSummonerStat = ChangeStat;
-        
     }
 
     protected override void Awake()
@@ -55,7 +51,7 @@ public class Summoner : LongRangeScript
             }
             else
             {
-                if (!SkillManager.Instance.LightningAttack && target?.name != "NextStage") Attack();
+                if (target?.name != "NextStage") Attack();
                 //if (SkillManager.Instance.SummonUpgradeSkill) SummonSkill();
             } 
             
@@ -82,20 +78,6 @@ public class Summoner : LongRangeScript
             ani.Play("InNextMap");
             StartCoroutine(GameManager.Instance.WaitForNextMap(() => SpawnMapPlayer()));
         }
-    }
-    IEnumerator WaitForSkillAnimationCorutine()
-    {
-        yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("SKILL") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
-        ani.SetBool("Skill", false);
-
-        GameObject unit = SkillManager.Instance.GetSummonGameObjet();
-        unit = PoolingManager.Instance.ShowObject(unit.name + "(Clone)", unit);
-        unit.transform.SetParent(transform.parent);
-        unit.GetComponent<ISummonUnit>().summoner = this;
-        unit.tag = gameObject.tag;
-        unit.transform.position = transform.position + Vector3.right;
-
-        isSkill = false;
     }
     private void SpawnMapPlayer(){
         transform.position = Vector3.zero;

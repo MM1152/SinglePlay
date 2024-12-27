@@ -14,8 +14,8 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     [Header("직접 설정")]
     [SerializeField] SoulsTab soulsTab;
     [SerializeField] UnitData unitData;
-    [SerializeField] Image soulImage;
-    [SerializeField] Text levelText;
+    [SerializeField] Image soulImage ;
+    public Text levelText;
     [SerializeField] Slider slider;
     [SerializeField] GameObject lockObejct;
 
@@ -76,7 +76,7 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     public SoulsInfo LevelUp(){
         soulLevel++;
         soulCount -= soulMaxCount;
-        soulMaxCount = soulLevel * 2;
+        soulMaxCount = (this.soulLevel + 1) * 2;
         levelText.text = soulLevel + 1 + "";
 
         CheckLevel();

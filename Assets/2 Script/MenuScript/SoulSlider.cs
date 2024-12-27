@@ -22,6 +22,6 @@ public class SoulSlider : MonoBehaviour
         
         slider.maxValue = soul.soulMaxCount;
         slider.value = soul.soulCount;
-        countText.text = "" + soul.soulCount + "\t" + soul.soulMaxCount; 
+        countText.text = "" + soul.soulCount + "/" + soul.soulMaxCount; 
     }
 }

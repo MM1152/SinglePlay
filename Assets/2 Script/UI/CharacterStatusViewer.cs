@@ -16,13 +16,13 @@ public class CharacterStatusViewer : MonoBehaviour
             gameObject.SetActive(value);
         }
     }
-    RectTransform rect;
+
     private void Awake() {
         isOpen = false;
-        rect = GetComponent<RectTransform>();
+
     }
     private void OnEnable() {
-        StartCoroutine(OpenAnimation());
+
 
         //\\TODO : 적용준인 능력치 불러와서 사용해야되는데 어떻게 불러올건지?
         //1. Summoner에서 RewardManager를 통해 능력치 추가기능 존재
@@ -32,17 +32,5 @@ public class CharacterStatusViewer : MonoBehaviour
             sb.AppendLine($"{GameManager.Instance.reclicsDatas[i].inItPercent + (GameManager.Instance.reclicsDatas[i].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[i])} %");
         }
         percentText.text = sb.ToString();
-    }
-    IEnumerator OpenAnimation(){
-        float i;
-        for(i = 0; i < 1.2f; i += 0.1f) {
-            rect.localScale = new Vector3(i , i);
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
-
-        for(i = 1.2f; i >= 1.0f; i -= 0.1f) {
-            rect.localScale = new Vector3(i , i);
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
     }
 }

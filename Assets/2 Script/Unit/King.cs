@@ -27,6 +27,7 @@ public class King : ShortRangeScipt , ISummonUnit
             gameObject.AddComponent(Type.GetType(findclass)); // 스킬 이름에 따라 스킬 컴포넌트를 붙여줘서 사용하는 방식
             SkillParent skilldata = gameObject.GetComponent(Type.GetType(findclass)) as SkillParent;
             skilldata.soulsSkillData = unit.soulsSkillData[i].skillData;
+            skillData.Add(skilldata);
         }
         
     }

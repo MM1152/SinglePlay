@@ -6,7 +6,8 @@ public class SkillData : ScriptableObject
 {
     public string skillName;
     public float coolTime;
-    public int skillLevel;
+    public float initPercent;
+    public float levelUpPercent;
     public int maxSkillLevel;
     public string skillExplain;
 }

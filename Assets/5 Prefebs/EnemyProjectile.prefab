@@ -13,6 +13,10 @@ PrefabInstance:
       value: EnemyProjectile
       objectReference: {fileID: 0}
     - target: {fileID: 5976984722836093853, guid: 3eabe396e0cf7514aa7bf016a76969cf, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976984722836093853, guid: 3eabe396e0cf7514aa7bf016a76969cf, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 27f4ec32196b0924eb1c34f31a388cf5, type: 3}
@@ -88,7 +92,8 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8445701821883805762, guid: 3eabe396e0cf7514aa7bf016a76969cf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

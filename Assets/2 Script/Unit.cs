@@ -9,13 +9,12 @@ using UnityEngine;
 public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 {
     public UnitData unit;
-    public List<SkillParent> skillData = new List<SkillParent>();
-    [Range(0f, 1f)]
-    public float attackObjectShowTime;
+    public List<SkillParent> skillData;
+    [Range(0f, 1f)] public float attackObjectShowTime;
     public float setInitAttackSpeed; // 초기화될 공격속도
     public float currentAttackSpeed; // 현재 공격까지 남은시간
-    protected Animator ani = null;
-    protected SpriteRenderer sp;
+    [SerializeField] protected Animator ani = null;
+    public SpriteRenderer sp;
 
 
     /**************Status****************/
@@ -52,9 +51,11 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     /************************************/
     protected virtual void Awake()
     {
+
+        skillData = new List<SkillParent>();
         statusEffectMuchine = new StatusEffect(this);
-        sp ??= GetComponent<SpriteRenderer>();
-        ani ??= GetComponent<Animator>() ? GetComponent<Animator>() : null;
+        sp = GetComponent<SpriteRenderer>();
+        ani = GetComponent<Animator>() ? GetComponent<Animator>() : null;
         canFollow = true;
     }
 
@@ -69,7 +70,11 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
                 ani.SetBool("Move", false);
                 return;
             }
-            if (!isAttack && !isSkill) currentAttackSpeed -= Time.deltaTime;
+            if (!isAttack && !isSkill) {
+
+                currentAttackSpeed -= Time.deltaTime;
+                
+            }
             if (!isAttack && !isSkill && !GameManager.Instance.gameClear && target != null)
             {
                 foreach (SkillParent skill in skillData)
@@ -113,8 +118,9 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         float bonusHp = 0;
         if (SkillManager.Instance.UpgradeSummonUnitSkill)
         {
-            bonusAttack = SkillManager.Instance.skillDatas["소환수 강화"] * 0.1f;
-            bonusHp = (SkillManager.Instance.skillDatas["소환수 강화"] * 0.1f);
+            SkillData skillData = SkillManager.Instance.GetSkillData("소환수 강화");
+            bonusAttack = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
+            bonusHp = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
         }
         bonusHp += (GameManager.Instance.reclicsDatas[1].inItPercent +
                     (GameManager.Instance.reclicsDatas[1].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[1]))
@@ -258,7 +264,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     private IEnumerator WaitForAttackAnimationCorutine()
     {
         if (ani != null) yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("ATTACK") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
-        else yield return new WaitForSeconds(0.2f);
+        //else yield return new WaitForSeconds(0.2f);
         ani?.SetBool("Attack", false);
         isAttack = false;
     }
