@@ -38,7 +38,6 @@ public class Bat : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(attackPercent + (skillData != null ? skillData.initPercent * SkillManager.Instance.skillDatas[skillData] : 0));
         if(!oneTime && summoner.isAttack) {
             oneTime = true;
             float rand = Random.Range(0f , 1f); 

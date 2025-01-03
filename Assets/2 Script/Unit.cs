@@ -317,6 +317,8 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
     public void Hit(float Damage , AttackType attackType = AttackType.None)
     { 
+        //\\TODO 여기서 스킬데미지증가 유물에 관해서 데미지 증가 로직 적용시켜주면 될거같음.
+
         DamageText damage = PoolingManager.Instance.ShowDamage().GetComponent<DamageText>();
         damage.Setting(attackType);
         damage.damage = Damage;

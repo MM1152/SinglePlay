@@ -62,16 +62,17 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         
         _reclicsLevel = reclicsLevel;
         _reclicsCount = reclicsCount;
-        _reclicsMaxCount = (int) math.pow((_reclicsLevel + 1) , 2);
+        _reclicsMaxCount = _reclicsLevel == 0 ? _reclicsMaxCount : (int) math.pow((_reclicsLevel + 1) , 2);
         levelText.text = _reclicsLevel + 1 + "";
     }
     
     public ReclicsInfo LevelUp(){
         _reclicsLevel++;
         _reclicsCount -= _reclicsMaxCount;
-        _reclicsMaxCount = (int) math.pow((_reclicsLevel + 1) , 2);
+        _reclicsMaxCount =  _reclicsMaxCount = _reclicsLevel == 0 ? _reclicsMaxCount : (int) math.pow((_reclicsLevel + 1) , 2);
         levelText.text = _reclicsLevel + 1 + "";
 
+        setSlider?.Invoke();
         ChangeStatus();
 
         return this;
@@ -87,8 +88,8 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
     private void Check(){
         if(_reclicsCount > 0 || _reclicsLevel > 0) {
             onClick = true;
-            setSlider?.Invoke();
             lockObj.SetActive(false);
+            setSlider?.Invoke();
         }
     }
     public int GetReclicsLevel(){

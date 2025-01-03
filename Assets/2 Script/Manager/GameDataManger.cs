@@ -15,7 +15,8 @@ public class GameData{
     public List<bool> unLockMap = new List<bool>();
 
     /// <summary>
-    /// 0 : Damage , 1 : HP , 2 : SummonUnitHp , 3 : AttackSpeed , 4 : MoveSpeed , 5 : BonusTalent , 6 : BonusGoods
+    /// 1: Attack , 2: Hp , 3: SummonUnitHp , 4: AttackSpeed  , 5: MoveSpeed , 6: BonusTalent , 7: BonusGoods , 8: IncreaesDamage ,
+    /// 9: IncreaesHp, 10: CoolTime, 11: SkillDamage
     /// </summary>
     public List<int> reclicsLevel = new List<int>();
     public List<int> reclicsCount = new List<int>();
