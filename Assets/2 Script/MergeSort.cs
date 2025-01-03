@@ -1,6 +1,81 @@
 
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+
+public class Heap {
+    public List<float> heap;
+    public List<Transform> target;
+    public Heap() {
+        heap = new List<float>();
+        target = new List<Transform>();
+        
+        heap.Add(default);
+        target.Add(default);
+    }
+
+    public void Add(float value , Transform info) {
+        heap.Add(value);
+        target.Add(info);
+
+        int index = heap.Count - 1;
+        while(index > 1) {
+            int parent = (index - 1) / 2;
+            
+            if(heap[parent] > heap[index]) {
+                float temp = heap[parent];
+                heap[parent] = heap[index];
+                heap[index] = temp;
+
+                Transform target = this.target[parent];
+                this.target[parent] = this.target[index];
+                this.target[index] = target;
+            }
+            else {
+                break;
+            }
+
+            index = parent;
+        }
+    }
+    public Transform Pop(){
+        if(heap.Count > 1) {
+            Transform returnValue = target[1];
+
+            heap[1] = heap[heap.Count - 1];
+            target[1] = target[target.Count - 1];
+
+            heap.RemoveAt(heap.Count - 1);
+            target.RemoveAt(target.Count - 1);
+            
+            int index = 1;
+
+            while(index < heap.Count) {
+                int left = index * 2;
+                int right = index * 2 + 1;
+                int center = index;
+
+                if(left < heap.Count && heap[left] < heap[index]) index = left;
+                if(right < heap.Count && heap[right] < heap[index]) index = right;
+
+                if(center == index) break;
+
+                float temp = heap[index];
+                heap[index] = heap[center];
+                heap[center] = temp;
+
+                Transform target = this.target[index];
+                this.target[index] = this.target[center];
+                this.target[center] = target;
+            }
+
+            return returnValue;
+        } else {
+            return null;
+        }
+    }
+}
+
 /// <summary>
 /// 게임오브젝트를 유닛의 생성확률에 맞춰 정렬해준다.
 /// </summary>

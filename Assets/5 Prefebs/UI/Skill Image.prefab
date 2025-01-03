@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillData: {fileID: 0}
   skillText: 
+  lockImage: {fileID: 7520189092734068300}
 --- !u!61 &7013402570008541045
 BoxCollider2D:
   m_ObjectHideFlags: 0

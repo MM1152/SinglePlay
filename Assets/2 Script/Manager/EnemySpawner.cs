@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner Instance { get; private set; }
-
+    private SettingReclicsDataInPlayer Increaes;
 
     [Header("참조")]
     [Space(30)]
@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
     {
         currentSpawnTimer = spawnTimer;
         Instance = this;
-
+        Increaes = GameObject.FindObjectOfType<SettingReclicsDataInPlayer>();
         exp = GameObject.FindObjectOfType<Exp>();
         spawntrans = GameObject.Find("EnemyList").transform;
 
@@ -144,11 +144,10 @@ public class EnemySpawner : MonoBehaviour
 
     public void CheckDie()
     {
-
         exp.SetExpValue(10f);
         currentEnemyNumber--;
         GameManager.Instance.clearMonseter--;
-
+        Increaes.Increaes();
     }
 
     private void SettingUnitProbabillity()

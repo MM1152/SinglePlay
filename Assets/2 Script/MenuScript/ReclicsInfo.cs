@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+[DefaultExecutionOrder(0)]
 public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillity , IClassColor
 {
     public ReclicsInfo parentReclicsInfo;
@@ -51,10 +52,8 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
 
     public void PickUp() {
         _reclicsCount++;
-        if(_reclicsLevel == 0) {
-            _reclicsLevel = 1;
-            levelText.text = _reclicsLevel + "";
-        }
+        levelText.text = _reclicsLevel + 1 + "";
+        
         ChangeStatus();
     }
      
@@ -63,15 +62,15 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         
         _reclicsLevel = reclicsLevel;
         _reclicsCount = reclicsCount;
-        _reclicsMaxCount = reclicsLevel * 2;
-        levelText.text = _reclicsLevel + "";
+        _reclicsMaxCount = (int) math.pow((_reclicsLevel + 1) , 2);
+        levelText.text = _reclicsLevel + 1 + "";
     }
     
     public ReclicsInfo LevelUp(){
         _reclicsLevel++;
         _reclicsCount -= _reclicsMaxCount;
-        _reclicsMaxCount = _reclicsLevel * 2;
-        levelText.text = _reclicsLevel + "";
+        _reclicsMaxCount = (int) math.pow((_reclicsLevel + 1) , 2);
+        levelText.text = _reclicsLevel + 1 + "";
 
         ChangeStatus();
 

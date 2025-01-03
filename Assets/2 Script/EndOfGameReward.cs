@@ -21,6 +21,7 @@ public class EndOfGameReward : MonoBehaviour
         });
     }
     private void OnEnable() {
+        //GameDataManger.Instance.GetGameData().reclicsLevel[6];
         GameData data = GameDataManger.Instance.GetGameData();
         if(GameManager.Instance.currentStage == 1) return;
         SettingReward soul = Instantiate(reward , transform);

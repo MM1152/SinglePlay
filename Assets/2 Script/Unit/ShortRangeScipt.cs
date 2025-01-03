@@ -16,7 +16,7 @@ public class ShortRangeScipt : Unit
     
     protected override void Awake() {
         base.Awake();
-        attackPattenChange = false;
+
         attackprefeb = Resources.Load<GameObject>("Attack");
         shortRangeAttack = Instantiate(attackprefeb, transform).GetComponent<ShortRangeAttack>();
         shortRangeAttack.unit = unit;
@@ -26,8 +26,8 @@ public class ShortRangeScipt : Unit
     {
         if (!isDie)
         {
-            base.Update();
             Attack();
+            base.Update();
         }
     }
 

@@ -10,6 +10,6 @@ public class MushRoom : ShortRangeScipt, ISummonUnit
     private void OnEnable() {
         base.OnEnable();
         if(summoner == null) Spawn(GameManager.Instance.currentStage);
-        else SummonerSpawn(summoner , "MushRoom");
+        else SummonerSpawn(summoner);
     }
 }

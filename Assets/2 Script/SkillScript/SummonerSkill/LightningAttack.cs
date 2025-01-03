@@ -11,6 +11,13 @@ public class LightningAttack : MonoBehaviour
     }
     private void OnEnable() {
         StartCoroutine(WaitForAnimation());
+
+        float distance = Vector2.Distance(summoner.target.transform.position , summoner.transform.position);
+        transform.localScale = new Vector3(distance / 2 - 0.8f, 1f , 1f);
+        transform.position = (summoner.target.transform.position + summoner.transform.position) / 2;
+
+        Vector2 direction = (summoner.target.transform.position - transform.position).normalized;
+        transform.right = direction;
     }   
 
     IEnumerator WaitForAnimation(){
@@ -18,12 +25,4 @@ public class LightningAttack : MonoBehaviour
         PoolingManager.Instance.ReturnObject(gameObject.name , this.gameObject);
     } 
 
-    public void Update(){
-        float distance = Vector2.Distance(summoner.target.transform.position , summoner.transform.position);
-        transform.localScale = new Vector3(distance / 2 - 0.8f, 1f , 1f);
-        transform.position = (summoner.target.transform.position + summoner.transform.position) / 2;
-
-        Vector2 direction = (summoner.target.transform.position - transform.position).normalized;
-        transform.right = direction;
-    }
 }

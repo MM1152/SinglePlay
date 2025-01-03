@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class Summoner : LongRangeScript
         new Vector2(0.8f , 0.5f) ,
         new Vector2(0.5f , 1f)
     };
-
+    public Action<Summoner> changeStatus;
     [SerializeField] GameObject EnemySpawn;
     [SerializeField] GameObject DieTitle;
 
@@ -83,9 +84,9 @@ public class Summoner : LongRangeScript
         transform.position = Vector3.zero;
         ani.Play("SpawnMap");
     }
-    public void ChangeStat(string key , float value){
+    public void ChangeStat(string key = "None" , float value = 0){
         if(additionalStats.ContainsKey(key)) additionalStats[key] += value;
-        else additionalStats.Add(key , value);
+        else if(key != "None")additionalStats.Add(key , value);
 
 
         switch(key) {
@@ -106,6 +107,8 @@ public class Summoner : LongRangeScript
                 setInitAttackSpeed -= unit.attackSpeed * value;
                 break;
         }
+
+        changeStatus(this);
     }
     private IEnumerator DieAnimation(){
         if(isDie) {

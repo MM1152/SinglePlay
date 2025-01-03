@@ -21,7 +21,7 @@ public class SoulsExplainTab : MonoBehaviour
 
             slider.maxValue = value.soulMaxCount;
             slider.value = value.soulCount;
-            levelText.text = value.soulLevel + "";
+            levelText.text = value.soulLevel + 1 + "";
             SliderText.text = value.soulCount + " / " + value.soulMaxCount;
 
 
@@ -151,6 +151,13 @@ public class SoulsExplainTab : MonoBehaviour
                     prefebSkill.GetComponent<SkillExplain>().skillData = data.soulsSkillData[i].skillData;
                     skillImagesObject.Add(prefebSkill);
                 }
+            }
+
+            for(int i = 0 ; i < data.soulsSkillData.Length; i++) {
+                if(data.soulsSkillData[i].level <= UnitData.soulLevel) {
+                    skillImagesObject[i].GetComponent<SkillExplain>().lockImage.SetActive(false);
+                }
+                
             }
         }
 

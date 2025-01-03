@@ -11,7 +11,7 @@ public class ReclisExplainTab : MonoBehaviour
     public ReclicsInfo reclicsInfo {
         set { 
             _reclicsInfo = value;
-            levelText.text = value.GetReclicsLevel() + "";
+            levelText.text = value.GetReclicsLevel() + 1 + "";
             reclicsSliderText.text = value.GetReclicsCount() + "\t" + value.GetReclicsMaxCount() + "";
             slider.maxValue = value.GetReclicsMaxCount();
             slider.value = value.GetReclicsCount();

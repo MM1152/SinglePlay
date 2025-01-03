@@ -6,6 +6,6 @@ public class Golem : ShortRangeScipt , ISummonUnit {
     private void OnEnable() {
         base.OnEnable();
         if(summoner == null)  Spawn(GameManager.Instance.currentStage);
-        else SummonerSpawn(summoner , "Golem");
+        else SummonerSpawn(summoner);
     }    
 }

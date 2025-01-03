@@ -32,7 +32,7 @@ public class AttackSkill : MonoBehaviour
                 LightningAttack lightning = PoolingManager.Instance.ShowObject(skillPrefeb.name +"(Clone)" , skillPrefeb).GetComponent<LightningAttack>();   
                 lightning.summoner = summoner; 
 
-                summoner.target.GetComponent<IDamageAble>().Hit(summoner.damage * skilldata.initPercent);
+                summoner.target.GetComponent<IDamageAble>().Hit(summoner.damage * skilldata.initPercent , AttackType.SkillAttack);
                 currentSkillCoolTime = skilldata.coolTime;
             }
             

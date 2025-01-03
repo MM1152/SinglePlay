@@ -74,6 +74,7 @@ public class TalentSelect : MonoBehaviour
             if(Input.GetTouch(0).tapCount >= 2 && SkillManager.Instance.statPoint > 0) {
                 skillLevelText.text = ++skillLevel + " / " + skilldata.maxSkillLevel;
                 SkillManager.Instance.UnLockSkill(skilldata);
+                RewardManager.Instance.SetSummonerStat.Invoke("None" , 0);
                 ReachMaxSkillLevel(skillLevel);
             }
         }

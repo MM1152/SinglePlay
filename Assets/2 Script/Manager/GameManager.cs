@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject curtain;
     [SerializeField] GameObject rewardViewer;
     /// <summary>
-    /// 1: Attack , 2: Hp , 3: SummonUnitHp , 4: AttackSpeed  , 5: MoveSpeed , 6: BonusTalent , 7: BonusGoods
+    /// 1: Attack , 2: Hp , 3: SummonUnitHp , 4: AttackSpeed  , 5: MoveSpeed , 6: BonusTalent , 7: BonusGoods , 8: IncreaesDamage
+    /// 9: IncreaesHp
     /// </summary>
     public List<ReclicsData> reclicsDatas;
     public bool reclisFin;
@@ -81,7 +82,6 @@ public class GameManager : MonoBehaviour
             dropSoul -= function;
         }  
         dropSoulList.Clear();
-        ResumeGame();
     }
     public void ReturnToMain(){
         dropSoul += delegate(UnitData unitData) {

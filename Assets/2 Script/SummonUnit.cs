@@ -38,6 +38,7 @@ public class SummonUnit : MonoBehaviour
         
         
         unit.SetActive(true);
+        summoner.changeStatus += unit.GetComponent<Unit>().ChangeStats;
         summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
         gameObject.SetActive(false);
     }

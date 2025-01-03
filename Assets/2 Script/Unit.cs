@@ -6,6 +6,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
+
+[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(GameObject))]
 public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 {
     public UnitData unit;
@@ -13,8 +16,10 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     [Range(0f, 1f)] public float attackObjectShowTime;
     public float setInitAttackSpeed; // 초기화될 공격속도
     public float currentAttackSpeed; // 현재 공격까지 남은시간
-    [SerializeField] protected Animator ani = null;
-    public SpriteRenderer sp;
+    public GameObject hpBar;
+    
+    [HideInInspector] protected Animator ani = null;
+    [HideInInspector] public SpriteRenderer sp;
 
 
     /**************Status****************/
@@ -41,6 +46,9 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     public bool canFollow { get; set; }
     public int tauntStatusEffect;
 
+    private Transform damageShowPos;
+    public Transform hpbarPos;
+
     public GameObject target; // 공격할 대상
     public GameObject targetList; // 적이라면 Player를 담고있는 부모 , Player라면 적에 대한 정보를 담고있는 부모
     /************************************/
@@ -51,14 +59,23 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     /************************************/
     protected virtual void Awake()
     {
+        damageShowPos = transform.Find("DamageShowPosition");
+        hpbarPos =  transform.Find("HpbarPos");
+        hpbarPos.transform.position -= new Vector3(0f , 0f , hpbarPos.transform.position.z);
 
         skillData = new List<SkillParent>();
+        hpBar = Resources.Load<GameObject>("UI/HpCanvas");
         statusEffectMuchine = new StatusEffect(this);
         sp = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>() ? GetComponent<Animator>() : null;
         canFollow = true;
-    }
 
+        GameObject hpbarCanvas = Instantiate(this.hpBar , hpbarPos);
+        Hpbar hpbar = hpbarCanvas.transform.GetComponentInChildren<Hpbar>();
+        hpbarCanvas.transform.position = hpbarPos.position;
+        hpbarCanvas.transform.position += Vector3.forward * 1f;
+        hpbar.target = this;
+    }
     protected virtual void Update()
     {
         if (!isDie)
@@ -71,9 +88,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
                 return;
             }
             if (!isAttack && !isSkill) {
-
                 currentAttackSpeed -= Time.deltaTime;
-                
             }
             if (!isAttack && !isSkill && !GameManager.Instance.gameClear && target != null)
             {
@@ -88,7 +103,6 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         }
 
     }
-
     protected void Respawn()
     {
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss")) targetList = GameObject.Find("PlayerList");
@@ -109,10 +123,10 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
         hp = maxHp;
     }
-    protected virtual void SummonerSpawn(Summoner summoner, string unitName)
-    {
-        float attackPrecent = GameManager.Instance.soulsInfo[unitName].curStat.attackStat / 100f;
-        float hpPercent = GameManager.Instance.soulsInfo[unitName].curStat.hpStat / 100f;
+    protected virtual void SummonerSpawn(Summoner summoner)
+    { 
+        float attackPrecent = GameManager.Instance.soulsInfo[unit.name].curStat.attackStat / 100f;
+        float hpPercent = GameManager.Instance.soulsInfo[unit.name].curStat.hpStat / 100f;
 
         float bonusAttack = 0;
         float bonusHp = 0;
@@ -129,6 +143,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         bonusAttack += (GameManager.Instance.reclicsDatas[0].inItPercent +
                     (GameManager.Instance.reclicsDatas[0].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[0]))
                     / 100f;
+
         maxHp = summoner.maxHp * (hpPercent + bonusHp);
         mp = unit.mp;
         damage = summoner.damage * (attackPrecent + bonusAttack);
@@ -138,13 +153,32 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
         hp = maxHp;
     }
-    protected void ChangeStats(Summoner summoner, float attackPrecent, float hpPercen)
+    public void ChangeStats(Summoner summoner)
     {
+        float attackPrecent = GameManager.Instance.soulsInfo[unit.name].curStat.attackStat / 100f;
+        float hpPercent = GameManager.Instance.soulsInfo[unit.name].curStat.hpStat / 100f;
+
+        float bonusAttack = 0;
+        float bonusHp = 0;
+        if (SkillManager.Instance.UpgradeSummonUnitSkill)
+        {
+            SkillData skillData = SkillManager.Instance.GetSkillData("소환수 강화");
+            bonusAttack = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
+            bonusHp = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
+        }
+        bonusHp += (GameManager.Instance.reclicsDatas[1].inItPercent +
+                    (GameManager.Instance.reclicsDatas[1].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[1]))
+                    / 100f;
+
+        bonusAttack += (GameManager.Instance.reclicsDatas[0].inItPercent +
+                    (GameManager.Instance.reclicsDatas[0].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[0]))
+                    / 100f;
+                    
         float thisHpPercent = hp / maxHp;
 
-        maxHp = summoner.hp * hpPercen;
+        maxHp = summoner.hp * (hpPercent + bonusHp);
         mp = unit.mp;
-        damage = summoner.damage * attackPrecent;
+        damage = summoner.damage * (attackPrecent + bonusAttack);
         speed = unit.speed;
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
@@ -162,6 +196,8 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             currentAttackSpeed = setInitAttackSpeed;
             StartCoroutine(WaitForAttackAnimationCorutine());
         }
+
+        
 
     }
     /*
@@ -279,8 +315,13 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         }
     }
 
-    public void Hit(float Damage)
-    {
+    public void Hit(float Damage , AttackType attackType = AttackType.None)
+    { 
+        DamageText damage = PoolingManager.Instance.ShowDamage().GetComponent<DamageText>();
+        damage.Setting(attackType);
+        damage.damage = Damage;
+        damage.target = damageShowPos;
+
         if (shild >= Damage) shild -= Damage;
         else if (shild < Damage)
         {

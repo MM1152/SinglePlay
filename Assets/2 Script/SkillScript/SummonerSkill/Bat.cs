@@ -61,7 +61,7 @@ public class Bat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(isAttack && other.gameObject == summoner.target.gameObject) {
-            other.GetComponent<IDamageAble>().Hit(summoner.damage * attackDamage);
+            other.GetComponent<IDamageAble>().Hit(summoner.damage * attackDamage , AttackType.SkillAttack);
             batAttack.Die(spawnNumber);
             PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
         }

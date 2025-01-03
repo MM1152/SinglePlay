@@ -12,7 +12,9 @@ public class PoolingManager : MonoBehaviour
     }
     Dictionary<string , Queue<GameObject>> pools = new Dictionary<string , Queue<GameObject>>();
     
-    [SerializeField] GameObject prefeb;
+    [SerializeField] GameObject prefeb; 
+    [SerializeField] GameObject damageTextPrefeb;
+    [SerializeField] Transform damageCanvas;
     // Start is called before the first frame update
     void Awake()
     {
@@ -32,6 +34,21 @@ public class PoolingManager : MonoBehaviour
             poolingObj = Instantiate(prefeb);
         }
         poolingObj.transform.SetParent(transform.root);
+        poolingObj.SetActive(true);
+        return poolingObj;
+    }
+
+    public GameObject ShowDamage(){
+        if(!pools.ContainsKey(damageTextPrefeb.name+"(Clone)")) pools.Add(damageTextPrefeb.name+"(Clone)" , new Queue<GameObject>());
+
+        GameObject poolingObj = null;
+        if(pools[damageTextPrefeb.name+"(Clone)"].Count > 0) {
+            poolingObj = pools[damageTextPrefeb.name+"(Clone)"].Dequeue();
+        }
+        else {
+            poolingObj = Instantiate(damageTextPrefeb);
+        }
+        poolingObj.transform.SetParent(damageCanvas);
         poolingObj.SetActive(true);
         return poolingObj;
     }

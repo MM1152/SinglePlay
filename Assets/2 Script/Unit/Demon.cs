@@ -10,7 +10,7 @@ public class Demon : LongRangeScript , ISummonUnit
     private void OnEnable() {
         base.OnEnable();
         if(summoner == null)  Spawn(GameManager.Instance.currentStage);
-        else SummonerSpawn(summoner , "Demon");
+        else SummonerSpawn(summoner);
     }    
     
 }

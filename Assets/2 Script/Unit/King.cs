@@ -33,7 +33,7 @@ public class King : ShortRangeScipt , ISummonUnit
     }
     private void SummonUnitSetting(){
         ani.SetBool("PlaySpawnAni" , false);
-        SummonerSpawn(summoner , "King");
+        SummonerSpawn(summoner);
         gameObject.transform.localScale -= Vector3.one * 0.2f ;
     }
     private void Start(){

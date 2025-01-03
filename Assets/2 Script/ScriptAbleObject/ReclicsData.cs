@@ -19,7 +19,6 @@ public struct ClassStruct {
     public readonly Color thisItemColor; //= Color.gray;
     
     public ClassStruct(ItemClass itemClass) {
-        Debug.Log(itemClass);
         this.itemClass = itemClass; 
         
         switch(this.itemClass) {
@@ -53,7 +52,7 @@ public struct ClassStruct {
                 soulLevelUpPercent = 10f;
                 initCost = 120f;
                 levelUpCost = 2.3f;
-                thisItemColor = Color.blue;
+                thisItemColor = new Color(0.3443396f , 0.3443396f , 1f);
                 break;
             case ItemClass.UNIQUE :
                 dropSoulpercent = 0.0008f;

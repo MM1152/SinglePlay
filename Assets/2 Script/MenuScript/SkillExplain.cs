@@ -11,7 +11,7 @@ public class SkillExplain : MonoBehaviour
 {
     public SoulsSkillData skillData;
     public string skillText;
-    
+    public GameObject lockImage;
     private void OnEnable() {
         skillText = skillData.skillExplainText;
         ChangeWord("skillInitPercent");

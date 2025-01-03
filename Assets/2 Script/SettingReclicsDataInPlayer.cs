@@ -18,4 +18,17 @@ public class SettingReclicsDataInPlayer : MonoBehaviour
 
         player.hp = player.maxHp;
     }
+
+    public void Increaes(){
+        if(GameDataManger.Instance.GetGameData().reclicsCount[7] > 0 || GameDataManger.Instance.GetGameData().reclicsLevel[7] > 0) {
+            player.damage += GameManager.Instance.reclicsDatas[7].inItPercent + 
+                            (GameManager.Instance.reclicsDatas[7].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[7]);
+        }
+        
+        if(GameDataManger.Instance.GetGameData().reclicsCount[8] > 0 || GameDataManger.Instance.GetGameData().reclicsLevel[8] > 0) {
+            player.maxHp += GameManager.Instance.reclicsDatas[8].inItPercent + 
+                            (GameManager.Instance.reclicsDatas[8].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[8]);
+        }
+       
+    }
 }
