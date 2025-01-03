@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 11 SkillDamage
   m_EditorClassIdentifier: 
   itemclass: 15
-  image: {fileID: 21300000, guid: ffa2e5668e3b790489c0ee7c6faefd6d, type: 3}
-  reclicsType: 10
+  image: {fileID: 21300000, guid: 8860198ac109ec846bf7756298ef527f, type: 3}
+  reclicsType: 11
   reclicsExplain: "\uBAA8\uB4E0 \uC720\uB2DB\uC758 \uC2A4\uD0AC \uCFE8\uD0C0\uC784\uC774
     \uAC10\uC18C\uB429\uB2C8\uB2E4."
   inItPercent: 5
