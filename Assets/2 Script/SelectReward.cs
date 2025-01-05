@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SelectReward : MonoBehaviour
 {
-    //#issue 1
     public ClearRewardData rewardData;
     [SerializeField] Text explanationText;
 

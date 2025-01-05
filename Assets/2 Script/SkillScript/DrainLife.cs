@@ -5,7 +5,9 @@ using UnityEngine;
 public class DrainLife : MonoBehaviour , SkillParent
 {
     float skillCoolTime;
+    
     [SerializeField] BigDarker bigDarker;
+    public int targetNumber;
     public Heap findNearEnemy;
     public SoulsSkillData soulsSkillData { get ; set ; }
 
@@ -26,15 +28,17 @@ public class DrainLife : MonoBehaviour , SkillParent
                 }
             }
 
-            while(true) {
+            int attackCount = targetNumber;
+
+            while(attackCount > 0) {
                 Transform targetPos = findNearEnemy.Pop();
-                Debug.Log(targetPos.gameObject.name);
+
                 if(targetPos != null && targetPos.gameObject != bigDarker.target) {
                     GameObject attack = PoolingManager.Instance.ShowObject(bigDarker.darkerAttack.name + "(Clone)" , bigDarker.darkerAttack);
                     attack.GetComponent<BigDarkerAttack>().target = targetPos;
-                    bigDarker.target.GetComponent<IDamageAble>().Hit(bigDarker.damage , AttackType.SkillAttack);
-                    Debug.Log(bigDarker.damage);
-                    break;
+                    targetPos.GetComponent<IDamageAble>().Hit(bigDarker.damage , AttackType.SkillAttack);
+                    attackCount--;
+                    //\\TODO 흡혈 기능 추가해줘야함
                 }
                 else if(targetPos == null){
                     break;
@@ -46,5 +50,6 @@ public class DrainLife : MonoBehaviour , SkillParent
     void Awake()
     {
         bigDarker = GetComponent<BigDarker>();
+        targetNumber = 1;
     }
 }

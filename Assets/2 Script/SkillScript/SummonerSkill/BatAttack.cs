@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class BatAttack : MonoBehaviour
+public class BatAttack : SummonerSkillParent
 {
     [SerializeField] GameObject batPrefeb;
-    public SkillData batSkill;
     public SkillData batUpgradeAttackPercent;
     public SkillData batUpgradeCoolTime;
-    public float currentCoolTime;
     int maxSpawnCount;
     int currSpawnCount;
     Summoner summoner;
@@ -37,9 +35,9 @@ public class BatAttack : MonoBehaviour
 
     private void Update()
     {
-        if (SkillManager.Instance.batAttack && batSkill == null) {
-            batSkill = SkillManager.Instance.GetSkillData("박쥐 소환");
-            currentCoolTime = batSkill.coolTime;
+        if (SkillManager.Instance.batAttack && skillData == null) {
+            skillData = SkillManager.Instance.GetSkillData("박쥐 소환");
+            SetCoolTime();
         } 
         if (SkillManager.Instance.batUpgradeAttackPercent && batUpgradeAttackPercent == null) {
             batUpgradeAttackPercent = SkillManager.Instance.GetSkillData("박쥐 공격확률 증가");
@@ -55,12 +53,13 @@ public class BatAttack : MonoBehaviour
 
         if (currSpawnCount <= maxSpawnCount)
         {
-            currentCoolTime -= Time.deltaTime;
+            currentSkillCoolTime -= Time.deltaTime;
         }
 
-        if (currentCoolTime <= 0)
+        if (currentSkillCoolTime <= 0)
         {
-            currentCoolTime = batSkill.coolTime - (batSkill.coolTime * (batUpgradeCoolTime != null ? batUpgradeCoolTime.initPercent * SkillManager.Instance.skillDatas[batUpgradeCoolTime] : 0));
+            SetCoolTime();
+            currentSkillCoolTime = currentSkillCoolTime - (skillData.coolTime * (batUpgradeCoolTime != null ? batUpgradeCoolTime.initPercent * SkillManager.Instance.skillDatas[batUpgradeCoolTime] : 0));
 
             Bat bat = PoolingManager.Instance.ShowObject(batPrefeb.name + "(Clone)" , batPrefeb).GetComponent<Bat>();
             bat.transform.SetParent(transform);
@@ -77,7 +76,7 @@ public class BatAttack : MonoBehaviour
                 }
             }
 
-            bat.Setting(summoner, batSkill.initPercent + (SkillManager.Instance.skillDatas[batSkill] * batSkill.levelUpPercent) , i , this , batUpgradeAttackPercent);
+            bat.Setting(summoner, skillData.initPercent + (SkillManager.Instance.skillDatas[skillData] * skillData.levelUpPercent) , i , this , batUpgradeAttackPercent);
         }
     }
     public void Die(int spawnNumber){

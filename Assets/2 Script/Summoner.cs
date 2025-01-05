@@ -16,7 +16,7 @@ public class Summoner : LongRangeScript
     [SerializeField] GameObject EnemySpawn;
     [SerializeField] GameObject DieTitle;
 
-    private Dictionary<string , float> additionalStats = new Dictionary<string , float>();
+    public Dictionary<string , float> additionalStats = new Dictionary<string , float>();
 
     bool oneTime;
     private void OnEnable() { }
@@ -66,9 +66,9 @@ public class Summoner : LongRangeScript
     }
     public void Move(Vector3 movePos)
     {
+        if(isAttack) return;
+
         transform.position += movePos * Time.deltaTime * speed;
-        isAttack = false;
-        ani.SetBool("Attack" , false);
         ani.SetBool("Move" , true);
         sp.flipX = movePos.normalized.x <= 0;
         

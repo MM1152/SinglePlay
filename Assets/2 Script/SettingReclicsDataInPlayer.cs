@@ -11,24 +11,23 @@ public class SettingReclicsDataInPlayer : MonoBehaviour
         player = GetComponent<Unit>();
         
         //\\TODO BonusGoods , SummonUnitHp 연결필요
-        player.damage += player.unit.damage * ((GameManager.Instance.reclicsDatas[0].inItPercent + (GameManager.Instance.reclicsDatas[0].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[0])) / 100f);
-        player.maxHp += player.unit.hp * ((GameManager.Instance.reclicsDatas[1].inItPercent + (GameManager.Instance.reclicsDatas[1].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[1])) / 100f);
-        player.setInitAttackSpeed -= player.unit.attackSpeed * ((GameManager.Instance.reclicsDatas[3].inItPercent + (GameManager.Instance.reclicsDatas[3].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[3])) / 100f);
-        player.speed += player.unit.speed * (( GameManager.Instance.reclicsDatas[4].inItPercent + (GameManager.Instance.reclicsDatas[4].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[4])) / 100f);
+        player.damage += player.unit.damage * (ReturnPercent(0) / 100f);
+        player.maxHp += player.unit.hp * (ReturnPercent(1) / 100f);
+        player.setInitAttackSpeed -= player.unit.attackSpeed * (ReturnPercent(3) / 100f);
+        player.speed += player.unit.speed * (ReturnPercent(4) / 100f);
 
         player.hp = player.maxHp;
     }
 
     public void Increaes(){
-        if(GameDataManger.Instance.GetGameData().reclicsCount[7] > 0 || GameDataManger.Instance.GetGameData().reclicsLevel[7] > 0) {
-            player.damage += GameManager.Instance.reclicsDatas[7].inItPercent + 
-                            (GameManager.Instance.reclicsDatas[7].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[7]);
+        player.damage += ReturnPercent(7);
+        player.maxHp += ReturnPercent(8);
+    }
+
+    private float ReturnPercent(int index){
+        if(GameDataManger.Instance.GetGameData().reclicsLevel[index] > 0 || GameDataManger.Instance.GetGameData().reclicsLevel[index] > 0) {
+            return GameManager.Instance.reclicsDatas[index].inItPercent + (GameManager.Instance.reclicsDatas[index].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[index]);
         }
-        
-        if(GameDataManger.Instance.GetGameData().reclicsCount[8] > 0 || GameDataManger.Instance.GetGameData().reclicsLevel[8] > 0) {
-            player.maxHp += GameManager.Instance.reclicsDatas[8].inItPercent + 
-                            (GameManager.Instance.reclicsDatas[8].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[8]);
-        }
-       
+        return 0f;
     }
 }

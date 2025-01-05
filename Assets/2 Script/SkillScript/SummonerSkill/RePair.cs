@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RePair : MonoBehaviour
+public class RePair : SummonerSkillParent
 {
     public GameObject healEffect;
-    public float repairHpCoolTime; 
-    public SkillData repairSkillData;
     
     Unit unit;
     void Start()
@@ -19,7 +17,7 @@ public class RePair : MonoBehaviour
     private void Update()
     {
         if(SkillManager.Instance.UpgradeAutoRepair) {
-            repairSkillData = SkillManager.Instance.GetSkillData("자동 회복");
+            skillData = SkillManager.Instance.GetSkillData("자동 회복");
         }
         RepairSkill();
     }
@@ -28,14 +26,13 @@ public class RePair : MonoBehaviour
     {
         if (SkillManager.Instance.UpgradeAutoRepair && !unit.isDie)
         {
-            if (repairHpCoolTime <= 0)
+            if (currentSkillCoolTime <= 0)
             {
-                repairHpCoolTime = 10f;
+                SetCoolTime();
                 
-                
-                if (unit.hp + (unit.maxHp * (SkillManager.Instance.skillDatas[repairSkillData] * repairSkillData.initPercent)) <= unit.maxHp)
+                if (unit.hp + (unit.maxHp * (SkillManager.Instance.skillDatas[skillData] * skillData.initPercent)) <= unit.maxHp)
                 {
-                    unit.hp += unit.maxHp * (SkillManager.Instance.skillDatas[repairSkillData] * repairSkillData.initPercent);
+                    unit.hp += unit.maxHp * (SkillManager.Instance.skillDatas[skillData] * skillData.initPercent);
                 }
                 else
                 {
@@ -44,7 +41,7 @@ public class RePair : MonoBehaviour
                 healEffect.SetActive(true);
             }
 
-            repairHpCoolTime -= Time.deltaTime;
+            currentSkillCoolTime -= Time.deltaTime;
         }
     }
 }
