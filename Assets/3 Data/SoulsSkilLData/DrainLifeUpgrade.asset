@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1560b42418549ca4caaa6f7cbfb3433b, type: 3}
   m_Name: DrainLifeUpgrade
   m_EditorClassIdentifier: 
-  skillImages: {fileID: 21300000, guid: bc35c32228ba0ca4fb4faf8bfdab7388, type: 3}
+  skillImages: {fileID: 2025491780, guid: 072f6030f5c352b4a977d277cdca1183, type: 3}
   skillName: DrainLifeUpgrade
   skillExplainText: "\uACF5\uACA9 \uB300\uC0C1\uC774 5\uBA85\uC73C\uB85C \uC99D\uAC00\uD569\uB2C8\uB2E4."
   skillInitPercent: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1560b42418549ca4caaa6f7cbfb3433b, type: 3}
   m_Name: GuidedAttack
   m_EditorClassIdentifier: 
-  skillImages: {fileID: 21300000, guid: bc35c32228ba0ca4fb4faf8bfdab7388, type: 3}
+  skillImages: {fileID: 1421654283, guid: 072f6030f5c352b4a977d277cdca1183, type: 3}
   skillName: GuidedAttack
   skillExplainText: "skillCoolTime\uCD08\uB9C8\uB2E4 \uD0C0\uCF13\uC744 \uB530\uB77C\uAC00\uB294
     \uBE5B\uACF5\uACA9\uC744 \uC2DC\uB3C4\uD569\uB2C8\uB2E4."

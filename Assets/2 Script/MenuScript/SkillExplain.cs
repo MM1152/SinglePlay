@@ -17,10 +17,12 @@ public class SkillExplain : MonoBehaviour
         ChangeWord("skillInitPercent");
         ChangeWord("skillCoolTime");
     }
-    public void SetSkillExplain(GameObject explainTab , Text text , RectTransform rect){
+    public void SetSkillExplain(GameObject explainTab , Text text , RectTransform rect , Text skillName , Image skillImage){
         explainTab.transform.SetParent(transform);
-        rect.anchoredPosition = Vector2.zero + new Vector2(50f , -50f);
+        rect.anchoredPosition = Vector2.zero + new Vector2(0f , 100f);
         text.text = skillText;
+        skillName.text = skillData.skillName;
+        skillImage.sprite = skillData.skillImages;
         explainTab.SetActive(true);
     }
     private void ChangeWord(string word){ 

@@ -31,6 +31,8 @@ public class SoulsExplainTab : MonoBehaviour
             damagepercentText.text = "<color=yellow>" + data.curStat.attackStat + "% </color>";
             Image.sprite = data.image;
             explainText.text = data.explainText;
+            initHpText.text = "<color=red>" + data.hp + "</color>" ;
+            initDamageText.text = "<color=yellow>" + data.damage + "</color>" ;
 
             SetSkill(data);
             SetCost(data);
@@ -56,10 +58,14 @@ public class SoulsExplainTab : MonoBehaviour
     /// </summary>
     [SerializeField] GameObject SkillImage;
     [SerializeField] Transform skillImageParent;
+    [SerializeField] Text initHpText;
+    [SerializeField] Text initDamageText;
 
 
     [SerializeField] private GameObject skillExplainTab;
-    private Text skillExplainText;
+    [SerializeField] private Text skillExplainText;
+    [SerializeField] private Text skillName;
+    [SerializeField] private Image skillImage;
     private RectTransform rect;
 
     public Action SetEquip;
@@ -80,7 +86,6 @@ public class SoulsExplainTab : MonoBehaviour
             this.gameObject.SetActive(false);
         });
 
-        skillExplainText = skillExplainTab.transform.GetChild(0).GetComponent<Text>();
         rect = skillExplainTab.GetComponent<RectTransform>();
     }
     public void SettingSoulExplainTab(SoulsInfo soulsInfo, bool open_To_SoulTab, EquipSouls equip)
@@ -107,7 +112,7 @@ public class SoulsExplainTab : MonoBehaviour
                 SkillExplain skillExplain;
                 if (hit.collider.TryGetComponent<SkillExplain>(out skillExplain))
                 {
-                    skillExplain.SetSkillExplain(skillExplainTab, skillExplainText, rect);
+                    skillExplain.SetSkillExplain(skillExplainTab, skillExplainText, rect , skillName , skillImage);
                     skillExplainTab.transform.SetParent(transform);
                 }
                 else
@@ -157,7 +162,9 @@ public class SoulsExplainTab : MonoBehaviour
                 if(data.soulsSkillData[i].level <= UnitData.soulLevel) {
                     skillImagesObject[i].GetComponent<SkillExplain>().lockImage.SetActive(false);
                 }
-                
+                else {
+                    skillImagesObject[i].GetComponent<SkillExplain>().lockImage.SetActive(true);
+                }
             }
         }
 

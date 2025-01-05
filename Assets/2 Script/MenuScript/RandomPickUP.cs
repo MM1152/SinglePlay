@@ -17,6 +17,7 @@ public class RandomPickUP : MonoBehaviour
 
     public List<float> spawnPosibillity = new List<float>();
     public float maxPosibillity = 0;
+    private bool skipAnimation;
     GameData data;
     private void Awake() {
         pick_One_BNT.onClick.AddListener(() => PickUp(1));
@@ -35,6 +36,7 @@ public class RandomPickUP : MonoBehaviour
 
     void PickUp(int count) {
         //\\TODO 현재 재화에 맞춰 뽑기 실행하도록 해야함
+        skipAnimation = false;
         StartCoroutine(ShowingReclics(count));
     }
     IEnumerator ShowingReclics(int count){
@@ -47,7 +49,7 @@ public class RandomPickUP : MonoBehaviour
         for(int i = 0 ; i < count; i++) {
             float posibillity = Random.Range(0f , 1f);
             float sum = 0;
-
+            if(Input.touchCount >= 1) skipAnimation = true;
             for(int j = 0; j < ReclicsManager.Instance.reclicsDatas.Length; j++) {
                 sum += (int) ReclicsManager.Instance.reclicsDatas[j].GetReclicsData().itemclass / maxPosibillity;
                 
@@ -55,7 +57,7 @@ public class RandomPickUP : MonoBehaviour
                     ReclicsManager.Instance.reclicsDatas[j].PickUp();
                     ReclicsInfo info = Instantiate(ReclicsManager.Instance.reclicsDatas[j] , showItemsTransform.transform);
                     info.parentReclicsInfo = ReclicsManager.Instance.reclicsDatas[j];
-                    yield return new WaitForSeconds(0.2f);
+                    if(!skipAnimation) yield return new WaitForSeconds(0.2f);
                     break;
                 }
             }
