@@ -30,10 +30,12 @@ public class SoulsExplainTab : MonoBehaviour
             hppercentText.text = "<color=red>" + data.curStat.hpStat + "%</color>";
             damagepercentText.text = "<color=yellow>" + data.curStat.attackStat + "% </color>";
             Image.sprite = data.image;
-            explainText.text = data.explainText;
+
+            
             initHpText.text = "<color=red>" + data.hp + "</color>" ;
             initDamageText.text = "<color=yellow>" + data.damage + "</color>" ;
 
+            SetExplain(data);
             SetSkill(data);
             SetCost(data);
         }
@@ -44,7 +46,6 @@ public class SoulsExplainTab : MonoBehaviour
     [SerializeField] Text SliderText;
     [SerializeField] Image Image;
     [SerializeField] Text cost;
-    [SerializeField] Text explainText;
     [SerializeField] Text hppercentText;
     [SerializeField] Text damagepercentText;
     [SerializeField] Button levelUpButton;
@@ -66,6 +67,7 @@ public class SoulsExplainTab : MonoBehaviour
     [SerializeField] private Text skillExplainText;
     [SerializeField] private Text skillName;
     [SerializeField] private Image skillImage;
+    [SerializeField] private Transform levelPerAdditionalParent;
     private RectTransform rect;
 
     public Action SetEquip;
@@ -187,5 +189,16 @@ public class SoulsExplainTab : MonoBehaviour
         }
 
         cost.text = "<color=blue>" + costValue + "</color>";
+    }
+    private void SetExplain(UnitData data){
+        string[] splitText = data.explainText.Split("\n");
+
+        for(int i = 0 ; i < splitText.Length; i++) {
+            ReferenceLevelPerAdditional reference = levelPerAdditionalParent.GetChild(i).GetComponent<ReferenceLevelPerAdditional>();
+            string[] splitLevel = splitText[i].Split(":");
+
+            reference.levelText.text = splitLevel[0];
+            reference.additionalText.text = splitLevel[1];
+        }
     }
 }

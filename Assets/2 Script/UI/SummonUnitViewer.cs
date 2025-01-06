@@ -7,11 +7,12 @@ using UnityEngine.UIElements.Experimental;
 
 public class SummonUnitViewer : MonoBehaviour
 {
-
+    public string unitName;
     public Unit unit
     {
         set
         {
+            unitName = value.name;
             image.sprite = value.unit.image;
             hpbar.target = value;
             shildBar.target = value;

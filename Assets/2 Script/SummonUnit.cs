@@ -12,6 +12,8 @@ public class SummonUnit : MonoBehaviour
     Animator ani;
     Summoner summoner;
     CreateSummonUnitViewer summonUnitViewer;
+
+    bool spawn ;
     private void Awake() {
         ani = GetComponent<Animator>();
         summonUnitViewer = GameObject.FindObjectOfType<CreateSummonUnitViewer>();
@@ -23,6 +25,8 @@ public class SummonUnit : MonoBehaviour
         this.summoner = summoner;
         StartCoroutine(WaitForAnimation());
     }
+    //1.첫번째 소환시 옆에 소환된 유닛창이 생성됨
+    //2. 재생성시에 이미 소환된 유닛창을 찾아서 다시 연결시켜줘야함함
     IEnumerator WaitForAnimation(){
         GameObject unit = Instantiate(spawnEnemy , parent);
         unit.gameObject.AddComponent<Summon>();
@@ -39,8 +43,10 @@ public class SummonUnit : MonoBehaviour
         
         unit.SetActive(true);
         summoner.changeStatus += unit.GetComponent<Unit>().ChangeStats;
-        summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
-        gameObject.SetActive(false);
+        if(!spawn) summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
+        else summonUnitViewer.RedirectUnit(unit.GetComponent<Unit>());
+        spawn = true;
+        PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
     }
 
 }

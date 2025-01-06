@@ -5,4 +5,8 @@ using UnityEngine;
 public interface ISummonUnit : IFollowTarget
 {
     public Summoner summoner{get; set;}
+    public void DieSummonUnit(){
+        Debug.Log(GetType().ToString());
+        summoner.GetComponent<Resurrection>().DieUnit(GetType().ToString());
+    }
 }

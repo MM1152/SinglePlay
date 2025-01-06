@@ -15,7 +15,6 @@ public class Summoner : LongRangeScript
     public Action<Summoner> changeStatus;
     [SerializeField] GameObject EnemySpawn;
     [SerializeField] GameObject DieTitle;
-
     public Dictionary<string , float> additionalStats = new Dictionary<string , float>();
 
     bool oneTime;
@@ -29,11 +28,9 @@ public class Summoner : LongRangeScript
         Spawn(1);
         base.Awake();
         int i = 0;
+
         foreach(string key in GameManager.Instance.soulsInfo.Keys) {
-            SummonUnit SpawnUnit = Instantiate(EnemySpawn).GetComponent<SummonUnit>();
-            SpawnUnit.transform.position = spawnPosition[i++] + (Vector2)transform.position;
-            SpawnUnit.tag = tag;
-            SpawnUnit.Setting(GameManager.Instance.soulsInfo[key].SummonPrefeb , SpawnUnit.transform.position , transform.parent , this);
+            SpawnSoul(key , i++);
         }
     }
     private void Update()
@@ -120,5 +117,11 @@ public class Summoner : LongRangeScript
             yield return new WaitUntil(() => Input.touchCount >= 1);
             GameManager.Instance.ReturnToMenu();
         }
+    }
+    public void SpawnSoul(string key , int spawnPos = 0){
+        SummonUnit SpawnUnit = PoolingManager.Instance.ShowObject(EnemySpawn.name + "(Clone)",EnemySpawn).GetComponent<SummonUnit>();
+        SpawnUnit.transform.position = spawnPosition[spawnPos++] + (Vector2)transform.position;
+        SpawnUnit.tag = tag;
+        SpawnUnit.Setting(GameManager.Instance.soulsInfo[key].SummonPrefeb , SpawnUnit.transform.position , transform.parent , this);
     }
 }

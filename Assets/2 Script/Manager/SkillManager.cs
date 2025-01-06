@@ -17,7 +17,7 @@ public class SkillManager : MonoBehaviour
     [Header("SummonSkill")]
     public bool UpgradeSummonUnitSkill;    
     public bool UpgradeAutoRepair;
-    public int UpgradeMaxSummonCount = 2; //MaxSpawnCount;
+    public bool UpgradeResurrection; //MaxSpawnCount;
 
     [Space(50)]
     [Header("AttackSkill")]
@@ -62,8 +62,8 @@ public class SkillManager : MonoBehaviour
             case "자동 회복" :
                 UpgradeAutoRepair = true;
                 break;
-            case "최대 소환횟수 증가" :
-                UpgradeMaxSummonCount++;
+            case "부활" :
+                UpgradeResurrection = true;
                 break;
             case "번개 공격" :
                 LightningAttack = true;

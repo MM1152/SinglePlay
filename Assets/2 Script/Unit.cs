@@ -293,7 +293,11 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         }
         else
         {
+            ISummonUnit summonUnit;
+            if(TryGetComponent<ISummonUnit>(out summonUnit)) summonUnit.DieSummonUnit();
+            
             Destroy(gameObject);
+            
         }
 
     }

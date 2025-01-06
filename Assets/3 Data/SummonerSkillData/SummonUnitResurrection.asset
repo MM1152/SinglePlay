@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d7fd31d3eb4684478fccf7dfb96f5dd, type: 3}
-  m_Name: SummonSkill(3)
+  m_Name: SummonUnitResurrection
   m_EditorClassIdentifier: 
-  skillName: "\uCD5C\uB300 \uC18C\uD658\uD69F\uC218 \uC99D\uAC00"
-  coolTime: 0
-  skillLevel: 0
-  maxSkillLevel: 3
-  skillExplain: "\uC18C\uD658\uC218\uB4E4\uC758 \uCD5C\uB300 \uC18C\uD658\uD69F\uC218\uAC00
-    \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  skillName: "\uBD80\uD65C"
+  coolTime: 3
+  initPercent: 0
+  levelUpPercent: 0
+  maxSkillLevel: 1
+  skillExplain: "\uC804\uD22C \uC911 \uC0AC\uB9DD\uD55C \uC18C\uD658\uC218\uB97C
+    \uBD80\uD65C\uC2DC\uD0B5\uB2C8\uB2E4."

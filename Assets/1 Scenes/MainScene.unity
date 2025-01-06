@@ -28542,7 +28542,7 @@ GameObject:
   - component: {fileID: 931653712}
   - component: {fileID: 931653711}
   m_Layer: 5
-  m_Name: SummonSKill(3)
+  m_Name: SummonUnitResurrection
   m_TagString: Talent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31437,7 +31437,7 @@ MonoBehaviour:
   summons: []
   UpgradeSummonUnitSkill: 0
   UpgradeAutoRepair: 0
-  UpgradeMaxSummonCount: 2
+  UpgradeResurrection: 0
   LightningAttack: 0
   batAttack: 0
   batUpgradeAttackPercent: 0
@@ -36166,6 +36166,7 @@ GameObject:
   - component: {fileID: 2090444157}
   - component: {fileID: 2090444158}
   - component: {fileID: 2090444159}
+  - component: {fileID: 2090444160}
   - component: {fileID: 2090444155}
   m_Layer: 7
   m_Name: Player
@@ -36418,6 +36419,19 @@ MonoBehaviour:
   batPrefeb: {fileID: 2893426362029780883, guid: 51abbeef13066eb48a318d6e80af6625, type: 3}
   batUpgradeAttackPercent: {fileID: 0}
   batUpgradeCoolTime: {fileID: 0}
+--- !u!114 &2090444160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090444148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b262be07876b73f4d9f98955eecf415b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSkillCoolTime: 0
 --- !u!1 &2093336442
 GameObject:
   m_ObjectHideFlags: 0

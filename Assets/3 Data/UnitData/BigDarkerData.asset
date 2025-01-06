@@ -29,9 +29,9 @@ MonoBehaviour:
   - level: 12
     skillData: {fileID: 11400000, guid: f35950053c417b141949c85d14325737, type: 2}
   SummonPrefeb: {fileID: 1204986290273848539, guid: bfe5d88ba16381c4db6795e3d40e90b8, type: 3}
-  explainText: "Lv.3   \uCCB4\uB825 20% \uC99D\uAC00\nLv.6   \uBAA8\uB4E0\uC18D\uB3C4
-    25% \uC99D\uAC00 / \uC2A4\uD0AC 1 \uD574\uC81C\nLv.9   \uACF5\uACA9\uB825 20%
-    \uC99D\uAC00\nLv.12  \uC2A4\uD0AC 2\uD574\uC81C"
+  explainText: "Lv.3:   \uCCB4\uB825 20% \uC99D\uAC00\nLv.6:   \uBAA8\uB4E0\uC18D\uB3C4
+    25% \uC99D\uAC00 / \uC2A4\uD0AC 1 \uD574\uC81C\nLv.9:   \uACF5\uACA9\uB825 20%
+    \uC99D\uAC00\nLv.12:  \uC2A4\uD0AC 2\uD574\uC81C"
   stat:
   - 3 Hp 20
   - 6 Speed 25
