@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,7 +9,7 @@ using UnityEngine.UI;
 public delegate void SettingSlider();
 
 [DefaultExecutionOrder(0)]
-public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillity , IClassColor
+public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillity , IClassColor , ISellingAble
 {
     
     [Space(50)]
@@ -31,6 +33,10 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     public float spawnProbabillity { get ; set ; }
     public ClassStruct color { get ; set ; }
 
+
+    public Sprite image { get ; set ; }
+    public ClassStruct classStruct { get ; set ; }
+
     public SettingSlider settingslider;
     bool unLock;
     bool[] applyStat;
@@ -40,12 +46,13 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         soulLevelUpPercent = unitData.classStruct.soulLevelUpPercent;
         applyStat = new bool[unitData.stat.GetLength(0)];
 
-
         ChangeBonusStat();
         unitData.curStat.speedStat = unitData.classStruct.soulInintPercent;
 
         spawnProbabillity = unitData.typenumber;      
         Init();
+
+
     }
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -54,6 +61,8 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         }
     }
     private void Init(){
+        image = unitData.image;
+        classStruct = unitData.classStruct;
         color = unitData.classStruct;
         soulImage.sprite = unitData.image;
     }

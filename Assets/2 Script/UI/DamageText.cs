@@ -17,7 +17,8 @@ public class DamageText : MonoBehaviour
         get { return _damage; }
         set {
             _damage = value;
-            text.text = $"<color={color}>" + _damage + "</color>";
+            if(value == 0) text.text = $"<color={color}> Dodge </color>";
+            else text.text = $"<color={color}>" + _damage + "</color>";
             StartCoroutine(DamageAnimation());
         }
     }
@@ -43,6 +44,9 @@ public class DamageText : MonoBehaviour
                 break;
             case AttackType.SkillAttack :
                 color = "purple";
+                break;
+            case AttackType.Dodge :
+                color = "black";
                 break;
         }
     }

@@ -49,7 +49,7 @@ public class BatAttack : SummonerSkillParent
     }
     private void BatSkill()
     {
-        if (!SkillManager.Instance.batAttack && !summoner.isDie) return;
+        if (!SkillManager.Instance.batAttack || summoner.isDie) return;
 
         if (currSpawnCount <= maxSpawnCount)
         {

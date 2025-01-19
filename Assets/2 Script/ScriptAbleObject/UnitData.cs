@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum AttackType {
-    None , CriticalAttack , SkillAttack
+    None , CriticalAttack , SkillAttack , Dodge
 }
 public struct Status {
     public float attackStat;

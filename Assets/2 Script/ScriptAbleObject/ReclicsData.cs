@@ -16,6 +16,8 @@ public struct ClassStruct {
     public readonly float dropSoulpercent;
     public readonly float initCost;
     public readonly float levelUpCost;
+    public readonly int soulCost;
+    public readonly int gemCost;
     public readonly Color thisItemColor; //= Color.gray;
     
     public ClassStruct(ItemClass itemClass) {
@@ -29,6 +31,8 @@ public struct ClassStruct {
                 initCost = 0f;
                 levelUpCost = 0f;
                 thisItemColor = Color.clear;
+                soulCost = 0;
+                gemCost = 0;
                 break;
             case ItemClass.COMMON :
                 dropSoulpercent = 0.05f;
@@ -37,6 +41,8 @@ public struct ClassStruct {
                 initCost = 40f;
                 levelUpCost = 2.1f;
                 thisItemColor = Color.white;
+                soulCost = 500;
+                gemCost = 10;
                 break;
             case ItemClass.UNCOMMON :
                 dropSoulpercent = 0.008f;
@@ -45,6 +51,8 @@ public struct ClassStruct {
                 initCost = 80f;
                 levelUpCost = 2.2f;
                 thisItemColor = Color.green;
+                soulCost = 1000;
+                gemCost = 20;
                 break;
             case ItemClass.RARE :
                 dropSoulpercent = 0.003f;
@@ -53,6 +61,8 @@ public struct ClassStruct {
                 initCost = 120f;
                 levelUpCost = 2.3f;
                 thisItemColor = new Color(0.3443396f , 0.3443396f , 1f);
+                soulCost = 2500;
+                gemCost = 50;
                 break;
             case ItemClass.UNIQUE :
                 dropSoulpercent = 0.0008f;
@@ -61,6 +71,8 @@ public struct ClassStruct {
                 initCost = 160f;
                 levelUpCost = 2.4f;
                 thisItemColor = new Color(0.8257728f , 0 , 0.8301887f);
+                soulCost = 5000;
+                gemCost = 100;
                 break;
             case ItemClass.LEGENDARY :
                 dropSoulpercent = 0.0002f;
@@ -69,10 +81,13 @@ public struct ClassStruct {
                 initCost = 250f;
                 levelUpCost = 2.5f;
                 thisItemColor = Color.yellow;
+                soulCost = 10000;
+                gemCost = 200;
                 break;
         }
     }
 }
+
 
 
 [CreateAssetMenu (menuName = "ReclicsData")]

@@ -48,8 +48,8 @@ public class Bat : MonoBehaviour
             }
         }
 
-        if(isAttack) {
-            transform.position += (summoner.target.transform.position - transform.position) * 3f * Time.deltaTime;
+        if(isAttack ) {
+            if(target.name != "NextStage") transform.position += (summoner.target.transform.position - transform.position) * 3f * Time.deltaTime;
         }
 
         if(!summoner.isAttack) {

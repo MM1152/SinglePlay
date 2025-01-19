@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SortSoul : MonoBehaviour
 {
-    [SerializeField] SoulsInfo[] souls;
+    public SoulsInfo[] souls;
 
     private void Start() {
         souls = GameObject.FindObjectsOfType<SoulsInfo>();

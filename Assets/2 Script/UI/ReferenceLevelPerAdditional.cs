@@ -8,4 +8,5 @@ public class ReferenceLevelPerAdditional : MonoBehaviour
 {
     public Text additionalText;
     public Text levelText;
+    public GameObject lockObejct;
 }

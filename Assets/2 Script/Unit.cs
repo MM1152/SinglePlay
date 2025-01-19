@@ -9,8 +9,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
 [RequireComponent(typeof(GameObject))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 {
+    public Rigidbody2D rg;
     public UnitData unit;
     public List<SkillParent> skillData;
     [Range(0f, 1f)] public float attackObjectShowTime;
@@ -37,6 +39,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     public float spawnProbabillity { get; set; }
     public StatusEffect statusEffectMuchine;
     public bool SkillSetting;
+    public float dodge;
     [Space(75)]
     /************************************/
 
@@ -59,6 +62,8 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     /************************************/
     protected virtual void Awake()
     {
+        rg = GetComponent<Rigidbody2D>();
+        rg.gravityScale = 0;
         damageShowPos = transform.Find("DamageShowPosition");
         hpbarPos =  transform.Find("HpbarPos");
         hpbarPos.transform.position -= new Vector3(0f , 0f , hpbarPos.transform.position.z);
@@ -322,8 +327,16 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     public void Hit(float Damage , AttackType attackType = AttackType.None)
     { 
         //\\TODO 여기서 스킬데미지증가 유물에 관해서 데미지 증가 로직 적용시켜주면 될거같음.
-
         DamageText damage = PoolingManager.Instance.ShowDamage().GetComponent<DamageText>();
+
+        float rand = Random.Range(0f , 1f);
+        if(rand <= dodge) {
+            damage.Setting(AttackType.Dodge);
+            damage.damage = 0;
+            damage.target = damageShowPos;
+            return;
+        }
+
         damage.Setting(attackType);
         damage.damage = Damage;
         damage.target = damageShowPos;

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba121b15cbd8344c87c6c7860363848, type: 3}
+  m_Name: 5 BigDarkerData
+  m_EditorClassIdentifier: 
+  name: BigDarker
+  type: 1
+  typenumber: 5
+  image: {fileID: 950678681, guid: 2d487647aa4e90845a8b7b0567b32912, type: 3}
+  attackSpeed: 4
+  hp: 2000
+  mp: 0
+  damage: 20
+  speed: 0.3
+  attackRadious: 5.5
+  spawnProbabillity: 20
+  soulsSkillData:
+  - level: 6
+    skillData: {fileID: 11400000, guid: c87128a81928460489979d9bab4c011f, type: 2}
+  - level: 12
+    skillData: {fileID: 11400000, guid: f35950053c417b141949c85d14325737, type: 2}
+  SummonPrefeb: {fileID: 1204986290273848539, guid: bfe5d88ba16381c4db6795e3d40e90b8, type: 3}
+  explainText: "Lv.3:   \uCCB4\uB825 20% \uC99D\uAC00\nLv.6:   \uBAA8\uB4E0\uC18D\uB3C4
+    25% \uC99D\uAC00 / \uC2A4\uD0AC 1 \uD574\uC81C\nLv.9:   \uACF5\uACA9\uB825 20%
+    \uC99D\uAC00\nLv.12:  \uC2A4\uD0AC 2\uD574\uC81C"
+  stat:
+  - 3 Hp 20
+  - 6 Speed 25
+  - 9 Attack 20

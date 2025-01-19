@@ -28,7 +28,7 @@ public class NextMap : MonoBehaviour , IFollowTarget
     }
 
     private void Update() {
-        if(fade <= 1) fade += 0.001f;
+        if(fade <= 1) fade += 0.01f;
         material.material.SetFloat("_Fade" , fade );
     }
 

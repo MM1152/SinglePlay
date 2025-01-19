@@ -161,7 +161,7 @@ public class SoulsExplainTab : MonoBehaviour
             }
 
             for(int i = 0 ; i < data.soulsSkillData.Length; i++) {
-                if(data.soulsSkillData[i].level <= UnitData.soulLevel) {
+                if(data.soulsSkillData[i].level <= UnitData.soulLevel + 1) {
                     skillImagesObject[i].GetComponent<SkillExplain>().lockImage.SetActive(false);
                 }
                 else {
@@ -192,13 +192,20 @@ public class SoulsExplainTab : MonoBehaviour
     }
     private void SetExplain(UnitData data){
         string[] splitText = data.explainText.Split("\n");
-
+        
         for(int i = 0 ; i < splitText.Length; i++) {
             ReferenceLevelPerAdditional reference = levelPerAdditionalParent.GetChild(i).GetComponent<ReferenceLevelPerAdditional>();
             string[] splitLevel = splitText[i].Split(":");
 
             reference.levelText.text = splitLevel[0];
             reference.additionalText.text = splitLevel[1];
+            
+            if(_UnitData.soulLevel + 1 >= (i + 1) * 3) {
+                reference.lockObejct.SetActive(false);
+            }
+            else {
+                reference.lockObejct.SetActive(true);
+            }
         }
     }
 }

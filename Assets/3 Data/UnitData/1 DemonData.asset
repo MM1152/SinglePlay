@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba121b15cbd8344c87c6c7860363848, type: 3}
+  m_Name: 1 DemonData
+  m_EditorClassIdentifier: 
+  name: Demon
+  type: 30
+  typenumber: 1
+  image: {fileID: -1382200326, guid: 7488ace66b45c9d4b878db21a75e843c, type: 3}
+  attackSpeed: 2
+  hp: 25
+  mp: 0
+  damage: 5
+  speed: 0.7
+  attackRadious: 3.5
+  spawnProbabillity: 20
+  soulsSkillData:
+  - level: 12
+    skillData: {fileID: 11400000, guid: fab4dac1503b28b43a3d78c77ddecc5b, type: 2}
+  SummonPrefeb: {fileID: 5985230638804780693, guid: 9bfc3e13ebcf9c643826b081f4d27642, type: 3}
+  explainText: "Lv.3:   \uCCB4\uB825 10% \uC99D\uAC00\nLv.6:   \uBAA8\uB4E0\uC18D\uB3C4
+    10% \uC99D\uAC00\nLv.9:  \uACF5\uACA9\uB825 10% \uC99D\uAC00\nLv.12: \uACF5\uACA9
+    \uC2DC 10% \uD655\uB960\uB85C 3\uBA85\uC758 \uB300\uC0C1 \uACF5\uACA9"
+  stat:
+  - '3 Hp 10 '
+  - 6 Speed 10
+  - 9 Attack 10

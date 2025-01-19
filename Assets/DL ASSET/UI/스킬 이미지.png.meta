@@ -333,7 +333,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC2A4\uD0AC \uC774\uBBF8\uC9C0_10"
+      name: "\uAD11\uBC94\uC704 \uACF5\uACA9"
       rect:
         serializedVersion: 2
         x: 32
@@ -1147,9 +1147,9 @@ TextureImporter:
       Shild: 600879596
       Taunt: -914481243
       TelePortAttack: -1831520278
+      "\uAD11\uBC94\uC704 \uACF5\uACA9": -535939650
       "\uC2A4\uD0AC \uC774\uBBF8\uC9C0_0": 1487109015
       "\uC2A4\uD0AC \uC774\uBBF8\uC9C0_1": 1481260921
-      "\uC2A4\uD0AC \uC774\uBBF8\uC9C0_10": -535939650
       "\uC2A4\uD0AC \uC774\uBBF8\uC9C0_11": -1418893630
       "\uC2A4\uD0AC \uC774\uBBF8\uC9C0_12": -980003145
       "\uC2A4\uD0AC \uC774\uBBF8\uC9C0_14": 653654147

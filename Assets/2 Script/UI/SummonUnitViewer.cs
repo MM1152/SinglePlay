@@ -31,7 +31,7 @@ public class SummonUnitViewer : MonoBehaviour
 
         for (int i = 0; i < unit.unit.soulsSkillData.Length; i++)
         {
-            if (unit.unit.soulsSkillData[i].level <= GameDataManger.Instance.GetGameData().soulsLevel[unit.unit.typenumber - 1])
+            if (unit.unit.soulsSkillData[i].level <= GameDataManger.Instance.GetGameData().soulsLevel[unit.unit.typenumber - 1] + 1)
             {
                 string findclass = unit.unit.soulsSkillData[i].skillData.skillName;
                 SkillParent skilldata = unit.gameObject.GetComponent(Type.GetType(findclass)) as SkillParent;

@@ -69,7 +69,56 @@ public class StatusEffect
         else return true;
     }
 }
+public class AttackPowerBuffEffect : IStatusEffect
+{
+    float duration = 20f;
+    float upgradeDamage;
+    GameObject attackBuffObj;
+    public static Queue<GameObject> pools = new Queue<GameObject>();
+    public int overlapCount { get; set; }
+    public float currentDuration { get; set; }
+    Unit unit;
 
+    public void Exit()
+    {
+        unit.damage -= upgradeDamage;
+        overlapCount = 0;
+        attackBuffObj.SetActive(false);
+        pools.Enqueue(attackBuffObj);
+    }
+
+    public void Init(Unit unit, Unit tauntUnit = null)
+    {
+        this.unit = unit;
+        upgradeDamage = unit.damage * 0.3f;
+        this.unit.damage += upgradeDamage;
+
+        if (pools.Count != 0)
+            {
+                attackBuffObj = pools.Dequeue();
+            }
+            else
+            {
+                attackBuffObj = new GameObject("AttackBuffEffect" , typeof(SpriteRenderer));
+                attackBuffObj.transform.localScale = new Vector3(3f, 3f , 3f);
+                attackBuffObj.GetComponent<SpriteRenderer>().sprite = Resources.Load<GameObject>("UseSkillFolder/AttackBuff").GetComponent<SpriteRenderer>().sprite;
+            }
+        attackBuffObj.transform.position = Vector2.zero;
+        attackBuffObj.SetActive(true);
+        currentDuration = duration;
+        overlapCount++;
+    }
+
+    public void Run()
+    {
+        currentDuration -= Time.deltaTime;
+        if (currentDuration > 0)
+        {
+            attackBuffObj.transform.position = unit.transform.position + Vector3.up;
+        }
+        if(currentDuration <= 0) Exit();
+    }
+}
 public class TauntEffect : IStatusEffect
 {
     float duration = 5f;
@@ -79,13 +128,13 @@ public class TauntEffect : IStatusEffect
     public int overlapCount { get; set; }
     GameObject tauntobj;
     Unit unit;
-    Unit tauntUnit;
+    Unit usetauntUnit;
 
     public void Init(Unit unit , Unit tauntUnit = null)
     {
         this.unit = unit;
         isExit = false;
-        this.tauntUnit = tauntUnit;
+        this.usetauntUnit = tauntUnit;
         if (overlapCount <= 0)
         {
             if (pools.Count != 0)
@@ -110,7 +159,7 @@ public class TauntEffect : IStatusEffect
     public void Run()
     {
         currentDuration -= Time.deltaTime;
-        if(tauntUnit != null && tauntUnit.isDie) Exit();
+        if(usetauntUnit != null && usetauntUnit.isDie) Exit();
         if (currentDuration > 0)
         {
             tauntobj.transform.position = unit.transform.position;
