@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MakeSellingList : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class MakeSellingList : MonoBehaviour
     // 겜 시작하고 난뒤 데이터 가져와서 리스트에 담아놓은 뒤에 정렬한번 하는 식으로 데이터 가져와놓은 상태에서 상점판매 아이템 구현해주면 될거같음.
     [SerializeField] private SoulsInfo[] soulList;
     [SerializeField] private ReclicsInfo[] reclicsList;
+    [SerializeField] private Button resetShopListButton;
+
+    private CallAd resetShopListButtonAd;
     float soulListPosibility;
     float reclicsPosibillity;
     SortSoul sortedSoul;
@@ -18,7 +22,9 @@ public class MakeSellingList : MonoBehaviour
     private void Start() {
         sortedSoul = GameObject.FindObjectOfType<SortSoul>();
         sortedReclics = GameObject.FindObjectOfType<SortReclics>();
-
+        resetShopListButtonAd = GameObject.FindObjectOfType<CallAd>();
+        
+        resetShopListButtonAd.rewardFunction += SettingShopList;
         Init();
         SettingShopList();
     }
