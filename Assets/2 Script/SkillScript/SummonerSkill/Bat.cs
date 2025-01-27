@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Bat : MonoBehaviour
 {
-    Transform target;
-    Animator ani;
-    Summoner summoner;
-    SpriteRenderer sp;
-    BatAttack batAttack;
-    SkillData skillData;
+    [SerializeField] Transform target;
+    [SerializeField]Animator ani;
+    [SerializeField]Summoner summoner;
+    [SerializeField]SpriteRenderer sp;
+    [SerializeField]BatAttack batAttack;
+    [SerializeField]SkillData skillData;
 
     float attackPercent;
     float attackDamage;
@@ -48,8 +48,9 @@ public class Bat : MonoBehaviour
             }
         }
 
-        if(isAttack ) {
-            if(target.name != "NextStage") transform.position += (summoner.target.transform.position - transform.position) * 3f * Time.deltaTime;
+        if(isAttack) {
+            if(summoner.target.name != "NextStage") transform.position += (summoner.target.transform.position - transform.position) * 3f * Time.deltaTime;
+            if(summoner.target.name == "NextStage") PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
         }
 
         if(!summoner.isAttack) {

@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -944,334 +945,375 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1772498628
+    guid: 1648885460
     name: Morph
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Morph_Frame_0
+    - name: Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 739138ffd1860754081b692f20a08485
-    - name: Morph_Frame_1
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: f9ace4398470d2341bf75945c170e887
-    - name: Morph_Frame_2
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: d72a16434734bc14d88467a0e60b8f4c
-    - name: Morph_Frame_3
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 54af454f8d7683e4da5a2ebd6da0c462
-    - name: Morph_Frame_4
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: d1eb6a60af66cbd4cafa295c337717bb
-    - name: Morph_Frame_5
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: ef0b7fba2fbd1e94bac7112a961cd7a6
-    - name: Morph_Frame_6
+    - name: Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 6cf0c675cb716c54eba721279a96e650
-    - name: Morph_Frame_7
+    - name: Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: da9f8ae0755f3c149903ee1a27e04049
-    - name: Morph_Frame_8
+    - name: Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: ad56a89579bdebc4299cdb486912c461
-    - name: Morph_Frame_9
+    - name: Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: e542d2b0a8925c24ab7791706ac9a3bd
-    - name: Morph_Frame_10
+    - name: Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: ee81802f20fc35f4b84c31bd8d9671e9
-    - name: Morph_Frame_11
+    - name: Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 56c1598b3096e184da4a06494b571847
-    - name: Morph_Frame_12
+    - name: Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 7e707e50601b85f48945f494af97979c
-    - name: Morph_Frame_13
+    - name: Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 6a3acca28f6bf7d44ac9e539965aeabc
-    - name: Morph_Frame_14
+    - name: Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 3f371e4b14352f44d8127e6a0612fe67
-    - name: Morph_Frame_15
+    - name: Frame_15
       frameIndex: 15
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: e34246ccf9b3ef24dbd5d496899f9883
-    - name: Morph_Frame_16
+    - name: Frame_16
       frameIndex: 16
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 2f292179088873242bbad05269004d72
-    - name: Morph_Frame_17
+    - name: Frame_17
       frameIndex: 17
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: a471486ea46bb7a49b440af06b961244
-    - name: Morph_Frame_18
+    - name: Frame_18
       frameIndex: 18
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: cf63c2551ae88af40abb63e29dfd6d87
-    - name: Morph_Frame_19
+    - name: Frame_19
       frameIndex: 19
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: e36c94f474236334789a770f61dc19aa
-    - name: Morph_Frame_20
+    - name: Frame_20
       frameIndex: 20
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 06b4de8b23cfce6448b2ed6ae2922d9a
-    - name: Morph_Frame_21
+    - name: Frame_21
       frameIndex: 21
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 953d12164ca25a946a63ca28db01a169
-    - name: Morph_Frame_22
+    - name: Frame_22
       frameIndex: 22
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: b1e5d18ad415d02478cbbefdf52d5879
-    - name: Morph_Frame_23
+    - name: Frame_23
       frameIndex: 23
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 9c6fc799ae3665840bd8852774d588b1
-    - name: Morph_Frame_24
+    - name: Frame_24
       frameIndex: 24
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: accaece4095166c47bca784cbd7807be
-    - name: Morph_Frame_25
+    - name: Frame_25
       frameIndex: 25
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: ecd0d8e28f51e7b47b5129cc1085e818
-    - name: Morph_Frame_26
+    - name: Frame_26
       frameIndex: 26
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: e50d3e6f88458e24a987651692f20276
-    - name: Morph_Frame_27
+    - name: Frame_27
       frameIndex: 27
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 14c55862890c9c249ac0869ece947407
-    - name: Morph_Frame_28
+    - name: Frame_28
       frameIndex: 28
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: ba5b0721fe23c9f4ead292618d7d933b
-    - name: Morph_Frame_29
+    - name: Frame_29
       frameIndex: 29
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: a5f9671217aed6f4e90b9a1516f7fa72
-    - name: Morph_Frame_30
+    - name: Frame_30
       frameIndex: 30
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: b502b6c6e390a6f47ad75dfe610e8836
-    - name: Morph_Frame_31
+    - name: Frame_31
       frameIndex: 31
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 30001e93957f3904eb9caaab0e16b0d2
-    - name: Morph_Frame_32
+    - name: Frame_32
       frameIndex: 32
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 7826ef2a1f9fde24cb25e36fb6eb9bf3
-    - name: Morph_Frame_33
+    - name: Frame_33
       frameIndex: 33
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: 5243f864e6591e04dba1c3b8ceef7ad6
-    - name: Morph_Frame_34
+    - name: Frame_34
       frameIndex: 34
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: a8cb1b4ae07b9b44ea6c0b4756561c91
-    - name: Morph_Frame_35
+    - name: Frame_35
       frameIndex: 35
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: a4f098c3c59a32540b1402d4c3003da2
-    - name: Morph_Frame_36
+    - name: Frame_36
       frameIndex: 36
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: c6ee5954adf84284494dc4189379c4db
-    - name: Morph_Frame_37
+    - name: Frame_37
       frameIndex: 37
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: d68cccec88a2e43448c9465d7b9e99a3
-    - name: Morph_Frame_38
+    - name: Frame_38
       frameIndex: 38
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: e537dbd7f80ca034b8fc525380a1967c
-    - name: Morph_Frame_39
+    - name: Frame_39
       frameIndex: 39
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
         width: 256
         height: 160
       spriteId: fd00567e727f7e344a388080686b8096
-    - name: Morph_Frame_40
+    - name: Frame_40
       frameIndex: 40
+      additiveSortOrder: 0
       cellRect:
         x: -51
         y: -32
@@ -1285,3 +1327,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 128, y: 128}
+  previousTextureSize: {x: 2048, y: 1024}

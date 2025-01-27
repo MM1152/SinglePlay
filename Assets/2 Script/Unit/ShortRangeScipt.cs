@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class ShortRangeScipt : Unit
 {
-    //\\TODO MUSHROOM 스크립스 생성후 머시룸에 붙여줘서 사용하도록 , ISummonUnit 상속받아 소환가능한 객체로 만들기
     GameObject attackprefeb;
     ShortRangeAttack shortRangeAttack;
-    protected bool attackPattenChange;
+    protected bool attackPattenChange;  // 어택이 기본 ShortRangeScript의 어택방식을 따르지 않을때 선언
 
     protected void OnEnable()
     {

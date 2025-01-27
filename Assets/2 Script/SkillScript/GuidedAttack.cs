@@ -48,6 +48,7 @@ public class GuidedAttack : MonoBehaviour , SkillParent
         {
             GameObject skill = PoolingManager.Instance.ShowObject(guidedSkillPrefeb.name + "(Clone)", guidedSkillPrefeb);
             skill.GetComponent<WideRangeSkill>().unit = unit;
+            skill.GetComponent<WideRangeSkill>().skillData = soulsSkillData;
             skill.transform.position = Vector2.Lerp(transform.position, unit.target.transform.position, i);
             yield return new WaitForSeconds(0.2f);
         }

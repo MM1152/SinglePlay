@@ -91,7 +91,6 @@ public class Summoner : LongRangeScript
                 maxHp += unit.hp * value;
                 hp += hp * value;
                 break;
-            
             case "DAMAGE":
                 damage += unit.damage * value;
                 break;
@@ -105,7 +104,7 @@ public class Summoner : LongRangeScript
                 break;
         }
 
-        changeStatus(this);
+        changeStatus?.Invoke(this);
     }
     private IEnumerator DieAnimation(){
         if(isDie) {

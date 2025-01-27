@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class SortSoul : MonoBehaviour
 {
     public SoulsInfo[] souls;
-
+    public Action WaitSoulSort;
     private void Start() {
         souls = GameObject.FindObjectsOfType<SoulsInfo>();
         for(int i = 0; i < souls.Length; i++) {
@@ -17,6 +18,7 @@ public class SortSoul : MonoBehaviour
         for(int i = 0; i < souls.Length; i++) {
             souls[i].transform.SetSiblingIndex(i);
         }
+        WaitSoulSort?.Invoke();
     }
 
 }

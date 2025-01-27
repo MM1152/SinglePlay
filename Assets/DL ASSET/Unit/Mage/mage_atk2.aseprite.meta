@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -484,150 +485,168 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1708476599
+    guid: 2040403885
     name: mage_atk2
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: mage_atk2_Frame_1
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 40
         y: 16
         width: 48
         height: 17
       spriteId: ead9f51e780352f4ba8657b123dacdff
-    - name: mage_atk2_Frame_2
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 40
         y: 16
         width: 48
         height: 17
       spriteId: 67f7cbf916868894190e69073ac7c49a
-    - name: mage_atk2_Frame_3
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 40
         y: 16
         width: 48
         height: 17
       spriteId: ca62d430e0518da408d944b2aa4e1b9f
-    - name: mage_atk2_Frame_4
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 40
         y: 16
         width: 48
         height: 20
       spriteId: c24452998f3f92b46ba5dab5070ac637
-    - name: mage_atk2_Frame_5
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 40
         y: 16
         width: 48
         height: 22
       spriteId: b38c970a687b6b349a128b429f62e58c
-    - name: mage_atk2_Frame_6
+    - name: Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 40
         y: 16
         width: 44
         height: 24
       spriteId: e0f4e6bd067e85542a8ef76b65656c79
-    - name: mage_atk2_Frame_7
+    - name: Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 49
         y: 16
         width: 29
         height: 11
       spriteId: 1a221d00921108e4dabd7fe3d7ec7c3b
-    - name: mage_atk2_Frame_8
+    - name: Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 49
         y: 16
         width: 29
         height: 11
       spriteId: 0da5d663e6e30a84fa308a3691b13079
-    - name: mage_atk2_Frame_9
+    - name: Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 49
         y: 16
         width: 29
         height: 11
       spriteId: dcb21a2b0f2962a478b18a86a2e6ba36
-    - name: mage_atk2_Frame_10
+    - name: Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 49
         y: 16
         width: 29
         height: 13
       spriteId: 0fb0225f2a6d9af429f91fe3be935fd9
-    - name: mage_atk2_Frame_11
+    - name: Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: 49
         y: 16
         width: 29
         height: 15
       spriteId: bbde7192e49357444a16552443bd12dd
-    - name: mage_atk2_Frame_12
+    - name: Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: 49
         y: 17
         width: 29
         height: 15
       spriteId: f4a54324cc1400c449d378a1b3b9ff7e
-    - name: mage_atk2_Frame_13
+    - name: Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: 27
         y: 16
         width: 74
         height: 25
       spriteId: 5accc746e1669974eae7876bdb4344bc
-    - name: mage_atk2_Frame_14
+    - name: Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: 27
         y: 16
         width: 74
         height: 25
       spriteId: 150852036e67c3c49a137269188dba20
-    - name: mage_atk2_Frame_15
+    - name: Frame_15
       frameIndex: 15
+      additiveSortOrder: 0
       cellRect:
         x: 27
         y: 16
         width: 74
         height: 25
       spriteId: 96ba283aea0c5c7409e1333b5b115b76
-    - name: mage_atk2_Frame_16
+    - name: Frame_16
       frameIndex: 16
+      additiveSortOrder: 0
       cellRect:
         x: 26
         y: 16
         width: 75
         height: 30
       spriteId: 0353c16a07c75ad4f9178d5b99336165
-    - name: mage_atk2_Frame_17
+    - name: Frame_17
       frameIndex: 17
+      additiveSortOrder: 0
       cellRect:
         x: 23
         y: 16
         width: 78
         height: 33
       spriteId: d13e33f904bf7b14d9f583bb395a7615
-    - name: mage_atk2_Frame_18
+    - name: Frame_18
       frameIndex: 18
+      additiveSortOrder: 0
       cellRect:
         x: 22
         y: 17
@@ -641,3 +660,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 128, y: 64}
+  previousTextureSize: {x: 256, y: 256}

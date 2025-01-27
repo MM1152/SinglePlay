@@ -6,6 +6,7 @@ public class AttackSkill : SummonerSkillParent
 {
 
     [SerializeField] GameObject skillPrefeb;
+    LightningAttack lightning;
     Summoner summoner;
     Animator ani;
 
@@ -14,7 +15,9 @@ public class AttackSkill : SummonerSkillParent
     {
         ani = GetComponent<Animator>();
         summoner = GetComponent<Summoner>();
-        
+        lightning = PoolingManager.Instance.ShowObject(skillPrefeb.name +"(Clone)" , skillPrefeb).GetComponent<LightningAttack>();   
+        lightning.summoner = summoner; 
+        PoolingManager.Instance.ReturnObject(lightning.name , lightning.gameObject);
     }
     private void Update() {
         if(SkillManager.Instance.LightningAttack &&  skillData == null) {
@@ -28,9 +31,8 @@ public class AttackSkill : SummonerSkillParent
         if (SkillManager.Instance.LightningAttack && summoner.target != null && !summoner.isDie && summoner.target.name != "NextStage")
         {
             if(currentSkillCoolTime <= 0){
-                LightningAttack lightning = PoolingManager.Instance.ShowObject(skillPrefeb.name +"(Clone)" , skillPrefeb).GetComponent<LightningAttack>();   
-                lightning.summoner = summoner; 
-
+                PoolingManager.Instance.ShowObject(skillPrefeb.name +"(Clone)");        
+        
                 summoner.target.GetComponent<IDamageAble>().Hit(summoner.damage * skillData.initPercent , AttackType.SkillAttack);
                 SetCoolTime();
             }

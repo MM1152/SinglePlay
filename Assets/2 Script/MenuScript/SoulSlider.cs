@@ -8,6 +8,7 @@ public class SoulSlider : MonoBehaviour
     Slider slider;
     SoulsInfo soul;
     [SerializeField] Text countText; 
+    [SerializeField] Image levelUpImage;
     // Start is called before the first frame update`
     void Awake()
     {
@@ -22,6 +23,10 @@ public class SoulSlider : MonoBehaviour
         
         slider.maxValue = soul.soulMaxCount;
         slider.value = soul.soulCount;
+
+        if(soul.soulMaxCount <= soul.soulCount) levelUpImage.gameObject.SetActive(true);
+        else levelUpImage.gameObject.SetActive(false);
+        
         countText.text = "" + soul.soulCount + "/" + soul.soulMaxCount; 
     }
 }

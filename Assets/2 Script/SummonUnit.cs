@@ -15,6 +15,7 @@ public class SummonUnit : MonoBehaviour
 
     bool spawn ;
     private void Awake() {
+        spawn = false;
         ani = GetComponent<Animator>();
         summonUnitViewer = GameObject.FindObjectOfType<CreateSummonUnitViewer>();
     }

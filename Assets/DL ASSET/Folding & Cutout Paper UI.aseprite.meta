@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -544,174 +545,195 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 583031793
+    guid: -279813899
     name: Folding & Cutout Paper UI
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Folding & Cutout Paper UI_Frame_0
+    - name: Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 160
         y: 48
         width: 4576
         height: 4345
       spriteId: dc20fee1603cbeb44afbaacf177aaec5
-    - name: Folding & Cutout Paper UI_Frame_1
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 160
         y: 48
         width: 4576
         height: 800
       spriteId: 78ef234f3fa922345a6845f139c442f9
-    - name: Folding & Cutout Paper UI_Frame_2
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 192
         y: 64
         width: 4416
         height: 704
       spriteId: d561d98b17c24604b9a0d290df1109e1
-    - name: Folding & Cutout Paper UI_Frame_3
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 189
         y: 247
         width: 3800
         height: 4146
       spriteId: 675f9a22aa0dd2144a179e1c17582850
-    - name: Folding & Cutout Paper UI_Frame_4
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 161
         y: 2941
         width: 1827
         height: 1213
       spriteId: dbe3d0d1199c47443a218f2f59be4f31
-    - name: Folding & Cutout Paper UI_Frame_5
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 176
         y: 752
         width: 2416
         height: 3376
       spriteId: 1af5f2884fced864abab70c1cbae1530
-    - name: Folding & Cutout Paper UI_Frame_6
+    - name: Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 176
         y: 752
         width: 2400
         height: 3361
       spriteId: 23c3931404cb9b840b87f58dcc5bb8fc
-    - name: Folding & Cutout Paper UI_Frame_7
+    - name: Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 912
         y: 2885
         width: 1306
         height: 625
       spriteId: 497fc2c862f7d124ca8f5b2da27c4bad
-    - name: Folding & Cutout Paper UI_Frame_8
+    - name: Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 207
         y: 2998
         width: 175
         height: 143
       spriteId: 6c149f21faad07c4fb6986d712780f6e
-    - name: Folding & Cutout Paper UI_Frame_9
+    - name: Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 221
         y: 2998
         width: 1717
         height: 1095
       spriteId: a9fa67843c0898e4795032c660618cf2
-    - name: Folding & Cutout Paper UI_Frame_10
+    - name: Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 344
         y: 2888
         width: 1815
         height: 1132
       spriteId: 130135d3f0412434485ab2c670321883
-    - name: Folding & Cutout Paper UI_Frame_11
+    - name: Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: 245
         y: 3542
         width: 1561
         height: 509
       spriteId: bc4547d5c8b033f42b020d7f3ecc8fe3
-    - name: Folding & Cutout Paper UI_Frame_12
+    - name: Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: 244
         y: 3000
         width: 1470
         height: 1065
       spriteId: 2b08c8856195a2b4eac84861025d44a6
-    - name: Folding & Cutout Paper UI_Frame_13
+    - name: Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: 236
         y: 3560
         width: 1219
         height: 521
       spriteId: c2700914a95245b4981599297af931f2
-    - name: Folding & Cutout Paper UI_Frame_14
+    - name: Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: 224
         y: 3286
         width: 633
         height: 769
       spriteId: 95cad87820fadef41b90c271e354b08e
-    - name: Folding & Cutout Paper UI_Frame_15
+    - name: Frame_15
       frameIndex: 15
+      additiveSortOrder: 0
       cellRect:
         x: 221
         y: 2891
         width: 1973
         height: 1215
       spriteId: 189d00a788c46204089f0a2154631ea3
-    - name: Folding & Cutout Paper UI_Frame_16
+    - name: Frame_16
       frameIndex: 16
+      additiveSortOrder: 0
       cellRect:
         x: 177
         y: 2682
         width: 1647
         height: 85
       spriteId: 45a56a43238fd6649b58a49214b9a4d3
-    - name: Folding & Cutout Paper UI_Frame_17
+    - name: Frame_17
       frameIndex: 17
+      additiveSortOrder: 0
       cellRect:
         x: 938
         y: 3672
         width: 59
         height: 38
       spriteId: bbb645258e075424ba1a9ba3837b6d3b
-    - name: Folding & Cutout Paper UI_Frame_18
+    - name: Frame_18
       frameIndex: 18
+      additiveSortOrder: 0
       cellRect:
         x: 956
         y: 3681
         width: 23
         height: 23
       spriteId: 3f84bec6e7b41d34ea01002687c83d23
-    - name: Folding & Cutout Paper UI_Frame_19
+    - name: Frame_19
       frameIndex: 19
+      additiveSortOrder: 0
       cellRect:
         x: 935
         y: 3675
         width: 64
         height: 18
       spriteId: 28a95e278f1806c408b0591ef4b21422
-    - name: Folding & Cutout Paper UI_Frame_20
+    - name: Frame_20
       frameIndex: 20
+      additiveSortOrder: 0
       cellRect:
         x: 930
         y: 3672
@@ -725,3 +747,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 4848, y: 4464}
+  previousTextureSize: {x: 16384, y: 8192}

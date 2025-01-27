@@ -9,6 +9,7 @@ public class ReclicsSlider : MonoBehaviour
     Slider slider;
     ReclicsInfo reclics;
     [SerializeField] Text countText; 
+    [SerializeField] Image levelUpImage;
     // Start is called before the first frame update`
     void Awake()
     {
@@ -23,6 +24,10 @@ public class ReclicsSlider : MonoBehaviour
         
         slider.maxValue = reclics.GetReclicsMaxCount();
         slider.value = reclics.GetReclicsCount();
+        
+        if(reclics.GetReclicsMaxCount() <= reclics.GetReclicsCount()) levelUpImage.gameObject.SetActive(true);
+        else levelUpImage.gameObject.SetActive(false);
+
         countText.text = "" + reclics.GetReclicsCount() + "\t" + reclics.GetReclicsMaxCount(); 
     }
 }

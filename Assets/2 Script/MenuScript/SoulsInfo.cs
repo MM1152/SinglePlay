@@ -20,7 +20,7 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     public Text levelText;
     [SerializeField] Slider slider;
     [SerializeField] GameObject lockObejct;
-
+    public int cost;
     
     public int soulLevel {private set; get;}
     public int soulCount {private set; get;}
@@ -36,6 +36,8 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
 
     public Sprite image { get ; set ; }
     public ClassStruct classStruct { get ; set ; }
+    public string saveDataType { get; set; }
+    public int saveDatanum { get; set; }
 
     public SettingSlider settingslider;
     bool unLock;
@@ -51,8 +53,6 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
 
         spawnProbabillity = unitData.typenumber;      
         Init();
-
-
     }
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -63,6 +63,8 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     private void Init(){
         image = unitData.image;
         classStruct = unitData.classStruct;
+        saveDataType = "Soul";
+        saveDatanum = unitData.typenumber - 1;
         color = unitData.classStruct;
         soulImage.sprite = unitData.image;
     }
@@ -78,11 +80,16 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         CheckLevel();
 
         ChangeBonusStat();
+        SetCost();
         levelText.text = this.soulLevel + 1 + "";
         lockObejct.SetActive(false);
         unLock = true;
     }
     public SoulsInfo LevelUp(){
+        if(GameDataManger.Instance.GetGameData().soul < cost) return this;
+        
+        GameDataManger.Instance.GetGameData().soul -= cost;
+
         soulLevel++;
         soulCount -= soulMaxCount;
         soulMaxCount = (this.soulLevel + 1) * 2;
@@ -91,10 +98,16 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         CheckLevel();
         ChangeBonusStat();
         ChangeStatus();
-
+        SetCost();
+        
         settingslider?.Invoke();
-
+        
         return this;
+    }
+    public void GetSoul(){
+        soulCount++;
+        Setting(soulCount , soulLevel);
+        ChangeStatus();
     }
     public void ChangeBonusStat(){
         unitData.curStat.attackStat = unitData.classStruct.soulInintPercent + (unitData.classStruct.soulLevelUpPercent * soulLevel) + unitData.bonusStat.attackStat;
@@ -117,9 +130,24 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         GameData data = GameDataManger.Instance.GetGameData();
         data.soulsLevel[unitData.typenumber - 1] = soulLevel;
         data.soulsCount[unitData.typenumber - 1] = soulCount;
+        
         GameDataManger.Instance.SaveData();
     }
+    void SetCost(){
+        cost = (int)(unitData.classStruct.initCost * ((soulLevel + 1)* unitData.classStruct.levelUpCost));
 
+        int copyCost = cost;
+        int length = 0;
+        while(copyCost != 0) {
+            length++;
+            copyCost /= 10;
+        }
+
+        if(length - 2 >= 0) {
+            cost = cost - cost % (int)Math.Pow(10 , length - 2); 
+        }
+
+    }
     public void CheckLevel(){
         for(int i = 0; i < unitData.stat.GetLength(0); i++) {
             string[] split = unitData.stat[i].Split(" "); //0 : 레벨 , 1 : 무슨종류의 스탯인지 , 2 : 적용할 스탯의 수치

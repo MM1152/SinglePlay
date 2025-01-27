@@ -14,4 +14,11 @@ public class SettingReward : MonoBehaviour
 
         countText.gameObject.SetActive(true);
     }
+    
+    public void Setting(Sprite image , int count , float bonus){
+        rewardImage.sprite = image;
+        countText.text = count + " ";
+        countText.text += $"<color=green>({bonus})</color>";
+        countText.gameObject.SetActive(true);
+    }
 }

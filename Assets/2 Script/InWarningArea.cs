@@ -20,7 +20,6 @@ public class InWarningArea : MonoBehaviour
         if(attackDelay <= 0f) {
             if(hitObject.Count > 0) {
                 foreach(GameObject hit in hitObject) {
-                    Debug.Log(hit);
                     hit.GetComponent<IDamageAble>().Hit(unit.damage * percent);
                 }
             } 
@@ -41,5 +40,6 @@ public class InWarningArea : MonoBehaviour
     }
     public void SetPosition(Vector2 pos){
         transform.position = pos;
+        transform.position += Vector3.forward * 6f;
     }
 }

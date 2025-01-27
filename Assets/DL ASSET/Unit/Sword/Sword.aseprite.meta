@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -1344,494 +1345,555 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -31456551
+    guid: 1070957949
     name: Sword
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Sword_Frame_0
+    - name: Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: fa7e9b65079392840aeb433b5c1c3376
-    - name: Sword_Frame_1
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 7c4fb1bef0a94c2498cf90b83e342c73
-    - name: Sword_Frame_2
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 81392455a7aac694f90380e7d245fd4c
-    - name: Sword_Frame_3
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 7c9e0b9c39ec9124fabe914e4e8b44d0
-    - name: Sword_Frame_4
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: b32d739a1e5ae5d448661d07b4c87047
-    - name: Sword_Frame_5
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: eb22fe76d857f75429e6b74ae791b179
-    - name: Sword_Frame_6
+    - name: Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 1ddc9bb7192481e499fafc2207b4142b
-    - name: Sword_Frame_7
+    - name: Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 4dc1c7dd0eda9e040a39ffce3e051b49
-    - name: Sword_Frame_8
+    - name: Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 9d15073e57bdcdc49825288fcf4881fe
-    - name: Sword_Frame_9
+    - name: Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 38425f83cc37a3f438c221a1784f1d76
-    - name: Sword_Frame_10
+    - name: Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 982d32cffd84c5d4ca6976038565a403
-    - name: Sword_Frame_11
+    - name: Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 64040ac0eb198f2419621a9196ac80a9
-    - name: Sword_Frame_12
+    - name: Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: ab854ad1a1de1a14ea1792f95f24b39c
-    - name: Sword_Frame_13
+    - name: Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 731347cb16013f045808c17540e9f35e
-    - name: Sword_Frame_14
+    - name: Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 61f721fc87572454b93a12cb1945e259
-    - name: Sword_Frame_15
+    - name: Frame_15
       frameIndex: 15
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: b44f854ef6f62c44cb9e0f5e2a1ea154
-    - name: Sword_Frame_16
+    - name: Frame_16
       frameIndex: 16
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: d3089010fca33cd4ab51ea60cab22e1e
-    - name: Sword_Frame_17
+    - name: Frame_17
       frameIndex: 17
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 1bc28022a6bdc804b934240612a10c83
-    - name: Sword_Frame_18
+    - name: Frame_18
       frameIndex: 18
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: d95e87ac3a4e4c848b1f1f962dc733e4
-    - name: Sword_Frame_19
+    - name: Frame_19
       frameIndex: 19
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 4c84f80b295b77d4f8125c1778067ebd
-    - name: Sword_Frame_20
+    - name: Frame_20
       frameIndex: 20
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: ecc3e1ac76e34e643bc223aa70d84bee
-    - name: Sword_Frame_21
+    - name: Frame_21
       frameIndex: 21
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 0807f81eaa996ab4c9c6ae9d5a78a10e
-    - name: Sword_Frame_22
+    - name: Frame_22
       frameIndex: 22
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: a8ce7555add115f44aa2ebac6c86a5b8
-    - name: Sword_Frame_23
+    - name: Frame_23
       frameIndex: 23
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 7dfd0075979cb90468924307c2c646d4
-    - name: Sword_Frame_24
+    - name: Frame_24
       frameIndex: 24
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 6c7d7af62870d2447aadfe24190245dc
-    - name: Sword_Frame_25
+    - name: Frame_25
       frameIndex: 25
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: c6eb98cb2d6d81b4d9bd438defcb4064
-    - name: Sword_Frame_26
+    - name: Frame_26
       frameIndex: 26
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 7bb5a4292cd16064a8270af326927416
-    - name: Sword_Frame_27
+    - name: Frame_27
       frameIndex: 27
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 3ed208d85ae55a44fac7248c1842b9b8
-    - name: Sword_Frame_28
+    - name: Frame_28
       frameIndex: 28
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: f615af64bc8027b41a0e00c26a157787
-    - name: Sword_Frame_29
+    - name: Frame_29
       frameIndex: 29
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 294cb8d1d3cab6b4ba93a0790b92ad5c
-    - name: Sword_Frame_30
+    - name: Frame_30
       frameIndex: 30
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 5ac771d0799d05149aad872bfe1b9d52
-    - name: Sword_Frame_31
+    - name: Frame_31
       frameIndex: 31
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: cf3845de74905c74798823418bad0873
-    - name: Sword_Frame_32
+    - name: Frame_32
       frameIndex: 32
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 002c8e8fc1e0a954786d7f64f15b6f78
-    - name: Sword_Frame_33
+    - name: Frame_33
       frameIndex: 33
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: d5523b0ba888b3348bf547e5f0e13572
-    - name: Sword_Frame_34
+    - name: Frame_34
       frameIndex: 34
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: e2b6de430a7742c4d84e2fc4ba6141e2
-    - name: Sword_Frame_35
+    - name: Frame_35
       frameIndex: 35
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 527a91168481c364e83272a38987038a
-    - name: Sword_Frame_36
+    - name: Frame_36
       frameIndex: 36
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 46c51338cbb561a40b36b225c9144a9b
-    - name: Sword_Frame_37
+    - name: Frame_37
       frameIndex: 37
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 9aecf9941f9d1194f82bff053c4f700f
-    - name: Sword_Frame_38
+    - name: Frame_38
       frameIndex: 38
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 8ac5d2a405be21449be8a617518664ee
-    - name: Sword_Frame_39
+    - name: Frame_39
       frameIndex: 39
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: deb5345302b35a340a4b980332da2dc9
-    - name: Sword_Frame_40
+    - name: Frame_40
       frameIndex: 40
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: d37d70e3783ea39428e11c8577f2df2a
-    - name: Sword_Frame_41
+    - name: Frame_41
       frameIndex: 41
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: e8155d90eef0bc4418db789577a4496e
-    - name: Sword_Frame_42
+    - name: Frame_42
       frameIndex: 42
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 16bd36c339f7cf148aa20d13f8d5be1d
-    - name: Sword_Frame_43
+    - name: Frame_43
       frameIndex: 43
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 9820c4ead6a4cf64593c48bd6407f56d
-    - name: Sword_Frame_44
+    - name: Frame_44
       frameIndex: 44
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 4d396f15939d86146b6a9f30d7bae8f9
-    - name: Sword_Frame_45
+    - name: Frame_45
       frameIndex: 45
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 2989f5b55fa7d7b48a1fb5b187367590
-    - name: Sword_Frame_46
+    - name: Frame_46
       frameIndex: 46
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: f3ea4fe97eb808c4081b2b067a477a0e
-    - name: Sword_Frame_47
+    - name: Frame_47
       frameIndex: 47
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 3fb786c287937b444b49b246dd4a10f0
-    - name: Sword_Frame_48
+    - name: Frame_48
       frameIndex: 48
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 049d70d656efc7f49ada0c2b4898ea96
-    - name: Sword_Frame_49
+    - name: Frame_49
       frameIndex: 49
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: c03cc8831bffa594ab4fbfdd335f6469
-    - name: Sword_Frame_50
+    - name: Frame_50
       frameIndex: 50
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 1145c78f2d35cb749a65f44546e83bf5
-    - name: Sword_Frame_51
+    - name: Frame_51
       frameIndex: 51
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: c6a0755265e442b48b027b4c8deb6cec
-    - name: Sword_Frame_52
+    - name: Frame_52
       frameIndex: 52
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 93bd90780c8fb964f9e89e78adecd124
-    - name: Sword_Frame_53
+    - name: Frame_53
       frameIndex: 53
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 20bb121f962509343a5fdbabd30ccf73
-    - name: Sword_Frame_54
+    - name: Frame_54
       frameIndex: 54
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 85fff34319a4f7547a32c594c5912571
-    - name: Sword_Frame_55
+    - name: Frame_55
       frameIndex: 55
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 6bc880a9ed3146b49b7c4934565fad37
-    - name: Sword_Frame_56
+    - name: Frame_56
       frameIndex: 56
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 8981fc035746b5242a7b1d0a186cbb08
-    - name: Sword_Frame_57
+    - name: Frame_57
       frameIndex: 57
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 45bfa13478ea74c4ba53cbfc79446404
-    - name: Sword_Frame_58
+    - name: Frame_58
       frameIndex: 58
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: 524ef46d87e5f6141a72b73e928b15f3
-    - name: Sword_Frame_59
+    - name: Frame_59
       frameIndex: 59
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
         width: 129
         height: 128
       spriteId: eb699f5b51d3b034b9ce27b9b8297ba0
-    - name: Sword_Frame_60
+    - name: Frame_60
       frameIndex: 60
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -64
@@ -1845,3 +1907,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 128, y: 64}
+  previousTextureSize: {x: 1024, y: 2048}

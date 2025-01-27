@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,8 @@ using UnityEngine;
 public class SortReclics : MonoBehaviour
 {
     public ReclicsInfo[] reclicsInfo;
-    void Start()
+    public Action WaitReclicsSort;
+    public void Start()
     {
         reclicsInfo = GameObject.FindObjectsOfType<ReclicsInfo>();
         
@@ -20,5 +22,7 @@ public class SortReclics : MonoBehaviour
         for(int i = 0; i < reclicsInfo.Length; i++) {
             reclicsInfo[i].transform.SetSiblingIndex(i);
         }
+        WaitReclicsSort?.Invoke();
     }
+    
 }

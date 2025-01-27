@@ -23,7 +23,7 @@ public class SoulsExplainTab : MonoBehaviour
             slider.value = value.soulCount;
             levelText.text = value.soulLevel + 1 + "";
             SliderText.text = value.soulCount + " / " + value.soulMaxCount;
-
+            cost.text = "<color=blue>" + value.cost + "</color>";
 
             UnitData data = value.GetUnitData();
 
@@ -37,7 +37,6 @@ public class SoulsExplainTab : MonoBehaviour
 
             SetExplain(data);
             SetSkill(data);
-            SetCost(data);
         }
     }
 
@@ -170,25 +169,6 @@ public class SoulsExplainTab : MonoBehaviour
             }
         }
 
-    }
-    private void SetCost(UnitData data)
-    {
-        int costValue = (int)(data.classStruct.initCost * ((UnitData.soulLevel + 1)* data.classStruct.levelUpCost));
-        
-        Debug.Log(costValue);
-        // 길이 구하고 길이 -2 까지의 밑의 값은 0으로 바꿔줄꺼임
-        int copyCost = costValue;
-        int length = 0;
-        while(copyCost != 0) {
-            length++;
-            copyCost /= 10;
-        }
-
-        if(length - 2 >= 0) {
-            costValue = costValue - costValue % (int)Math.Pow(10 , length - 2); 
-        }
-
-        cost.text = "<color=blue>" + costValue + "</color>";
     }
     private void SetExplain(UnitData data){
         string[] splitText = data.explainText.Split("\n");

@@ -530,7 +530,7 @@ TextureImporter:
         width: 42
         height: 3
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -538,6 +538,48 @@ TextureImporter:
       bones: []
       spriteID: 3ae11779db4df154cb959c5109be04e4
       internalID: 1630264742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PickUpButton
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 209
+        width: 46
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95fea5bef0ed5d2478401deca44186e9
+      internalID: -1148480117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PickUpButton(1)
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 209
+        width: 30
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6953c77da71459348a08521d7b1d1f90
+      internalID: -1257131077
       vertices: []
       indices: 
       edges: []
@@ -571,6 +613,8 @@ TextureImporter:
       GUI_9: -1741179183
       NonePush: -1572683697
       P: -1524056946
+      PickUpButton: -1148480117
+      PickUpButton(1): -1257131077
       Push: 216588475
       Stop Button: -852268479
   mipmapLimitGroupName: 

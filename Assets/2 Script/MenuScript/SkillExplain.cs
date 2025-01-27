@@ -16,6 +16,7 @@ public class SkillExplain : MonoBehaviour
         skillText = skillData.skillExplainText;
         ChangeWord("skillInitPercent");
         ChangeWord("skillCoolTime");
+        ChangeWord("attackPercent");
     }
     public void SetSkillExplain(GameObject explainTab , Text text , RectTransform rect , Text skillName , Image skillImage){
         explainTab.transform.SetParent(transform);

@@ -14,7 +14,7 @@ public class MapSetting : MonoBehaviour
         
     }
     private void Start() {
-        StartCoroutine(WaitForDownLoadData());
+        StartCoroutine(GameDataManger.WaitForDownLoadData(() => { Setting(GameDataManger.Instance.GetGameData().unLockMap); }));
     }
 
     public void Setting(List<bool> mapData){
@@ -23,10 +23,5 @@ public class MapSetting : MonoBehaviour
 
             mapList[i].unLock = true;
         }
-    }
-
-    IEnumerator WaitForDownLoadData(){
-        yield return new WaitUntil(() => GameDataManger.Instance.dataDownLoad);
-        Setting(GameDataManger.Instance.GetGameData().unLockMap);
     }
 }

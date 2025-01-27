@@ -55,6 +55,10 @@ public class GameManager : MonoBehaviour
         if(clearMonseter <= 0) ClearLevel();
     }
     public void ClearLevel(){
+        if(currentStage >= maxStage) {
+            ReturnToMenu();
+            return;
+        }
         gameClear = true;
         nextStage.SetActive(true);
     }
@@ -69,18 +73,25 @@ public class GameManager : MonoBehaviour
         Time.timeScale = size;
     }
     public void ReturnToMenu() {
-        rewardViewer.SetActive(true);
-        //\\TODO 여기다가 결과창 보여주면 될거같은데.
-        // 우짜지 ㅅㅂ..
-        //\\TODO 업적시스템 추가
-        //\\플레이어 자체 레벨 시스템 구현
-        //\\레벨당 보상 구현 ㄱ 
+
         Delegate[] dele = dropSoul.GetInvocationList();
 
         // DropSoul에 참조된 모든 함수 제거
         foreach(DropSoul function in dele) {
             dropSoul -= function;
         }  
+    
+        if(currentStage == 1 && dropSoulList.Count == 0) {
+            SceneManager.LoadScene("MenuScene"); 
+            return;
+        }
+        
+        //\\TODO 여기다가 결과창 보여주면 될거같은데.
+        // 우짜지 ㅅㅂ..
+        //\\TODO 업적시스템 추가
+        //\\플레이어 자체 레벨 시스템 구현
+        //\\레벨당 보상 구현 ㄱ 
+        rewardViewer.SetActive(true);
         dropSoulList.Clear();
     }
     public void ReturnToMain(){

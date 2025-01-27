@@ -33,15 +33,13 @@ public class SelectReward : MonoBehaviour
         bnt.onClick.AddListener(() => GetReward());
 
     }
+
     private void Update(){
         if(EventSystem.current.currentSelectedGameObject == this.gameObject) {
             isSelect = true;
-            explanationText.text = this.rewardData.explain;
         }else {
             isSelect = false;
         }
-
-        
     }
     
     private void GetReward(){
@@ -49,10 +47,12 @@ public class SelectReward : MonoBehaviour
             Debug.Log(rewardData.type.ToString());
             RewardManager.Instance.SetSummonerStat.Invoke(rewardData.type.ToString() , rewardData.percent);
             transform.parent.gameObject.SetActive(false);
+            rewardData = null;
         }
     }
     public void SetRewardData(ClearRewardData data) {
         rewardData = data;
+        explanationText.text = rewardData.explain;
         rewardImage.sprite = rewardData.image;
     }
 }

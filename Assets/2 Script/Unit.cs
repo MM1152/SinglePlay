@@ -1,8 +1,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Profiling;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -13,6 +11,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 {
     public Rigidbody2D rg;
+    public CircleCollider2D collider;
     public UnitData unit;
     public List<SkillParent> skillData;
     [Range(0f, 1f)] public float attackObjectShowTime;
@@ -60,9 +59,11 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
 
     /************************************/
+
     protected virtual void Awake()
     {
         rg = GetComponent<Rigidbody2D>();
+        collider = GetComponent<CircleCollider2D>();
         rg.gravityScale = 0;
         damageShowPos = transform.Find("DamageShowPosition");
         hpbarPos =  transform.Find("HpbarPos");
@@ -94,15 +95,15 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             }
             if (!isAttack && !isSkill) {
                 currentAttackSpeed -= Time.deltaTime;
+                Flip();
             }
-            if (!isAttack && !isSkill && !GameManager.Instance.gameClear && target != null)
+            if (!isAttack && !isSkill && !GameManager.Instance.gameClear && target != null && !GameManager.Instance.playingAnimation)
             {
                 foreach (SkillParent skill in skillData)
                 {
                     skill.UseSkill();
                 }
             }
-            Flip();
             ani?.SetBool("Move", FollowTarget());
 
         }
@@ -112,6 +113,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     {
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss")) targetList = GameObject.Find("PlayerList");
         if (gameObject.CompareTag("Player")) targetList = GameObject.Find("EnemyList");
+        collider.enabled = true;
         isDie = false;
         isAttack = false;
         hp = maxHp;
@@ -221,12 +223,12 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     {
         if (hp <= 0)
         {
-
+            collider.enabled = false;
             isDie = true;
             canFollow = false;
             ani?.SetBool("Die", isDie);
             target = null;
-            if (gameObject.CompareTag("Enemy") && !GameManager.Instance.gameClear)
+            if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss") && !GameManager.Instance.gameClear)
             {
                 EnemySpawner.Instance.CheckDie();
                 DropSoul();
@@ -297,12 +299,8 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             PoolingManager.Instance.ReturnObject(gameObject.name, gameObject);
         }
         else
-        {
-            ISummonUnit summonUnit;
-            if(TryGetComponent<ISummonUnit>(out summonUnit)) summonUnit.DieSummonUnit();
-            
+        {     
             Destroy(gameObject);
-            
         }
 
     }

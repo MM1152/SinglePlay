@@ -21,14 +21,18 @@ public class EndOfGameReward : MonoBehaviour
         });
     }
     private void OnEnable() {
-        //GameDataManger.Instance.GetGameData().reclicsLevel[6];
+        float bonusSoul = 1;
+        if(GameDataManger.Instance.GetGameData().reclicsLevel[6] > 0) {
+            bonusSoul += (GameManager.Instance.reclicsDatas[6].inItPercent + (GameManager.Instance.reclicsDatas[6].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[6] - 1)) / 100f;
+        }
+       
         GameData data = GameDataManger.Instance.GetGameData();
-        if(GameManager.Instance.currentStage == 1) return;
         SettingReward soul = Instantiate(reward , transform);
 
         soul.Setting(soulImage , (int)(GameManager.Instance.obtainablegoods * (GameManager.Instance.currentStage / (float) GameManager.Instance.maxStage)));
-        data.soul += (int)(GameManager.Instance.obtainablegoods * (GameManager.Instance.currentStage / (float) GameManager.Instance.maxStage));
+        data.soul += (int)(GameManager.Instance.obtainablegoods * (GameManager.Instance.currentStage / (float) GameManager.Instance.maxStage) * bonusSoul);
         Debug.Log((int)(GameManager.Instance.obtainablegoods * (GameManager.Instance.currentStage / (float) GameManager.Instance.maxStage)));
+
         foreach(UnitData unitData in GameManager.Instance.dropSoulList.Keys) {
            SettingReward unitSoul = Instantiate(reward , transform);
            unitSoul.Setting(unitData.image , GameManager.Instance.dropSoulList[unitData]); 

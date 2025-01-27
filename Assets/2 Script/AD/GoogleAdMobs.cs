@@ -7,7 +7,7 @@ using UnityEngine;
 public class GoogleAdMobs : MonoBehaviour
 {
     #if UNITY_ANDROID
-        private string _adUnitId = "ca-app-pub-3940256099942544/5224354917";
+        private string _adUnitId = "ca-app-pub-8044713535911201/2430838782";
     #elif UNITY_IPHONE
         private string _adUnitId = "ca-app-pub-3940256099942544/1712485313";
     #else
@@ -32,7 +32,8 @@ public class GoogleAdMobs : MonoBehaviour
         {
 
         });
-
+        LoadRewardAds();
+        
     }
 
     public void LoadRewardAds()
@@ -58,22 +59,22 @@ public class GoogleAdMobs : MonoBehaviour
             Debug.Log("Ad Load response : " + ad.GetResponseInfo());
 
             _rewardedAd = ad;
-            //RegisterEventHandlers(_rewardedAd);
+            RegisterEventHandlers(_rewardedAd);
         });
 
     }
 
-    public void ShowRewardedAd(Action callback)
+    public bool ShowRewardedAd(Action callback)
     {
-        LoadRewardAds();
+        
         if (_rewardedAd != null && _rewardedAd.CanShowAd())
         {
-            Debug.Log("Showing AD");
             _rewardedAd.Show((Reward reward) => {
                 callback();
             });
+            return true;
         }else {
-            Debug.LogError("Fail to Load ADs");
+            return false;
         }
     }
     
@@ -84,6 +85,11 @@ public class GoogleAdMobs : MonoBehaviour
         {
             Debug.LogError("Interstitial ad failed to open full screen content " +
                        "with error : " + error);
+            LoadRewardAds();
+        };
+        ad.OnAdFullScreenContentClosed += () => {
+            Debug.Log("Close ad tab");
+            LoadRewardAds();
         };
     }
     

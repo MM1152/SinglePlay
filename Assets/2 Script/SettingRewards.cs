@@ -5,14 +5,26 @@ using UnityEngine;
 public class SettingRewards : MonoBehaviour
 {
     [SerializeField] SelectReward[] selectReward;
-    
-    
+    [SerializeField] ReRollReward reRollReward;
+    public int maxCount;
+
+    private void Awake() {
+        maxCount = 1;
+    }
+
     private void OnEnable() {
+        SetReward();
+        reRollReward.Setting(maxCount , SetReward);
+        StartCoroutine(WaitForAnimationCorutine());
+    }
+
+    public void SetReward(){
         
         for(int i = 0; i < selectReward.Length; i++) {
+            selectReward[i].gameObject.SetActive(false);
             selectReward[i].SetRewardData(RewardManager.Instance.GetRewardData());
+            selectReward[i].gameObject.SetActive(true);
         }
-        StartCoroutine(WaitForAnimationCorutine());
     }
 
     private void OnDisable() {

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba121b15cbd8344c87c6c7860363848, type: 3}
+  m_Name: 11 SlimeBossData
+  m_EditorClassIdentifier: 
+  name: SlimeBoss
+  type: 1
+  typenumber: 11
+  image: {fileID: 180330062, guid: 320b2090c79097c429efabe5f6e757de, type: 3}
+  attackSpeed: 1.5
+  hp: 1900
+  mp: 0
+  damage: 70
+  speed: 0.8
+  attackRadious: 1.5
+  spawnProbabillity: 20
+  soulsSkillData:
+  - level: 6
+    skillData: {fileID: 11400000, guid: 78d3e5fdead6be04681ad6e2cabe068e, type: 2}
+  - level: 12
+    skillData: {fileID: 11400000, guid: 71479158516b69e48b3206be736a3a60, type: 2}
+  SummonPrefeb: {fileID: 3563165754382229759, guid: 2bbb662890e2102438554b93b44aeaa8, type: 3}
+  explainText: "Lv.3:   \uCCB4\uB825 15% \uC99D\uAC00\nLv.6:   \uBAA8\uB4E0\uC18D\uB3C4
+    30% \uC99D\uAC00 / \uC2A4\uD0AC 1\uD574\uC81C\nLv.9:   \uACF5\uACA9\uB825 20%
+    \uC99D\uAC00\nLv.12: \uC2A4\uD0AC 2\uD574\uC81C"
+  stat:
+  - 3 Hp 15
+  - 6 Speed 30
+  - 9 Attack 20

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,31 +8,57 @@ public class ChangeShopListButton : MonoBehaviour
     [SerializeField] private Text countText;
     
     public int maxCount;
-    private int count;
+    private int _count;
+    public int count {
+        get {
+            return _count;
+        }
+        set {
+            _count = value;
+            countText.text = "<color=yellow>"+ count + " / " + maxCount + "</color>";
+            CheckCount();
+        }
+    }
     private Button button;
     private CallAd callAd;
-    private MakeSellingList makeSellingList;
+    [SerializeField] private MakeSellingList makeSellingList;
     void Awake()
     {        
         TryGetComponent<CallAd>(out callAd);
         makeSellingList = GameObject.FindObjectOfType<MakeSellingList>();
-        count = maxCount;
         button = GetComponent<Button>();
+        count = maxCount;
+        
 
-        button.onClick.AddListener(() => {
-            count--;
-            countText.text = "<color=yellow>"+ count + " / " + maxCount + "</color>";
-            CheckCount();
-        });
         if(callAd == null) {
             button.onClick.AddListener(() => {
                 //\\TODO : 재화에 맞춰 상점 초기화 시켜주기
-                makeSellingList.SettingShopList();
+                if(GameDataManger.Instance.GetGameData().soul >= 100) {
+                    count--;
+
+                    GameDataManger.Instance.GetGameData().soul -= 100;
+                    GameDataManger.Instance.SaveData();
+                    makeSellingList.SettingShopList();
+
+                    GameDataManger.Instance.GetGameData().shopListChangeCount[0] = count;
+                    GameDataManger.Instance.SaveData();
+                }
+                else return;
             });
         }
         
+
     }
-    
+    void Start() {
+        GameDataManger.Instance.StartCoroutine(GameDataManger.WaitForDownLoadData(() => {
+            Debug.Log("Setting ChangeAbleCount in shop" + GameDataManger.Instance.GetGameData().shopListChangeCount[0]);
+            if(callAd == null) count = GameDataManger.Instance.GetGameData().shopListChangeCount[0];
+            else count = GameDataManger.Instance.GetGameData().shopListChangeCount[1];
+            
+            
+            CheckCount();
+        }));
+    }
     void CheckCount(){
         if(count == -1) return;
 

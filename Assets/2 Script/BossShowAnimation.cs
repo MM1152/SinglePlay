@@ -6,17 +6,12 @@ using UnityEngine.UI;
 public class BossShowAnimation : MonoBehaviour
 {
     [SerializeField] Text BossName;
-    [SerializeField] Image ShowBossImage;
     [SerializeField] Image SliderBossImage;
     [SerializeField] Slider slider;
     
-    Animator ani;
-    private void Awake() {
-        ani = ShowBossImage.GetComponent<Animator>();
-    }
+    [SerializeField] Animator ani;
     public Sprite setBossImage {
         set { 
-            ShowBossImage.sprite = value;
             SliderBossImage.sprite = value;
         }
     }
@@ -36,8 +31,6 @@ public class BossShowAnimation : MonoBehaviour
 
     public void SetAnimation(bool value){
         transform.GetChild(0).gameObject.SetActive(value);
-        transform.GetChild(1).gameObject.SetActive(value);
-        
     }
 
     public bool IsPlayAnimation(){

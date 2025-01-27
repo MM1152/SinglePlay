@@ -26,6 +26,8 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
 
     public Sprite image { get ; set ; }
     public ClassStruct classStruct { get ; set; }
+    public string saveDataType { get; set ; }
+    public int saveDatanum { get ; set ; }
 
     public Action setSlider;
 
@@ -38,9 +40,11 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         reclicsData.classStruct = new ClassStruct(reclicsData.itemclass);
         color = reclicsData.classStruct;
         spawnProbabillity = reclicsData.reclicsType;
-        reclicsTab = GameObject.FindObjectOfType<ReclicsTab>();
+
         image = reclicsData.image;
         classStruct = reclicsData.classStruct;
+        saveDataType = "Reclics";
+        saveDatanum = reclicsData.reclicsType - 1;
     }
 
     public void OnPointerClick(PointerEventData eventData)
