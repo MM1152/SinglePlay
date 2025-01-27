@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-public class CallAd : MonoBehaviour
+public class ChangeShopListButtonAd : MonoBehaviour
 {
     Button button;
     ChangeShopListButton changeBNT;

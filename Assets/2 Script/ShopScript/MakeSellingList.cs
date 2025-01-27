@@ -14,7 +14,7 @@ public class MakeSellingList : MonoBehaviour
     [SerializeField] private ReclicsInfo[] reclicsList;
     
 
-    private CallAd resetShopListButtonAd;
+    private ChangeShopListButtonAd resetShopListButtonAd;
     float soulListPosibility;
     float reclicsPosibillity;
     SortSoul sortedSoul;
@@ -22,7 +22,7 @@ public class MakeSellingList : MonoBehaviour
     private void Start() {
         sortedSoul = GameObject.FindObjectOfType<SortSoul>();
         sortedReclics = GameObject.FindObjectOfType<SortReclics>();
-        resetShopListButtonAd = GameObject.FindObjectOfType<CallAd>();
+        resetShopListButtonAd = GameObject.FindObjectOfType<ChangeShopListButtonAd>();
         
         resetShopListButtonAd.rewardFunction += SettingShopList;
         Init();

@@ -882,7 +882,9 @@ MonoBehaviour:
   - {fileID: 1502417407}
   - {fileID: 126878075}
   - {fileID: 797557343}
-  reRollReward: {fileID: 1125573349}
+  reRollReward:
+  - {fileID: 1125573349}
+  - {fileID: 93386317}
   maxCount: 0
 --- !u!1 &93386312
 GameObject:
@@ -896,6 +898,8 @@ GameObject:
   - component: {fileID: 93386316}
   - component: {fileID: 93386315}
   - component: {fileID: 93386314}
+  - component: {fileID: 93386317}
+  - component: {fileID: 93386318}
   m_Layer: 5
   m_Name: ReRollClearReward (AD)
   m_TagString: Untagged
@@ -1006,6 +1010,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93386312}
   m_CullTransparentMesh: 1
+--- !u!114 &93386317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93386312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5ff3ddf050f78246b74e2fb29ff1a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 398727532}
+--- !u!114 &93386318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93386312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd62924e97fb3e4f81045b87ff847e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &125871328
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,11 +20,11 @@ public class ChangeShopListButton : MonoBehaviour
         }
     }
     private Button button;
-    private CallAd callAd;
+    private ChangeShopListButtonAd callAd;
     [SerializeField] private MakeSellingList makeSellingList;
     void Awake()
     {        
-        TryGetComponent<CallAd>(out callAd);
+        TryGetComponent<ChangeShopListButtonAd>(out callAd);
         makeSellingList = GameObject.FindObjectOfType<MakeSellingList>();
         button = GetComponent<Button>();
         count = maxCount;
@@ -37,10 +37,8 @@ public class ChangeShopListButton : MonoBehaviour
                     count--;
 
                     GameDataManger.Instance.GetGameData().soul -= 100;
-                    GameDataManger.Instance.SaveData();
-                    makeSellingList.SettingShopList();
-
                     GameDataManger.Instance.GetGameData().shopListChangeCount[0] = count;
+                    makeSellingList.SettingShopList();
                     GameDataManger.Instance.SaveData();
                 }
                 else return;

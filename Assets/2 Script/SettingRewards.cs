@@ -5,7 +5,7 @@ using UnityEngine;
 public class SettingRewards : MonoBehaviour
 {
     [SerializeField] SelectReward[] selectReward;
-    [SerializeField] ReRollReward reRollReward;
+    [SerializeField] ReRollReward[] reRollReward;
     public int maxCount;
 
     private void Awake() {
@@ -14,7 +14,8 @@ public class SettingRewards : MonoBehaviour
 
     private void OnEnable() {
         SetReward();
-        reRollReward.Setting(maxCount , SetReward);
+        reRollReward[0].Setting(maxCount , SetReward);
+        reRollReward[1].Setting(maxCount , SetReward);
         StartCoroutine(WaitForAnimationCorutine());
     }
 
