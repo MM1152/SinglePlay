@@ -59,6 +59,7 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         if(unLock) {
             soulsTab.settingSoul(this , true , null);
         }
+       
     }
     private void Init(){
         image = unitData.image;

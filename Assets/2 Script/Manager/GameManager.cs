@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
 
     public DropSoul dropSoul;
     public GameObject nextStage;
-    
 
+    public int mapindex;
     public string mapName;
     public int maxStage;
     public float obtainablegoods;
@@ -56,6 +56,11 @@ public class GameManager : MonoBehaviour
     }
     public void ClearLevel(){
         if(currentStage >= maxStage) {
+            if(mapindex + 1 > GameDataManger.Instance.GetGameData().unLockMap.Count) {
+                GameDataManger.Instance.GetGameData().unLockMap.Add(true);
+                GameDataManger.Instance.SaveData();
+            }
+            
             ReturnToMenu();
             return;
         }
@@ -91,6 +96,7 @@ public class GameManager : MonoBehaviour
         //\\TODO 업적시스템 추가
         //\\플레이어 자체 레벨 시스템 구현
         //\\레벨당 보상 구현 ㄱ 
+
         rewardViewer.SetActive(true);
         dropSoulList.Clear();
     }

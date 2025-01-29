@@ -36,7 +36,7 @@ public class SelectMap : MonoBehaviour , IPointerClickHandler
             mapInfomationTab.infomation = infomationText;
             mapInfomationTab.obtainablegoods = obtainablegoodds;
             mapInfomationTab.maxStage = maxStage;
-            
+            mapInfomationTab.mapindex = transform.GetSiblingIndex();
             infomationTab.SetActive(true);
         }
     }

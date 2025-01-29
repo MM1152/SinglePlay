@@ -13,6 +13,7 @@ public class MapInfomationTab : MonoBehaviour
     public string name;
     public string infomation;
     public int maxStage;
+    public int mapindex;
     public float obtainablegoods;
 
     private void OnEnable() {
@@ -40,6 +41,7 @@ public class MapInfomationTab : MonoBehaviour
     void EnterMap(){
         GameManager.Instance.mapName = name;
         GameManager.Instance.maxStage = maxStage;
+        GameManager.Instance.mapindex = mapindex;
         GameManager.Instance.obtainablegoods = obtainablegoods;
         GameManager.Instance.ReturnToMain();
     }
