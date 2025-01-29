@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 71e79bcd14347e744a2825fd57fb49dd
+guid: 29dba35a8480f8d47b57a15005061e48
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StoneWizardGoblin - walk_0
+      name: StoneWizardGoblin
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
-        height: 128
+        x: 50
+        y: 48
+        width: 21
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5438e443aceeab3489c19d3454705894
-      internalID: -781099090
+      spriteID: 7e9cb89faba471c4fb73f1287b679cc0
+      internalID: 1186941117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StoneWizardGoblin - walk_1
+      name: StoneWizardGoblin - idle 1_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
+        x: 178
+        y: 48
+        width: 21
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06e47c66a2a6a4040898dedea3f03fe9
-      internalID: 317715424
+      spriteID: 835e363a79a811b45ae9285f53b7c86e
+      internalID: 1123342555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StoneWizardGoblin - walk_2
+      name: StoneWizardGoblin - idle 1_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
-        height: 128
+        x: 306
+        y: 48
+        width: 21
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9386feb52b7dfbe4a97288c37a5f3e1a
-      internalID: -102818534
+      spriteID: a54c6fc6b471b16459b13d603b8bdd53
+      internalID: -1147762845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StoneWizardGoblin - walk_3
+      name: StoneWizardGoblin - idle 1_3
       rect:
         serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
+        x: 434
+        y: 48
+        width: 21
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: deecafa42b55b184b8ac7350e6f78c42
-      internalID: -72419318
+      spriteID: 135dbfec158496c4d81da7fceed75fc1
+      internalID: 1922179859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StoneWizardGoblin - walk_4
+      name: StoneWizardGoblin - idle 1_4
       rect:
         serializedVersion: 2
-        x: 512
-        y: 0
-        width: 128
-        height: 128
+        x: 562
+        y: 48
+        width: 21
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3f7c2c80a594f546ad812c027028637
-      internalID: 1229216533
+      spriteID: b7902cca94329124881b69f1a81f683c
+      internalID: 794179828
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StoneWizardGoblin - walk_5
+      name: StoneWizardGoblin - idle 1_5
       rect:
         serializedVersion: 2
-        x: 640
-        y: 0
-        width: 128
-        height: 128
+        x: 690
+        y: 48
+        width: 21
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64d4b171bc32ccc458ce419caccae33d
-      internalID: -1978064514
+      spriteID: 91c3b5a50a50b0447ab9197bc3514def
+      internalID: 1898528882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StoneWizardGoblin - walk_6
+      name: StoneWizardGoblin - idle 1_6
       rect:
         serializedVersion: 2
-        x: 768
-        y: 0
-        width: 128
-        height: 128
+        x: 818
+        y: 48
+        width: 21
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,20 +250,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 415131b130bf3a94dac1443309defde9
-      internalID: 315120238
+      spriteID: b601a4dd71058eb4b8eccb560b8dc650
+      internalID: 884922567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StoneWizardGoblin - walk_7
+      name: StoneWizardGoblin - idle 1_7
       rect:
         serializedVersion: 2
-        x: 896
-        y: 0
-        width: 128
-        height: 128
+        x: 946
+        y: 48
+        width: 21
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,50 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a27953e0bd317dc49ba495ddc2debf4d
-      internalID: 316295616
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StoneWizardGoblin - walk_8
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1aee8b88e6dce174392889408adb2ad5
-      internalID: -761544244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StoneWizardGoblin - walk_9
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3855d261f79aa1409d006919a1b75e1
-      internalID: -1511101668
+      spriteID: cbcaca2769db7b04db6efa39283044b1
+      internalID: -1205312223
       vertices: []
       indices: 
       edges: []
@@ -330,16 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      StoneWizardGoblin - walk_0: -781099090
-      StoneWizardGoblin - walk_1: 317715424
-      StoneWizardGoblin - walk_2: -102818534
-      StoneWizardGoblin - walk_3: -72419318
-      StoneWizardGoblin - walk_4: 1229216533
-      StoneWizardGoblin - walk_5: -1978064514
-      StoneWizardGoblin - walk_6: 315120238
-      StoneWizardGoblin - walk_7: 316295616
-      StoneWizardGoblin - walk_8: -761544244
-      StoneWizardGoblin - walk_9: -1511101668
+      StoneWizardGoblin: 1186941117
+      StoneWizardGoblin - idle 1_1: 1123342555
+      StoneWizardGoblin - idle 1_2: -1147762845
+      StoneWizardGoblin - idle 1_3: 1922179859
+      StoneWizardGoblin - idle 1_4: 794179828
+      StoneWizardGoblin - idle 1_5: 1898528882
+      StoneWizardGoblin - idle 1_6: 884922567
+      StoneWizardGoblin - idle 1_7: -1205312223
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

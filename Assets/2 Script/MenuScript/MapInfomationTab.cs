@@ -43,6 +43,6 @@ public class MapInfomationTab : MonoBehaviour
         GameManager.Instance.maxStage = maxStage;
         GameManager.Instance.mapindex = mapindex;
         GameManager.Instance.obtainablegoods = obtainablegoods;
-        GameManager.Instance.ReturnToMain();
+        GameManager.Instance.ReturnToMain(name + "Scene");
     }
 }

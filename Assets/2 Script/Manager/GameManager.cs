@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         rewardViewer.SetActive(true);
         dropSoulList.Clear();
     }
-    public void ReturnToMain(){
+    public void ReturnToMain(string SceneName = "MainScene"){
         dropSoul += delegate(UnitData unitData) {
             GameData gameData = GameDataManger.Instance.GetGameData();
             if(dropSoulList.ContainsKey(unitData)) dropSoulList[unitData]++;
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
             gameData.soulsCount[unitData.typenumber - 1]++;
             GameDataManger.Instance.SaveData();
         };
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene(SceneName);
         ResumeGame();
     }
     public IEnumerator WaitForNextMap(Action action) {
