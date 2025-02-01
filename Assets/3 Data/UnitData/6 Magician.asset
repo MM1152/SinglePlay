@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba121b15cbd8344c87c6c7860363848, type: 3}
   m_Name: 6 Magician
   m_EditorClassIdentifier: 
-  name: MushRoom
-  type: 15
+  name: Magicain
+  type: 20
   typenumber: 6
   image: {fileID: 280682692, guid: f4efd4b1401d6d244bbdd0d9166c5ee0, type: 3}
   attackSpeed: 1

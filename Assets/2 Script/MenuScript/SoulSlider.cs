@@ -16,6 +16,7 @@ public class SoulSlider : MonoBehaviour
         soul = transform.parent.GetComponent<SoulsInfo>();
         soul.settingslider += Setting;
         gameObject.SetActive(false);
+
     }
 
     public void Setting(){
@@ -27,6 +28,6 @@ public class SoulSlider : MonoBehaviour
         if(soul.soulMaxCount <= soul.soulCount) levelUpImage.gameObject.SetActive(true);
         else levelUpImage.gameObject.SetActive(false);
         
-        countText.text = "" + soul.soulCount + "/" + soul.soulMaxCount; 
+        countText.text = "" + soul.soulCount + " / " + soul.soulMaxCount; 
     }
 }

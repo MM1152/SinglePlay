@@ -71,6 +71,7 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         _reclicsLevel = reclicsLevel;
         _reclicsCount = reclicsCount;
         _reclicsMaxCount = _reclicsLevel == 0 ? _reclicsMaxCount : (int) math.pow((_reclicsLevel + 1) , 2);
+        Check();
         levelText.text = _reclicsLevel + 1 + "";
     }
     

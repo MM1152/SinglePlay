@@ -182,9 +182,50 @@ public class TauntEffect : IStatusEffect
 
 
     }
-
 }
+public class BurnEffect : IStatusEffect
+{
+    public int overlapCount { get ; set ; }
+    public float currentDuration { get ; set ; }
+    GameObject burnEffect;
+    float repeatDamageTime;
+    float duration = 3f;
+    Unit unit;
+    Unit applyUnit;
+    public void Exit()
+    {
+        overlapCount = 0;
+    }
 
+    public void Init(Unit unit, Unit tauntUnit = null)
+    {
+        this.unit = unit;
+        applyUnit = tauntUnit;
+        currentDuration = duration;
+        burnEffect = new GameObject("Burn");
+        burnEffect.transform.localScale = Vector2.one * 0.5f;
+                
+        if(overlapCount < 5) overlapCount++;
+    }
+
+    public void Run()
+    {
+        repeatDamageTime += Time.deltaTime;
+        currentDuration -= Time.deltaTime;
+        burnEffect.transform.position = unit.transform.position;
+        if(repeatDamageTime >= 0.5f) {
+            repeatDamageTime = 0;
+            RepeatDamage();
+        }
+        if(currentDuration <= 0) {
+            Exit();
+        }
+    }
+    void RepeatDamage(){
+        //\\TODO : 화상데미지는 주황색으로 표시?
+        unit.Hit(applyUnit.damage * (0.1f * overlapCount)  , AttackType.SkillAttack);
+    }
+}
 
 public interface IStatusEffect
 {

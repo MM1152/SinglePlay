@@ -16,7 +16,8 @@ public class EndOfGameReward : MonoBehaviour
     private void Awake() {
         getReward.onClick.AddListener(() => {
             GameDataManger.Instance.SaveData();
-            SceneManager.LoadScene("MenuScene"); 
+            GameManager.Instance.ResumeGame();
+            LoadingScene.LoadScene("MenuScene");
             parent.SetActive(false);
         });
     }

@@ -10,7 +10,10 @@ public class SetGoodsCount : MonoBehaviour
     [SerializeField] Text gemCountText;
     
     private void Start() {
-        Setting(GameDataManger.Instance.GetGameData().soul , GameDataManger.Instance.GetGameData().gem);
+        GameDataManger.Instance.StartCoroutine(GameDataManger.WaitForDownLoadData(() => {
+            Setting(GameDataManger.Instance.GetGameData().soul , GameDataManger.Instance.GetGameData().gem);
+            GameDataManger.Instance.goodsSetting = Setting;
+        }));
     }
 
     void Setting(int soul , int gem){

@@ -39,6 +39,7 @@ public class MapInfomationTab : MonoBehaviour
         enterButton.onClick.AddListener(EnterMap);
     }
     void EnterMap(){
+        
         GameManager.Instance.mapName = name;
         GameManager.Instance.maxStage = maxStage;
         GameManager.Instance.mapindex = mapindex;

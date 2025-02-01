@@ -17,16 +17,17 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     [SerializeField] SoulsTab soulsTab;
     [SerializeField] UnitData unitData;
     [SerializeField] Image soulImage ;
+    public SoulsInfo parentSoulsInfo; 
     public Text levelText;
     [SerializeField] Slider slider;
     [SerializeField] GameObject lockObejct;
     public int cost;
     
-    public int soulLevel {private set; get;}
-    public int soulCount {private set; get;}
-    public int soulMaxCount {private set; get;}
-    public float soulInintPercent {private set; get;}
-    public float soulLevelUpPercent {private set; get;}
+    public int soulLevel; 
+    public int soulCount;
+    public int soulMaxCount;
+    public float soulInintPercent;
+    public float soulLevelUpPercent;
 
 
 
@@ -40,8 +41,11 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     public int saveDatanum { get; set; }
 
     public SettingSlider settingslider;
-    bool unLock;
+    public bool unLock;
     bool[] applyStat;
+    private void Update(){
+        Check();
+    }
     private void Awake() {
         unitData.classStruct = new ClassStruct(unitData.type);
         soulInintPercent = unitData.classStruct.soulInintPercent;
@@ -53,13 +57,22 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
 
         spawnProbabillity = unitData.typenumber;      
         Init();
+        
     }
     public void OnPointerClick(PointerEventData eventData)
     {
         if(unLock) {
-            soulsTab.settingSoul(this , true , null);
+            if(parentSoulsInfo == null) soulsTab.settingSoul(this , true , null);
+            else soulsTab.settingSoul(parentSoulsInfo , true , null);
         }
        
+    }
+    private void Check(){
+        if(soulCount > 0 || soulLevel > 0) {
+            lockObejct.SetActive(false);
+            unLock = true;
+            settingslider?.Invoke();
+        }
     }
     private void Init(){
         image = unitData.image;
@@ -76,15 +89,12 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         this.soulLevel = soulLevel;
         soulMaxCount = (this.soulLevel + 1) * 2;
         
-        settingslider?.Invoke();
-        
+        Check();
         CheckLevel();
 
         ChangeBonusStat();
         SetCost();
         levelText.text = this.soulLevel + 1 + "";
-        lockObejct.SetActive(false);
-        unLock = true;
     }
     public SoulsInfo LevelUp(){
         if(GameDataManger.Instance.GetGameData().soul < cost) return this;
@@ -107,7 +117,6 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     }
     public void GetSoul(){
         soulCount++;
-        Setting(soulCount , soulLevel);
         ChangeStatus();
     }
     public void ChangeBonusStat(){

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 588f38e4ca0792d4f8e311e74d40b6b2, type: 3}
   m_Name: 11 SkillDamage
   m_EditorClassIdentifier: 
-  itemclass: 15
+  itemclass: 20
   image: {fileID: 21300000, guid: 8860198ac109ec846bf7756298ef527f, type: 3}
   reclicsType: 11
   reclicsExplain: "\uBAA8\uB4E0 \uC720\uB2DB\uC758 \uC2A4\uD0AC \uACF5\uACA9\uB825\uC774

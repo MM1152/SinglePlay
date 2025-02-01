@@ -24,8 +24,6 @@ public class ReRollReward : MonoBehaviour
     void Awake()
     {
         button = GetComponent<Button>();
-        
-
     }
     private void Start() {
         ReRollRewardAd reRollReward;
@@ -38,6 +36,8 @@ public class ReRollReward : MonoBehaviour
             button.onClick.AddListener(() =>
             {
                 --count;
+                GameDataManger.Instance.GetGameData().shopListChangeCount[0] = count;
+                GameDataManger.Instance.SaveData();
                 action?.Invoke();
             });
         }        

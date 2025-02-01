@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 5 BigDarkerData
   m_EditorClassIdentifier: 
   name: BigDarker
-  type: 1
+  type: 3
   typenumber: 5
   image: {fileID: 950678681, guid: 2d487647aa4e90845a8b7b0567b32912, type: 3}
   attackSpeed: 4

@@ -22,6 +22,7 @@ public class SkillManager : MonoBehaviour
     [Space(50)]
     [Header("AttackSkill")]
     public bool LightningAttack;
+    public bool LightningAttackUpgrade;
     public bool batAttack;
     public bool batUpgradeAttackPercent;
     public bool batUpgradeCoolTime;
@@ -76,6 +77,9 @@ public class SkillManager : MonoBehaviour
                 break;
             case "박쥐 생성속도 증가" :
                 batUpgradeCoolTime = true;
+                break;
+            case "번개 분할" : 
+                LightningAttackUpgrade = true;
                 break;
         }
 

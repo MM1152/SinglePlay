@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int maxEnemyNumber;
     [SerializeField] int currentEnemyNumber;
 
-    bool isBossSpawn;
+    public bool isBossSpawn;
 
     float currentSpawnTimer;
     float avg;
@@ -31,7 +31,8 @@ public class EnemySpawner : MonoBehaviour
 
     Exp exp;
     Transform spawntrans;
-    public Transform boss;
+    Unit boss;
+    public Transform bossTrans;
     MergeSort<Unit> sort;
 
 
@@ -88,16 +89,16 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
+            
             if (!isBossSpawn)
             {
                 Debug.Log("Spawn Boss");
-                Unit boss = Instantiate(Boss[0], spawntrans);
-                this.boss = boss.transform;
+                boss = Instantiate(Boss[0], spawntrans);
+                bossTrans = boss.transform;
                 boss.transform.position = spawnPos[1].transform.position;
                 GameManager.Instance.clearMonseter = 1;
                 isBossSpawn = true;
             }
-
         }
 
     }

@@ -14,6 +14,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     public CircleCollider2D collider;
     public UnitData unit;
     public List<SkillParent> skillData;
+    ISummonUnit summonUnit;
     [Range(0f, 1f)] public float attackObjectShowTime;
     public float setInitAttackSpeed; // 초기화될 공격속도
     public float currentAttackSpeed; // 현재 공격까지 남은시간
@@ -159,6 +160,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         setInitAttackSpeed = unit.attackSpeed;
 
         hp = maxHp;
+        summonUnit = GetComponent<ISummonUnit>();
     }
     public void ChangeStats(Summoner summoner)
     {
@@ -232,6 +234,8 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             {
                 EnemySpawner.Instance.CheckDie();
                 DropSoul();
+            }else if(summonUnit != null){
+                summonUnit.DieSummonUnit();
             }
 
             StartCoroutine(WaitForDieAnimationCorutine());

@@ -53,7 +53,6 @@ public class MakeSellingList : MonoBehaviour
                 gameData.settingShopList = true;
                 gameData.soldOutItem[childSibling] = false;
 
-
                 child.GetComponent<ItemList>().Setting(index , gem_or_soul >= 0.3 ? true : false );
             }
         }

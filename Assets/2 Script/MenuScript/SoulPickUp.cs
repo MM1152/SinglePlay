@@ -11,13 +11,16 @@ public class SoulPickUp : MonoBehaviour
     [SerializeField] Animator pickUpAnimation;
 
     public List<float> spawnPosibillity = new List<float>();
+    public Dictionary<string , float> showPosibilityData = new Dictionary<string, float>();
     public float maxPosibillity = 0;
     private bool skipAnimation;
     private bool pickingItem;
     private SortSoul sortSoul;
+    private GameObject blockTouch;
 
     private void Awake() {
         sortSoul = GameObject.FindObjectOfType<SortSoul>();
+        blockTouch = transform.Find("Block Touch").gameObject;
         sortSoul.WaitSoulSort += Init;
     }
 
@@ -32,15 +35,17 @@ public class SoulPickUp : MonoBehaviour
 
         for(int i = 0 ; i < sortSoul.souls.Length; i++) {
             spawnPosibillity.Add((int) sortSoul.souls[i].GetUnitData().type / maxPosibillity);
+            if(showPosibilityData.ContainsKey(sortSoul.souls[i].GetUnitData().type.ToString())) showPosibilityData[sortSoul.souls[i].GetUnitData().type.ToString()] += spawnPosibillity[i];
+            else showPosibilityData.Add(sortSoul.souls[i].GetUnitData().type.ToString() , spawnPosibillity[i]);
         }
         pick_One_BNT.Init(this); 
         pick_Ten_BNT.Init(this);        
     }
     
 
-    public IEnumerator ShowingReclics(int count){
+    public IEnumerator ShowingSoul(int count){
         int[] pickUpList = new int[count];
-
+        blockTouch.SetActive(true);
 
         for(int i = 0 ; i < count; i++) {
             float posibillity = UnityEngine.Random.Range(0f , 1f);
@@ -61,7 +66,7 @@ public class SoulPickUp : MonoBehaviour
         yield return new WaitUntil(() => pickUpAnimation.GetCurrentAnimatorStateInfo(0).IsName("SoulPickUp") 
                                         && pickUpAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         pickUpAnimation.SetBool("PickUp" , false);
-        
+        blockTouch.SetActive(false);
         pickingItem = true;
         skipAnimation = false;
         
@@ -69,7 +74,7 @@ public class SoulPickUp : MonoBehaviour
 
         foreach(int index in pickUpList) {
             SoulsInfo info = Instantiate(sortSoul.souls[index] , showItemsTransform.transform);
-            //info.parentReclicsInfo = sortReclics.reclicsInfo[index];
+            info.parentSoulsInfo = sortSoul.souls[index];
             if(!skipAnimation) yield return new WaitForSeconds(0.2f);
         }
 

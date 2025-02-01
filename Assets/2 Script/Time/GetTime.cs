@@ -6,8 +6,9 @@ using UnityEngine.Networking;
 public class GetTime : MonoBehaviour {
     public string url = "";
     public static string currentTime;
+
     void Awake(){
-        StartCoroutine(WebChk());
+        if(currentTime == null) StartCoroutine(WebChk());
     }
     IEnumerator WebChk(){
         UnityWebRequest request = new UnityWebRequest();

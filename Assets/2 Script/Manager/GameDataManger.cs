@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [Serializable] 
 public class GameData{
@@ -12,7 +13,7 @@ public class GameData{
 
     /// <summary>
     /// 1: Attack , 2: Hp , 3: SummonUnitHp , 4: AttackSpeed  , 5: MoveSpeed , 6: BonusTalent , 7: BonusGoods , 8: IncreaesDamage ,
-    /// 9: IncreaesHp, 10: CoolTime, 11: SkillDamage
+    /// 9: IncreaesHp, 10: CoolTime, 11: SkillDamage, 12 IncreasedExp, 13 Dodge, 14 DrainLife
     /// </summary>
     public List<int> reclicsLevel = new List<int>();
     public List<int> reclicsCount = new List<int>();
@@ -38,6 +39,7 @@ public class GameDataManger : MonoBehaviour
     public static GameDataManger Instance { get ; private set;}
 
     [SerializeField] GameData data = null;
+    public Action<int ,int> goodsSetting;
     private string filePath;
     public bool dataDownLoad;
     private void Awake() {
@@ -94,7 +96,7 @@ public class GameDataManger : MonoBehaviour
             LoadData.soul = 0;
 
             LoadData.dateTime = GetTime.currentTime;
-        
+
             string JsonData = JsonUtility.ToJson(LoadData);
 
             File.WriteAllText(filePath , JsonData);
@@ -105,7 +107,7 @@ public class GameDataManger : MonoBehaviour
         
         CheckChangeData(LoadData);
         CheckCompareDateTime(LoadData);
-
+        if(SceneManager.GetActiveScene().buildIndex == 1) goodsSetting?.Invoke(LoadData.soul , LoadData.gem);
         dataDownLoad = true;
         return LoadData;
     }   
@@ -169,8 +171,6 @@ public class GameDataManger : MonoBehaviour
     void CheckCompareDateTime(GameData LoadData){
         DateTime pastDateTime = Convert.ToDateTime(LoadData.dateTime);
         DateTime currentDateTime = Convert.ToDateTime(GetTime.currentTime);
-        Debug.Log(pastDateTime);
-        Debug.Log(currentDateTime);
         int isPast = DateTime.Compare(pastDateTime , currentDateTime);
         if(isPast < 0) {
             LoadData.dateTime = currentDateTime.ToString("yyyy-MM-dd");

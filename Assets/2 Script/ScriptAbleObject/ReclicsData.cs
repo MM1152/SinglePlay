@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 public enum ItemClass{
-    COMMON = 50 , UNCOMMON = 30 , RARE = 15, UNIQUE  = 5 , LEGENDARY = 1
+    COMMON = 50 , UNCOMMON = 30 , RARE = 20, UNIQUE  = 8 , LEGENDARY = 3
 }
 
 public struct ClassStruct {

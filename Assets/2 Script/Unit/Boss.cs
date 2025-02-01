@@ -40,7 +40,7 @@ public class Boss : ShortRangeScipt
         yield return new WaitUntil(() => WaitSpawn());
         yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("SPAWN") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         ani.SetBool("PlaySpawnAni", false);
-
+        
         BossShow.setBossName = unit.name;
         BossShow.setBossData = this;
         BossShow.SetAnimation(true);
@@ -49,6 +49,10 @@ public class Boss : ShortRangeScipt
 
         BossShow.SetAnimation(false);
         GameManager.Instance.playingAnimation = false;
+        yield return new WaitUntil(() => isDie);
+        
+        BossShow.transform.GetChild(0).gameObject.SetActive(false);
+        BossShow.transform.GetChild(1).gameObject.SetActive(false);
     }
 
         //처음 등장 애니메이션 대기

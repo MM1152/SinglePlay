@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject rewardViewer;
     /// <summary>
     /// 1: Attack , 2: Hp , 3: SummonUnitHp , 4: AttackSpeed  , 5: MoveSpeed , 6: BonusTalent , 7: BonusGoods , 8: IncreaesDamage ,
-    /// 9: IncreaesHp, 10: CoolTime, 11: SkillDamage
+    /// 9: IncreaesHp, 10: CoolTime, 구현필요 [ 11: SkillDamage, 12 IncreasedExp, 13 Dodge, 14 DrainLife ] 구현필요
     /// </summary>
     public List<ReclicsData> reclicsDatas;
     public bool reclisFin;
@@ -87,7 +87,8 @@ public class GameManager : MonoBehaviour
         }  
     
         if(currentStage == 1 && dropSoulList.Count == 0) {
-            SceneManager.LoadScene("MenuScene"); 
+            LoadingScene.LoadScene("MenuScene");
+            ResumeGame();
             return;
         }
         
@@ -101,6 +102,8 @@ public class GameManager : MonoBehaviour
         dropSoulList.Clear();
     }
     public void ReturnToMain(string SceneName = "MainScene"){
+        LoadingScene.LoadScene(SceneName);
+
         dropSoul += delegate(UnitData unitData) {
             GameData gameData = GameDataManger.Instance.GetGameData();
             if(dropSoulList.ContainsKey(unitData)) dropSoulList[unitData]++;
@@ -108,12 +111,12 @@ public class GameManager : MonoBehaviour
             gameData.soulsCount[unitData.typenumber - 1]++;
             GameDataManger.Instance.SaveData();
         };
-        SceneManager.LoadScene(SceneName);
         ResumeGame();
     }
     public IEnumerator WaitForNextMap(Action action) {
 
         yield return new WaitForSeconds(0.3f);
+        
         clearMonseter = 50;
         curtain.SetActive(true);
         nextStage.SetActive(false);
@@ -135,5 +138,6 @@ public class GameManager : MonoBehaviour
         
         image.color = color;
         gameClear = false;
+        EnemySpawner.Instance.isBossSpawn = false;
     }
 }

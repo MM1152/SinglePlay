@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3 KingData
   m_EditorClassIdentifier: 
   name: King
-  type: 1
+  type: 3
   typenumber: 3
   image: {fileID: 2099539069, guid: 6aac5c7343ac3ec479c16bf73abf4439, type: 3}
   attackSpeed: 2

@@ -17,10 +17,17 @@ public class SummonerSkillParent : MonoBehaviour
         }
         
     }
-
+    protected float SetDamage(float damage){
+        if(GameDataManger.Instance.GetGameData().reclicsLevel[10] > 0 || GameDataManger.Instance.GetGameData().reclicsCount[10] > 0) {
+            damage = damage + (damage * ReturnPercent(10) / 100f);
+        }
+        return damage;
+    }
     private float ReturnPercent(int index){
         Debug.Log(GameManager.Instance.reclicsDatas[index].inItPercent + (GameManager.Instance.reclicsDatas[index].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[index]));
         return GameManager.Instance.reclicsDatas[index].inItPercent + (GameManager.Instance.reclicsDatas[index].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[index]);
     }
+
+    
 }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 11 SlimeBossData
   m_EditorClassIdentifier: 
   name: SlimeBoss
-  type: 1
+  type: 3
   typenumber: 11
   image: {fileID: 180330062, guid: 320b2090c79097c429efabe5f6e757de, type: 3}
   attackSpeed: 1.5

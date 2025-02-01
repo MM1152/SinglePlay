@@ -41,8 +41,5 @@ public class ReclicsManager : MonoBehaviour
             if (!GameManager.Instance.reclisFin) GameManager.Instance.reclicsDatas.Add(reclicsDatas[i].GetReclicsData());
         }
         GameManager.Instance.reclisFin = true;
-
-
-
     }
 }

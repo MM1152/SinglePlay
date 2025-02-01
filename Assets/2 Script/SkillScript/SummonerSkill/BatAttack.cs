@@ -76,7 +76,8 @@ public class BatAttack : SummonerSkillParent
                 }
             }
 
-            bat.Setting(summoner, skillData.initPercent + (SkillManager.Instance.skillDatas[skillData] * skillData.levelUpPercent) , i , this , batUpgradeAttackPercent);
+            float damage = SetDamage(skillData.initPercent + (SkillManager.Instance.skillDatas[skillData] * skillData.levelUpPercent));
+            bat.Setting(summoner, damage , i , this , batUpgradeAttackPercent);
         }
     }
     public void Die(int spawnNumber){

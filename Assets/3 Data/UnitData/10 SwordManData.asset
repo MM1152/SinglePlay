@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 10 SwordManData
   m_EditorClassIdentifier: 
   name: SwordMan
-  type: 15
+  type: 20
   typenumber: 10
   image: {fileID: 1773858075, guid: 3cb2d2b5e0cd9aa4bb7ad3e651b4177b, type: 3}
   attackSpeed: 0.7

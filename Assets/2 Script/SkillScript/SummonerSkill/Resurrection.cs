@@ -5,6 +5,7 @@ using UnityEngine;
 public class Resurrection : SummonerSkillParent {
     Summoner summoner;
     Queue<string> dieUnitList = new Queue<string>(); 
+    
     private void Awake(){
         summoner = GetComponent<Summoner>();
     }
@@ -33,7 +34,8 @@ public class Resurrection : SummonerSkillParent {
     }
 
     IEnumerator WaitResurrectionCoolTime(string unit){
-        yield return new WaitForSeconds(skillData.coolTime);
+        SetCoolTime();
+        yield return new WaitForSeconds(currentSkillCoolTime);
         summoner.SpawnSoul(unit);
     }
 }

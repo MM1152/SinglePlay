@@ -12,15 +12,17 @@ public class ReclicsPickUp : MonoBehaviour
     [SerializeField] GameObject showItems;
     [SerializeField] GameObject showItemsTransform;
     [SerializeField] Animator pickUpAnimation;
-
+    
+    public Dictionary<string , float> showPosibilityData = new Dictionary<string, float>();
     public List<float> spawnPosibillity = new List<float>();
     public float maxPosibillity = 0;
     private bool skipAnimation;
     private bool pickingItem;
     private SortReclics sortReclics;
-
+    private GameObject blockTouch;
     private void Awake() {
         sortReclics = GameObject.FindObjectOfType<SortReclics>();
+        blockTouch = transform.Find("Block Touch").gameObject;
         sortReclics.WaitReclicsSort += Init;
     }
 
@@ -31,10 +33,14 @@ public class ReclicsPickUp : MonoBehaviour
     private void Init() {
         for(int i = 0 ; i < sortReclics.reclicsInfo.Length; i++) {
             maxPosibillity += (int) sortReclics.reclicsInfo[i].GetReclicsData().itemclass;
+
         }
 
         for(int i = 0 ; i < sortReclics.reclicsInfo.Length; i++) {
             spawnPosibillity.Add((int) sortReclics.reclicsInfo[i].GetReclicsData().itemclass / maxPosibillity);
+
+            if(showPosibilityData.ContainsKey(sortReclics.reclicsInfo[i].GetReclicsData().itemclass.ToString())) showPosibilityData[sortReclics.reclicsInfo[i].GetReclicsData().itemclass.ToString()] += spawnPosibillity[i];
+            else showPosibilityData.Add(sortReclics.reclicsInfo[i].GetReclicsData().itemclass.ToString() , spawnPosibillity[i]);
         }
         pick_One_BNT.Init(this); 
         pick_Ten_BNT.Init(this);        
@@ -42,6 +48,7 @@ public class ReclicsPickUp : MonoBehaviour
     
 
     public IEnumerator ShowingReclics(int count){
+        blockTouch.SetActive(true);
         int[] pickUpList = new int[count];
 
 
@@ -64,7 +71,7 @@ public class ReclicsPickUp : MonoBehaviour
         yield return new WaitUntil(() => pickUpAnimation.GetCurrentAnimatorStateInfo(0).IsName("ReclicsPickUp") 
                                         && pickUpAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         pickUpAnimation.SetBool("PickUp" , false);
-        
+        blockTouch.SetActive(false);
         pickingItem = true;
         skipAnimation = false;
 

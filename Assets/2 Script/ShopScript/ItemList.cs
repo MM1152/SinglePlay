@@ -56,17 +56,18 @@ public class ItemList : MonoBehaviour , IPointerClickHandler
 
     public void Setting(ISellingAble sellingData , bool sellingGem , bool soldOut = false){
         if(soldOut) SoldOut();
+        soldOutImage.SetActive(soldOut);
         this.sellingGem = sellingGem;
         sellingAble = sellingData;
 
         sellingImage.sprite = sellingData.image;
         
         if(sellingGem) {
-            goodsTypeImage.sprite = goodsImages[1];
+            goodsTypeImage.sprite = goodsImages[0];
             goodsCostText.text = sellingData.classStruct.gemCost.ToString();
         } 
         else {
-            goodsTypeImage.sprite = goodsImages[0];
+            goodsTypeImage.sprite = goodsImages[1];
             goodsCostText.text = sellingData.classStruct.soulCost.ToString();
         }
 
@@ -75,5 +76,7 @@ public class ItemList : MonoBehaviour , IPointerClickHandler
     public void SoldOut(){
         soldOutImage.SetActive(true);
         isSoldOut = true;
+        GameDataManger.Instance.GetGameData().soldOutItem[transform.GetSiblingIndex()] = true;
+        GameDataManger.Instance.SaveData();
     }
 }

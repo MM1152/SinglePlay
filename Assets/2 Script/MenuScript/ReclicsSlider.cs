@@ -28,6 +28,6 @@ public class ReclicsSlider : MonoBehaviour
         if(reclics.GetReclicsMaxCount() <= reclics.GetReclicsCount()) levelUpImage.gameObject.SetActive(true);
         else levelUpImage.gameObject.SetActive(false);
 
-        countText.text = "" + reclics.GetReclicsCount() + "\t" + reclics.GetReclicsMaxCount(); 
+        countText.text = "" + reclics.GetReclicsCount() + " / " + reclics.GetReclicsMaxCount(); 
     }
 }

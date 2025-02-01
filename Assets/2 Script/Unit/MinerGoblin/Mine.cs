@@ -10,16 +10,19 @@ public class Mine : MonoBehaviour
     private SoulsSkillData skillData;
     private void Awake() {
         ani = GetComponent<Animator>();
+        
     }
     public void Setting(Unit unit , SoulsSkillData skillData){
         this.unit = unit;
         this.skillData = skillData;
+        gameObject.tag = unit.gameObject.tag;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(!other.gameObject.CompareTag(unit.tag)) {
             ani.SetBool("IsBoom" , true);
-            other.GetComponent<IDamageAble>().Hit(unit.damage * skillData.attackPercent , AttackType.SkillAttack);
+            other.GetComponent<IDamageAble>().Hit(unit.damage * (skillData.attackPercent / 100f), AttackType.SkillAttack);
+            other.GetComponent<Unit>().statusEffectMuchine.SetStatusEffect(new BurnEffect() , unit);
             StartCoroutine(WaitAnimation());
         }
     }

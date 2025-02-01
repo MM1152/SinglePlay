@@ -28,7 +28,6 @@ public class BossShowAnimation : MonoBehaviour
             slider.gameObject.SetActive(true);
         }
     }
-
     public void SetAnimation(bool value){
         transform.GetChild(0).gameObject.SetActive(value);
     }

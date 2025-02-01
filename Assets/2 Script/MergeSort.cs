@@ -13,7 +13,8 @@ public class Heap {
         heap.Add(default);
         target.Add(default);
     }
-
+    /// <param name="value">Distance To Taget</param>
+    /// <param name="info">Target Transform</param>
     public void Add(float value , Transform info) {
         heap.Add(value);
         target.Add(info);
