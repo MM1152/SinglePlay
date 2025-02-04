@@ -10,7 +10,6 @@ public class BatAttack : SummonerSkillParent
     public SkillData batUpgradeCoolTime;
     int maxSpawnCount;
     int currSpawnCount;
-    Summoner summoner;
 
     Vector2[] spawnPosition = {
         new Vector2(-0.5f , 0f),
@@ -29,8 +28,7 @@ public class BatAttack : SummonerSkillParent
     {
         maxSpawnCount = 3;
         currSpawnCount = 0;
-        
-        summoner = GetComponent<Summoner>();
+        base.Awake();
     }
 
     private void Update()
@@ -77,7 +75,7 @@ public class BatAttack : SummonerSkillParent
             }
 
             float damage = SetDamage(skillData.initPercent + (SkillManager.Instance.skillDatas[skillData] * skillData.levelUpPercent));
-            bat.Setting(summoner, damage , i , this , batUpgradeAttackPercent);
+            bat.Setting(summoner, damage , i , this , batUpgradeAttackPercent , this);
         }
     }
     public void Die(int spawnNumber){

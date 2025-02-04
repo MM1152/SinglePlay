@@ -27,7 +27,7 @@ public class Explosion : MonoBehaviour , SkillParent
             ExplosionObject pre = PoolingManager.Instance.ShowObject(explosionObject.name + "(Clone)" , explosionObject).GetComponent<ExplosionObject>();
             pre.transform.position = unit.target.transform.position + Vector3.down + Vector3.forward * 2f;
             pre.tag = tag;
-            pre.Setting(unit.damage * soulsSkillData.attackPercent) ;            
+            pre.Setting(unit.damage * soulsSkillData.attackPercent , unit);            
             StartCoroutine(WaitAttack());
         }
     }

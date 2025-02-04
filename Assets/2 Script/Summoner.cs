@@ -18,6 +18,7 @@ public class Summoner : LongRangeScript
     public Dictionary<string , float> additionalStats = new Dictionary<string , float>();
 
     bool oneTime;
+    public float drainLife;
     private void OnEnable() { }
     private void Start() {
         RewardManager.Instance.SetSummonerStat = ChangeStat;

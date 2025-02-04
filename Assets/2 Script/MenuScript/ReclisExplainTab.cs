@@ -15,7 +15,7 @@ public class ReclisExplainTab : MonoBehaviour
             reclicsSliderText.text = value.GetReclicsCount() + "\t" + value.GetReclicsMaxCount() + "";
             slider.maxValue = value.GetReclicsMaxCount();
             slider.value = value.GetReclicsCount();
-            
+            cost.text = "<color=blue>" + value.cost + "</color>";
 
 
             ReclicsData data = _reclicsInfo.GetReclicsData();
@@ -33,7 +33,7 @@ public class ReclisExplainTab : MonoBehaviour
     [SerializeField] Button levelUpButton;
     [SerializeField] Text levelText;
     [SerializeField] Slider slider;
-
+    [SerializeField] Text cost;
     private void Awake() {
         levelUpButton.onClick.AddListener(ReclicsLevelUp);
 

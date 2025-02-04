@@ -6,10 +6,8 @@ public class RePair : SummonerSkillParent
 {
     public GameObject healEffect;
     
-    Unit unit;
     void Start()
     {
-        unit = GetComponent<Unit>();
         healEffect = Instantiate(Resources.Load<GameObject>("UseSkillFolder/HealEffect"), transform);
         healEffect.SetActive(false);
     }
@@ -24,19 +22,19 @@ public class RePair : SummonerSkillParent
 
     private void RepairSkill()
     {
-        if (SkillManager.Instance.UpgradeAutoRepair && !unit.isDie)
+        if (SkillManager.Instance.UpgradeAutoRepair && !summoner.isDie)
         {
             if (currentSkillCoolTime <= 0)
             {
                 SetCoolTime();
                 
-                if (unit.hp + (unit.maxHp * (SkillManager.Instance.skillDatas[skillData] * skillData.initPercent)) <= unit.maxHp)
+                if (summoner.hp + (summoner.maxHp * (SkillManager.Instance.skillDatas[skillData] * skillData.initPercent)) <= summoner.maxHp)
                 {
-                    unit.hp += unit.maxHp * (SkillManager.Instance.skillDatas[skillData] * skillData.initPercent);
+                    summoner.hp += summoner.maxHp * (SkillManager.Instance.skillDatas[skillData] * skillData.initPercent);
                 }
                 else
                 {
-                    unit.hp = unit.maxHp;
+                    summoner.hp = summoner.maxHp;
                 }
                 healEffect.SetActive(true);
             }

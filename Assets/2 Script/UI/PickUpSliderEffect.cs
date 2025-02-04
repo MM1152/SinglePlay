@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -99,9 +100,10 @@ public class PickUpSliderEffect : MonoBehaviour, IBeginDragHandler, IEndDragHand
             int count = 4;
             if (target == 0)
             {
-                foreach(string itemclass in Enum.GetNames(typeof(ItemClass))){
-                    if(reclicsPickUp.showPosibilityData.ContainsKey(itemclass)) {
-                        showSpawnPosibility.transform.GetChild(count--).GetChild(0).GetComponent<Text>().text = string.Format("{0:F2} %" , reclicsPickUp.showPosibilityData[itemclass] * 100f );
+                foreach(string itemclassString in Enum.GetNames(typeof(ItemClass))){
+                    ItemClass itemClass = (ItemClass) Enum.Parse(typeof(ItemClass) , itemclassString);
+                    if(reclicsPickUp.showPosibilityData.ContainsKey(itemClass)) {
+                        showSpawnPosibility.transform.GetChild(count--).GetChild(0).GetComponent<Text>().text = string.Format("{0:F2} %" , reclicsPickUp.showPosibilityData[itemClass] * 100f );
                     }
                     else {
                         showSpawnPosibility.transform.GetChild(count--).GetChild(0).GetComponent<Text>().text = "0 %";
@@ -110,9 +112,10 @@ public class PickUpSliderEffect : MonoBehaviour, IBeginDragHandler, IEndDragHand
             }
             if(target == 1) 
             {
-                foreach(string itemclass in Enum.GetNames(typeof(ItemClass))){
-                    if(soulPickUp.showPosibilityData.ContainsKey(itemclass)) {
-                        showSpawnPosibility.transform.GetChild(count--).GetChild(0).GetComponent<Text>().text = string.Format("{0:F2} %" , soulPickUp.showPosibilityData[itemclass] * 100f );
+                foreach(string itemclassString in Enum.GetNames(typeof(ItemClass))){
+                    ItemClass itemClass = (ItemClass) Enum.Parse(typeof(ItemClass) , itemclassString);
+                    if(soulPickUp.showPosibilityData.ContainsKey(itemClass)) {
+                        showSpawnPosibility.transform.GetChild(count--).GetChild(0).GetComponent<Text>().text = string.Format("{0:F2} %" , soulPickUp.showPosibilityData[itemClass] * 100f );
                     }
                     else{
                         showSpawnPosibility.transform.GetChild(count--).GetChild(0).GetComponent<Text>().text = "0 %";

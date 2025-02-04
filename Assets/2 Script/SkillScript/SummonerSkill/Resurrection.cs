@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Resurrection : SummonerSkillParent {
-    Summoner summoner;
     Queue<string> dieUnitList = new Queue<string>(); 
     
-    private void Awake(){
-        summoner = GetComponent<Summoner>();
-    }
-
     private void Update(){
         if(skillData == null && SkillManager.Instance.UpgradeResurrection) {
             skillData = SkillManager.Instance.GetSkillData("부활");

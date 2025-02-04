@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 588f38e4ca0792d4f8e311e74d40b6b2, type: 3}
   m_Name: 7 BonusGoods
   m_EditorClassIdentifier: 
-  itemclass: 30
+  itemclass: 8
   image: {fileID: 21300000, guid: 2ff86616ba2e85e47ad07672e59d74fa, type: 3}
   reclicsType: 7
   reclicsExplain: "\uAC8C\uC784 \uC885\uB8CC\uC2DC \uC18C\uC6B8 \uCD94\uAC00\uD68D\uB4DD"
-  inItPercent: 5
-  levelUpPercent: 1
+  inItPercent: 10
+  levelUpPercent: 2

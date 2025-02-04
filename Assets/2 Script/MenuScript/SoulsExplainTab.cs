@@ -89,6 +89,9 @@ public class SoulsExplainTab : MonoBehaviour
 
         rect = skillExplainTab.GetComponent<RectTransform>();
     }
+    private void OnDisable() {
+        skillExplainTab.SetActive(false);
+    }
     public void SettingSoulExplainTab(SoulsInfo soulsInfo, bool open_To_SoulTab, EquipSouls equip)
     {
         UnitData = soulsInfo;

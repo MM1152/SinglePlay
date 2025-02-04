@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 588f38e4ca0792d4f8e311e74d40b6b2, type: 3}
   m_Name: 4 AttackSpeed
   m_EditorClassIdentifier: 
-  itemclass: 50
+  itemclass: 20
   image: {fileID: 21300000, guid: 2f549b99c71e7494baad5c538da6c04a, type: 3}
   reclicsType: 4
   reclicsExplain: "\uC0AC\uC6A9\uC790\uC758 \uACF5\uACA9\uC18D\uB3C4\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
-  inItPercent: 5
-  levelUpPercent: 1
+  inItPercent: 10
+  levelUpPercent: 2

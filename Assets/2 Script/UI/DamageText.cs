@@ -48,6 +48,9 @@ public class DamageText : MonoBehaviour
             case AttackType.Dodge :
                 color = "black";
                 break;
+            case AttackType.Burn :
+                color = "orange";
+                break;
         }
     }
 }

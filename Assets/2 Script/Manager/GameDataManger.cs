@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Runtime.ExceptionServices;
 
 [Serializable] 
 public class GameData{
@@ -31,6 +32,9 @@ public class GameData{
     public List<bool> soldOutItem = new List<bool>();
     public bool settingShopList;
     public string dateTime;
+    public List<bool> dailyGift = new List<bool>();
+    public bool getGift;
+    public List<int> openCount = new List<int>(); // RandomPick Up 횟수  0 : 유물, 1 : 소울 
 }
 
 
@@ -87,7 +91,14 @@ public class GameDataManger : MonoBehaviour
                 LoadData.soldOutItem.Add(false);
             }
 
+            for(int i = 0; i < 28; i++) {
+                LoadData.dailyGift.Add(false);
+            }
+
             LoadData.settingShopList = false;
+
+            LoadData.openCount.Add(0);
+            LoadData.openCount.Add(1);
 
             LoadData.shopListChangeCount.Add(3);
             LoadData.shopListChangeCount.Add(2);
@@ -96,7 +107,7 @@ public class GameDataManger : MonoBehaviour
             LoadData.soul = 0;
 
             LoadData.dateTime = GetTime.currentTime;
-
+            LoadData.getGift = false;
             string JsonData = JsonUtility.ToJson(LoadData);
 
             File.WriteAllText(filePath , JsonData);
@@ -165,10 +176,26 @@ public class GameDataManger : MonoBehaviour
             this.data = LoadData;
             changeData = true;
         }
+
+        if(LoadData.dailyGift.Count == 0) {
+            for(int i = 0; i < 28; i++) {
+                LoadData.dailyGift.Add(false);
+            }
+            this.data = LoadData;
+            changeData = true;
+        }
+
+        if(LoadData.openCount.Count == 0) {
+            LoadData.openCount.Add(0);
+            LoadData.openCount.Add(0);
+            this.data = LoadData;
+            changeData = true;
+        }
+
         if(changeData) SaveData();
 
     }
-    void CheckCompareDateTime(GameData LoadData){
+    int CheckCompareDateTime(GameData LoadData){
         DateTime pastDateTime = Convert.ToDateTime(LoadData.dateTime);
         DateTime currentDateTime = Convert.ToDateTime(GetTime.currentTime);
         int isPast = DateTime.Compare(pastDateTime , currentDateTime);
@@ -177,6 +204,8 @@ public class GameDataManger : MonoBehaviour
             LoadData.settingShopList = false;    
             LoadData.shopListChangeCount[0] = 3;
             LoadData.shopListChangeCount[1] = 2;
+            LoadData.getGift = false;
+
             data = LoadData;
             SaveData();
         }
@@ -185,6 +214,7 @@ public class GameDataManger : MonoBehaviour
             data = LoadData;
             SaveData();
         }
-        Debug.Log(isPast);
+        
+        return isPast;
     }
 }

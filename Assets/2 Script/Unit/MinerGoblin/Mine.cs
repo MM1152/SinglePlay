@@ -21,7 +21,7 @@ public class Mine : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(!other.gameObject.CompareTag(unit.tag)) {
             ani.SetBool("IsBoom" , true);
-            other.GetComponent<IDamageAble>().Hit(unit.damage * (skillData.attackPercent / 100f), AttackType.SkillAttack);
+            other.GetComponent<IDamageAble>().Hit(unit.damage * (skillData.attackPercent / 100f), unit.clitical , AttackType.Burn , unit);
             other.GetComponent<Unit>().statusEffectMuchine.SetStatusEffect(new BurnEffect() , unit);
             StartCoroutine(WaitAnimation());
         }

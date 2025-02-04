@@ -6,16 +6,18 @@ public class ExplosionObject : MonoBehaviour
 {
     float damage;
     Animator ani;
+    Unit unit;
     private void Awake() {
         ani = GetComponent<Animator>();
     }
-    public void Setting(float damage){
+    public void Setting(float damage , Unit unit){
         this.damage = damage;
+        this.unit = unit;
         StartCoroutine(WaitAttack());
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(!other.CompareTag(gameObject.tag)) {
-            other.GetComponent<Unit>().Hit(damage , AttackType.SkillAttack);
+            other.GetComponent<Unit>().Hit(damage , unit.clitical , AttackType.SkillAttack , unit);
         }
     }
 

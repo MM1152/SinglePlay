@@ -8,14 +8,13 @@ public class AttackSkill : SummonerSkillParent
     [SerializeField] GameObject skillPrefeb;
     SkillData divisionLightningAttack;
     LightningAttack lightning;
-    Summoner summoner;
     Animator ani;
     Heap heap;
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
-        summoner = GetComponent<Summoner>();
+        base.Awake();
     }
     private void Update()
     {
@@ -39,7 +38,7 @@ public class AttackSkill : SummonerSkillParent
                 PoolingManager.Instance.ShowObject(skillPrefeb.name + "(Clone)", skillPrefeb).GetComponent<LightningAttack>().Init(summoner.target.transform.position, summoner.transform.position);
 
                 float damage = SetDamage(summoner.damage * skillData.initPercent);
-                summoner.target.GetComponent<IDamageAble>().Hit(damage, AttackType.SkillAttack);
+                summoner.target.GetComponent<IDamageAble>().Hit(damage, summoner.clitical , AttackType.SkillAttack , summoner);
                 SetCoolTime();
                 if (divisionLightningAttack != null)
                 {
@@ -54,7 +53,7 @@ public class AttackSkill : SummonerSkillParent
                             if(nearTarget == default) continue;
                             PoolingManager.Instance.ShowObject(skillPrefeb.name + "(Clone)", skillPrefeb).GetComponent<LightningAttack>().Init(nearTarget.position, summoner.target.transform.position);
                             damage = SetDamage(summoner.damage * (divisionLightningAttack.initPercent + (SkillManager.Instance.skillDatas[divisionLightningAttack] * divisionLightningAttack.levelUpPercent)));
-                            nearTarget.GetComponent<IDamageAble>().Hit(damage, AttackType.SkillAttack);
+                            SkillAttack(nearTarget.gameObject , damage);
                         }
                     }
                 }

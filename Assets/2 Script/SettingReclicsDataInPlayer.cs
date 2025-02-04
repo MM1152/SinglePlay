@@ -5,18 +5,20 @@ using UnityEngine;
 
 public class SettingReclicsDataInPlayer : MonoBehaviour
 {
-    Unit player;
-    
+    Summoner player;
     private void Awake() {
-        player = GetComponent<Unit>();
-        
+        player = GetComponent<Summoner>();
         //\\TODO BonusGoods , SummonUnitHp 연결필요
         player.damage += player.unit.damage * (ReturnPercent(0) / 100f);
         player.maxHp += player.unit.hp * (ReturnPercent(1) / 100f);
         player.setInitAttackSpeed -= player.unit.attackSpeed * (ReturnPercent(3) / 100f);
         player.speed += player.unit.speed * (ReturnPercent(4) / 100f);
-
+        player.dodge += ReturnPercent(12) / 100f;
+        player.drainLife += ReturnPercent(13) / 100f;
+        player.clitical += ReturnPercent(2) / 100f;
         player.hp = player.maxHp;
+
+        
     }
 
     public void Increaes(){
@@ -25,7 +27,7 @@ public class SettingReclicsDataInPlayer : MonoBehaviour
     }
 
     private float ReturnPercent(int index){
-        if(GameDataManger.Instance.GetGameData().reclicsLevel[index] > 0 || GameDataManger.Instance.GetGameData().reclicsLevel[index] > 0) {
+        if(GameDataManger.Instance.GetGameData().reclicsCount[index] > 0 || GameDataManger.Instance.GetGameData().reclicsLevel[index] > 0) {
             return GameManager.Instance.reclicsDatas[index].inItPercent + (GameManager.Instance.reclicsDatas[index].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[index]);
         }
         return 0f;

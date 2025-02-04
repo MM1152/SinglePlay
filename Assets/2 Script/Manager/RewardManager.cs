@@ -33,7 +33,7 @@ public class RewardManager : MonoBehaviour , ISpawnPosibillity
     public ClearRewardData GetRewardData(){
         float value = 0;
         float item = Random.Range(0f , 1f);
-        Debug.Log(item);
+
         for(int i = 0; i < probabillityList.Count; i++) {
             value += probabillityList[i];
             if(value >= item) return rewardData[i];

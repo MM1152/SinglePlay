@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillity , IClassColor , ISellingAble
 {
     public ReclicsInfo parentReclicsInfo;
+    public int cost;
     [SerializeField] ReclicsTab reclicsTab;
     [SerializeField] ReclicsData reclicsData;
     [SerializeField] GameObject lockObj;
@@ -71,6 +72,7 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         _reclicsLevel = reclicsLevel;
         _reclicsCount = reclicsCount;
         _reclicsMaxCount = _reclicsLevel == 0 ? _reclicsMaxCount : (int) math.pow((_reclicsLevel + 1) , 2);
+        SetCost();
         Check();
         levelText.text = _reclicsLevel + 1 + "";
     }
@@ -82,6 +84,7 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         levelText.text = _reclicsLevel + 1 + "";
 
         setSlider?.Invoke();
+        SetCost();
         ChangeStatus();
 
         return this;
@@ -100,6 +103,21 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
             lockObj.SetActive(false);
             setSlider?.Invoke();
         }
+    }
+    void SetCost(){
+        cost = (int)(reclicsData.classStruct.initCost * ((_reclicsLevel + 1)* reclicsData.classStruct.levelUpCost));
+
+        int copyCost = cost;
+        int length = 0;
+        while(copyCost != 0) {
+            length++;
+            copyCost /= 10;
+        }
+
+        if(length - 2 >= 0) {
+            cost = cost - cost % (int)Math.Pow(10 , length - 2); 
+        }
+
     }
     public int GetReclicsLevel(){
         return _reclicsLevel;

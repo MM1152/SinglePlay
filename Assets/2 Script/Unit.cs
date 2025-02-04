@@ -23,6 +23,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     [HideInInspector] protected Animator ani = null;
     [HideInInspector] public SpriteRenderer sp;
 
+    private float cliticalPercent;
 
     /**************Status****************/
     [Header("Status")]
@@ -40,6 +41,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     public StatusEffect statusEffectMuchine;
     public bool SkillSetting;
     public float dodge;
+    public float clitical;
     [Space(75)]
     /************************************/
 
@@ -63,6 +65,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
     protected virtual void Awake()
     {
+        cliticalPercent = 1.5f;
         rg = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
         rg.gravityScale = 0;
@@ -144,13 +147,6 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             bonusAttack = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
             bonusHp = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
         }
-        bonusHp += (GameManager.Instance.reclicsDatas[1].inItPercent +
-                    (GameManager.Instance.reclicsDatas[1].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[1]))
-                    / 100f;
-
-        bonusAttack += (GameManager.Instance.reclicsDatas[0].inItPercent +
-                    (GameManager.Instance.reclicsDatas[0].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[0]))
-                    / 100f;
 
         maxHp = summoner.maxHp * (hpPercent + bonusHp);
         mp = unit.mp;
@@ -158,7 +154,8 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         speed = unit.speed;
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
-
+        clitical = summoner.clitical;
+    
         hp = maxHp;
         summonUnit = GetComponent<ISummonUnit>();
     }
@@ -175,14 +172,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             bonusAttack = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
             bonusHp = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
         }
-        bonusHp += (GameManager.Instance.reclicsDatas[1].inItPercent +
-                    (GameManager.Instance.reclicsDatas[1].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[1]))
-                    / 100f;
 
-        bonusAttack += (GameManager.Instance.reclicsDatas[0].inItPercent +
-                    (GameManager.Instance.reclicsDatas[0].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[0]))
-                    / 100f;
-                    
         float thisHpPercent = hp / maxHp;
 
         maxHp = summoner.hp * (hpPercent + bonusHp);
@@ -191,6 +181,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         speed = unit.speed;
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
+        clitical = summoner.clitical;
 
         hp = maxHp * thisHpPercent;
     }
@@ -326,11 +317,16 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         }
     }
 
-    public void Hit(float Damage , AttackType attackType = AttackType.None)
+    public void Hit(float Damage , float Critical = 0 , AttackType attackType = AttackType.None , Unit unit = null)
     { 
         //\\TODO 여기서 스킬데미지증가 유물에 관해서 데미지 증가 로직 적용시켜주면 될거같음.
         DamageText damage = PoolingManager.Instance.ShowDamage().GetComponent<DamageText>();
 
+        bool isclitical = UnityEngine.Random.Range(0f , 1f) >= clitical ? true : false;
+        if(isclitical) {
+            Damage = Damage * unit.cliticalPercent;
+            attackType = AttackType.CriticalAttack ;
+        }
         float rand = Random.Range(0f , 1f);
         if(rand <= dodge) {
             damage.Setting(AttackType.Dodge);
@@ -340,7 +336,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         }
 
         damage.Setting(attackType);
-        damage.damage = Damage;
+        damage.damage = (int) Damage;
         damage.target = damageShowPos;
 
         if (shild >= Damage) shild -= Damage;

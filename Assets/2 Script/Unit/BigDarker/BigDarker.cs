@@ -22,7 +22,7 @@ public class BigDarker : ShortRangeScipt , ISummonUnit
         if(canAttack) {
             GameObject attack = PoolingManager.Instance.ShowObject(darkerAttack.name + "(Clone)" , darkerAttack);
             attack.GetComponent<BigDarkerAttack>().target = target.transform;
-            target.GetComponent<IDamageAble>().Hit(damage);
+            target.GetComponent<IDamageAble>().Hit(damage , clitical , unit : this);
             drainLife?.UseSkill();
         }
     }

@@ -10,6 +10,7 @@ public class Bat : MonoBehaviour
     [SerializeField]SpriteRenderer sp;
     [SerializeField]BatAttack batAttack;
     [SerializeField]SkillData skillData;
+    SummonerSkillParent summonerSkillParent;
 
     float attackPercent;
     float attackDamage;
@@ -28,7 +29,7 @@ public class Bat : MonoBehaviour
         
     }
 
-    public void Setting(Summoner summoner , float attackDamage , int spawnNumber , BatAttack batAttack , SkillData skillData){
+    public void Setting(Summoner summoner , float attackDamage , int spawnNumber , BatAttack batAttack , SkillData skillData , SummonerSkillParent skillParent = null){
         this.summoner = summoner;
         this.attackDamage = attackDamage;
         this.spawnNumber = spawnNumber;
@@ -61,7 +62,7 @@ public class Bat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(isAttack && other.gameObject == summoner.target.gameObject) {
-            other.GetComponent<IDamageAble>().Hit(summoner.damage * attackDamage , AttackType.SkillAttack);
+            summonerSkillParent.SkillAttack(other.gameObject , summoner.damage * attackDamage);
             batAttack.Die(spawnNumber);
             PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
         }

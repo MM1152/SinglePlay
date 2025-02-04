@@ -223,7 +223,7 @@ public class BurnEffect : IStatusEffect
     }
     void RepeatDamage(){
         //\\TODO : 화상데미지는 주황색으로 표시?
-        unit.Hit(applyUnit.damage * (0.1f * overlapCount)  , AttackType.SkillAttack);
+        unit.Hit(applyUnit.damage * (0.1f * overlapCount)  , 0 , AttackType.SkillAttack);
     }
 }
 

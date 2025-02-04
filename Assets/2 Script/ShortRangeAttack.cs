@@ -23,7 +23,7 @@ public class ShortRangeAttack : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.GetComponent<IDamageAble>() != null && !other.CompareTag(transform.parent.tag) && !other.GetComponent<Unit>().isDie) {
-            other.GetComponent<IDamageAble>().Hit(parent.damage);
+            other.GetComponent<IDamageAble>().Hit(parent.damage , parent.clitical , AttackType.None , parent);
         }
     }
     
