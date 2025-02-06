@@ -11,7 +11,6 @@ public class ReRollRewardAd : MonoBehaviour{
             Debug.Log(value.ToString());
             if(GoogleAdMobs.instance.ShowRewardedAd(value)) {
                 reRollReward.count--;
-                GameManager.Instance.StopGame();
             }});
         }
     }

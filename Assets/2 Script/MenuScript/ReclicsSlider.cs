@@ -21,7 +21,14 @@ public class ReclicsSlider : MonoBehaviour
 
     public void Setting(){
         gameObject.SetActive(true);
-        
+
+        if(reclics.GetReclicsLevel() >= 12) {
+            countText.text = "MAX";
+            slider.value = slider.maxValue;
+            levelUpImage.gameObject.SetActive(false);
+            return;
+        }
+
         slider.maxValue = reclics.GetReclicsMaxCount();
         slider.value = reclics.GetReclicsCount();
         

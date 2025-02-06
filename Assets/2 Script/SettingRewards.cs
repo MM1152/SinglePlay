@@ -16,16 +16,17 @@ public class SettingRewards : MonoBehaviour
         SetReward();
         reRollReward[0].Setting(maxCount , SetReward);
         reRollReward[1].Setting(maxCount , SetReward);
-        StartCoroutine(WaitForAnimationCorutine());
     }
 
     public void SetReward(){
-        
+        GameManager.Instance.ResumeGame();
+        StartCoroutine(WaitForAnimationCorutine());
         for(int i = 0; i < selectReward.Length; i++) {
             selectReward[i].gameObject.SetActive(false);
             selectReward[i].SetRewardData(RewardManager.Instance.GetRewardData());
             selectReward[i].gameObject.SetActive(true);
         }
+        
     }
 
     private void OnDisable() {

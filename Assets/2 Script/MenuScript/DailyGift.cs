@@ -34,6 +34,6 @@ public class DailyGift : MonoBehaviour
                 break;
             }
         }
-        onGiveItemBNT.interactable = true;
+        onGiveItemBNT.interactable = false;
     }   
 }

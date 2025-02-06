@@ -7,7 +7,7 @@ public class SelectReward : MonoBehaviour
 {
     public ClearRewardData rewardData;
     [SerializeField] Text explanationText;
-
+    [SerializeField] Text tierText;
     Button bnt;
     Image rewardImage;
     Outline outline;
@@ -44,15 +44,28 @@ public class SelectReward : MonoBehaviour
     
     private void GetReward(){
         if(isSelect && Input.GetTouch(0).tapCount >= 2){
-            Debug.Log(rewardData.type.ToString());
-            RewardManager.Instance.SetSummonerStat.Invoke(rewardData.type.ToString() , rewardData.percent);
+            for(int i = 0; i < rewardData.type.Length; i++) {
+                RewardManager.Instance.SetSummonerStat.Invoke(rewardData.type[i].ToString() , rewardData.percent);
+            }
             transform.parent.gameObject.SetActive(false);
             rewardData = null;
         }
     }
     public void SetRewardData(ClearRewardData data) {
         rewardData = data;
-        explanationText.text = rewardData.explain;
+        rewardData.classStruct = new ClassStruct(data.itemClass);
+        explanationText.text = ChangeWord(data);
+        tierText.color = rewardData.classStruct.thisItemColor;
+        tierText.text = rewardData.itemClass.ToString();
         rewardImage.sprite = rewardData.image;
+    }
+
+    private string ChangeWord(ClearRewardData data){ 
+        int first = data.explain.IndexOf("percent");
+        if(first != -1){
+            return data.explain.Replace("percent" , ((float)data.GetType().GetField("percent").GetValue(data) * 100f).ToString());
+        } else {
+            return "Fain To Change Word , Response GM To Email";
+        }
     }
 }

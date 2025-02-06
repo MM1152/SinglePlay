@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2ca2483b0a510749ba7a2f516832dde, type: 3}
-  m_Name: RewardData
+  m_Name: (Rare)Damage
   m_EditorClassIdentifier: 
-  type: 1
-  image: {fileID: 21300000, guid: 1b5fb355c4bc9584e9a642e545234163, type: 3}
-  explain: "\uACF5\uACA9\uB825\uC774 10% \uC99D\uAC00\uD569\uB2C8\uB2E4."
-  percent: 0.1
-  _spawnProbabillity: 30
+  itemClass: 20
+  type: 01000000
+  image: {fileID: 1377001215, guid: 50ec70fa751748d4cbc7e31854f5f82a, type: 3}
+  explain: "\uACF5\uACA9\uB825\uC774 percent% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  percent: 0.3
+  _spawnProbabillity: 15

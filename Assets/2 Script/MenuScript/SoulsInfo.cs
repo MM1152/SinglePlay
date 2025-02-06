@@ -11,7 +11,7 @@ public delegate void SettingSlider();
 [DefaultExecutionOrder(0)]
 public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillity , IClassColor , ISellingAble
 {
-    
+    //\\TODO : 각 soul , reclics에 최대 레벨업에 필요한 갯수 계산하여 , 넘어간 상태에서 획득시 Soul로 바꿔서 지급   
     [Space(50)]
     [Header("직접 설정")]
     [SerializeField] SoulsTab soulsTab;
@@ -98,7 +98,8 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     }
     public SoulsInfo LevelUp(){
         if(GameDataManger.Instance.GetGameData().soul < cost) return this;
-        
+        if(CheckMaxLevel()) return this;
+
         GameDataManger.Instance.GetGameData().soul -= cost;
 
         soulLevel++;
@@ -166,6 +167,10 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
                 SettingBonusStat(split[1] , float.Parse(split[2]));
             }
         }
+    }
+    bool CheckMaxLevel(){
+        if(soulLevel >= 12) return true;
+        else return false;
     }
     public UnitData GetUnitData(){
         return unitData;

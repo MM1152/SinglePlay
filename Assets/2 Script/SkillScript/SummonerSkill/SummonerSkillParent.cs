@@ -8,21 +8,20 @@ public class SummonerSkillParent : MonoBehaviour
     //\\     4.부모에서 Reclics 쿨타임 데이터 접근해서 쿨타임 감소 진행할 예정 
     protected SkillData skillData;
     protected Summoner summoner;
+    float repairSkillCoolTime;
+    float extraSkillDamage;
     [SerializeField] protected float currentSkillCoolTime;
     protected void Awake() {
         summoner = GetComponent<Summoner>();
+        repairSkillCoolTime = ReturnPercent(9) / 100f;
+        extraSkillDamage = ReturnPercent(10) / 100f;
     }
     protected void SetCoolTime() {
         currentSkillCoolTime = skillData.coolTime;
-
-        if(GameDataManger.Instance.GetGameData().reclicsLevel[9] > 0 || GameDataManger.Instance.GetGameData().reclicsCount[9] > 0) {
-            currentSkillCoolTime -= currentSkillCoolTime * (ReturnPercent(9) / 100f);
-        }
+        currentSkillCoolTime -= currentSkillCoolTime * repairSkillCoolTime;
     }
-    protected float SetDamage(float damage){
-        if(GameDataManger.Instance.GetGameData().reclicsLevel[10] > 0 || GameDataManger.Instance.GetGameData().reclicsCount[10] > 0) {
-            damage = damage + (damage * ReturnPercent(10) / 100f);
-        }
+    protected float SetDamage(float damage){ 
+        damage = damage + (damage * extraSkillDamage);
         return damage;
     }
     private float ReturnPercent(int index){

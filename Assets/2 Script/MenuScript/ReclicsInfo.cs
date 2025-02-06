@@ -32,6 +32,7 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
 
     public Action setSlider;
 
+    private int maxLevel;
     public bool onClick;
     private void Update(){
         Check();
@@ -46,6 +47,7 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         classStruct = reclicsData.classStruct;
         saveDataType = "Reclics";
         saveDatanum = reclicsData.reclicsType - 1;
+        maxLevel = 12;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -71,22 +73,25 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         
         _reclicsLevel = reclicsLevel;
         _reclicsCount = reclicsCount;
-        _reclicsMaxCount = _reclicsLevel == 0 ? _reclicsMaxCount : (int) math.pow((_reclicsLevel + 1) , 2);
+        _reclicsMaxCount = _reclicsLevel == 0 ? _reclicsMaxCount : (_reclicsLevel + 1) * 2;
         SetCost();
         Check();
         levelText.text = _reclicsLevel + 1 + "";
     }
     
     public ReclicsInfo LevelUp(){
+        if(GameDataManger.Instance.GetGameData().soul < cost) return this;
+        if(CheckMaxLevel()) return this;
+
         _reclicsLevel++;
         _reclicsCount -= _reclicsMaxCount;
-        _reclicsMaxCount =  _reclicsMaxCount = _reclicsLevel == 0 ? _reclicsMaxCount : (int) math.pow((_reclicsLevel + 1) , 2);
+        _reclicsMaxCount =  _reclicsMaxCount = _reclicsLevel == 0 ? _reclicsMaxCount : (_reclicsLevel + 1) * 2;
         levelText.text = _reclicsLevel + 1 + "";
 
         setSlider?.Invoke();
         SetCost();
         ChangeStatus();
-
+                 
         return this;
     }
 
@@ -117,7 +122,10 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         if(length - 2 >= 0) {
             cost = cost - cost % (int)Math.Pow(10 , length - 2); 
         }
-
+    }
+    bool CheckMaxLevel(){
+        if(_reclicsLevel >= 12) return true;
+        else return false;
     }
     public int GetReclicsLevel(){
         return _reclicsLevel;

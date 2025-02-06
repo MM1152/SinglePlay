@@ -199,7 +199,13 @@ public class GameDataManger : MonoBehaviour
         DateTime pastDateTime = Convert.ToDateTime(LoadData.dateTime);
         DateTime currentDateTime = Convert.ToDateTime(GetTime.currentTime);
         int isPast = DateTime.Compare(pastDateTime , currentDateTime);
+        Debug.Log(pastDateTime.Month);
         if(isPast < 0) {
+            if(pastDateTime.Month < currentDateTime.Month) {
+                for(int i = 0; i < 28; i++) {
+                    LoadData.dailyGift[i] = false;
+                }
+            }
             LoadData.dateTime = currentDateTime.ToString("yyyy-MM-dd");
             LoadData.settingShopList = false;    
             LoadData.shopListChangeCount[0] = 3;

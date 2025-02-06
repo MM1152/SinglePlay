@@ -22,7 +22,7 @@ public class RewardManager : MonoBehaviour , ISpawnPosibillity
         Instance = this;
         rewardData = Resources.LoadAll<ClearRewardData>("RewardData");
         sort = new MergeSort<ClearRewardData>(rewardData);
-
+        rewardData = sort.get();
         SettingProbabillity();
     }
     
@@ -33,9 +33,13 @@ public class RewardManager : MonoBehaviour , ISpawnPosibillity
     public ClearRewardData GetRewardData(){
         float value = 0;
         float item = Random.Range(0f , 1f);
-
+        bool[] already = new bool[rewardData.Length];
         for(int i = 0; i < probabillityList.Count; i++) {
             value += probabillityList[i];
+            if(already[i]) {
+                i++;
+                value += probabillityList[i];
+            }
             if(value >= item) return rewardData[i];
         }
 

@@ -103,6 +103,14 @@ public class Summoner : LongRangeScript
             case "ATTACKSPEED":
                 setInitAttackSpeed -= unit.attackSpeed * value;
                 break;
+            
+            case "Clitical":
+                clitical += value;
+                break;
+            
+            case "CliticalDamage":
+                cliticalPercent += value;
+                break;
         }
 
         changeStatus?.Invoke(this);

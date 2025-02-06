@@ -18,6 +18,7 @@ public class SkillManager : MonoBehaviour
     public bool UpgradeSummonUnitSkill;    
     public bool UpgradeAutoRepair;
     public bool UpgradeResurrection; //MaxSpawnCount;
+    public bool UpgradeSummonUnitSpeed;
 
     [Space(50)]
     [Header("AttackSkill")]
@@ -80,6 +81,9 @@ public class SkillManager : MonoBehaviour
                 break;
             case "번개 분할" : 
                 LightningAttackUpgrade = true;
+                break;
+            case "소환수 이동속도 증가":
+                UpgradeSummonUnitSpeed = true;
                 break;
         }
 

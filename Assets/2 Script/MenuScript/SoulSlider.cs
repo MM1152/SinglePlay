@@ -21,7 +21,11 @@ public class SoulSlider : MonoBehaviour
 
     public void Setting(){
         gameObject.SetActive(true);
-        
+        if(soul.soulLevel >= 12) {
+            countText.text = "MAX";
+            slider.value = slider.maxValue;
+            return;
+        }
         slider.maxValue = soul.soulMaxCount;
         slider.value = soul.soulCount;
 

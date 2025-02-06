@@ -23,7 +23,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     [HideInInspector] protected Animator ani = null;
     [HideInInspector] public SpriteRenderer sp;
 
-    private float cliticalPercent;
+    protected float cliticalPercent;
 
     /**************Status****************/
     [Header("Status")]
@@ -166,11 +166,17 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
         float bonusAttack = 0;
         float bonusHp = 0;
+        float bonusSpeed = 0;
         if (SkillManager.Instance.UpgradeSummonUnitSkill)
         {
             SkillData skillData = SkillManager.Instance.GetSkillData("소환수 강화");
             bonusAttack = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
             bonusHp = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
+        }
+        if (SkillManager.Instance.UpgradeSummonUnitSpeed)
+        {
+            SkillData skillData = SkillManager.Instance.GetSkillData("소환수 이동속도 증가");
+            bonusSpeed = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
         }
 
         float thisHpPercent = hp / maxHp;
@@ -178,7 +184,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         maxHp = summoner.hp * (hpPercent + bonusHp);
         mp = unit.mp;
         damage = summoner.damage * (attackPrecent + bonusAttack);
-        speed = unit.speed;
+        speed = unit.speed * (1 + bonusSpeed);
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
         clitical = summoner.clitical;
@@ -322,7 +328,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         //\\TODO 여기서 스킬데미지증가 유물에 관해서 데미지 증가 로직 적용시켜주면 될거같음.
         DamageText damage = PoolingManager.Instance.ShowDamage().GetComponent<DamageText>();
 
-        bool isclitical = UnityEngine.Random.Range(0f , 1f) >= clitical ? true : false;
+        bool isclitical = UnityEngine.Random.Range(0f , 1f) <= unit.clitical ? true : false;
         if(isclitical) {
             Damage = Damage * unit.cliticalPercent;
             attackType = AttackType.CriticalAttack ;
