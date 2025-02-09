@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CreateSummonUnitViewer : MonoBehaviour
 {
     [SerializeField] GameObject summonUnitViewer;
     List<SummonUnitViewer> viewerList = new List<SummonUnitViewer>();
+
     public void CreateViewer(Unit unit){
         GameObject viewer = Instantiate(summonUnitViewer , transform);
         SummonUnitViewer unitViewer = viewer.GetComponent<SummonUnitViewer>();

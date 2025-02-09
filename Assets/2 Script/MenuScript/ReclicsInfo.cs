@@ -53,11 +53,14 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
     public void OnPointerClick(PointerEventData eventData)
     {
         if(onClick) {
+            SoundManager.Instance.Play(SoundManager.SFX.SelectItem);
             if(parentReclicsInfo != null) {
                 reclicsTab.setInfo(parentReclicsInfo); 
                 return;
             }
             reclicsTab.setInfo(this); 
+        }else {
+            SoundManager.Instance.Play(SoundManager.SFX.DisOpen);
         }
     }
 
@@ -90,13 +93,14 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
 
         setSlider?.Invoke();
         SetCost();
-        ChangeStatus();
+        ChangeStatus(cost);
                  
         return this;
     }
 
-    public void ChangeStatus(){
+    public void ChangeStatus(int cost = 0){
         GameData data = GameDataManger.Instance.GetGameData();
+        data.soul -= cost;
         data.reclicsLevel[reclicsData.reclicsType - 1] = _reclicsLevel;
         data.reclicsCount[reclicsData.reclicsType - 1] = _reclicsCount;
         GameDataManger.Instance.SaveData();

@@ -74,17 +74,19 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         hpbarPos.transform.position -= new Vector3(0f , 0f , hpbarPos.transform.position.z);
 
         skillData = new List<SkillParent>();
-        hpBar = Resources.Load<GameObject>("UI/HpCanvas");
+        if(!GameManager.Instance.setting.showHpButton.isSelect) hpBar = Resources.Load<GameObject>("UI/HpCanvas");
         statusEffectMuchine = new StatusEffect(this);
         sp = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>() ? GetComponent<Animator>() : null;
         canFollow = true;
-
-        GameObject hpbarCanvas = Instantiate(this.hpBar , hpbarPos);
-        Hpbar hpbar = hpbarCanvas.transform.GetComponentInChildren<Hpbar>();
-        hpbarCanvas.transform.position = hpbarPos.position;
-        hpbarCanvas.transform.position += Vector3.forward * 1f;
-        hpbar.target = this;
+        
+        if(hpBar != null) {
+            GameObject hpbarCanvas = Instantiate(this.hpBar , hpbarPos);
+            Hpbar hpbar = hpbarCanvas.transform.GetComponentInChildren<Hpbar>();
+            hpbarCanvas.transform.position = hpbarPos.position;
+            hpbarCanvas.transform.position += Vector3.forward * 1f;
+            hpbar.target = this;
+        }
     }
     protected virtual void Update()
     {
@@ -327,7 +329,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     { 
         //\\TODO 여기서 스킬데미지증가 유물에 관해서 데미지 증가 로직 적용시켜주면 될거같음.
         DamageText damage = PoolingManager.Instance.ShowDamage().GetComponent<DamageText>();
-
+        
         bool isclitical = UnityEngine.Random.Range(0f , 1f) <= unit.clitical ? true : false;
         if(isclitical) {
             Damage = Damage * unit.cliticalPercent;
@@ -338,9 +340,10 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             damage.Setting(AttackType.Dodge);
             damage.damage = 0;
             damage.target = damageShowPos;
+            SoundManager.Instance.Play(SoundManager.SFX.Dodge);
             return;
         }
-
+        SoundManager.Instance.Play(SoundManager.SFX.Hit);
         damage.Setting(attackType);
         damage.damage = (int) Damage;
         damage.target = damageShowPos;

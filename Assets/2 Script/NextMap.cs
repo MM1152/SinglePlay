@@ -34,7 +34,6 @@ public class NextMap : MonoBehaviour , IFollowTarget
 
     IEnumerator WaitForShader(){
         yield return new WaitUntil(() =>  fade >= 1 );
-        transform.GetChild(0).gameObject.SetActive(true);
         GameManager.Instance.playingShader = false;
     }
 

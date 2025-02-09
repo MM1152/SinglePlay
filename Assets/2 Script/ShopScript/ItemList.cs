@@ -20,8 +20,11 @@ public class ItemList : MonoBehaviour , IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(isSoldOut) return;
-
+        if(isSoldOut) {
+            SoundManager.Instance.Play(SoundManager.SFX.DisOpen);
+            return;
+        }
+        
         bool isOpen = false;
         int lackgoods = 0;
         if(sellingGem) {
@@ -51,6 +54,8 @@ public class ItemList : MonoBehaviour , IPointerClickHandler
         
         possible.gameObject.SetActive(isOpen);
         impossible.gameObject.SetActive(!isOpen);
+        if(impossible.gameObject.activeSelf) SoundManager.Instance.Play(SoundManager.SFX.DisOpen);
+        else SoundManager.Instance.Play(SoundManager.SFX.SelectItem);
         
     }
 

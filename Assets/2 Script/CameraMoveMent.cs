@@ -11,10 +11,11 @@ public class CameraMoveMent : MonoBehaviour
     [SerializeField] Transform boss;
     public float smooting;
     float size;
+    Unit cameratarget;
     void Awake()
     {
         size = Camera.main.orthographicSize;
-        target = target.transform.GetChild(0);
+        cameratarget = target.transform.GetChild(0).GetComponent<Unit>();
         nextMapHole = GameManager.Instance.nextStage.transform;
     }
     // Update is called once per frame
@@ -27,14 +28,22 @@ public class CameraMoveMent : MonoBehaviour
             boss = EnemySpawner.Instance.bossTrans;
             transform.position = Vector2.Lerp(transform.position , boss.position , smooting);
             transform.position += Vector3.back * 10f;
-        }else if(target.GetComponent<Unit>().hp <= 0){
+        }else if(cameratarget.hp <= 0 ){
+            if(cameratarget.gameObject.name != "Player") {
+                cameratarget = target.transform.GetChild(0).GetComponent<Unit>();
+                return;
+            }
+
             size -= 0.01f;
             size = Math.Clamp(size , 1.5f , 5);
             Camera.main.orthographicSize = size;
         }
         else {
-            transform.position = Vector2.Lerp(transform.position , target.position , smooting);
+            transform.position = Vector2.Lerp(transform.position , cameratarget.gameObject.transform.position , smooting);
             transform.position += Vector3.back * 10f;
         }
+    }
+    public void SettingCameraTarget(Unit unit) {
+        cameratarget = unit;
     }
 }

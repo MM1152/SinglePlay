@@ -12,9 +12,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance {get; private set;}
     [SerializeField] GameObject curtain;
     [SerializeField] GameObject rewardViewer;
+    public SettingTab setting;
     /// <summary>
     /// 1: Attack , 2: Hp , 3: Clitical , 4: AttackSpeed  , 5: MoveSpeed , 6: BonusTalent , 7: BonusGoods , 8: IncreaesDamage ,
-    /// 9: IncreaesHp, 10: CoolTime, 11: SkillDamage, 구현필요 [  12 IncreasedExp, 13 Dodge, 14 DrainLife ] 구현필요
+    /// 9: IncreaesHp, 10: CoolTime, 11: SkillDamage,  12 IncreasedExp, 13 Dodge, 구현필요 [ 14 DrainLife ] 구현필요
     /// </summary>
     public List<ReclicsData> reclicsDatas;
     public bool reclisFin;
@@ -39,11 +40,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public Dictionary<UnitData , int> dropSoulList = new Dictionary<UnitData, int>();
 
+    private ShowingMenuTools showingMenuTools;
     //\\TODO maxStaget 클리어시 GameManager에서 게임 클리어및 종료 신호 보내줘야함;
     // 획득 재화량은 currentStage / maxStaget
     private void Awake() {
         if(Instance == null) {
             Instance = this;    
+            showingMenuTools = GetComponent<ShowingMenuTools>();
             DontDestroyOnLoad(this);
         }
         else  {
@@ -99,6 +102,7 @@ public class GameManager : MonoBehaviour
         //\\레벨당 보상 구현 ㄱ 
 
         rewardViewer.SetActive(true);
+        showingMenuTools.HideOption(false);
         dropSoulList.Clear();
     }
     public void ReturnToMain(string SceneName = "MainScene"){
@@ -111,6 +115,7 @@ public class GameManager : MonoBehaviour
             gameData.soulsCount[unitData.typenumber - 1]++;
             GameDataManger.Instance.SaveData();
         };
+        showingMenuTools.HideOption(true);
         ResumeGame();
     }
     public IEnumerator WaitForNextMap(Action action) {

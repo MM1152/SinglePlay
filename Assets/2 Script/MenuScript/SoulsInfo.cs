@@ -64,6 +64,10 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         if(unLock) {
             if(parentSoulsInfo == null) soulsTab.settingSoul(this , true , null);
             else soulsTab.settingSoul(parentSoulsInfo , true , null);
+
+            SoundManager.Instance.Play(SoundManager.SFX.SelectItem);
+        }else {
+            SoundManager.Instance.Play(SoundManager.SFX.DisOpen);
         }
        
     }
@@ -83,8 +87,9 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         soulImage.sprite = unitData.image;
     }
     public void Setting(int soulCount , int soulLevel){
-        if(soulCount == 0 && soulLevel == 0) return;
 
+        if(soulCount == 0 && soulLevel == 0)  return;
+        
         this.soulCount = soulCount;
         this.soulLevel = soulLevel;
         soulMaxCount = (this.soulLevel + 1) * 2;
