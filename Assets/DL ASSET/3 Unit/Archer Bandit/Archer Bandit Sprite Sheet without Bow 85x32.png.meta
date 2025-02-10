@@ -1,0 +1,1953 @@
+fileFormatVersion: 2
+guid: 2bdfb8d58d522e5429da418060314727
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 12
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcfefc68ab7696043b36630417d333cc
+      internalID: -1516024273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 192
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a3aaaea18045744d8fa240d1754d32f
+      internalID: 206821240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_2
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 192
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7dd37af914a27d40b15fb6b52a0749c
+      internalID: -350889579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_3
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 192
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b685d0b44b6988e4a98b5a5dff7e8017
+      internalID: 1512752574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_4
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 192
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b74225e0f2e467c44b8c2c9072aa5b1f
+      internalID: -1185783117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_5
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 192
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 873fad5068d67954a8529038ed9c0d5f
+      internalID: -1295735614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_6
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 192
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09ab623ed793d354193cfe69c53896b0
+      internalID: -1190855388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_7
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 192
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 191879431f4ef6047a35f30a6411b50b
+      internalID: 2105361177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aec0b1537d4a68b43a5ac6325ada53f6
+      internalID: 527817423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_9
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 160
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efb46ad153785dc41afecee299bbd80f
+      internalID: 1137828359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_10
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 160
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f42379abb7fa09b4782a5f621c3555fb
+      internalID: -1578956078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_11
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 160
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4517d6da3a4466b49ab2e272cb864244
+      internalID: 1618178262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_12
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 160
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33d53077091a5854ebca5b65e76b6f13
+      internalID: -1839525025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_13
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 160
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b77435f6dd39753409b0465ec76673fe
+      internalID: -1867274210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_14
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 160
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 158e6edf7a2c0964b97e32900980c133
+      internalID: -1022275259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_15
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 160
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db20e2ecf6745cb40a7272fde4bb739c
+      internalID: -1896063608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15dd959453f63604ba1a1d4b4305d120
+      internalID: -742723981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_17
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 128
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fedc19321caa984797c136f0331d365
+      internalID: 706698542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_18
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 128
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7966a5660a072e4ea984565a396b21b
+      internalID: 1575856710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_19
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 128
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dccd1e2f2adaee4c959269967573f2e
+      internalID: 822719101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_20
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 128
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e039dc959ff137641a0729236542838f
+      internalID: 928867820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_21
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 128
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 843ab069abd48c24a98207bee3223f34
+      internalID: 1218631054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b05abfd0154b9a4fbce141c5206bec0
+      internalID: -1497472485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_23
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 96
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65aa763b25450e641a6c3c0901c8df60
+      internalID: 1694256521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_24
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 96
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d296f2336ddef354eaf948fd370c29ff
+      internalID: -573720214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_25
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 96
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f387dd6c4088714f906b83dbb568033
+      internalID: -1428387798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_26
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 96
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5daf99604af71e42a1160255201d4c8
+      internalID: 1623690356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_27
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 96
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8edeaa3503cf22846aba3250a0c891aa
+      internalID: -452024532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_28
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 96
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db8a31bf0a98c8041a34148b403a2263
+      internalID: -1484438160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_29
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 96
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b886cebb6bb7a64a9a823e2215f41f9
+      internalID: -762208365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_30
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 96
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 186293d7596d68447a16a9420740ee7d
+      internalID: -668805533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_31
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 96
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38d80a246dc7df84cae118993fd7b37a
+      internalID: -1971585874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_32
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 96
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55ab138a43136e1489aa39a38e50cb3d
+      internalID: 36467213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_33
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 96
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc6e3c2038846fd49b08cd8510ae7d71
+      internalID: 961751198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_34
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aba995f13fb678246ae46c836db6c437
+      internalID: 46373881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_35
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d180cfc599ae3d741bec752287a79ae4
+      internalID: -1606722587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_36
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2f01b21746808a4ab1ef255c415bce6
+      internalID: -735092400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_37
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 614951a90e79f564ba2eeb1d04a43ae9
+      internalID: 585417001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_38
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87c4818e851a76845a729ea8fe4dacf8
+      internalID: -669643570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_39
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 178ed588fcc40544aa8878c679b9b820
+      internalID: 2118212343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_40
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 633de7570add8b643930d13edfe597a1
+      internalID: 2089823340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_41
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddc1f7910d2ee5d44973e1a0230b8612
+      internalID: 1875535359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_42
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ea53749a64d2384786b802dccd33b4e
+      internalID: 1143987428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_43
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f02bcaa5087f004fb213a8aed52072f
+      internalID: -223744191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_44
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f76914b4fbd10749bed10216ee98a55
+      internalID: 2091222707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_45
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 812a21183e747854f8c507fbb3036fd9
+      internalID: 833336299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_46
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fed88dc388075f046b402eb667c50ef7
+      internalID: -1901130829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_47
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b7aab8a61e35454abde19c434351aff
+      internalID: -293058743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_48
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 64
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aa139573f8a0bf48bda0e710ab2d691
+      internalID: -38982007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c191ec8f61975e346a5ea44252700f36
+      internalID: 1011767201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_50
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80a50627042bf0a49ad84af1d1707096
+      internalID: -162856016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_51
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 860af8915001fa949834fcef3e316152
+      internalID: -1145055869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_52
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bbd04e87bf9d73459b3310cb44a7420
+      internalID: 822727968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_53
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c1e343021ec0d247ab4f332263e1735
+      internalID: -1069917023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_54
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 989c83806ca57894d98d76a8b0dcf23b
+      internalID: -1295622519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_55
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed3601456ea5d3d4d9716f938efaf941
+      internalID: 414962929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_56
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d32f46c44bc2234482def628c7acfea
+      internalID: 1021211507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_57
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fa0b7b5ce6ecc0458fe1a0109f60d76
+      internalID: -599333854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_58
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c2f3c2b10dca7447828317b0a32882a
+      internalID: -1534315585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_59
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56626b85481bd4344b7544375f1df253
+      internalID: -1671611228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_60
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55c27fb1b88f8c847a3c857747779075
+      internalID: -831486907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_61
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a437d4548bde051459ac6f72ffd2f1a6
+      internalID: -187429884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_62
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0831cb9dcd5c0d0429197aae096c69fa
+      internalID: 867626422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_63
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b4f53f5c72dc3e4eb9d5489df322af2
+      internalID: -1157422393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_64
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd6073f5b47b7eb4a847de9f08a6e7d3
+      internalID: -2016855542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_65
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 32
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e34c13e17c9418a41a591178b29c91fb
+      internalID: 292617463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_66
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca6ec74cb831fca499f8166862cfa7fd
+      internalID: 1303554188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_67
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0bf5a04beff5c849a1b0089fda95ef9
+      internalID: 994250639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_68
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6266ebef96724a64b838a2ae9cc9b00b
+      internalID: 117453145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_69
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 625df98f88d043c48869b679d78705e8
+      internalID: -2044015853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_70
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 905735bb0289cc04a8658e657de56395
+      internalID: 338589512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_71
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 396712f055023104d9d356647b6ce142
+      internalID: -1275153076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_72
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00c5f7cfcd724fb4c8ec9292d0993ad7
+      internalID: -8289491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_73
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5462ae8eec497d4bb95a380f14a29c4
+      internalID: 2142478417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_74
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a93444a58ff6e5409e48cec21232a1b
+      internalID: -1934565419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_75
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d2b06736d6e6b742b3a87570344aec4
+      internalID: 1552690929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_76
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 174ded4bcff97f54fa8e528809f2a291
+      internalID: -1034531094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_77
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b58c98271607254479c118f78ad1f50e
+      internalID: 1698230293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_78
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b75ef283d2fd3614885dc2841ada5a88
+      internalID: -686160677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_79
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb803fbe411805843936847b0ed01df9
+      internalID: 1045566504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_80
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d49f5457ecb06645a367aa8fbcd4212
+      internalID: 1593120739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_81
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cfc22ab419d6ea4287f3d2ebe77dbee
+      internalID: -980268772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit Sprite Sheet without Bow 85x32_82
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 0
+        width: 85
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4153957, y: 0.2612243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abfd02f2b99d6d64c88e393191e76c02
+      internalID: 417704348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Archer Bandit Sprite Sheet without Bow 85x32_0: -1516024273
+      Archer Bandit Sprite Sheet without Bow 85x32_1: 206821240
+      Archer Bandit Sprite Sheet without Bow 85x32_10: -1578956078
+      Archer Bandit Sprite Sheet without Bow 85x32_11: 1618178262
+      Archer Bandit Sprite Sheet without Bow 85x32_12: -1839525025
+      Archer Bandit Sprite Sheet without Bow 85x32_13: -1867274210
+      Archer Bandit Sprite Sheet without Bow 85x32_14: -1022275259
+      Archer Bandit Sprite Sheet without Bow 85x32_15: -1896063608
+      Archer Bandit Sprite Sheet without Bow 85x32_16: -742723981
+      Archer Bandit Sprite Sheet without Bow 85x32_17: 706698542
+      Archer Bandit Sprite Sheet without Bow 85x32_18: 1575856710
+      Archer Bandit Sprite Sheet without Bow 85x32_19: 822719101
+      Archer Bandit Sprite Sheet without Bow 85x32_2: -350889579
+      Archer Bandit Sprite Sheet without Bow 85x32_20: 928867820
+      Archer Bandit Sprite Sheet without Bow 85x32_21: 1218631054
+      Archer Bandit Sprite Sheet without Bow 85x32_22: -1497472485
+      Archer Bandit Sprite Sheet without Bow 85x32_23: 1694256521
+      Archer Bandit Sprite Sheet without Bow 85x32_24: -573720214
+      Archer Bandit Sprite Sheet without Bow 85x32_25: -1428387798
+      Archer Bandit Sprite Sheet without Bow 85x32_26: 1623690356
+      Archer Bandit Sprite Sheet without Bow 85x32_27: -452024532
+      Archer Bandit Sprite Sheet without Bow 85x32_28: -1484438160
+      Archer Bandit Sprite Sheet without Bow 85x32_29: -762208365
+      Archer Bandit Sprite Sheet without Bow 85x32_3: 1512752574
+      Archer Bandit Sprite Sheet without Bow 85x32_30: -668805533
+      Archer Bandit Sprite Sheet without Bow 85x32_31: -1971585874
+      Archer Bandit Sprite Sheet without Bow 85x32_32: 36467213
+      Archer Bandit Sprite Sheet without Bow 85x32_33: 961751198
+      Archer Bandit Sprite Sheet without Bow 85x32_34: 46373881
+      Archer Bandit Sprite Sheet without Bow 85x32_35: -1606722587
+      Archer Bandit Sprite Sheet without Bow 85x32_36: -735092400
+      Archer Bandit Sprite Sheet without Bow 85x32_37: 585417001
+      Archer Bandit Sprite Sheet without Bow 85x32_38: -669643570
+      Archer Bandit Sprite Sheet without Bow 85x32_39: 2118212343
+      Archer Bandit Sprite Sheet without Bow 85x32_4: -1185783117
+      Archer Bandit Sprite Sheet without Bow 85x32_40: 2089823340
+      Archer Bandit Sprite Sheet without Bow 85x32_41: 1875535359
+      Archer Bandit Sprite Sheet without Bow 85x32_42: 1143987428
+      Archer Bandit Sprite Sheet without Bow 85x32_43: -223744191
+      Archer Bandit Sprite Sheet without Bow 85x32_44: 2091222707
+      Archer Bandit Sprite Sheet without Bow 85x32_45: 833336299
+      Archer Bandit Sprite Sheet without Bow 85x32_46: -1901130829
+      Archer Bandit Sprite Sheet without Bow 85x32_47: -293058743
+      Archer Bandit Sprite Sheet without Bow 85x32_48: -38982007
+      Archer Bandit Sprite Sheet without Bow 85x32_49: 1011767201
+      Archer Bandit Sprite Sheet without Bow 85x32_5: -1295735614
+      Archer Bandit Sprite Sheet without Bow 85x32_50: -162856016
+      Archer Bandit Sprite Sheet without Bow 85x32_51: -1145055869
+      Archer Bandit Sprite Sheet without Bow 85x32_52: 822727968
+      Archer Bandit Sprite Sheet without Bow 85x32_53: -1069917023
+      Archer Bandit Sprite Sheet without Bow 85x32_54: -1295622519
+      Archer Bandit Sprite Sheet without Bow 85x32_55: 414962929
+      Archer Bandit Sprite Sheet without Bow 85x32_56: 1021211507
+      Archer Bandit Sprite Sheet without Bow 85x32_57: -599333854
+      Archer Bandit Sprite Sheet without Bow 85x32_58: -1534315585
+      Archer Bandit Sprite Sheet without Bow 85x32_59: -1671611228
+      Archer Bandit Sprite Sheet without Bow 85x32_6: -1190855388
+      Archer Bandit Sprite Sheet without Bow 85x32_60: -831486907
+      Archer Bandit Sprite Sheet without Bow 85x32_61: -187429884
+      Archer Bandit Sprite Sheet without Bow 85x32_62: 867626422
+      Archer Bandit Sprite Sheet without Bow 85x32_63: -1157422393
+      Archer Bandit Sprite Sheet without Bow 85x32_64: -2016855542
+      Archer Bandit Sprite Sheet without Bow 85x32_65: 292617463
+      Archer Bandit Sprite Sheet without Bow 85x32_66: 1303554188
+      Archer Bandit Sprite Sheet without Bow 85x32_67: 994250639
+      Archer Bandit Sprite Sheet without Bow 85x32_68: 117453145
+      Archer Bandit Sprite Sheet without Bow 85x32_69: -2044015853
+      Archer Bandit Sprite Sheet without Bow 85x32_7: 2105361177
+      Archer Bandit Sprite Sheet without Bow 85x32_70: 338589512
+      Archer Bandit Sprite Sheet without Bow 85x32_71: -1275153076
+      Archer Bandit Sprite Sheet without Bow 85x32_72: -8289491
+      Archer Bandit Sprite Sheet without Bow 85x32_73: 2142478417
+      Archer Bandit Sprite Sheet without Bow 85x32_74: -1934565419
+      Archer Bandit Sprite Sheet without Bow 85x32_75: 1552690929
+      Archer Bandit Sprite Sheet without Bow 85x32_76: -1034531094
+      Archer Bandit Sprite Sheet without Bow 85x32_77: 1698230293
+      Archer Bandit Sprite Sheet without Bow 85x32_78: -686160677
+      Archer Bandit Sprite Sheet without Bow 85x32_79: 1045566504
+      Archer Bandit Sprite Sheet without Bow 85x32_8: 527817423
+      Archer Bandit Sprite Sheet without Bow 85x32_80: 1593120739
+      Archer Bandit Sprite Sheet without Bow 85x32_81: -980268772
+      Archer Bandit Sprite Sheet without Bow 85x32_82: 417704348
+      Archer Bandit Sprite Sheet without Bow 85x32_9: 1137828359
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

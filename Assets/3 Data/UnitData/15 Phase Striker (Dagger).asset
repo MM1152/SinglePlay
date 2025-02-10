@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba121b15cbd8344c87c6c7860363848, type: 3}
+  m_Name: 15 Phase Striker (Dagger)
+  m_EditorClassIdentifier: 
+  name: DaggerPhaseStriker
+  type: 3
+  typenumber: 15
+  image: {fileID: 1186941117, guid: 29dba35a8480f8d47b57a15005061e48, type: 3}
+  attackSpeed: 1
+  hp: 1500
+  mp: 0
+  damage: 100
+  speed: 3
+  attackRadious: 1
+  spawnProbabillity: 30
+  soulsSkillData: []
+  SummonPrefeb: {fileID: 5975829211352206023, guid: de40cc73cd9fc4348af0eee865ba484b, type: 3}
+  explainText: "Lv.3:   \uCCB4\uB825 15% \uC99D\uAC00\nLv.6:   \uBAA8\uB4E0\uC18D\uB3C4
+    30% \uC99D\uAC00 / \uC2A4\uD0AC 1\uD574\uC81C\nLv.9:   \uACF5\uACA9\uB825 20%
+    \uC99D\uAC00\nLv.12: \uC2A4\uD0AC 2\uD574\uC81C"
+  stat:
+  - 3 Hp 15
+  - 6 Speed 30
+  - 9 Attack 20

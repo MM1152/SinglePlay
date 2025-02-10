@@ -20,7 +20,7 @@ MonoBehaviour:
   hp: 1900
   mp: 0
   damage: 70
-  speed: 0.8
+  speed: 1.5
   attackRadious: 1.5
   spawnProbabillity: 20
   soulsSkillData:

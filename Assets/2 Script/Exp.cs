@@ -16,6 +16,7 @@ public class Exp : MonoBehaviour
             bonus += GameManager.Instance.reclicsDatas[11].inItPercent;
             bonus += GameDataManger.Instance.GetGameData().reclicsLevel[11] * GameManager.Instance.reclicsDatas[11].levelUpPercent;
             bonus /= 100f;
+            bonus += 1f;
         }
         level = GameObject.FindObjectOfType<Level>();
         slider = GetComponent<Slider>();
@@ -25,7 +26,7 @@ public class Exp : MonoBehaviour
 
     public void SetExpValue(float value){
     
-        Debug.Log("Get Exp " + value * bonus);
+        Debug.Log("Get Exp " + "(" + value + ")" + "(" + bonus + ")");
         
         slider.value += value * bonus;
 

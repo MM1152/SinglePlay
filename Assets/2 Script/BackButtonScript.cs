@@ -7,7 +7,7 @@ public class BackButtonScript : MonoBehaviour
     GameObject disableObject;
     Button bnt;
 
-    private void Awake(){
+    private void Start(){
         bnt = GetComponent<Button>();
         disableObject = transform.parent.gameObject;
         

@@ -6,28 +6,12 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class King : Boss , ISummonUnit
+public class King : Boss 
 {
     [Space(50)]
     [Header("보스 설정")]
     [SerializeField] Sprite ShowingImage; // 보스 소개장면에서 보여질 이미지 설정
     
-
-    public Summoner summoner { get ; set ; }
-
-    
-    private void SummonUnitSetting(){
-        ani.SetBool("PlaySpawnAni" , false);
-        SummonerSpawn(summoner);
-        gameObject.transform.localScale -= Vector3.one * 0.2f ;
-    }
-    private void Start(){
-        if(summoner == null) {
-            BossSetting();
-            attackPattenChange = true;
-        }
-        else SummonUnitSetting();
-    }
     
     protected override void Attack()
     {

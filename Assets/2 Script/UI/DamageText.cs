@@ -12,17 +12,23 @@ public class DamageText : MonoBehaviour
             transform.position = Camera.main.WorldToScreenPoint(value.position);    
         }
     }
+    float limitTime;
     private float _damage;
+    
     public float damage {
         get { return _damage; }
         set {
             _damage = value;
+            limitTime = 0;
             if(value == 0) text.text = $"<color={color}> Dodge </color>";
             else text.text = $"<color={color}>" + _damage + "</color>";
             StartCoroutine(DamageAnimation());
         }
     }
-
+    private void Update() {
+        limitTime += Time.deltaTime;
+        if(limitTime >= 5f) Destroy(this);
+    }
     IEnumerator DamageAnimation(){
         for(int i = 0; i < 10f; i++) {
             transform.position += Vector3.up * 0.1f;

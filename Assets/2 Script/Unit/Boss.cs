@@ -3,13 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : ShortRangeScipt 
+public class Boss : ShortRangeScipt  , ISummonUnit
 {
-
     [SerializeField] BossShowAnimation BossShow; // 보스 소개하는 애니메이션 접근 ( image 와 Text 설정해줌 )
-    protected void BossSetting(){
+    public Summoner summoner { get ; set ; }
+
+    protected void Start() {
+        if(summoner == null) {
+            SetBossAni();
+            SetBoss();
+        }
+        else SummonUnitSetting();
+    }
+    protected void SetBossAni(){
+        ani.SetBool("PlaySpawnAni" , true);
         BossShow = GameObject.FindAnyObjectByType<BossShowAnimation>();
         StartCoroutine(WaitForAnimationCorutine());
+    }
+    protected void SetBoss(){
         Spawn(1);
 
         for (int i = 0; i < unit.soulsSkillData.Length; i++)
@@ -20,9 +31,7 @@ public class Boss : ShortRangeScipt
             skilldata.soulsSkillData = unit.soulsSkillData[i].skillData;
             skillData.Add(skilldata);
         }
-        
     }
-    
     protected override void Update()
     {
 
@@ -31,6 +40,11 @@ public class Boss : ShortRangeScipt
             base.Update();
         }
 
+    }
+    
+    private void SummonUnitSetting(){
+        SummonerSpawn(summoner);
+        gameObject.transform.localScale -= Vector3.one * 0.2f ;
     }
 
     IEnumerator WaitForAnimationCorutine()

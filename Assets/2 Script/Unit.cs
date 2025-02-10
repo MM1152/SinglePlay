@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 
@@ -14,7 +15,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     public CircleCollider2D collider;
     public UnitData unit;
     public List<SkillParent> skillData;
-    ISummonUnit summonUnit;
+    public ISummonUnit summonUnit;
     [Range(0f, 1f)] public float attackObjectShowTime;
     public float setInitAttackSpeed; // 초기화될 공격속도
     public float currentAttackSpeed; // 현재 공격까지 남은시간
@@ -56,6 +57,9 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
     public GameObject target; // 공격할 대상
     public GameObject targetList; // 적이라면 Player를 담고있는 부모 , Player라면 적에 대한 정보를 담고있는 부모
+
+    [SerializeField] float attackPrecent;
+    [SerializeField] float hpPercent;
     /************************************/
 
     /*************TestCode***************/
@@ -65,6 +69,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
     protected virtual void Awake()
     {
+
         cliticalPercent = 1.5f;
         rg = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
@@ -87,7 +92,9 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             hpbarCanvas.transform.position += Vector3.forward * 1f;
             hpbar.target = this;
         }
+
     }
+
     protected virtual void Update()
     {
         if (!isDie)
@@ -138,11 +145,10 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     }
     protected virtual void SummonerSpawn(Summoner summoner)
     { 
-        float attackPrecent = GameManager.Instance.soulsInfo[unit.name].curStat.attackStat / 100f;
-        float hpPercent = GameManager.Instance.soulsInfo[unit.name].curStat.hpStat / 100f;
-
         float bonusAttack = 0;
         float bonusHp = 0;
+        attackPrecent = GameManager.Instance.soulsInfo[unit.name].curStat.attackStat / 100f;
+        hpPercent = GameManager.Instance.soulsInfo[unit.name].curStat.hpStat / 100f;
         if (SkillManager.Instance.UpgradeSummonUnitSkill)
         {
             SkillData skillData = SkillManager.Instance.GetSkillData("소환수 강화");
@@ -163,9 +169,6 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     }
     public void ChangeStats(Summoner summoner)
     {
-        float attackPrecent = GameManager.Instance.soulsInfo[unit.name].curStat.attackStat / 100f;
-        float hpPercent = GameManager.Instance.soulsInfo[unit.name].curStat.hpStat / 100f;
-
         float bonusAttack = 0;
         float bonusHp = 0;
         float bonusSpeed = 0;

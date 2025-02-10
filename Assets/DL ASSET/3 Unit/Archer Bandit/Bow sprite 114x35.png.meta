@@ -1,0 +1,707 @@
+fileFormatVersion: 2
+guid: beab6a6f51355174fb6ad6abd9affbe8
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 28
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bow sprite 114x35_0
+      rect:
+        serializedVersion: 2
+        x: 1394
+        y: 1
+        width: 89
+        height: 31
+      alignment: 9
+      pivot: {x: 0, y: 0.47953728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a95f1e211e54309498f44e650f0052e6
+      internalID: 1132039158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_1
+      rect:
+        serializedVersion: 2
+        x: 1167
+        y: 0
+        width: 89
+        height: 31
+      alignment: 9
+      pivot: {x: 0, y: 0.47953728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07302a29e466ab5489d4cd36dffcb2a2
+      internalID: -1253751141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_2
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 0
+        width: 89
+        height: 31
+      alignment: 9
+      pivot: {x: 0, y: 0.47953728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 356f8e3d068c8034195fa2bcb72ddc43
+      internalID: -1396524087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_3
+      rect:
+        serializedVersion: 2
+        x: 1847
+        y: 0
+        width: 89
+        height: 31
+      alignment: 9
+      pivot: {x: 0.0038212123, y: 0.4795372}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 416c4876a996b1442a4a716c4d000a51
+      internalID: -2134120576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_4
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 0
+        width: 89
+        height: 31
+      alignment: 9
+      pivot: {x: -0.0018145958, y: 0.49571443}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2528b443923d19d44b3ed4114f07f390
+      internalID: -1807446397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_5
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 1
+        width: 89
+        height: 31
+      alignment: 9
+      pivot: {x: 0, y: 0.47953728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd3aa397e810e074dae037f5d1b27639
+      internalID: 1006876470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_6
+      rect:
+        serializedVersion: 2
+        x: 1508
+        y: 0
+        width: 89
+        height: 31
+      alignment: 9
+      pivot: {x: 0, y: 0.47953728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8d3ee6f64b761b4cadef9d17a0be09b
+      internalID: -1963404853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 44
+        width: 22
+        height: 6
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd7ec5bc8b0020545a498597e83fb42e
+      internalID: 2040067528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_21
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 5
+        width: 12
+        height: 22
+      alignment: 9
+      pivot: {x: 0.030150374, y: 0.47738692}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba04b9aae2418904eb699663063dd118
+      internalID: 1074059383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_22
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 5
+        width: 22
+        height: 22
+      alignment: 9
+      pivot: {x: 0.025123596, y: 0.5000002}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 389b0f54a51e2e14f85d843764d27b67
+      internalID: -1003734760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_23
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 5
+        width: 22
+        height: 22
+      alignment: 9
+      pivot: {x: 0.002092535, y: 0.48616955}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3842b49bdef9cbf4c9f4828530d88fff
+      internalID: -843523259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_24
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 2
+        width: 23
+        height: 25
+      alignment: 9
+      pivot: {x: 0.002381698, y: 0.5000001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc433820a47adf14182f87842ce28ec8
+      internalID: 818172646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_25
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 1
+        width: 24
+        height: 27
+      alignment: 9
+      pivot: {x: 0.00566864, y: 0.5000001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4291013f3f6cce14bbb738fd981abd8a
+      internalID: -558081207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_26
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 1
+        width: 26
+        height: 27
+      alignment: 9
+      pivot: {x: 0.002570519, y: 0.49525732}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da1410666840019458077b31dff8d162
+      internalID: -2095489485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_27
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 2
+        width: 24
+        height: 29
+      alignment: 9
+      pivot: {x: 0.009137471, y: 0.49558437}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec819ab5130ccc145a204772b82dec9a
+      internalID: -1310886099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_28
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 1
+        width: 26
+        height: 30
+      alignment: 9
+      pivot: {x: 0.0029766376, y: 0.503916}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69d2364135f3d52489bdf11cabaa3459
+      internalID: -1915970169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_29
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 1
+        width: 23
+        height: 31
+      alignment: 9
+      pivot: {x: 0.009656823, y: 0.49621046}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0492e113c721c494d86d64617eb4744f
+      internalID: 1939822314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_31
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 0
+        width: 25
+        height: 32
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3149807b15a1fd54bbddcfbf81c4a1f2
+      internalID: -2063049783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_32
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 5
+        width: 22
+        height: 24
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28717e96336b96e43beff123b0d098ac
+      internalID: 1327139429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_35
+      rect:
+        serializedVersion: 2
+        x: 1258
+        y: 1
+        width: 21
+        height: 31
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 758b2deb7981cb44fb30135b61b37ebf
+      internalID: -2109646143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_37
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 0
+        width: 21
+        height: 32
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39aeb9973daeba540ae2366307ca2204
+      internalID: -914293868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_39
+      rect:
+        serializedVersion: 2
+        x: 1486
+        y: 1
+        width: 22
+        height: 32
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b19036b8994dbf47a226c105d77ca82
+      internalID: -2056339590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_41
+      rect:
+        serializedVersion: 2
+        x: 1597
+        y: 0
+        width: 24
+        height: 34
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45ecd5171d823034abdc0eb19149fba2
+      internalID: 52752182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_43
+      rect:
+        serializedVersion: 2
+        x: 1710
+        y: 0
+        width: 24
+        height: 34
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f567ff52eeb6ae4d8c2f0d03aed0fa4
+      internalID: 105968061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bow sprite 114x35_44
+      rect:
+        serializedVersion: 2
+        x: 1825
+        y: 0
+        width: 22
+        height: 35
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93b5fa9563477a1448c2a0f38ca22005
+      internalID: -1681820449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Bow sprite 114x35_0: 1132039158
+      Bow sprite 114x35_1: -1253751141
+      Bow sprite 114x35_10: -801906674
+      Bow sprite 114x35_11: 1285193327
+      Bow sprite 114x35_12: 2040067528
+      Bow sprite 114x35_13: 123543508
+      Bow sprite 114x35_14: 278418170
+      Bow sprite 114x35_15: 815478161
+      Bow sprite 114x35_16: 1888460381
+      Bow sprite 114x35_17: 1356732278
+      Bow sprite 114x35_18: 614780797
+      Bow sprite 114x35_19: -931922639
+      Bow sprite 114x35_2: -1396524087
+      Bow sprite 114x35_20: -955260820
+      Bow sprite 114x35_21: 1074059383
+      Bow sprite 114x35_22: -1003734760
+      Bow sprite 114x35_23: -843523259
+      Bow sprite 114x35_24: 818172646
+      Bow sprite 114x35_25: -558081207
+      Bow sprite 114x35_26: -2095489485
+      Bow sprite 114x35_27: -1310886099
+      Bow sprite 114x35_28: -1915970169
+      Bow sprite 114x35_29: 1939822314
+      Bow sprite 114x35_3: -2134120576
+      Bow sprite 114x35_30: 1694995010
+      Bow sprite 114x35_31: -2063049783
+      Bow sprite 114x35_32: 1327139429
+      Bow sprite 114x35_33: -184209670
+      Bow sprite 114x35_34: 1528380113
+      Bow sprite 114x35_35: -2109646143
+      Bow sprite 114x35_36: -1672251544
+      Bow sprite 114x35_37: -914293868
+      Bow sprite 114x35_38: -567852572
+      Bow sprite 114x35_39: -2056339590
+      Bow sprite 114x35_4: -1807446397
+      Bow sprite 114x35_40: 1238191013
+      Bow sprite 114x35_41: 52752182
+      Bow sprite 114x35_42: 84686849
+      Bow sprite 114x35_43: 105968061
+      Bow sprite 114x35_44: -1681820449
+      Bow sprite 114x35_45: 611710236
+      Bow sprite 114x35_46: 540316406
+      Bow sprite 114x35_47: 1175717839
+      Bow sprite 114x35_48: -675032705
+      Bow sprite 114x35_49: 499989844
+      Bow sprite 114x35_5: 1006876470
+      Bow sprite 114x35_50: 1446139091
+      Bow sprite 114x35_51: -1669415619
+      Bow sprite 114x35_52: 1612751550
+      Bow sprite 114x35_53: 1699352056
+      Bow sprite 114x35_54: -1763740042
+      Bow sprite 114x35_6: -1963404853
+      Bow sprite 114x35_7: 230981668
+      Bow sprite 114x35_8: 1869599221
+      Bow sprite 114x35_9: 1257401245
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
