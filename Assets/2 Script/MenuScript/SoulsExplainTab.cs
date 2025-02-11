@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class SoulsExplainTab : MonoBehaviour
 {
     private EquipSouls equipSouls;
+    private UnitData changeUnitData;
     private SoulsInfo _UnitData;
     public SoulsInfo UnitData
     {
@@ -18,6 +19,10 @@ public class SoulsExplainTab : MonoBehaviour
         set
         {
             _UnitData = value;
+            if(value.GetUnitData().changeFormInfo != null) {
+                changeForm.gameObject.SetActive(true);
+                changeUnitData = value.GetUnitData();
+            }
 
             slider.maxValue = value.soulMaxCount;
             slider.value = value.soulCount;
@@ -67,12 +72,14 @@ public class SoulsExplainTab : MonoBehaviour
     [SerializeField] private Text skillName;
     [SerializeField] private Image skillImage;
     [SerializeField] private Transform levelPerAdditionalParent;
+    [SerializeField] private Button changeForm;
     private RectTransform rect;
 
     public Action SetEquip;
     public Action SetUnEquip;
     private void Awake()
     {
+        
         levelUpButton.onClick.AddListener(LevelUp);
         equipButton.onClick.AddListener(() =>
         {
@@ -80,6 +87,7 @@ public class SoulsExplainTab : MonoBehaviour
             SetEquip();
             this.gameObject.SetActive(false);
         });
+
         unEquipButton.onClick.AddListener(() =>
         {
             equipSouls.SetSoulInfo(null);
@@ -87,10 +95,17 @@ public class SoulsExplainTab : MonoBehaviour
             this.gameObject.SetActive(false);
         });
 
+        changeForm.onClick.AddListener(() => {
+            changeUnitData = changeUnitData.changeFormInfo;
+            Debug.Log(changeUnitData.soulsSkillData[1].skillData.skillName);
+            Image.sprite = changeUnitData.image;
+            SetSkill(changeUnitData);
+        });
         rect = skillExplainTab.GetComponent<RectTransform>();
     }
     private void OnDisable() {
         skillExplainTab.SetActive(false);
+        changeForm.gameObject.SetActive(false);
     }
     public void SettingSoulExplainTab(SoulsInfo soulsInfo, bool open_To_SoulTab, EquipSouls equip)
     {
@@ -132,7 +147,7 @@ public class SoulsExplainTab : MonoBehaviour
         {
             skillImagesObject[i].SetActive(false);
         }
-
+        Debug.Log("change SkillData");
         if (data.soulsSkillData.Length > 0)
         {
             if (skillImagesObject.Count >= data.soulsSkillData.Length)

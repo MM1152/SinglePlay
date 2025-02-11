@@ -62,8 +62,8 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     public void OnPointerClick(PointerEventData eventData)
     {
         if(unLock) {
-            if(parentSoulsInfo == null) soulsTab.settingSoul(this , true , null);
-            else soulsTab.settingSoul(parentSoulsInfo , true , null);
+            if(parentSoulsInfo == null) soulsTab.SetInfo(this , true , null);
+            else soulsTab.SetInfo(parentSoulsInfo , true , null);
 
             SoundManager.Instance.Play(SoundManager.SFX.SelectItem);
         }else {

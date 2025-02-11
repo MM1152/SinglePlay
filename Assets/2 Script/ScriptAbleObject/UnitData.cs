@@ -32,7 +32,7 @@ public class UnitData : ScriptableObject {
     public float speed;
     public float attackRadious;
     public float spawnProbabillity;
-
+    [Space(50)]
     [Header ("소환수로 부릴 시 사용되는 탭")]
     public SkillUnLockLevel[] soulsSkillData;
     public GameObject SummonPrefeb;
@@ -41,4 +41,6 @@ public class UnitData : ScriptableObject {
     public string[] stat;
     public Status bonusStat = new Status();
     public Status curStat = new Status();
+    [Header ("폼 변환시 변환 될 유닛데이터")]
+    public UnitData changeFormInfo;
 }

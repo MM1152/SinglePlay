@@ -21,7 +21,7 @@ public class GetTime : MonoBehaviour {
             else {
                 string data = request.GetResponseHeader("date");
 
-                DateTime dateTime = DateTime.Parse(data).ToUniversalTime();
+                DateTime dateTime = DateTime.Parse(data);
                 currentTime = dateTime.AddHours(9).ToString("yyyy-MM-dd");
                 Debug.Log(currentTime); 
             }

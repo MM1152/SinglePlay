@@ -54,7 +54,7 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !isEquip) soulsTab.settingSoul(_soulInfo , false , this);
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !isEquip) soulsTab.SetInfo(_soulInfo , false , this);
     }
     
 }

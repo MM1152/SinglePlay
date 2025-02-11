@@ -7,11 +7,9 @@ public class SoulsTab : MonoBehaviour
 {
     [SerializeField] SoulsExplainTab soulsExplainTab;
     private SoulsInfo currentSoulInfo;
-    public Action<SoulsInfo , bool , EquipSouls> settingSoul;
     
     private void Start()
     {
-        settingSoul += SetInfo;
         soulsExplainTab.SetEquip += StartCoroutine;
     }
 
@@ -22,9 +20,11 @@ public class SoulsTab : MonoBehaviour
         currentSoulInfo = info;
         soulsExplainTab.gameObject.SetActive(true);
     }
+    
     public void StartCoroutine(){
         StartCoroutine(WaitForTouch());
     }
+
     IEnumerator WaitForTouch()
     {
         yield return new WaitUntil(() => Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary);

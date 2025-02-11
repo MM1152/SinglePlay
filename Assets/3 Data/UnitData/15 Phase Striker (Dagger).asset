@@ -15,7 +15,7 @@ MonoBehaviour:
   name: DaggerPhaseStriker
   type: 3
   typenumber: 15
-  image: {fileID: 1186941117, guid: 29dba35a8480f8d47b57a15005061e48, type: 3}
+  image: {fileID: 1023195266, guid: 0b32f831907651d4dac8830da9318cbb, type: 3}
   attackSpeed: 1
   hp: 1500
   mp: 0
@@ -23,7 +23,11 @@ MonoBehaviour:
   speed: 3
   attackRadious: 1
   spawnProbabillity: 30
-  soulsSkillData: []
+  soulsSkillData:
+  - level: 0
+    skillData: {fileID: 11400000, guid: 18249d89fe154264f97435c4a579f01b, type: 2}
+  - level: 6
+    skillData: {fileID: 11400000, guid: 8e5e82519129f5049a4c2d457cd1ecaa, type: 2}
   SummonPrefeb: {fileID: 5975829211352206023, guid: de40cc73cd9fc4348af0eee865ba484b, type: 3}
   explainText: "Lv.3:   \uCCB4\uB825 15% \uC99D\uAC00\nLv.6:   \uBAA8\uB4E0\uC18D\uB3C4
     30% \uC99D\uAC00 / \uC2A4\uD0AC 1\uD574\uC81C\nLv.9:   \uACF5\uACA9\uB825 20%
@@ -32,3 +36,4 @@ MonoBehaviour:
   - 3 Hp 15
   - 6 Speed 30
   - 9 Attack 20
+  changeFormInfo: {fileID: 11400000, guid: ac6a98017741ce24094db3003ea5cf63, type: 2}
