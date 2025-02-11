@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 5975829211352206023}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.9, y: -4.5, z: 0}
+  m_LocalPosition: {x: -0.9, y: 0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -248,6 +248,8 @@ MonoBehaviour:
   BossShow: {fileID: 0}
   changeFormUnit: {fileID: 11400000, guid: ac6a98017741ce24094db3003ea5cf63, type: 2}
   archor: {fileID: 577252615487242224, guid: 137b13c30881bbd43842407b791e91de, type: 3}
+  daggerPhaseStriker: {fileID: 0}
+  archorPhaseStriker: {fileID: 0}
 --- !u!1 &6497102243356855146
 GameObject:
   m_ObjectHideFlags: 0

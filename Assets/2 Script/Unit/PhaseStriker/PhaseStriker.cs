@@ -13,7 +13,7 @@ public class PhaseStriker : Boss
     [SerializeField] protected DaggerPhaseStriker daggerPhaseStriker;
     [SerializeField] protected ArchorPhaseStriker archorPhaseStriker;
 
-    protected float formChangeCoolTime = 3f;
+    protected float formChangeCoolTime = 60f;
     static float c_hp;
     private void OnEnable() {}
 
@@ -32,15 +32,15 @@ public class PhaseStriker : Boss
         }
 
         base.Update();
-
+        /*
         formChangeCoolTime -= Time.deltaTime;
 
         if(formChangeCoolTime < 0) {
             isSkill = true;
-            formChangeCoolTime = 150f;
+            formChangeCoolTime = 60f;
             ChangeForm();
         }
-        
+        */
     }
 
     public void ChangeForm(){

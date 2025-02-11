@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
         //\\레벨당 보상 구현 ㄱ 
 
         rewardViewer.SetActive(true);
-        showingMenuTools.HideOption(false);
+        showingMenuTools.HideOption(true);
         dropSoulList.Clear();
     }
     public void ReturnToMain(string SceneName = "MainScene"){
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
             gameData.soulsCount[unitData.typenumber - 1]++;
             GameDataManger.Instance.SaveData();
         };
-        showingMenuTools.HideOption(true);
+        showingMenuTools.HideOption(false);
         ResumeGame();
     }
     public IEnumerator WaitForNextMap(Action action) {

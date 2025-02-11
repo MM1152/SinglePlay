@@ -333,11 +333,14 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         //\\TODO 여기서 스킬데미지증가 유물에 관해서 데미지 증가 로직 적용시켜주면 될거같음.
         DamageText damage = PoolingManager.Instance.ShowDamage().GetComponent<DamageText>();
         
-        bool isclitical = UnityEngine.Random.Range(0f , 1f) <= unit.clitical ? true : false;
-        if(isclitical) {
-            Damage = Damage * unit.cliticalPercent;
-            attackType = AttackType.CriticalAttack ;
+        if(unit != null) {
+            bool isclitical = UnityEngine.Random.Range(0f , 1f) <= unit.clitical ? true : false;
+            if(isclitical) {
+                Damage = Damage * unit.cliticalPercent;
+                attackType = AttackType.CriticalAttack ;
+            }
         }
+        
         float rand = Random.Range(0f , 1f);
         if(rand <= dodge) {
             damage.Setting(AttackType.Dodge);

@@ -20,7 +20,11 @@ public class InWarningArea : MonoBehaviour
         if(attackDelay <= 0f) {
             if(hitObject.Count > 0) {
                 foreach(GameObject hit in hitObject) {
-                    hit.GetComponent<IDamageAble>().Hit(unit.damage * percent);
+                    IDamageAble damageable;
+                    if(hit.TryGetComponent<IDamageAble>(out damageable)) {
+                        damageable.Hit(unit.damage * percent , unit.clitical , AttackType.SkillAttack , unit);
+                    }
+                    else Debug.LogError("GetComponent Fail : " + damageable.ToString());
                 }
             } 
 

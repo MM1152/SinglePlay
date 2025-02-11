@@ -6,6 +6,7 @@ public class DaggerPhaseStriker : PhaseStriker
 {
     private void Awake() {
         archorPhaseStriker = Instantiate(archor , transform.parent).GetComponent<ArchorPhaseStriker>();
+        archorPhaseStriker.gameObject.AddComponent<Summon>();
         archorPhaseStriker.gameObject.SetActive(false);
 
         base.Awake();

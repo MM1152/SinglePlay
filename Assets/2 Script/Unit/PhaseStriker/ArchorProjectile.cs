@@ -20,7 +20,7 @@ public class ArchorProjectile : MonoBehaviour
     }
     void SetDirecetion(Transform target){
         float distance = Vector2.Distance(target.transform.position , transform.position);
-        transform.localScale = new Vector3(distance , 1f , 1f);
+        transform.localScale = new Vector3(distance * 0.3f , 1f , 1f);
 
         direction = (target.transform.position - transform.position).normalized;
         transform.right = direction;
