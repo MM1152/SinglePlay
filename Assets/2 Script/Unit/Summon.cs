@@ -6,10 +6,11 @@ using UnityEngine;
 public class Summon : MonoBehaviour
 {
     public Unit unit;
-
+    CreateSummonUnitViewer summonUnitViewer;
 
     private void Awake() {
         unit = GetComponent<Unit>();
+        summonUnitViewer = GameObject.FindObjectOfType<CreateSummonUnitViewer>();
 
         //유닛 레벨에 따른 스킬 적용
         for(int i = 0; i < unit.unit.soulsSkillData.Length; i++){
@@ -28,8 +29,10 @@ public class Summon : MonoBehaviour
 
         unit.SkillSetting = true;
     }
-    
-
-
-
+    public void CreateSummonViewer(){
+        summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
+    }
+    public void ChangeFormUnit(ChangeForm changeForm){
+        summonUnitViewer.ChnageFormUnit(changeForm);
+    }
 }

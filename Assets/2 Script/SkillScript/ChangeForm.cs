@@ -7,7 +7,8 @@ public class ChangeForm : MonoBehaviour , SkillParent
     public SoulsSkillData soulsSkillData { get; set; }
     [SerializeField] float currentCoolTime;
     PhaseStriker unit;
-    
+    Summon summon;
+    Unit chnageUnit;
     public float GetSkillCoolTime()
     {
         return currentCoolTime;
@@ -19,7 +20,8 @@ public class ChangeForm : MonoBehaviour , SkillParent
 
         if(currentCoolTime <= 0) {
             currentCoolTime = soulsSkillData.skillCoolTime;
-            unit.ChangeForm();
+            chnageUnit = unit.ChangeForm();
+            summon.ChangeFormUnit(this);
         }
         else currentCoolTime -= Time.deltaTime;
     }
@@ -29,5 +31,14 @@ public class ChangeForm : MonoBehaviour , SkillParent
     {
         unit = GetComponent<PhaseStriker>();
         currentCoolTime = soulsSkillData.skillCoolTime;
+        summon = GetComponent<Summon>();
+    }
+
+    public Unit GetChangeUnitData(){
+        return chnageUnit;
+    }
+
+    public Unit GetUnit(){
+        return unit;
     }
 }

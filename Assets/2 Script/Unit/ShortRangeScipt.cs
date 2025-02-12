@@ -11,7 +11,6 @@ public class ShortRangeScipt : Unit
     protected void OnEnable()
     {
         Respawn();
-        Debug.Log("OnEnable  : " + gameObject.name);
     }
     
     protected override void Awake() {

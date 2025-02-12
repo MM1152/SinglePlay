@@ -25,7 +25,6 @@ public class SummonerSkillParent : MonoBehaviour
         return damage;
     }
     private float ReturnPercent(int index){
-        Debug.Log(GameManager.Instance.reclicsDatas[index].inItPercent + (GameManager.Instance.reclicsDatas[index].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[index]));
         return GameManager.Instance.reclicsDatas[index].inItPercent + (GameManager.Instance.reclicsDatas[index].levelUpPercent * GameDataManger.Instance.GetGameData().reclicsLevel[index]);
     }
     public void SkillAttack(GameObject hitunit , float damage){

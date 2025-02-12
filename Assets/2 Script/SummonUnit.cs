@@ -12,12 +12,11 @@ public class SummonUnit : MonoBehaviour
     Animator ani;
     Summoner summoner;
     CreateSummonUnitViewer summonUnitViewer;
-
     bool spawn ;
     private void Awake() {
-        spawn = false;
         ani = GetComponent<Animator>();
         summonUnitViewer = GameObject.FindObjectOfType<CreateSummonUnitViewer>();
+        spawn = false;
     }
     public void Setting(GameObject spawnEnemy , Vector2 spawnPos , Transform parent , Summoner summoner){
         this.spawnEnemy = spawnEnemy;
@@ -41,13 +40,11 @@ public class SummonUnit : MonoBehaviour
         
         yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         
-        
+        summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
         unit.SetActive(true);
         summoner.changeStatus += unit.GetComponent<Unit>().ChangeStats;
-        if(!spawn) summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
-        else summonUnitViewer.RedirectUnit(unit.GetComponent<Unit>());
-        spawn = true;
         PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
+        
     }
 
 }

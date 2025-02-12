@@ -9,7 +9,7 @@ public class DamageText : MonoBehaviour
     string color;
     public Transform target {
         set {
-            transform.position = Camera.main.WorldToScreenPoint(value.position);    
+            transform.position = value.position;    
         }
     }
     float limitTime;
@@ -31,7 +31,7 @@ public class DamageText : MonoBehaviour
     }
     IEnumerator DamageAnimation(){
         for(int i = 0; i < 10f; i++) {
-            transform.position += Vector3.up * 0.1f;
+            transform.position += Vector3.up * 0.05f;
             transform.localScale -= Vector3.one * 0.05f;
             yield return new WaitForSeconds(0.05f);
         }

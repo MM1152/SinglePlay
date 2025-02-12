@@ -8,7 +8,7 @@ using UnityEngine.UIElements.Experimental;
 
 public class SummonUnitViewer : MonoBehaviour , IPointerClickHandler
 {
-    CameraMoveMent cameraMoveMent;
+    public CameraMoveMent cameraMoveMent;
     public string unitName;
     public Unit unit
     {
@@ -20,6 +20,7 @@ public class SummonUnitViewer : MonoBehaviour , IPointerClickHandler
             shildBar.target = value;
             
             StartCoroutine(WaitForSettingSkill(value));
+            
         }
     }
     Unit viewerTarget;
@@ -30,9 +31,15 @@ public class SummonUnitViewer : MonoBehaviour , IPointerClickHandler
     [SerializeField] Transform skillInfomationParent;
     private void Awake() {
         cameraMoveMent = FindAnyObjectByType<CameraMoveMent>();
+        
     }
     IEnumerator WaitForSettingSkill(Unit unit)
     {
+
+        for(int i = 0; i < skillInfomationParent.childCount; i++) {
+            Destroy(skillInfomationParent.GetChild(i));
+        }
+
         yield return new WaitUntil(() => unit.SkillSetting);
         viewerTarget = unit;
         for (int i = 0; i < unit.unit.soulsSkillData.Length; i++)

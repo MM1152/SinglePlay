@@ -51,7 +51,6 @@ public class EnemySpawner : MonoBehaviour
             for (int i = 0; i < unitList.Count; i++)
             {
                 Unit currUnit = unitList.Pop();    
-                Debug.Log(currUnit);
                 if (currUnit.CompareTag("Boss")) Boss.Add(currUnit);
                 else Enemys.Add(currUnit);
             }

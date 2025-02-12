@@ -46,4 +46,7 @@ public class CameraMoveMent : MonoBehaviour
     public void SettingCameraTarget(Unit unit) {
         cameratarget = unit;
     }
+    public Unit GetCameraTarget(){
+        return cameratarget;
+    }
 }

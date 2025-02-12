@@ -23,13 +23,12 @@ public class ArchorPhaseStriker : PhaseStriker
     private void SummonUnitSetting(){
         ani.SetBool("PlaySpawnAni" , false);
         SummonerSpawn(summoner);
-        gameObject.transform.localScale = Vector3.one * 0.8f ;
+        gameObject.transform.localScale = Vector3.one * 0.5f ;
     }
     private void Update() {
         base.Update();
         if(canAttack) {
-             StartCoroutine(WaitAttackDelay());
-             Debug.Log(canAttack);
+            StartCoroutine(WaitAttackDelay());
         }
         
     }

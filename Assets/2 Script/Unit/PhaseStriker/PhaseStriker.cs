@@ -43,7 +43,7 @@ public class PhaseStriker : Boss
         */
     }
 
-    public void ChangeForm(){
+    public Unit ChangeForm(){
         PhaseStriker phaseStriker = default;
         
         if(GetType().ToString() == "DaggerPhaseStriker") {
@@ -54,6 +54,7 @@ public class PhaseStriker : Boss
         }
 
         StartCoroutine(WaitHideAnimation(phaseStriker));
+        return phaseStriker;
     }
     
     public void ChangeFormSetting(){
@@ -66,7 +67,7 @@ public class PhaseStriker : Boss
     }
 
     IEnumerator WaitHideAnimation(PhaseStriker changeUnit){
-        
+        isSkill = true;
         ani.SetBool("Skill2" , true);
         yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("Hide") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
 

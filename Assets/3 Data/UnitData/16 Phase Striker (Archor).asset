@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: DaggerPhaseStriker
   type: 3
-  typenumber: 16
+  typenumber: 15
   image: {fileID: 581136717, guid: b9d5a7707dd37c847817fd78834cd754, type: 3}
   attackSpeed: 1.5
   hp: 1500

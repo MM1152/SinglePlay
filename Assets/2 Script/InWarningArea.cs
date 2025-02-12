@@ -43,7 +43,7 @@ public class InWarningArea : MonoBehaviour
         }
     }
     public void SetPosition(Vector2 pos){
-        transform.position = pos;
+        transform.position = pos - new Vector2(0f , 0.5f);
         transform.position += Vector3.forward * 6f;
     }
 }
