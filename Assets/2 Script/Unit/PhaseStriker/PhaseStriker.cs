@@ -13,7 +13,6 @@ public class PhaseStriker : Boss
     [SerializeField] protected DaggerPhaseStriker daggerPhaseStriker;
     [SerializeField] protected ArchorPhaseStriker archorPhaseStriker;
 
-    protected float formChangeCoolTime = 60f;
     static float c_hp;
     private void OnEnable() {}
 

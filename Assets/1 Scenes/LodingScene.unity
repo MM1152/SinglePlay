@@ -1430,7 +1430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4462,7 +4462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6673b5e0f505db40a956f0f39b39a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dailyGiftTab: {fileID: 0}
+  dailyGiftTab: {fileID: 1290919129}
 --- !u!114 &1541297382
 MonoBehaviour:
   m_ObjectHideFlags: 0

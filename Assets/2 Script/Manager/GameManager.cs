@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public delegate void DropSoul(UnitData unitData);
+
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public bool playingAnimation;
     public bool playingShader;
 
+    public delegate void DropSoul(UnitData unitData);
     public DropSoul dropSoul;
     public GameObject nextStage;
 
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
                 GameDataManger.Instance.GetGameData().unLockMap.Add(true);
                 GameDataManger.Instance.SaveData();
             }
-            
+            clearMonseter = 50;    
             ReturnToMenu();
             return;
         }
@@ -81,14 +82,15 @@ public class GameManager : MonoBehaviour
         Time.timeScale = size;
     }
     public void ReturnToMenu() {
+        if(dropSoul != null) {
+            Delegate[] dele = dropSoul.GetInvocationList();
 
-        Delegate[] dele = dropSoul.GetInvocationList();
+            // DropSoul에 참조된 모든 함수 제거
+            foreach(DropSoul function in dele) {
+                dropSoul -= function;
+            }  
+        }
 
-        // DropSoul에 참조된 모든 함수 제거
-        foreach(DropSoul function in dele) {
-            dropSoul -= function;
-        }  
-    
         if(currentStage == 1 && dropSoulList.Count == 0) {
             LoadingScene.LoadScene("MenuScene");
             ResumeGame();
@@ -100,7 +102,7 @@ public class GameManager : MonoBehaviour
         //\\TODO 업적시스템 추가
         //\\플레이어 자체 레벨 시스템 구현
         //\\레벨당 보상 구현 ㄱ 
-
+        Debug.Log("Return Menu Sence");
         rewardViewer.SetActive(true);
         showingMenuTools.HideOption(true);
         dropSoulList.Clear();

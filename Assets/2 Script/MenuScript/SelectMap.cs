@@ -32,11 +32,12 @@ public class SelectMap : MonoBehaviour , IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         if(onClick) {
+            if(mapName == "null") return;
             mapInfomationTab.name = mapName;
             mapInfomationTab.infomation = infomationText;
             mapInfomationTab.obtainablegoods = obtainablegoodds;
             mapInfomationTab.maxStage = maxStage;
-            mapInfomationTab.mapindex = transform.GetSiblingIndex();
+            mapInfomationTab.mapindex = transform.GetSiblingIndex() + 1;
             infomationTab.SetActive(true);
         }
     }

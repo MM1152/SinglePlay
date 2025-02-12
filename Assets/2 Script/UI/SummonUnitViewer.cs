@@ -37,7 +37,7 @@ public class SummonUnitViewer : MonoBehaviour , IPointerClickHandler
     {
 
         for(int i = 0; i < skillInfomationParent.childCount; i++) {
-            Destroy(skillInfomationParent.GetChild(i));
+            Destroy(skillInfomationParent.GetChild(i).gameObject);
         }
 
         yield return new WaitUntil(() => unit.SkillSetting);

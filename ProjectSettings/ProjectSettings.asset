@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: SinglePlayIdleGame
+  productName: "\uB124\uD06C\uB85C\uB9E8\uC11C \uD0A4\uC6B0\uAE30!"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -162,6 +162,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
+    Android: com.DefaultCompany
     Standalone: com.DefaultCompany.2DProject
   buildNumber:
     Standalone: 0
@@ -290,7 +291,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 8f284c63449232c46a195d31d226c32b, type: 3}
+      m_Icon: {fileID: 2800000, guid: 7cae8082dce24774c861734dc792216a, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

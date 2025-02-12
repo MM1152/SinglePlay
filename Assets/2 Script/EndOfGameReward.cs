@@ -20,22 +20,25 @@ public class EndOfGameReward : MonoBehaviour
         {
             GameDataManger.Instance.SaveData();
             GameManager.Instance.ResumeGame();
-            LoadingScene.LoadScene("MenuScene");
             parent.SetActive(false);
+            LoadingScene.LoadScene("MenuScene");
+            
         });
+
         getReward_x2.onClick.AddListener(() =>
         {
             GoogleAdMobs.instance.ShowRewardedAd(() =>
             {
+                GameDataManger.Instance.SaveData();
                 GameManager.Instance.ResumeGame();
                 foreach (UnitData unitData in GameManager.Instance.dropSoulList.Keys)
                 {
                     data.soulsCount[unitData.typenumber - 1] += GameManager.Instance.dropSoulList[unitData];
                     data.soul += this.soul;
                 }
-                LoadingScene.LoadScene("MenuScene");
                 parent.SetActive(false);
-                GameDataManger.Instance.SaveData();
+                LoadingScene.LoadScene("MenuScene");
+                
             });
 
         });
@@ -50,11 +53,9 @@ public class EndOfGameReward : MonoBehaviour
 
         data = GameDataManger.Instance.GetGameData();
         SettingReward soul = Instantiate(reward, transform);
-
-        soul.Setting(soulImage, (int)(GameManager.Instance.obtainablegoods * (GameManager.Instance.currentStage / (float)GameManager.Instance.maxStage)));
         this.soul = (int)(GameManager.Instance.obtainablegoods * (GameManager.Instance.currentStage / (float)GameManager.Instance.maxStage) * bonusSoul);
+        soul.Setting(soulImage, this.soul);
         data.soul += this.soul;
-        Debug.Log((int)(GameManager.Instance.obtainablegoods * (GameManager.Instance.currentStage / (float)GameManager.Instance.maxStage)));
 
         foreach (UnitData unitData in GameManager.Instance.dropSoulList.Keys)
         {

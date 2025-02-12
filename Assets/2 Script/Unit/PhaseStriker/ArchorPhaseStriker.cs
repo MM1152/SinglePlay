@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArchorPhaseStriker : PhaseStriker
 {
     [SerializeField] GameObject projectile;
+  
     private void Awake() {
         base.Awake();
         attackPattenChange = true;

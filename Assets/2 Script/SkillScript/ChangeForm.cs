@@ -9,6 +9,9 @@ public class ChangeForm : MonoBehaviour , SkillParent
     PhaseStriker unit;
     Summon summon;
     Unit chnageUnit;
+
+    bool upgradeChangeForm_1;
+    float bonusSpeeds;
     public float GetSkillCoolTime()
     {
         return currentCoolTime;
@@ -20,7 +23,9 @@ public class ChangeForm : MonoBehaviour , SkillParent
 
         if(currentCoolTime <= 0) {
             currentCoolTime = soulsSkillData.skillCoolTime;
+            
             chnageUnit = unit.ChangeForm();
+            if(upgradeChangeForm_1) chnageUnit.statusEffectMuchine.SetStatusEffect(new SpeedBuffEffect());
             summon.ChangeFormUnit(this);
         }
         else currentCoolTime -= Time.deltaTime;
@@ -32,6 +37,10 @@ public class ChangeForm : MonoBehaviour , SkillParent
         unit = GetComponent<PhaseStriker>();
         currentCoolTime = soulsSkillData.skillCoolTime;
         summon = GetComponent<Summon>();
+
+        if(GetComponent<ArrowBoom>() != null || GetComponent<BatBoom>() != null) {
+            upgradeChangeForm_1 = true;
+        }
     }
 
     public Unit GetChangeUnitData(){

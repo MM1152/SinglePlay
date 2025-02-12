@@ -22,7 +22,7 @@ public class GetTime : MonoBehaviour {
                 string data = request.GetResponseHeader("date");
 
                 DateTime dateTime = DateTime.Parse(data);
-                currentTime = dateTime.AddHours(9).ToString("yyyy-MM-dd");
+                currentTime = dateTime.ToString("yyyy-MM-dd");
                 Debug.Log(currentTime); 
             }
         }

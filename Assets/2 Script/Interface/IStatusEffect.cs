@@ -71,6 +71,7 @@ public class StatusEffect
 }
 public class AttackPowerBuffEffect : IStatusEffect
 {
+    //\\TODO : 전달하는 유닛의 스킬 퍼센트에 맞게 바꿔줘야함.
     float duration = 20f;
     float upgradeDamage;
     GameObject attackBuffObj;
@@ -90,6 +91,7 @@ public class AttackPowerBuffEffect : IStatusEffect
     public void Init(Unit unit, Unit tauntUnit = null)
     {
         this.unit = unit;
+        //\\TODO : 전달하는 유닛의 스킬 퍼센트에 맞게 바꿔줘야함.
         upgradeDamage = unit.damage * 0.3f;
         this.unit.damage += upgradeDamage;
 
@@ -226,7 +228,49 @@ public class BurnEffect : IStatusEffect
         unit.Hit(applyUnit.damage * (0.1f * overlapCount)  , 0 , AttackType.SkillAttack);
     }
 }
+public class SpeedBuffEffect : IStatusEffect
+{
+    public int overlapCount { get ; set ; }
+    public float currentDuration { get ; set ; }
+    float duration = 10f;
+    float upgradeSpeed;
+    Unit unit;
+    GameObject speedBuffObject;
+    public void Exit()
+    {
+        Debug.Log("SpeedUP Exit");
+        unit.speed -= upgradeSpeed;
+        //speedBuffObject.SetActive(false);
+        overlapCount = 0;
+    }
 
+    public void Init(Unit unit, Unit tauntUnit = null)
+    {
+        if(speedBuffObject == null) {
+            //speed 버프 이펙트 Resource에서 가져와서 넣기
+            //speedBuffObject = 
+        }
+        Debug.Log("SpeedUP Init");
+        this.unit = unit;
+        float upgradeSpeed = unit.speed * 0.5f;
+
+        unit.speed += upgradeSpeed;
+       
+
+        currentDuration = duration;
+        overlapCount++;
+    }
+
+    public void Run()
+    {
+        currentDuration -= Time.deltaTime;
+        if (currentDuration > 0)
+        {
+            //speedBuffObject.transform.position = unit.transform.position + Vector3.up;
+        }
+        if(currentDuration <= 0) Exit();
+    }
+}
 public interface IStatusEffect
 {
     public int overlapCount { get; set; }

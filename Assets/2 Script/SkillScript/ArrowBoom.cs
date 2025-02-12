@@ -13,12 +13,15 @@ public class ArrowBoom : MonoBehaviour , SkillParent
     private void Start() {
         unit = GetComponent<Unit>();
         ani = GetComponent<Animator>();
+
         currentCoolTime = soulsSkillData.skillCoolTime;
         arrowBoomVFX = Resources.Load<GameObject>("UseSkillFolder/ArchorSkillVFX");
         arrowBoomVFX = Instantiate(arrowBoomVFX, transform);
         arrowBoomVFX.transform.localScale = new Vector3(2f , 1.5f , 1f);
         AnimationVFX = arrowBoomVFX.GetComponent<Animator>();
         arrowBoomVFX.SetActive(false);
+
+
     }
     public float GetSkillCoolTime()
     {
