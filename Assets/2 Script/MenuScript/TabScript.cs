@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,57 +9,72 @@ public class TabScript : MonoBehaviour
     [SerializeField] GameObject childObject;
     [SerializeField] Sprite initImage;
     [SerializeField] Sprite selectedImage;
+
+    RectTransform tabImage;
+    Vector2 tabImageInitPos;
+    RectTransform rect;
     Button button;
     Image image;
 
     Color selectColor = new Color(0.5f, 0.5f, 0.5f, 1f); // 버튼 선택시 칼라
     Color noneSelectColor = new Color(1f, 1f, 1f, 1f);
-    private static GameObject currentGameObject;
+    private static TabScript currentGameObject;
     bool isSelect
     {
         set
         {
+            Debug.Log(value);
             if (value)
             {
                 //image.color = selectColor;
                 image.sprite = selectedImage;
                 button.interactable = false;
+                childObject.SetActive(true);
+                StartCoroutine(PlayAnimation());
             }
             else
             {
                 //image.color = noneSelectColor;
+                rect.sizeDelta = new Vector2(150f , 150f);
+                tabImage.sizeDelta = new Vector2(150f , 150f);
                 image.sprite = initImage;
                 button.interactable = true;
+                tabImage.localPosition = tabImageInitPos;
+                childObject.SetActive(false);
             }
         }
     }
 
     private void Awake()
     {
+        rect = GetComponent<RectTransform>();
         button = GetComponent<Button>();
+        tabImage = transform.GetChild(0).GetComponent<RectTransform>();
+        tabImageInitPos = tabImage.localPosition;
+        Debug.Log("gameObject name : " + gameObject.name + "  Pos : " + tabImageInitPos);
         image = GetComponent<Image>();
     }
 
     private void Start()
     {
         button.onClick.AddListener(OnClickButton);
-    }
-    private void Update()
-    {
-        if (currentGameObject == this.gameObject)
-        {
-            childObject.SetActive(true);
-            isSelect = true;
-        }
-        else
-        {
-            childObject.SetActive(false);
-            isSelect = false;
-        }
+        isSelect = false;
     }
 
     void OnClickButton()
     {
-        currentGameObject = this.gameObject;
+        if(currentGameObject != null) currentGameObject.isSelect = false;
+    
+        currentGameObject = this.gameObject.GetComponent<TabScript>();
+        isSelect = true;
+    }
+
+    IEnumerator PlayAnimation(){
+        for(int i = 0; i <= 25; i += 5) {
+            rect.sizeDelta += new Vector2(4 , 4);
+            tabImage.sizeDelta += new Vector2(10, 10);
+            tabImage.localPosition += new Vector3(0f , 5f , 0);
+            yield return new WaitForSeconds(0.005f);
+        }
     }
 }

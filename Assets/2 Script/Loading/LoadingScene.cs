@@ -17,8 +17,13 @@ public class LoadingScene : MonoBehaviour
     public static void LoadScene(string next){
         nextScene = next;
         SceneManager.LoadScene("LodingScene");
+        
+        Debug.Log($"Next Scene : {next}");
+
+        
     }
     IEnumerator LoadSecneAsync(){
+
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
         while(!op.isDone) {
@@ -30,6 +35,11 @@ public class LoadingScene : MonoBehaviour
                 yield return new WaitUntil(() => {
                     if(Input.touchCount >= 1) {
                         op.allowSceneActivation = true;
+                        if(nextScene == "MenuScene") {
+                            GameManager.Instance.showingMenuTools.HideOption(false);
+                        } else {
+                            GameManager.Instance.showingMenuTools.HideOption(true);
+                        }
                     }
                     return Input.touchCount >= 1f;
                 });

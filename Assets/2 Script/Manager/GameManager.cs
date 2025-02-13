@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public Dictionary<UnitData , int> dropSoulList = new Dictionary<UnitData, int>();
 
-    private ShowingMenuTools showingMenuTools;
+    public ShowingMenuTools showingMenuTools;
     //\\TODO maxStaget 클리어시 GameManager에서 게임 클리어및 종료 신호 보내줘야함;
     // 획득 재화량은 currentStage / maxStaget
     private void Awake() {
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update() {
         if(clearMonseter <= 0) ClearLevel();
+        
     }
     public void ClearLevel(){
         if(currentStage >= maxStage) {
@@ -102,9 +103,8 @@ public class GameManager : MonoBehaviour
         //\\TODO 업적시스템 추가
         //\\플레이어 자체 레벨 시스템 구현
         //\\레벨당 보상 구현 ㄱ 
-        Debug.Log("Return Menu Sence");
         rewardViewer.SetActive(true);
-        showingMenuTools.HideOption(true);
+        
         dropSoulList.Clear();
     }
     public void ReturnToMain(string SceneName = "MainScene"){
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
             gameData.soulsCount[unitData.typenumber - 1]++;
             GameDataManger.Instance.SaveData();
         };
-        showingMenuTools.HideOption(false);
+        showingMenuTools.HideOption(true);
         ResumeGame();
     }
     public IEnumerator WaitForNextMap(Action action) {
