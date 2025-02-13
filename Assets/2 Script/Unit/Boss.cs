@@ -15,6 +15,7 @@ public class Boss : ShortRangeScipt  , ISummonUnit
         }
         else SummonUnitSetting();
     }
+    
     protected void SetBossAni(){
         ani.SetBool("PlaySpawnAni" , true);
         BossShow = GameObject.FindAnyObjectByType<BossShowAnimation>();

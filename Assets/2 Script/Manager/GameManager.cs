@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     public Dictionary<UnitData , int> dropSoulList = new Dictionary<UnitData, int>();
 
     public ShowingMenuTools showingMenuTools;
+    public bool sortSoul;
+    public bool sortReclis;
     //\\TODO maxStaget 클리어시 GameManager에서 게임 클리어및 종료 신호 보내줘야함;
     // 획득 재화량은 currentStage / maxStaget
     private void Awake() {

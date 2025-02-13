@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Runtime.ExceptionServices;
+using UnityEngine.AI;
 
 [Serializable] 
 public class GameData{
@@ -35,8 +36,30 @@ public class GameData{
     public List<bool> dailyGift = new List<bool>();
     public bool getGift;
     public List<int> openCount = new List<int>(); // RandomPick Up 횟수  0 : 유물, 1 : 소울 
+    public List<DailyQuestData> questData = new List<DailyQuestData>();
 }
 
+[Serializable]
+public class DailyQuestData {
+    public DailyQuestData(string type) {
+        
+        this.type = type;
+        this.count = 0;
+        this.isClear = false;   
+
+        if(type == "Login") count = 1;
+    }
+
+    public void Setting(){
+        this.count = 0;
+        this.isClear = false;  
+
+        if(type == "Login") count = 1;
+    }
+    public string type;
+    public int count;
+    public bool isClear;
+}
 
 public class GameDataManger : MonoBehaviour
 {   
@@ -46,6 +69,7 @@ public class GameDataManger : MonoBehaviour
     public Action<int ,int> goodsSetting;
     private string filePath;
     public bool dataDownLoad;
+    
     private void Awake() {
         
         filePath  = Application.persistentDataPath + "/data.json";
@@ -62,6 +86,7 @@ public class GameDataManger : MonoBehaviour
     }
     private void Start() {
         data = LoadData();
+        DailyQuestTab.dailyQuestTab.Setting();
     }
     public GameData LoadData(){
         GameData LoadData = new GameData();
@@ -95,6 +120,9 @@ public class GameDataManger : MonoBehaviour
                 LoadData.dailyGift.Add(false);
             }
 
+            foreach(string type in Enum.GetNames(typeof(QuestType))) {
+                LoadData.questData.Add(new DailyQuestData(type));
+            }
             LoadData.settingShopList = false;
 
             LoadData.openCount.Add(0);
@@ -192,6 +220,13 @@ public class GameDataManger : MonoBehaviour
             changeData = true;
         }
 
+        if(LoadData.questData.Count == 0) {
+            foreach(string type in Enum.GetNames(typeof(QuestType))) {
+                LoadData.questData.Add(new DailyQuestData(type));
+            }
+            this.data = LoadData;
+            changeData = true;
+        }
         if(changeData) SaveData();
 
     }
@@ -199,7 +234,6 @@ public class GameDataManger : MonoBehaviour
         DateTime pastDateTime = Convert.ToDateTime(LoadData.dateTime);
         DateTime currentDateTime = Convert.ToDateTime(GetTime.currentTime);
         int isPast = DateTime.Compare(pastDateTime , currentDateTime);
-        Debug.Log(pastDateTime.Month);
         if(isPast < 0) {
             if(pastDateTime.Month < currentDateTime.Month) {
                 for(int i = 0; i < 28; i++) {
@@ -210,7 +244,12 @@ public class GameDataManger : MonoBehaviour
             LoadData.settingShopList = false;    
             LoadData.shopListChangeCount[0] = 3;
             LoadData.shopListChangeCount[1] = 2;
+
             LoadData.getGift = false;
+
+            for(int i = 0; i < LoadData.questData.Count; i++) {
+                LoadData.questData[i].Setting();
+            }
 
             data = LoadData;
             SaveData();

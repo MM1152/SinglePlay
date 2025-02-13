@@ -17,7 +17,7 @@ public class LoadingScene : MonoBehaviour
     public static void LoadScene(string next){
         nextScene = next;
         SceneManager.LoadScene("LodingScene");
-        
+
         Debug.Log($"Next Scene : {next}");
 
         

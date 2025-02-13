@@ -106,10 +106,12 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
                 ani.SetBool("Move", false);
                 return;
             }
+
             if (!isAttack && !isSkill) {
                 currentAttackSpeed -= Time.deltaTime;
                 Flip();
             }
+
             if (!isAttack && !isSkill && !GameManager.Instance.gameClear && target != null && !GameManager.Instance.playingAnimation)
             {
                 foreach (SkillParent skill in skillData)
@@ -117,6 +119,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
                     skill.UseSkill();
                 }
             }
+            
             ani?.SetBool("Move", FollowTarget());
 
         }
@@ -280,7 +283,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         foreach (Transform targets in TargetList.transform)
         {
 
-            if (Vector2.Distance(targets.position, transform.position) < minDistance && targets.GetComponent<IFollowTarget>().canFollow)
+            if (targets.GetComponent<IFollowTarget>().canFollow && Vector2.Distance(targets.position, transform.position) < minDistance )
             {
                 minDistance = Vector2.Distance(targets.position, transform.position);
                 returnGameObject = targets.gameObject;

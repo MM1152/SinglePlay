@@ -17,11 +17,15 @@ public class MakeSellingList : MonoBehaviour
     private ChangeShopListButtonAd resetShopListButtonAd;
     float soulListPosibility;
     float reclicsPosibillity;
-    SortSoul sortedSoul;
-    SortReclics sortedReclics;
-    private void Start() {
+    [SerializeField] SortSoul sortedSoul;
+    [SerializeField] SortReclics sortedReclics;
+    void Awake()
+    {
         sortedSoul = GameObject.FindObjectOfType<SortSoul>();
         sortedReclics = GameObject.FindObjectOfType<SortReclics>();
+    }
+    private void Start() {
+
         resetShopListButtonAd = GameObject.FindObjectOfType<ChangeShopListButtonAd>();
         
         resetShopListButtonAd.rewardFunction += SettingShopList;
@@ -35,7 +39,6 @@ public class MakeSellingList : MonoBehaviour
         
     }
     public void SettingShopList(){     
-        Debug.Log("Setting item");
         foreach(Transform child in sellingListTransform) {
             int rand = UnityEngine.Random.Range(0 , 2);
             ISellingAble index = GetSellingItem(rand);
@@ -73,10 +76,12 @@ public class MakeSellingList : MonoBehaviour
     private ISellingAble GetSellingItem(int index){
         float posibility = UnityEngine.Random.Range(0f , 1f);
         float probability = 0;
+        Debug.Log($"뽑기 index : " + index);
         if(index == 0) {
             for(int i = 0 ; i < soulList.Length; i++) {
                 probability += soulList[i].spawnProbabillity / soulListPosibility;
                 if(probability >= posibility) {
+                    Debug.Log(soulList[i].GetUnitData().name);
                     return soulList[i].GetComponent<ISellingAble>();
                 }
             }

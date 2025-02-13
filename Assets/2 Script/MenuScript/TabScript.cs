@@ -23,7 +23,6 @@ public class TabScript : MonoBehaviour
     {
         set
         {
-            Debug.Log(value);
             if (value)
             {
                 //image.color = selectColor;
@@ -51,8 +50,8 @@ public class TabScript : MonoBehaviour
         button = GetComponent<Button>();
         tabImage = transform.GetChild(0).GetComponent<RectTransform>();
         tabImageInitPos = tabImage.localPosition;
-        Debug.Log("gameObject name : " + gameObject.name + "  Pos : " + tabImageInitPos);
         image = GetComponent<Image>();
+        //StartCoroutine(WaitSort());
     }
 
     private void Start()
@@ -60,7 +59,7 @@ public class TabScript : MonoBehaviour
         button.onClick.AddListener(OnClickButton);
         isSelect = false;
     }
-
+    
     void OnClickButton()
     {
         if(currentGameObject != null) currentGameObject.isSelect = false;
@@ -76,5 +75,10 @@ public class TabScript : MonoBehaviour
             tabImage.localPosition += new Vector3(0f , 5f , 0);
             yield return new WaitForSeconds(0.005f);
         }
+    }
+
+    IEnumerator WaitSort(){
+        yield return new WaitUntil(() => GameManager.Instance.sortReclis && GameManager.Instance.sortSoul);
+        isSelect = false;
     }
 }

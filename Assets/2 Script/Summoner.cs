@@ -6,11 +6,11 @@ using UnityEngine;
 public class Summoner : LongRangeScript
 {
     Vector2[] spawnPosition = new Vector2[] {
-        new Vector2(1f , 0f) ,
-        new Vector2(0.8f , -0.5f) ,
-        new Vector2(0.5f , -1f) ,
-        new Vector2(0.8f , 0.5f) ,
-        new Vector2(0.5f , 1f)
+        new Vector2(2f , 0f) ,
+        new Vector2(2f , -1.17f) ,
+        new Vector2(0.35f , -1.76f) ,
+        new Vector2(-1.22f , -0.97f) ,
+        new Vector2(-0.72f , 0.26f)
     };
     public Action<Summoner> changeStatus;
     [SerializeField] GameObject EnemySpawn;

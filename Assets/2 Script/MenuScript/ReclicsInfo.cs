@@ -94,7 +94,8 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         setSlider?.Invoke();
         SetCost();
         ChangeStatus(cost);
-                 
+        
+        DailyQuestTab.ClearDailyQuest(QuestType.UpgradeReclic , 1);
         return this;
     }
 

@@ -8,10 +8,6 @@ using UnityEngine;
 
 public class King : Boss 
 {
-    [Space(50)]
-    [Header("보스 설정")]
-    [SerializeField] Sprite ShowingImage; // 보스 소개장면에서 보여질 이미지 설정
-    
     
     protected override void Attack()
     {

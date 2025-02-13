@@ -8,8 +8,10 @@ public class SortReclics : MonoBehaviour
 {
     public ReclicsInfo[] reclicsInfo;
     public Action WaitReclicsSort;
+
     public void Start()
     {
+        Debug.Log("SortReclics");
         reclicsInfo = GameObject.FindObjectsOfType<ReclicsInfo>();
         
         for(int i = 0; i < reclicsInfo.Length; i++) {
@@ -23,6 +25,7 @@ public class SortReclics : MonoBehaviour
             reclicsInfo[i].transform.SetSiblingIndex(i);
         }
         WaitReclicsSort?.Invoke();
+        GameManager.Instance.sortReclis = true;
     }
     
 }

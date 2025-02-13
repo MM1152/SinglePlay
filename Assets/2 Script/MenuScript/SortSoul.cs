@@ -7,7 +7,9 @@ public class SortSoul : MonoBehaviour
 {
     public SoulsInfo[] souls;
     public Action WaitSoulSort;
+
     private void Start() {
+        Debug.Log("SortSoul");
         souls = GameObject.FindObjectsOfType<SoulsInfo>();
         for(int i = 0; i < souls.Length; i++) {
             souls[i].spawnProbabillity = (int) souls[i].GetUnitData().type;
@@ -19,6 +21,7 @@ public class SortSoul : MonoBehaviour
             souls[i].transform.SetSiblingIndex(i);
         }
         WaitSoulSort?.Invoke();
+        GameManager.Instance.sortSoul = true;
     }
 
 }

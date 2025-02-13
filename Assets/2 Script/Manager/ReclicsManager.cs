@@ -14,7 +14,6 @@ public class ReclicsManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            Debug.Log("Setting Reclics");
             Instance = this;
             reclicsDatas = GameObject.FindObjectsOfType<ReclicsInfo>();
             MergeSort<ReclicsInfo> mergeSort = new MergeSort<ReclicsInfo>(reclicsDatas);

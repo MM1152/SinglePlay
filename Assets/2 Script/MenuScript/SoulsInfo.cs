@@ -118,7 +118,7 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         SetCost();
         
         settingslider?.Invoke();
-        
+        DailyQuestTab.ClearDailyQuest(QuestType.UpgradeSoul , 1);
         return this;
     }
     public void GetSoul(){
