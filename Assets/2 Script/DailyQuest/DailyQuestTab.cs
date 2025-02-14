@@ -15,9 +15,11 @@ public class DailyQuestTab : MonoBehaviour
 {
     [SerializeField] Image sliderImage;
     [SerializeField] GameObject parent;
+    [SerializeField] Transform boxGrounp;
+    
     public static DailyQuestTab dailyQuestTab { get ; private set; }
     bool[] clear;
-    int clearQuestCount;
+    public int clearQuestCount {get; private set;}
     void Awake()
     {
         dailyQuestTab = this;
@@ -33,13 +35,19 @@ public class DailyQuestTab : MonoBehaviour
     public void Setting()
     {
         List<DailyQuestData> gamedata = GameDataManger.Instance.GetGameData().questData;
-
+        // 현재 퀘스트들이 깨졌는지 안깨졌는지 확인하는 부분
         for(int i = 0; i < gamedata.Count; i++) {
             QuestType index = (QuestType) Enum.Parse(typeof(QuestType) , gamedata[i].type);
             dailyQuestTab.transform.GetChild((int)index)
                                             .GetComponent<DailyQuest>()
                                             .Init(gamedata[i].type , gamedata[i].isClear , gamedata[i].count);
             DailyQuestTab.ClearDailyQuest(index , gamedata[i].count);
+        }
+        
+        List<bool> isBoxOpen = GameDataManger.Instance.GetGameData().isBoxOpen;
+        //현재 박스들의 오픈 상태
+        for(int i = 0; i < boxGrounp.childCount; i++) {
+            boxGrounp.GetChild(i).GetComponent<GiftBox>().Setting(isBoxOpen[i]);
         }
     }
     public static void ClearDailyQuest(QuestType type, int value = 0)
@@ -55,6 +63,6 @@ public class DailyQuestTab : MonoBehaviour
         clearQuestCount++;
         if(clearQuestCount >= 7) clearQuestCount = 7;
         Debug.Log("Clear Quest : "  +  clearQuestCount);
-        sliderImage.fillAmount = clearQuestCount / clear.Length;
+        sliderImage.fillAmount = (float)    clearQuestCount / 7f;
     }
 }

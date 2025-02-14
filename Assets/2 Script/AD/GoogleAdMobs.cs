@@ -70,6 +70,7 @@ public class GoogleAdMobs : MonoBehaviour
         if (_rewardedAd != null && _rewardedAd.CanShowAd())
         {
             _rewardedAd.Show((Reward reward) => {
+                DailyQuestTab.ClearDailyQuest(QuestType.PlayAds , 1);
                 callback();
             });
             return true;

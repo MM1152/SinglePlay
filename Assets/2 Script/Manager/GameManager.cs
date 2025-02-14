@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
     public ShowingMenuTools showingMenuTools;
     public bool sortSoul;
     public bool sortReclis;
+
+    //DailyQuest용 몬스터 처치 횟수
+    public int clearMosetCount;
     //\\TODO maxStaget 클리어시 GameManager에서 게임 클리어및 종료 신호 보내줘야함;
     // 획득 재화량은 currentStage / maxStaget
     private void Awake() {
@@ -85,6 +88,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = size;
     }
     public void ReturnToMenu() {
+
+        DailyQuestTab.ClearDailyQuest(QuestType.ClearMonster , clearMosetCount);
+        clearMosetCount = 0;
+
         if(dropSoul != null) {
             Delegate[] dele = dropSoul.GetInvocationList();
 
@@ -96,6 +103,7 @@ public class GameManager : MonoBehaviour
 
         if(currentStage == 1 && dropSoulList.Count == 0) {
             LoadingScene.LoadScene("MenuScene");
+
             ResumeGame();
             return;
         }
@@ -108,6 +116,7 @@ public class GameManager : MonoBehaviour
         rewardViewer.SetActive(true);
         
         dropSoulList.Clear();
+        DailyQuestTab.ClearDailyQuest(QuestType.PlayGame , 1);
     }
     public void ReturnToMain(string SceneName = "MainScene"){
         LoadingScene.LoadScene(SceneName);

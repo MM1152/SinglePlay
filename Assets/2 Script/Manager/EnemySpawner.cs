@@ -148,6 +148,7 @@ public class EnemySpawner : MonoBehaviour
         exp.SetExpValue(10f);
         currentEnemyNumber--;
         GameManager.Instance.clearMonseter--;
+        GameManager.Instance.clearMosetCount++;
         Increaes.Increaes();
     }
 

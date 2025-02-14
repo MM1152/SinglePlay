@@ -22,8 +22,9 @@ public class PickUpButton : MonoBehaviour
         //\\TODO 현재 재화에 맞춰 뽑기 실행하도록 해야함
         if(pickUp_Cost <= GameDataManger.Instance.GetGameData().gem) {
             GameDataManger.Instance.GetGameData().gem -= pickUp_Cost;
+            DailyQuestTab.ClearDailyQuest(QuestType.PickUp , count);
             GameDataManger.Instance.SaveData();
-
+            
             coroutine.StartCoroutine(coroutine.ShowingReclics(count));
         }
         else return;
@@ -33,6 +34,7 @@ public class PickUpButton : MonoBehaviour
         //\\TODO 현재 재화에 맞춰 뽑기 실행하도록 해야함
         if(pickUp_Cost <= GameDataManger.Instance.GetGameData().gem) {
             GameDataManger.Instance.GetGameData().gem -= pickUp_Cost;
+            DailyQuestTab.ClearDailyQuest(QuestType.PickUp , count);
             GameDataManger.Instance.SaveData();
 
             coroutine.StartCoroutine(coroutine.ShowingSoul(count));

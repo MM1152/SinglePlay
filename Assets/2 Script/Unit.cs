@@ -237,6 +237,8 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             target = null;
             if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss") && !GameManager.Instance.gameClear)
             {
+                if(gameObject.CompareTag("Boss")) DailyQuestTab.ClearDailyQuest(QuestType.ClearBoss , 1);
+                
                 EnemySpawner.Instance.CheckDie();
                 DropSoul();
             }else if(summonUnit != null){

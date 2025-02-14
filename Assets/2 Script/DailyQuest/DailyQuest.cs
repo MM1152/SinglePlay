@@ -37,6 +37,7 @@ public class DailyQuest : MonoBehaviour , IPointerClickHandler
         } 
 
         count += plus;
+        
         if(count >= maxCount) count = maxCount;
 
         countText.text = $"{count}/{maxCount}";
@@ -46,6 +47,7 @@ public class DailyQuest : MonoBehaviour , IPointerClickHandler
         .count = count;
 
         GameDataManger.Instance.SaveData();
+
         return false;
     }
 
@@ -57,7 +59,7 @@ public class DailyQuest : MonoBehaviour , IPointerClickHandler
         if(count == maxCount) {
             Debug.Log("Clear");
             clear = true;
-            Setting(0);
+            DailyQuestTab.ClearDailyQuest((QuestType) Enum.Parse(typeof(QuestType) , questType));
 
            
             GameDataManger.Instance.GetGameData()

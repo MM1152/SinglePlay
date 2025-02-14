@@ -38,6 +38,7 @@ public class PossiblePurchase : MonoBehaviour
         gameObject.SetActive(false);
         success.SetActive(true);
         SoundManager.Instance.Play(SoundManager.SFX.BuyItem);
+        DailyQuestTab.ClearDailyQuest(QuestType.BuyShop , 1);
         soldOut?.Invoke();
     }
 

@@ -36,6 +36,7 @@ public class GameData{
     public List<bool> dailyGift = new List<bool>();
     public bool getGift;
     public List<int> openCount = new List<int>(); // RandomPick Up 횟수  0 : 유물, 1 : 소울 
+    public List<bool> isBoxOpen = new List<bool>();
     public List<DailyQuestData> questData = new List<DailyQuestData>();
 }
 
@@ -122,6 +123,10 @@ public class GameDataManger : MonoBehaviour
 
             foreach(string type in Enum.GetNames(typeof(QuestType))) {
                 LoadData.questData.Add(new DailyQuestData(type));
+            }
+
+            for(int i = 0; i < 3; i++) {
+                LoadData.isBoxOpen.Add(false);
             }
             LoadData.settingShopList = false;
 
@@ -223,6 +228,14 @@ public class GameDataManger : MonoBehaviour
         if(LoadData.questData.Count == 0) {
             foreach(string type in Enum.GetNames(typeof(QuestType))) {
                 LoadData.questData.Add(new DailyQuestData(type));
+            }
+            this.data = LoadData;
+            changeData = true;
+        }
+
+        if(LoadData.isBoxOpen.Count == 0) {
+            for(int i = 0; i < 3; i++) {
+                LoadData.isBoxOpen.Add(false);
             }
             this.data = LoadData;
             changeData = true;
