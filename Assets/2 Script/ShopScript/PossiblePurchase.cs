@@ -29,12 +29,12 @@ public class PossiblePurchase : MonoBehaviour
                     SoulsManager.Instance.soulsInfos[sellingData.saveDatanum].GetSoul();
                     break;
                 case "Reclics":
-                    UnityEngine.Debug.Log(sellingData.saveDatanum);
                     ReclicsManager.Instance.reclicsDatas[sellingData.saveDatanum].PickUp();
                     break;
             }
         }
-
+        GameDataManger.Instance.GetSoul(-sellingData.classStruct.soulCost);
+        
         gameObject.SetActive(false);
         success.SetActive(true);
         SoundManager.Instance.Play(SoundManager.SFX.BuyItem);

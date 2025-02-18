@@ -65,7 +65,6 @@ public class DailyQuestData {
 public class GameDataManger : MonoBehaviour
 {   
     public static GameDataManger Instance { get ; private set;}
-
     [SerializeField] GameData data = null;
     public Action<int ,int> goodsSetting;
     private string filePath;
@@ -274,5 +273,10 @@ public class GameDataManger : MonoBehaviour
         }
         
         return isPast;
+    }
+
+    public void GetSoul(int value){
+        data.soul += value;
+        SaveData();
     }
 }

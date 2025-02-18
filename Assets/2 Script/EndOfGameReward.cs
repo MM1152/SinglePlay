@@ -34,7 +34,7 @@ public class EndOfGameReward : MonoBehaviour
                 foreach (UnitData unitData in GameManager.Instance.dropSoulList.Keys)
                 {
                     data.soulsCount[unitData.typenumber - 1] += GameManager.Instance.dropSoulList[unitData];
-                    data.soul += this.soul;
+                    GameDataManger.Instance.GetSoul(this.soul);
                 }
                 parent.SetActive(false);
                 LoadingScene.LoadScene("MenuScene");
@@ -55,7 +55,7 @@ public class EndOfGameReward : MonoBehaviour
         SettingReward soul = Instantiate(reward, transform);
         this.soul = (int)(GameManager.Instance.obtainablegoods * (GameManager.Instance.currentStage / (float)GameManager.Instance.maxStage) * bonusSoul);
         soul.Setting(soulImage, this.soul);
-        data.soul += this.soul;
+        GameDataManger.Instance.GetSoul(this.soul);
 
         foreach (UnitData unitData in GameManager.Instance.dropSoulList.Keys)
         {

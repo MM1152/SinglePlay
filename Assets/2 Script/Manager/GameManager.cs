@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject curtain;
     [SerializeField] GameObject rewardViewer;
     public SettingTab setting;
+    public GetSoulAnimation getSoulAnimation;
     /// <summary>
     /// 1: Attack , 2: Hp , 3: Clitical , 4: AttackSpeed  , 5: MoveSpeed , 6: BonusTalent , 7: BonusGoods , 8: IncreaesDamage ,
     /// 9: IncreaesHp, 10: CoolTime, 11: SkillDamage,  12 IncreasedExp, 13 Dodge, 구현필요 [ 14 DrainLife ] 구현필요
@@ -53,6 +54,8 @@ public class GameManager : MonoBehaviour
         if(Instance == null) {
             Instance = this;    
             showingMenuTools = GetComponent<ShowingMenuTools>();
+            getSoulAnimation = GetComponent<GetSoulAnimation>();
+            Application.targetFrameRate = 60;
             DontDestroyOnLoad(this);
         }
         else  {

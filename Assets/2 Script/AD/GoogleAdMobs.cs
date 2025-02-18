@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 public class GoogleAdMobs : MonoBehaviour
 {
+    public bool isTest;
     #if UNITY_ANDROID
         private string _adUnitId = "ca-app-pub-8044713535911201/2430838782";
     #elif UNITY_IPHONE
@@ -23,7 +24,15 @@ public class GoogleAdMobs : MonoBehaviour
     private RewardedAd _rewardedAd;
 
     void Awake(){
-        _instance = this;
+        if(_instance == null) {
+            _instance = this;
+            if(isTest) {
+                _adUnitId = "ca-app-pub-3940256099942544/5224354917";
+            }
+            else {
+                _adUnitId = "ca-app-pub-8044713535911201/2430838782";
+            }
+        }
     }
     // Start is called before the first frame update
     void Start()

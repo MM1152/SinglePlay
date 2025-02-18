@@ -69,20 +69,20 @@ public class PickUpSliderEffect : MonoBehaviour, IBeginDragHandler, IEndDragHand
         showSpawnPosibility.SetActive(false);
         if (moveLeft)
         {
-            for (float i = 0f; i <= 1400f; i += 100)
+            for (float i = 0f; i <= 1400f; i += 200)
             {
                 pickUp[outObject].anchoredPosition = new Vector3(-i, -87f, 0f);
                 pickUp[inObject].anchoredPosition = new Vector3(1400f - i, -87f, 0f);
-                yield return new WaitForSeconds(0.01f);
+                yield return new WaitForSeconds(0.0001f);
             }
         }
         else
         {
-            for (float i = 0f; i <= 1400f; i += 100)
+            for (float i = 0f; i <= 1400f; i += 200)
             {
                 pickUp[outObject].anchoredPosition = new Vector3(i, -87f, 0f);
                 pickUp[inObject].anchoredPosition = new Vector3(-1400f + i, -87f, 0f);
-                yield return new WaitForSeconds(0.01f);
+                yield return new WaitForSeconds(0.0001f);
             }
         }
     }

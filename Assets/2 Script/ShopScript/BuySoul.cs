@@ -25,7 +25,6 @@ public class BuySoul : MonoBehaviour , IPointerClickHandler , ISellingAble
     }
     private void GetSoul(){
         GameDataManger.Instance.GetGameData().gem -= cost;
-        GameDataManger.Instance.GetGameData().soul += reward;
-        GameDataManger.Instance.SaveData();
+        GameDataManger.Instance.GetSoul(reward);
     }
 }

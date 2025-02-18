@@ -96,9 +96,9 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         
         Check();
         CheckLevel();
-
         ChangeBonusStat();
         SetCost();
+
         levelText.text = this.soulLevel + 1 + "";
     }
     public SoulsInfo LevelUp(){
@@ -123,7 +123,7 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     }
     public void GetSoul(){
         soulCount++;
-        ChangeStatus();
+        Setting(soulCount , soulLevel);
     }
     public void ChangeBonusStat(){
         unitData.curStat.attackStat = unitData.classStruct.soulInintPercent + (unitData.classStruct.soulLevelUpPercent * soulLevel) + unitData.bonusStat.attackStat;

@@ -22,9 +22,12 @@ public class DailyQuestTab : MonoBehaviour
     public int clearQuestCount {get; private set;}
     void Awake()
     {
-        dailyQuestTab = this;
-        clear = new bool[dailyQuestTab.transform.childCount];
-        sliderImage.fillAmount = 0f;
+        if(dailyQuestTab == null) {
+            dailyQuestTab = this;
+            clear = new bool[dailyQuestTab.transform.childCount];
+            sliderImage.fillAmount = 0f;
+        }
+
 
         parent.SetActive(false);
     }
@@ -46,7 +49,7 @@ public class DailyQuestTab : MonoBehaviour
         
         List<bool> isBoxOpen = GameDataManger.Instance.GetGameData().isBoxOpen;
         //현재 박스들의 오픈 상태
-        for(int i = 0; i < boxGrounp.childCount; i++) {
+        for(int i = 0; i < 3; i++) {
             boxGrounp.GetChild(i).GetComponent<GiftBox>().Setting(isBoxOpen[i]);
         }
     }
