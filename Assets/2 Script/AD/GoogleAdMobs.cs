@@ -22,7 +22,7 @@ public class GoogleAdMobs : MonoBehaviour
     }
 
     private RewardedAd _rewardedAd;
-
+    public bool isPlayAd;
     void Awake(){
         if(_instance == null) {
             _instance = this;
@@ -78,9 +78,11 @@ public class GoogleAdMobs : MonoBehaviour
         
         if (_rewardedAd != null && _rewardedAd.CanShowAd())
         {
+            isPlayAd = true;
             _rewardedAd.Show((Reward reward) => {
                 DailyQuestTab.ClearDailyQuest(QuestType.PlayAds , 1);
                 callback();
+                isPlayAd = false;
             });
             return true;
         }else {

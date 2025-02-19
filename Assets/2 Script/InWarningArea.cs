@@ -22,7 +22,7 @@ public class InWarningArea : MonoBehaviour
                 foreach(GameObject hit in hitObject) {
                     IDamageAble damageable;
                     if(hit.TryGetComponent<IDamageAble>(out damageable)) {
-                        damageable.Hit(unit.damage * percent , unit.clitical , AttackType.SkillAttack , unit);
+                        damageable.Hit(unit.damage * percent , unit , unit.clitical , AttackType.SkillAttack);
                     }
                     else Debug.LogError("GetComponent Fail : " + damageable.ToString());
                 }

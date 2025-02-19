@@ -1,11 +1,5 @@
 using UnityEngine;
 
-public class Golem : ShortRangeScipt , ISummonUnit {
-    public Summoner summoner { get; set; }
+public class Golem : ShortRangeScipt {
 
-    private void OnEnable() {
-        base.OnEnable();
-        if(summoner == null) Spawn(GameManager.Instance.currentStage);
-        else SummonerSpawn(summoner);
-    }    
 }

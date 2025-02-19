@@ -80,7 +80,7 @@ public class PhaseStriker : Boss
     IEnumerator WaitShowAnimation(){
         yield return new WaitUntil(() =>  ani.GetCurrentAnimatorStateInfo(0).IsName("Show") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f);
         if(GetType().ToString() == "DaggerPhaseStriker" && Vector2.Distance(target.transform.position , gameObject.transform.position) <= unit.attackRadious) {
-            target.GetComponent<IDamageAble>().Hit(damage , clitical , AttackType.SkillAttack , this);
+            target.GetComponent<IDamageAble>().Hit(damage , this , clitical , AttackType.SkillAttack);
         }
         canFollow = true;
         ani.SetBool("FormChange" , false);

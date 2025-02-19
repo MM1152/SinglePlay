@@ -38,7 +38,7 @@ public class AttackSkill : SummonerSkillParent
                 PoolingManager.Instance.ShowObject(skillPrefeb.name + "(Clone)", skillPrefeb).GetComponent<LightningAttack>().Init(summoner.target.transform.position, summoner.transform.position);
 
                 float damage = SetDamage(summoner.damage * skillData.initPercent);
-                summoner.target.GetComponent<IDamageAble>().Hit(damage, summoner.clitical , AttackType.SkillAttack , summoner);
+                summoner.target.GetComponent<IDamageAble>().Hit(damage, summoner , summoner.clitical , AttackType.SkillAttack);
                 SetCoolTime();
                 if (divisionLightningAttack != null)
                 {

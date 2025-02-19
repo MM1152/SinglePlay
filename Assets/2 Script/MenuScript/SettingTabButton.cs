@@ -11,10 +11,10 @@ public class SettingTabButton : MonoBehaviour
         set {
             _isSelect = value;
             ChangeImage();
-            settingTab.ClickButton(this);
+            if(settingTab != null) settingTab.ClickButton(this);
         }
     }
-    [SerializeField] GameObject toggleImage;
+    GameObject toggleImage;
     SettingTab settingTab;
     Button button;
     // Start is called before the first frame update
@@ -22,11 +22,11 @@ public class SettingTabButton : MonoBehaviour
     {
         button = GetComponent<Button>();
         settingTab = GameObject.FindAnyObjectByType<SettingTab>();
-
+        
         button.onClick.AddListener(() => {
             isSelect = !isSelect;
             Debug.Log(this.gameObject.name);
-            PlayerPrefs.SetInt(this.gameObject.name , isSelect == true ? 1 : 0);
+            PlayerPrefs.SetInt(this.gameObject.name , isSelect ? 1 : 0);
         });
     }
     void ChangeImage(){

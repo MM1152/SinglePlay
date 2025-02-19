@@ -40,6 +40,6 @@ public class DashAttack : MonoBehaviour , SkillParent
         ani.SetBool("Skill" , false);
         ani.SetBool("Skill2" , false);
 
-        unit.target.GetComponent<IDamageAble>().Hit(unit.damage * soulsSkillData.attackPercent , unit.clitical , AttackType.SkillAttack , unit);
+        unit.target.GetComponent<IDamageAble>().Hit(unit.damage * soulsSkillData.attackPercent , unit , unit.clitical , AttackType.SkillAttack);
     }
 }

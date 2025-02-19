@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class Boss : ShortRangeScipt  , ISummonUnit
 {
-    [SerializeField] BossShowAnimation BossShow; // 보스 소개하는 애니메이션 접근 ( image 와 Text 설정해줌 )
-    public Summoner summoner { get ; set ; }
-
+    [SerializeField] BossShowAnimation BossShow; // 보스 소개하는 애니메이션 접근 ( image 와 Text 설정해줌 
     protected void Start() {
         if(summoner == null) {
             SetBossAni();

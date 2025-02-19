@@ -23,7 +23,7 @@ public class Mine : MonoBehaviour
             ani.SetBool("IsBoom" , true);
             Unit unit;
             if(other.TryGetComponent<Unit>(out unit)) {
-                unit.Hit(unit.damage * (skillData.attackPercent / 100f), unit.clitical , AttackType.Burn , unit);
+                unit.Hit(unit.damage * (skillData.attackPercent / 100f), unit , unit.clitical , AttackType.Burn);
                 unit.statusEffectMuchine.SetStatusEffect(new BurnEffect() , unit);
             }
             StartCoroutine(WaitAnimation());

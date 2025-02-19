@@ -24,7 +24,7 @@ public class WideRangeSkill : MonoBehaviour
         if(!other.CompareTag(unit.gameObject.tag) && !other.GetComponent<Unit>().isDie) {
             
             //fix :: skillDamage랑 연동시켜야함
-            other.GetComponent<IDamageAble>().Hit(unit.damage * (skillData.attackPercent / 100f) , unit.clitical , AttackType.SkillAttack , unit);
+            other.GetComponent<IDamageAble>().Hit(unit.damage * (skillData.attackPercent / 100f) , unit , unit.clitical , AttackType.SkillAttack);
         }
     }
     

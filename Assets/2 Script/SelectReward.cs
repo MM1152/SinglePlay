@@ -44,12 +44,15 @@ public class SelectReward : MonoBehaviour
     
     private void GetReward(){
         if(isSelect && Input.GetTouch(0).tapCount >= 2){
-            for(int i = 0; i < rewardData.type.Length; i++) {
-                RewardManager.Instance.SetSummonerStat.Invoke(rewardData.type[i].ToString() , rewardData.percent);
-            }
-            transform.parent.gameObject.SetActive(false);
-            rewardData = null;
+            SettingRewardAdditional();
         }
+    }
+    public void SettingRewardAdditional(){
+        for(int i = 0; i < rewardData.type.Length; i++) {
+            RewardManager.Instance.SetSummonerStat.Invoke(rewardData.type[i].ToString() , rewardData.percent);      
+        }
+        transform.parent.gameObject.SetActive(false);
+        rewardData = null;
     }
     public void SetRewardData(ClearRewardData data) {
         rewardData = data;

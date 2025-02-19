@@ -117,7 +117,6 @@ public class Summoner : LongRangeScript
     }
     private IEnumerator DieAnimation(){
         if(isDie) {
-            GameManager.Instance.SlowGame(0.6f);
             yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.98f);
             DieTitle.SetActive(true);
             GameManager.Instance.StopGame();  

@@ -34,7 +34,7 @@ public class CameraMoveMent : MonoBehaviour
                 return;
             }
 
-            size -= 0.01f;
+            size -= 0.05f;
             size = Math.Clamp(size , 1.5f , 5);
             Camera.main.orthographicSize = size;
         }

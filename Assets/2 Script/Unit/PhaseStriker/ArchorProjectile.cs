@@ -27,7 +27,7 @@ public class ArchorProjectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag != unit.gameObject.tag) {
-            other.GetComponent<IDamageAble>().Hit(unit.damage , unit.clitical , unit : unit);
+            other.GetComponent<IDamageAble>().Hit(unit.damage , unit , unit.clitical );
         }
     }
     IEnumerator WaitAnimtion(){

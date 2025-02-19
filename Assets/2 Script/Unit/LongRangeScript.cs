@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LongRangeScript : Unit
+public class LongRangeScript : Unit , ISummonUnit
 {
     public GameObject projectile;
+    public Summoner summoner { get; set; }
+    public int damageMeter { get ; set ; }
    
     protected void OnEnable()
     {
         Respawn();
+        if(summoner == null) Spawn(GameManager.Instance.currentStage);
+        else SummonerSpawn(summoner);
     }
     private void Update()
     {

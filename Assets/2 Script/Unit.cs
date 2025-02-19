@@ -20,7 +20,6 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     public float setInitAttackSpeed; // 초기화될 공격속도
     public float currentAttackSpeed; // 현재 공격까지 남은시간
     public GameObject hpBar;
-    
     [HideInInspector] protected Animator ani = null;
     [HideInInspector] public SpriteRenderer sp;
 
@@ -333,7 +332,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         }
     }
 
-    public void Hit(float Damage , float Critical = 0 , AttackType attackType = AttackType.None , Unit unit = null)
+    public void Hit(float Damage, Unit unit, float Critical = 0, AttackType attackType = AttackType.None)
     { 
         //\\TODO 여기서 스킬데미지증가 유물에 관해서 데미지 증가 로직 적용시켜주면 될거같음.
         DamageText damage = PoolingManager.Instance.ShowDamage().GetComponent<DamageText>();
@@ -358,6 +357,11 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         damage.Setting(attackType);
         damage.damage = (int) Damage;
         damage.target = damageShowPos;
+
+        ISummonUnit summonUnit;
+        if(unit.TryGetComponent<ISummonUnit>(out summonUnit)) {
+            summonUnit.AddDamage((int) Damage);
+        }
 
         if (shild >= Damage) shild -= Damage;
         else if (shild < Damage)

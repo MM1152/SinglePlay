@@ -2,15 +2,21 @@
 using System.Collections;
 using UnityEngine;
 
-public class ShortRangeScipt : Unit
+public class ShortRangeScipt : Unit , ISummonUnit
 {
     GameObject attackprefeb;
     ShortRangeAttack shortRangeAttack;
+        
+    public Summoner summoner { get ; set ; }
+    public int damageMeter { get ; set ; }
+    
     protected bool attackPattenChange;  // 어택이 기본 ShortRangeScript의 어택방식을 따르지 않을때 선언
 
     protected void OnEnable()
     {
         Respawn();
+        if(summoner == null)  Spawn(GameManager.Instance.currentStage);
+        else SummonerSpawn(summoner);
     }
     
     protected override void Awake() {
