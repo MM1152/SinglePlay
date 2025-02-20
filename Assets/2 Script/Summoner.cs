@@ -75,6 +75,7 @@ public class Summoner : LongRangeScript
         if(other.name == "NextStage" && !GameManager.Instance.playingShader) {
             target = null;
             ani.Play("InNextMap");
+            SoundManager.Instance.Play(SoundManager.SFX.NextMap);
             StartCoroutine(GameManager.Instance.WaitForNextMap(() => SpawnMapPlayer()));
         }
     }

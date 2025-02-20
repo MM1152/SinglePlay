@@ -20,17 +20,19 @@ public class PhaseStriker : Boss
         base.OnEnable();
         base.Start();
     }
-    private void Update() {
+    protected void Update() {
         
         c_hp = hp;
-        
-        if(isDie && unit.name == "DaggerPhaseStriker") Destroy(archorPhaseStriker);
-        else if(isDie && unit.name == "ArchorPhaseStriker"){
-            daggerPhaseStriker.summonUnit.DieSummonUnit(); 
-            Destroy(daggerPhaseStriker);
-        }
 
         base.Update();
+
+        if(isDie && unit.name == "DaggerPhaseStriker") {
+            Destroy(archorPhaseStriker.gameObject);
+        } 
+        else if(isDie && unit.name == "ArchorPhaseStriker"){
+            daggerPhaseStriker.summonUnit.DieSummonUnit(); 
+            Destroy(daggerPhaseStriker.gameObject);
+        }
         /*
         formChangeCoolTime -= Time.deltaTime;
 

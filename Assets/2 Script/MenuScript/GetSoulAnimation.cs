@@ -43,7 +43,7 @@ public class GetSoulAnimation : MonoBehaviour
             target.position = Camera.main.WorldToScreenPoint(Vector3.Lerp(p1 , p2 , i));
             yield return new WaitForSeconds(0.005f);
         }
-
+        SoundManager.Instance.Play(SoundManager.SFX.BuyItem);
         for(float i = 0; i < 1f; i += 0.05f) {
             target.position = Vector3.Lerp(target.position , secondTarget.position , i);
             yield return new WaitForSeconds(0.005f);

@@ -24,6 +24,7 @@ public class SkillManager : MonoBehaviour
     [Header("AttackSkill")]
     public bool LightningAttack;
     public bool LightningAttackUpgrade;
+    public bool LightningElectricEffetUpgrade;
     public bool batAttack;
     public bool batUpgradeAttackPercent;
     public bool batUpgradeCoolTime;
@@ -85,6 +86,10 @@ public class SkillManager : MonoBehaviour
             case "소환수 이동속도 증가":
                 UpgradeSummonUnitSpeed = true;
                 break;
+            case "번개감전효과":
+                LightningElectricEffetUpgrade = true;
+                break;
+
         }
 
         statPoint--;

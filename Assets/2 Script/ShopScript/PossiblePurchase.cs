@@ -32,8 +32,9 @@ public class PossiblePurchase : MonoBehaviour
                     ReclicsManager.Instance.reclicsDatas[sellingData.saveDatanum].PickUp();
                     break;
             }
+            GameDataManger.Instance.GetSoul(-sellingData.classStruct.soulCost);
         }
-        GameDataManger.Instance.GetSoul(-sellingData.classStruct.soulCost);
+        
         
         gameObject.SetActive(false);
         success.SetActive(true);

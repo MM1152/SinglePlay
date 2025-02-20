@@ -7,6 +7,7 @@ public class AttackSkill : SummonerSkillParent
 
     [SerializeField] GameObject skillPrefeb;
     SkillData divisionLightningAttack;
+    SkillData electricEffect;
     LightningAttack lightning;
     Animator ani;
     Heap heap;
@@ -27,6 +28,10 @@ public class AttackSkill : SummonerSkillParent
         {
             divisionLightningAttack = SkillManager.Instance.GetSkillData("번개 분할");
         }
+        if (SkillManager.Instance.LightningElectricEffetUpgrade && electricEffect == null)
+        {
+            electricEffect = SkillManager.Instance.GetSkillData("번개감전효과");
+        }
         Skill();
     }
     public void Skill()
@@ -38,8 +43,9 @@ public class AttackSkill : SummonerSkillParent
                 PoolingManager.Instance.ShowObject(skillPrefeb.name + "(Clone)", skillPrefeb).GetComponent<LightningAttack>().Init(summoner.target.transform.position, summoner.transform.position);
 
                 float damage = SetDamage(summoner.damage * skillData.initPercent);
-                summoner.target.GetComponent<IDamageAble>().Hit(damage, summoner , summoner.clitical , AttackType.SkillAttack);
-                SetCoolTime();
+                SkillAttack(summoner.target , damage);
+                if(electricEffect != null) summoner.target.GetComponent<Unit>().statusEffectMuchine.SetStatusEffect(new ElectricEffect());
+                SetCoolTime(); 
                 if (divisionLightningAttack != null)
                 {
                     heap = new Heap();
@@ -54,6 +60,7 @@ public class AttackSkill : SummonerSkillParent
                             PoolingManager.Instance.ShowObject(skillPrefeb.name + "(Clone)", skillPrefeb).GetComponent<LightningAttack>().Init(nearTarget.position, summoner.target.transform.position);
                             damage = SetDamage(summoner.damage * (divisionLightningAttack.initPercent + (SkillManager.Instance.skillDatas[divisionLightningAttack] * divisionLightningAttack.levelUpPercent)));
                             SkillAttack(nearTarget.gameObject , damage);
+                            if(electricEffect != null) nearTarget.GetComponent<Unit>().statusEffectMuchine.SetStatusEffect(new ElectricEffect());
                         }
                     }
                 }

@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
     }
     public void ReturnToMain(string SceneName = "MainScene"){
         LoadingScene.LoadScene(SceneName);
+        currentStage = 1;
         clearMonseter = 50;
         dropSoul += delegate(UnitData unitData) {
             GameData gameData = GameDataManger.Instance.GetGameData();

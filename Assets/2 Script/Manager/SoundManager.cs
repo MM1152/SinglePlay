@@ -19,8 +19,8 @@ public class SoundManager : MonoBehaviour
     AudioSource[] sfxPlayer;
 
     public enum BGM { Menu , Main };
-    public enum SFX { Open , DisOpen , BuyItem , SelectItem  , MinePlant , Hit , Dodge};
-    //\\TODO : 소울 획득 브금 , 젬 획득 브금 , 스킬 사용브금 등 추가 
+    public enum SFX { Open , DisOpen , BuyItem , SelectItem  , MinePlant , Hit , Dodge , NextMap , StepRock};
+    //\\TODO :  젬 획득 브금 , 스킬 사용브금 등 추가 
     private static SoundManager _instance;
     public static SoundManager Instance {
         get { return _instance; }
@@ -52,6 +52,9 @@ public class SoundManager : MonoBehaviour
             sfxPlayer[i].Play();
             break;
         }
+    }
+    public void Stop(SFX index) {
+        if(sfxPlayer[(int) index].isPlaying) sfxPlayer[(int) index].Stop();
     }
     public void Play(){
         if(GameManager.Instance.setting.bgmVolumButton.isSelect || GameManager.Instance.setting.mainVolumButton.isSelect) {

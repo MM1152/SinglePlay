@@ -8,6 +8,7 @@ public class LightningAttack : MonoBehaviour
     private Animator ani;
     public Vector3 caster;
     public Vector3 target;
+
     public void Init(Vector3 pos , Vector3 caster){
         this.caster = caster;
         target = pos;
@@ -16,6 +17,7 @@ public class LightningAttack : MonoBehaviour
     private void Awake() {
         ani = GetComponent<Animator>();
     }
+    
     private void StargetSkill(){
         StartCoroutine(WaitForAnimation());
 

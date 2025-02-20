@@ -240,19 +240,22 @@ public class SpeedBuffEffect : IStatusEffect
     {
         Debug.Log("SpeedUP Exit");
         unit.speed -= upgradeSpeed;
-        //speedBuffObject.SetActive(false);
+        speedBuffObject.SetActive(false);
         overlapCount = 0;
     }
 
     public void Init(Unit unit, Unit tauntUnit = null)
     {
         if(speedBuffObject == null) {
-            //speed 버프 이펙트 Resource에서 가져와서 넣기
-            //speedBuffObject = 
+            speedBuffObject = new GameObject("Speedup");
+            speedBuffObject.transform.localScale = Vector3.one * 4f;
+            speedBuffObject.AddComponent<SpriteRenderer>().sprite = Resources.Load<GameObject>("UseSkillFolder/SpeedUpEffect").GetComponent<SpriteRenderer>().sprite;
         }
+        
         Debug.Log("SpeedUP Init");
         this.unit = unit;
         float upgradeSpeed = unit.speed * 0.5f;
+        speedBuffObject.SetActive(true);
 
         unit.speed += upgradeSpeed;
        
@@ -266,7 +269,54 @@ public class SpeedBuffEffect : IStatusEffect
         currentDuration -= Time.deltaTime;
         if (currentDuration > 0)
         {
-            //speedBuffObject.transform.position = unit.transform.position + Vector3.up;
+            speedBuffObject.transform.position = unit.transform.position + Vector3.up;
+        }
+        if(currentDuration <= 0) Exit();
+    }
+}
+
+public class ElectricEffect : IStatusEffect
+{
+    public int overlapCount { get ; set ; }
+    public float currentDuration { get ; set ; }
+    float duration = 7f;
+    float slowValue;
+    Unit unit;
+    GameObject effectObject;
+    public void Exit()
+    {
+        Debug.Log("Electric Exit");
+        effectObject.SetActive(false);
+        overlapCount = 0;
+        unit.speed += slowValue;
+    }
+
+    public void Init(Unit unit, Unit tauntUnit = null)
+    {
+        if(effectObject == null) {
+            effectObject = new GameObject("Electric");
+            effectObject.transform.localScale = Vector3.one * 4f;
+            effectObject.AddComponent<SpriteRenderer>().sprite = Resources.Load<GameObject>("UseSkillFolder/Electric").GetComponent<SpriteRenderer>().sprite;
+        }
+        
+        Debug.Log("Electric Init");
+        this.unit = unit;
+        slowValue = unit.speed * 0.2f;
+        effectObject.SetActive(true);
+
+        unit.speed -= slowValue;
+       
+
+        currentDuration = duration;
+        overlapCount++;
+    }
+
+    public void Run()
+    {
+        currentDuration -= Time.deltaTime;
+        if (currentDuration > 0)
+        {
+            effectObject.transform.position = unit.transform.position + Vector3.up;
         }
         if(currentDuration <= 0) Exit();
     }

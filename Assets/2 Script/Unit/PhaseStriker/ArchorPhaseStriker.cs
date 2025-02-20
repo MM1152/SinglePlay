@@ -24,7 +24,7 @@ public class ArchorPhaseStriker : PhaseStriker
     private void SummonUnitSetting(){
         ani.SetBool("PlaySpawnAni" , false);
         SummonerSpawn(summoner);
-        gameObject.transform.localScale = Vector3.one * 0.5f ;
+        gameObject.transform.localScale = Vector3.one;
     }
     private void Update() {
         base.Update();

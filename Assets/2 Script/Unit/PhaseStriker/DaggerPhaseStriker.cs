@@ -10,10 +10,13 @@ public class DaggerPhaseStriker : PhaseStriker
         archorPhaseStriker.gameObject.AddComponent<Summon>();
         archorPhaseStriker.gameObject.SetActive(false);
 
-        gameObject.transform.localScale = new Vector3(0.5f , 0.5f , 1f);
+        gameObject.transform.localScale = new Vector3(1 , 1 , 1f);
         base.Awake();
     }
-
+    void Update()
+    {
+        base.Update();
+    }
     private void Start(){
         base.Start();
         archorPhaseStriker.Setting(this);

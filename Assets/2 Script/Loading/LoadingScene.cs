@@ -35,6 +35,7 @@ public class LoadingScene : MonoBehaviour
                 yield return new WaitUntil(() => {
                     if(Input.touchCount >= 1) {
                         op.allowSceneActivation = true;
+                        SoundManager.Instance.Stop(SoundManager.SFX.MinePlant);
                         if(nextScene == "MenuScene") {
                             GameManager.Instance.showingMenuTools.HideOption(false);
                         } else {

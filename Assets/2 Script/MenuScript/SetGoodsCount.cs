@@ -10,6 +10,8 @@ public class SetGoodsCount : MonoBehaviour
     [SerializeField] Text gemCountText;
     [SerializeField] GetSoulAnimation getSoulAnimation;
     [SerializeField] List<GetSoulAnimation> getSoulAnimations;
+    static bool first;
+    static int soulCount; 
     //\\TODO : 게임 처음 시작할때 소울획득 애니메이션 재생되는거 막아야됌
     private void Start() {
         GameDataManger.Instance.StartCoroutine(GameDataManger.WaitForDownLoadData(() => {
@@ -24,11 +26,16 @@ public class SetGoodsCount : MonoBehaviour
     }
 
     void Setting(int soul , int gem){
-        if(soul > int.Parse(soulCountText.text)) {
+        if(soul > soulCount && first) {
             foreach(GetSoulAnimation ani in getSoulAnimations) {
                 ani.StartGetSoulAnimation();
             }
         }
+
+        first = true;
+        Debug.Log(soulCount);
+
+        soulCount = soul;
         soulCountText.text = soul + "";
         gemCountText.text = gem + "";
     }
