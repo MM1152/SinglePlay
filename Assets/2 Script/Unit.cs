@@ -65,6 +65,9 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     public float bonusAttack = 0;
     public float bonusHp = 0;
     public float bonusSpeed = 0;
+
+    //현재 소환수가 쌓은 데미지량
+    public int overlapDamage;
     /************************************/
 
     /*************TestCode***************/
@@ -74,7 +77,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
     protected virtual void Awake()
     {
-
+        overlapDamage = 0;
         cliticalPercent = 1.5f;
         rg = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
@@ -341,15 +344,15 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         }
     }
 
-    public void Hit(float Damage, Unit unit, float Critical = 0, AttackType attackType = AttackType.None)
+    public void Hit(float Damage, Unit applyunit, float Critical = 0, AttackType attackType = AttackType.None)
     { 
         //\\TODO 여기서 스킬데미지증가 유물에 관해서 데미지 증가 로직 적용시켜주면 될거같음.
         DamageText damage = PoolingManager.Instance.ShowDamage().GetComponent<DamageText>();
         
-        if(unit != null) {
-            bool isclitical = UnityEngine.Random.Range(0f , 1f) <= unit.clitical ? true : false;
+        if(applyunit != null) {
+            bool isclitical = UnityEngine.Random.Range(0f , 1f) <= applyunit.clitical ? true : false;
             if(isclitical) {
-                Damage = Damage * unit.cliticalPercent;
+                Damage = Damage * applyunit.cliticalPercent;
                 attackType = AttackType.CriticalAttack ;
             }
         }
@@ -367,11 +370,12 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         damage.damage = (int) Damage;
         damage.target = damageShowPos;
 
-        ISummonUnit summonUnit;
-        if(unit.TryGetComponent<ISummonUnit>(out summonUnit)) {
-            summonUnit.AddDamage((int) Damage);
+        
+        if(applyunit.GetComponent<ISummonUnit>().summoner != null) {
+            applyunit.overlapDamage += (int) Damage;
+            SettingMobDamageMeter.maxDamage += (int) Damage;
         }
-
+        
         if (shild >= Damage) shild -= Damage;
         else if (shild < Damage)
         {
