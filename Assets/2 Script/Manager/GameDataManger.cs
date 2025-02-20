@@ -263,6 +263,10 @@ public class GameDataManger : MonoBehaviour
                 LoadData.questData[i].Setting();
             }
 
+            for(int i = 0; i < LoadData.isBoxOpen.Count; i++) {
+                LoadData.isBoxOpen[i] = false;
+            }
+
             data = LoadData;
             SaveData();
         }

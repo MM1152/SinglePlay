@@ -20,6 +20,7 @@ public class SkillManager : MonoBehaviour
     public bool UpgradeResurrection; //MaxSpawnCount;
     public bool UpgradeSummonUnitSpeed;
     public bool UpgradeAutoRepairShiled;
+    public bool UpgradeSummonUnitDodge;
     [Space(50)]
     [Header("AttackSkill")]
     public bool LightningAttack;
@@ -92,6 +93,10 @@ public class SkillManager : MonoBehaviour
             case "보호막회복":
                 UpgradeAutoRepairShiled = true;
                 break;
+            case "소환수회피":
+                UpgradeSummonUnitDodge = true;
+                break;
+
         }
 
         statPoint--;

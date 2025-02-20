@@ -12,7 +12,9 @@ public class SummonUnit : MonoBehaviour
     Animator ani;
     Summoner summoner;
     CreateSummonUnitViewer summonUnitViewer;
-    CreateDamageMeter damageMeter;
+    CreateDamageMeter damageMeter;   
+
+    float time;
     bool spawn ;
     private void Awake() {
         ani = GetComponent<Animator>();
@@ -20,12 +22,23 @@ public class SummonUnit : MonoBehaviour
         damageMeter = FindObjectOfType<CreateDamageMeter>();
         spawn = false;
     }
+    void OnEnable()
+    {
+        time = 3f;
+    }
     public void Setting(GameObject spawnEnemy , Vector2 spawnPos , Transform parent , Summoner summoner){
         this.spawnEnemy = spawnEnemy;
         this.spawnPos = spawnPos;
         this.parent = parent;
         this.summoner = summoner;
         StartCoroutine(WaitForAnimation());
+    }
+    private void Update() {
+        time -= Time.deltaTime;
+        if(time <= 0 && gameObject.activeSelf) {
+            Debug.Log(gameObject.name);
+            PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
+        }
     }
     //1.첫번째 소환시 옆에 소환된 유닛창이 생성됨
     //2. 재생성시에 이미 소환된 유닛창을 찾아서 다시 연결시켜줘야함함
@@ -44,9 +57,15 @@ public class SummonUnit : MonoBehaviour
         
         summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
         summoner.GetComponent<RePair>().summonUnit.Add(unit.GetComponent<Unit>());
+        summoner.GetComponent<SummonUnitDodge>().summonUnit.Add(unit.GetComponent<Unit>());
         unit.SetActive(true);
-        damageMeter.Init(unit.GetComponent<Unit>());
+
+        if(!spawn) damageMeter.Init(unit.GetComponent<Unit>());
+        else damageMeter.Redirect(unit.GetComponent<Unit>());
+        
         summoner.changeStatus += unit.GetComponent<Unit>().ChangeStats;
+        spawn = true;
+
         PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
         
     }

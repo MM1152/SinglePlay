@@ -14,7 +14,6 @@ public class PhaseStriker : Boss
     [SerializeField] protected ArchorPhaseStriker archorPhaseStriker;
 
     static float c_hp;
-    private void OnEnable() {}
 
     protected void Start() {
         base.OnEnable();

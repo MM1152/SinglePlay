@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Summoner : LongRangeScript
 {
+    //\\TODO : 일청초마다 랜덤버프를 주는 스킬도 구현
     Vector2[] spawnPosition = new Vector2[] {
         new Vector2(2f , 0f) ,
         new Vector2(2f , -1.17f) ,
@@ -39,6 +40,7 @@ public class Summoner : LongRangeScript
         if (!isDie)
         {
             if(VirtualJoyStick.instance.isInput) {
+                FindTarget(targetList);
                 return;
             }
             base.Update();

@@ -12,7 +12,7 @@ public class LongRangeScript : Unit , ISummonUnit
     protected void OnEnable()
     {
         Respawn();
-        if(summoner == null) Spawn(GameManager.Instance.currentStage);
+        if(summoner == null) Spawn(GameManager.Instance.currentStage * GameManager.Instance.mapindex + 1);
         else SummonerSpawn(summoner);
     }
     private void Update()

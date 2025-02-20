@@ -35,7 +35,7 @@ public struct ClassStruct {
                 gemCost = 0;
                 break;
             case ItemClass.COMMON :
-                dropSoulpercent = 0.05f;
+                dropSoulpercent = 0.015f;
                 soulInintPercent = 30f;
                 soulLevelUpPercent = 5f;
                 initCost = 40f;
