@@ -16,12 +16,15 @@ public class GetSoulAnimation : MonoBehaviour
     Vector2 p2;
     RectTransform target;
     RectTransform secondTarget;
+
+    static bool first;
     void Awake()
     {
         target = this.GetComponent<RectTransform>();
         secondTarget = transform.parent.GetComponent<RectTransform>();
     }
     public void StartGetSoulAnimation(){
+
         transform.position = Vector2.zero;
         
         gameObject.SetActive(true);     

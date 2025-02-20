@@ -12,10 +12,12 @@ public class SummonUnit : MonoBehaviour
     Animator ani;
     Summoner summoner;
     CreateSummonUnitViewer summonUnitViewer;
+    CreateDamageMeter damageMeter;
     bool spawn ;
     private void Awake() {
         ani = GetComponent<Animator>();
-        summonUnitViewer = GameObject.FindObjectOfType<CreateSummonUnitViewer>();
+        summonUnitViewer = FindObjectOfType<CreateSummonUnitViewer>();
+        damageMeter = FindObjectOfType<CreateDamageMeter>();
         spawn = false;
     }
     public void Setting(GameObject spawnEnemy , Vector2 spawnPos , Transform parent , Summoner summoner){
@@ -42,6 +44,7 @@ public class SummonUnit : MonoBehaviour
         
         summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
         unit.SetActive(true);
+        damageMeter.Init(unit.GetComponent<Unit>());
         summoner.changeStatus += unit.GetComponent<Unit>().ChangeStats;
         PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
         

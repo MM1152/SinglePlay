@@ -13,9 +13,6 @@ public class TalentSelect : MonoBehaviour
     Outline outline;
     TalentSelect parentSkill;
     Button button;
-    //#issue 1
-    //\\TODO Select 라는 스크립트 상속받게해서 isselect에 맞게 아웃라인 변경하는 코드는 합쳐도될듯
-    
     public int skillLevel;
     public float skillCoolDown;
     bool _unLock;

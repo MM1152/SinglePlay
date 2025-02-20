@@ -48,8 +48,6 @@ public class GameManager : MonoBehaviour
 
     //DailyQuest용 몬스터 처치 횟수
     public int clearMosetCount;
-    //\\TODO maxStaget 클리어시 GameManager에서 게임 클리어및 종료 신호 보내줘야함;
-    // 획득 재화량은 currentStage / maxStaget
     private void Awake() {
         if(Instance == null) {
             Instance = this;    

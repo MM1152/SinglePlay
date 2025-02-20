@@ -32,7 +32,6 @@ public class ChangeShopListButton : MonoBehaviour
 
         if(callAd == null) {
             button.onClick.AddListener(() => {
-                //\\TODO : 재화에 맞춰 상점 초기화 시켜주기
                 if(GameDataManger.Instance.GetGameData().soul >= 100) {
                     count--;
 

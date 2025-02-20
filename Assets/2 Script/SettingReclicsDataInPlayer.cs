@@ -8,7 +8,6 @@ public class SettingReclicsDataInPlayer : MonoBehaviour
     Summoner player;
     private void Awake() {
         player = GetComponent<Summoner>();
-        //\\TODO BonusGoods , SummonUnitHp 연결필요
         player.damage += player.unit.damage * (ReturnPercent(0) / 100f);
         player.maxHp += player.unit.hp * (ReturnPercent(1) / 100f);
         player.setInitAttackSpeed -= player.unit.attackSpeed * (ReturnPercent(3) / 100f);

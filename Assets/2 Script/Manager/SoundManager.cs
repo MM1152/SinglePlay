@@ -20,6 +20,7 @@ public class SoundManager : MonoBehaviour
 
     public enum BGM { Menu , Main };
     public enum SFX { Open , DisOpen , BuyItem , SelectItem  , MinePlant , Hit , Dodge};
+    //\\TODO : 소울 획득 브금 , 젬 획득 브금 , 스킬 사용브금 등 추가 
     private static SoundManager _instance;
     public static SoundManager Instance {
         get { return _instance; }

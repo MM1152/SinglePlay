@@ -10,11 +10,13 @@ public class SetGoodsCount : MonoBehaviour
     [SerializeField] Text gemCountText;
     [SerializeField] GetSoulAnimation getSoulAnimation;
     [SerializeField] List<GetSoulAnimation> getSoulAnimations;
+    //\\TODO : 게임 처음 시작할때 소울획득 애니메이션 재생되는거 막아야됌
     private void Start() {
         GameDataManger.Instance.StartCoroutine(GameDataManger.WaitForDownLoadData(() => {
             Setting(GameDataManger.Instance.GetGameData().soul , GameDataManger.Instance.GetGameData().gem);
             GameDataManger.Instance.goodsSetting = Setting;
         }));
+
         for(int i = 0 ; i < 5; i++) {
             getSoulAnimations.Add(Instantiate(getSoulAnimation , transform));
             getSoulAnimations[i].gameObject.SetActive(false);

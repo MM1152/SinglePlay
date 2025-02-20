@@ -26,7 +26,7 @@ public class CharacterStatusViewer : MonoBehaviour
     private void OnEnable() {
 
 
-        //\\TODO : 적용준인 능력치 불러와서 사용해야되는데 어떻게 불러올건지?
+        //   적용준인 능력치 불러와서 사용해야되는데 어떻게 불러올건지?
         //1. Summoner에서 RewardManager를 통해 능력치 추가기능 존재
         //2. GameManager를 통한 Summoner 능력치 추가 존재
         sb.Clear();

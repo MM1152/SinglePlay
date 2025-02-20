@@ -57,8 +57,14 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     public GameObject target; // 공격할 대상
     public GameObject targetList; // 적이라면 Player를 담고있는 부모 , Player라면 적에 대한 정보를 담고있는 부모
 
-    [SerializeField] float attackPrecent;
-    [SerializeField] float hpPercent;
+    //현재 소환되는 유닛의 레벨에 따라 적용되는 수치
+    public float attackPrecent;
+    public float hpPercent;
+
+    //서머너의 레벨업 특성으로 찍은 유닛의 추가강화
+    public float bonusAttack = 0;
+    public float bonusHp = 0;
+    public float bonusSpeed = 0;
     /************************************/
 
     /*************TestCode***************/
@@ -147,15 +153,20 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     }
     protected virtual void SummonerSpawn(Summoner summoner)
     { 
-        float bonusAttack = 0;
-        float bonusHp = 0;
+
         attackPrecent = GameManager.Instance.soulsInfo[unit.name].curStat.attackStat / 100f;
         hpPercent = GameManager.Instance.soulsInfo[unit.name].curStat.hpStat / 100f;
+        
         if (SkillManager.Instance.UpgradeSummonUnitSkill)
         {
             SkillData skillData = SkillManager.Instance.GetSkillData("소환수 강화");
             bonusAttack = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
             bonusHp = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
+        }
+        if (SkillManager.Instance.UpgradeSummonUnitSpeed)
+        {
+            SkillData skillData = SkillManager.Instance.GetSkillData("소환수 이동속도 증가");
+            bonusSpeed = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
         }
 
         maxHp = summoner.maxHp * (hpPercent + bonusHp);
@@ -171,9 +182,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     }
     public void ChangeStats(Summoner summoner)
     {
-        float bonusAttack = 0;
-        float bonusHp = 0;
-        float bonusSpeed = 0;
+
         if (SkillManager.Instance.UpgradeSummonUnitSkill)
         {
             SkillData skillData = SkillManager.Instance.GetSkillData("소환수 강화");
