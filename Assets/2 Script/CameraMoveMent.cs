@@ -28,7 +28,7 @@ public class CameraMoveMent : MonoBehaviour
             boss = EnemySpawner.Instance.bossTrans;
             transform.position = Vector2.Lerp(transform.position , boss.position , smooting);
             transform.position += Vector3.back * 10f;
-        }else if(cameratarget.hp <= 0 ){
+        }else if(cameratarget.hp <= 0){
             if(cameratarget.gameObject.name != "Player") {
                 cameratarget = target.transform.GetChild(0).GetComponent<Unit>();
                 return;

@@ -43,6 +43,7 @@ public class SummonUnit : MonoBehaviour
         yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
         
         summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
+        summoner.GetComponent<RePair>().summonUnit.Add(unit.GetComponent<Unit>());
         unit.SetActive(true);
         damageMeter.Init(unit.GetComponent<Unit>());
         summoner.changeStatus += unit.GetComponent<Unit>().ChangeStats;

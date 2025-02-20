@@ -19,7 +19,7 @@ public class SkillManager : MonoBehaviour
     public bool UpgradeAutoRepair;
     public bool UpgradeResurrection; //MaxSpawnCount;
     public bool UpgradeSummonUnitSpeed;
-
+    public bool UpgradeAutoRepairShiled;
     [Space(50)]
     [Header("AttackSkill")]
     public bool LightningAttack;
@@ -89,7 +89,9 @@ public class SkillManager : MonoBehaviour
             case "번개감전효과":
                 LightningElectricEffetUpgrade = true;
                 break;
-
+            case "보호막회복":
+                UpgradeAutoRepairShiled = true;
+                break;
         }
 
         statPoint--;

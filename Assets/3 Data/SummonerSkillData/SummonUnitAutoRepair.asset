@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SummonUnitAutoRepair
   m_EditorClassIdentifier: 
   skillName: "\uC790\uB3D9 \uD68C\uBCF5"
-  coolTime: 5
+  coolTime: 10
   initPercent: 0.05
   levelUpPercent: 0.05
   maxSkillLevel: 3

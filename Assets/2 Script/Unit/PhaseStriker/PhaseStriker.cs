@@ -26,10 +26,10 @@ public class PhaseStriker : Boss
 
         base.Update();
 
-        if(isDie && unit.name == "DaggerPhaseStriker") {
+        if(isDie && unit.name == "DaggerPhaseStriker" && archorPhaseStriker.gameObject != null) {
             Destroy(archorPhaseStriker.gameObject);
         } 
-        else if(isDie && unit.name == "ArchorPhaseStriker"){
+        else if(isDie && unit.name == "ArchorPhaseStriker" &&  daggerPhaseStriker.gameObject != null){
             daggerPhaseStriker.summonUnit.DieSummonUnit(); 
             Destroy(daggerPhaseStriker.gameObject);
         }
