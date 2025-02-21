@@ -29,7 +29,7 @@ public class PhaseStriker : Boss
             Destroy(archorPhaseStriker.gameObject);
         } 
         else if(isDie && unit.name == "ArchorPhaseStriker" &&  daggerPhaseStriker.gameObject != null){
-            daggerPhaseStriker.summonUnit.DieSummonUnit(); 
+            daggerPhaseStriker.summonUnit.DieSummonUnit(daggerPhaseStriker); 
             Destroy(daggerPhaseStriker.gameObject);
         }
         /*

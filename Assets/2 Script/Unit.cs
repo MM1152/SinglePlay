@@ -254,7 +254,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
                 EnemySpawner.Instance.CheckDie();
                 DropSoul();
             }else if(summonUnit != null){
-                summonUnit.DieSummonUnit();
+                summonUnit.DieSummonUnit(this);
             }
 
             StartCoroutine(WaitForDieAnimationCorutine());
