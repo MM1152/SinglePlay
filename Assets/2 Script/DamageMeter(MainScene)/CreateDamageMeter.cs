@@ -16,20 +16,21 @@ public class CreateDamageMeter : MonoBehaviour
             return;
         }
 
-       
         SettingMobDamageMeter createNew = Instantiate(damageMeter , prefebParent); 
         damageMeterPools.Add(createNew);
-        createNew.Setting(unit);
+        StartCoroutine(WaitForUnitSetting(createNew, unit));
     }
 
     public void Redirect(Unit unit){
         for(int i = 0 ; i < damageMeterPools.Count; i++) {
             Debug.Log("SettingDamageTab");
             if(damageMeterPools[i].unitname == unit.unit.name) {
-                
                 damageMeterPools[i].Setting(unit);
             }
         }
     }
-
+    IEnumerator WaitForUnitSetting(SettingMobDamageMeter createNew , Unit unit){
+        yield return new WaitUntil(() => unit.maxHp != 0);
+        createNew.Setting(unit);
+    }
 }

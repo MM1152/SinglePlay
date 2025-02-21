@@ -10,12 +10,14 @@ public class RePair : SummonerSkillParent
     void Start()
     {
         healEffect = Resources.Load<GameObject>("UseSkillFolder/HealEffect");
+        
     }
 
     private void Update()
     {
         if(SkillManager.Instance.UpgradeAutoRepair && skillData == null) {
             skillData = SkillManager.Instance.GetSkillData("자동 회복");
+            SetCoolTime();
         }
         if(SkillManager.Instance.UpgradeAutoRepairShiled && autoRepairShiled == null) {
             autoRepairShiled = SkillManager.Instance.GetSkillData("보호막회복");
@@ -25,7 +27,7 @@ public class RePair : SummonerSkillParent
 
     private void RepairSkill()
     {
-        if (SkillManager.Instance.UpgradeAutoRepair)
+        if (skillData != null)
         {
             if (currentSkillCoolTime <= 0)
             {

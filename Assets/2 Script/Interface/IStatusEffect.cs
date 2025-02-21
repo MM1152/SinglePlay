@@ -164,7 +164,7 @@ public class TauntEffect : IStatusEffect
         if(usetauntUnit != null && usetauntUnit.isDie) Exit();
         if (currentDuration > 0)
         {
-            tauntobj.transform.position = unit.transform.position;
+            tauntobj.transform.position = unit.transform.position + Vector3.up;
         }
         else if (currentDuration <= 0)
         {
@@ -190,22 +190,29 @@ public class BurnEffect : IStatusEffect
     public int overlapCount { get ; set ; }
     public float currentDuration { get ; set ; }
     GameObject burnEffect;
+
     float repeatDamageTime;
-    float duration = 3f;
+    float duration = 5f;
     Unit unit;
     Unit applyUnit;
     public void Exit()
     {
         overlapCount = 0;
+        repeatDamageTime = 0f;
+        burnEffect.SetActive(false);
     }
 
     public void Init(Unit unit, Unit tauntUnit = null)
     {
+        if(burnEffect == null) {
+            burnEffect = new GameObject("Burn");
+            burnEffect.transform.localScale = Vector3.one * 4f;
+            burnEffect.AddComponent<SpriteRenderer>().sprite = Resources.Load<GameObject>("UseSkillFolder/BurnEffect").GetComponent<SpriteRenderer>().sprite;
+        }
+
         this.unit = unit;
         applyUnit = tauntUnit;
         currentDuration = duration;
-        burnEffect = new GameObject("Burn");
-        burnEffect.transform.localScale = Vector2.one * 0.5f;
                 
         if(overlapCount < 5) overlapCount++;
     }
@@ -214,9 +221,9 @@ public class BurnEffect : IStatusEffect
     {
         repeatDamageTime += Time.deltaTime;
         currentDuration -= Time.deltaTime;
-        burnEffect.transform.position = unit.transform.position;
-        if(repeatDamageTime >= 0.5f) {
-            repeatDamageTime = 0;
+        burnEffect.transform.position = unit.transform.position + Vector3.up;
+        if(repeatDamageTime >= 1f) {
+            repeatDamageTime = 0f;
             RepeatDamage();
         }
         if(currentDuration <= 0) {
@@ -225,7 +232,7 @@ public class BurnEffect : IStatusEffect
     }
     void RepeatDamage(){
         //\\TODO : 화상데미지는 주황색으로 표시?
-        unit.Hit(applyUnit.damage * (0.1f * overlapCount) , applyUnit , 0 , AttackType.SkillAttack);
+        unit.Hit(applyUnit.damage * (0.1f * overlapCount) , applyUnit , 0 , AttackType.Burn);
     }
 }
 public class SpeedBuffEffect : IStatusEffect

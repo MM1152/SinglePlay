@@ -26,9 +26,11 @@ MonoBehaviour:
   soulsSkillData: []
   SummonPrefeb: {fileID: 3199828439737376147, guid: 9f7b4edcdb0f19a40aeefe8b337e7ded, type: 3}
   explainText: "Lv.3:   \uCCB4\uB825 10% \uC99D\uAC00\nLv.6:   \uBAA8\uB4E0\uC18D\uB3C4
-    10% \uC99D\uAC00\nLv.9:   \uACF5\uACA9\uB825 10% \uC99D\uAC00\nLv.12: \uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4
-    \uB3C4\uBC1C\uC2A4\uD0AC\uC744 \uC0AC\uC6A9"
+    10% \uC99D\uAC00\nLv.9:   \uACF5\uACA9\uB825 10% \uC99D\uAC00\nLv.12: \uACF5\uACA9\uB825
+    30% \uC99D\uAC00"
   stat:
   - 3 Hp 10
   - 6 Speed 10
   - 9 Attack 10
+  - 12 Attack 30
+  changeFormInfo: {fileID: 0}

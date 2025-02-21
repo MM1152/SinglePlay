@@ -60,10 +60,12 @@ public class SummonUnit : MonoBehaviour
         summoner.GetComponent<SummonUnitDodge>().summonUnit.Add(unit.GetComponent<Unit>());
         unit.SetActive(true);
 
+        summoner.changeStatus += unit.GetComponent<Unit>().ChangeStats;
+
         if(!spawn) damageMeter.Init(unit.GetComponent<Unit>());
         else damageMeter.Redirect(unit.GetComponent<Unit>());
         
-        summoner.changeStatus += unit.GetComponent<Unit>().ChangeStats;
+        
         spawn = true;
 
         PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);

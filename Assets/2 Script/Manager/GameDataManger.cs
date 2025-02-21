@@ -247,6 +247,8 @@ public class GameDataManger : MonoBehaviour
         DateTime currentDateTime = Convert.ToDateTime(GetTime.currentTime);
         int isPast = DateTime.Compare(pastDateTime , currentDateTime);
         if(isPast < 0) {
+            Debug.Log("과거 달 : "  + pastDateTime.Month);
+            Debug.Log("현재 달 : "  + currentDateTime.Month);
             if(pastDateTime.Month < currentDateTime.Month) {
                 for(int i = 0; i < 28; i++) {
                     LoadData.dailyGift[i] = false;

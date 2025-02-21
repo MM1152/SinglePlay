@@ -33,3 +33,4 @@ MonoBehaviour:
   - 6 Speed 10
   - 9 Attack 10
   - 12 Attack 30
+  changeFormInfo: {fileID: 0}

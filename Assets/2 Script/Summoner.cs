@@ -39,8 +39,9 @@ public class Summoner : LongRangeScript
     {
         if (!isDie)
         {
-            if(VirtualJoyStick.instance.isInput) {
+            if(hp > 0 && VirtualJoyStick.instance.isInput) {
                 FindTarget(targetList);
+                statusEffectMuchine.Update();
                 return;
             }
             base.Update();
@@ -67,6 +68,7 @@ public class Summoner : LongRangeScript
     public void Move(Vector3 movePos)
     {
         if(isAttack) return;
+        if(hp <= 0) return;
 
         transform.position += movePos * Time.deltaTime * speed;
         ani.SetBool("Move" , true);

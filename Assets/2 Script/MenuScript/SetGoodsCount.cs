@@ -33,7 +33,6 @@ public class SetGoodsCount : MonoBehaviour
         }
 
         first = true;
-        Debug.Log(soulCount);
 
         soulCount = soul;
         soulCountText.text = soul + "";

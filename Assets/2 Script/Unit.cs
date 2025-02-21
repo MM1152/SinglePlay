@@ -201,13 +201,13 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
         float thisHpPercent = hp / maxHp;
 
-        maxHp += maxHp - summoner.hp * (hpPercent + bonusHp);
+        maxHp = summoner.hp * (hpPercent + bonusHp);
         mp = unit.mp;
-        damage += damage - summoner.damage * (attackPrecent + bonusAttack);
-        speed += speed - unit.speed * (1 + bonusSpeed);
+        damage = summoner.damage * (attackPrecent + bonusAttack);
+        speed = unit.speed * (1 + bonusSpeed);
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
-        critical += critical - summoner.critical;
+        critical = summoner.critical;
 
         hp = maxHp * thisHpPercent;
     }

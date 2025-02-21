@@ -30,10 +30,10 @@ MonoBehaviour:
     skillData: {fileID: 11400000, guid: 03a71501ecbcf5a439fac9250517509e, type: 2}
   SummonPrefeb: {fileID: 8347718914557172544, guid: 322139d13c846fc4f860d91b154aa6f8, type: 3}
   explainText: "Lv.3:   \uCCB4\uB825 20% \uC99D\uAC00\nLv.6:   \uBAA8\uB4E0\uC18D\uB3C4
-    25% \uC99D\uAC00 / \uB3C4\uBC1C \uC2A4\uD0AC \uD574\uC81C\nLv.9:   \uACF5\uACA9\uB825
-    20% \uC99D\uAC00\nLv.12: \uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uBCF4\uD638\uB9C9\uC744
-    \uC0AC\uC6A9"
+    25% \uC99D\uAC00 / \uC2A4\uD0AC 1\uD574\uC81C\nLv.9:   \uACF5\uACA9\uB825 20%
+    \uC99D\uAC00\nLv.12: \uC2A4\uD0AC 2\uD574\uC81C"
   stat:
   - 3 Hp 20
   - 6 Speed 25
   - 9 Attack 20
+  changeFormInfo: {fileID: 0}
