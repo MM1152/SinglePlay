@@ -29,9 +29,9 @@ public class ProjecTile : MonoBehaviour
             PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
         }
         else if(other.GetComponent<IDamageAble>() != null && !other.CompareTag(gameObject.tag) && !other.GetComponent<Unit>().isDie) {     
-            if(summoner == null) other.GetComponent<IDamageAble>().Hit(unitData.damage , unitData , Critical : unitData.clitical);   
+            if(summoner == null) other.GetComponent<IDamageAble>().Hit(unitData.damage , unitData , Critical : unitData.critical);   
             else { 
-                other.GetComponent<IDamageAble>().Hit(unitData.damage , unitData , Critical : unitData.clitical );  
+                other.GetComponent<IDamageAble>().Hit(unitData.damage , unitData , Critical : unitData.critical );  
                 summoner.hp += summoner.drainLife * summoner.damage;
             }
 

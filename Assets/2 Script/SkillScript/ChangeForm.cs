@@ -25,7 +25,7 @@ public class ChangeForm : MonoBehaviour , SkillParent
             currentCoolTime = soulsSkillData.skillCoolTime;
             
             chnageUnit = unit.ChangeForm();
-            if(upgradeChangeForm_1) chnageUnit.statusEffectMuchine.SetStatusEffect(new SpeedBuffEffect());
+            if(upgradeChangeForm_1) chnageUnit.statusEffectMuchine.SetStatusEffect(new SpeedBuffEffect(10f , 0.5f));
             summon.ChangeFormUnit(this);
         }
         else currentCoolTime -= Time.deltaTime;

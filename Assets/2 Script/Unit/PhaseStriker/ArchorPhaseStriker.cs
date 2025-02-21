@@ -5,8 +5,10 @@ using UnityEngine;
 public class ArchorPhaseStriker : PhaseStriker
 {
     [SerializeField] GameObject projectile;
-  
+    void OnEnable(){ }
+    void Start(){ }
     private void Awake() {
+        Debug.Log("SettingFin ArchorPhaseStriker");
         base.Awake();
         attackPattenChange = true;
     }
@@ -20,6 +22,9 @@ public class ArchorPhaseStriker : PhaseStriker
             SummonUnitSetting(); 
         }
         else SetBoss();
+        Respawn();
+        canFollow = false;
+        gameObject.transform.localScale = new Vector3(0.6f , 0.6f , 1f);
     }
     private void SummonUnitSetting(){
         ani.SetBool("PlaySpawnAni" , false);

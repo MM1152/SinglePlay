@@ -21,6 +21,7 @@ public class SkillManager : MonoBehaviour
     public bool UpgradeSummonUnitSpeed;
     public bool UpgradeAutoRepairShiled;
     public bool UpgradeSummonUnitDodge;
+    public bool UpgradeSummonUnitCritical;
     [Space(50)]
     [Header("AttackSkill")]
     public bool LightningAttack;
@@ -29,7 +30,7 @@ public class SkillManager : MonoBehaviour
     public bool batAttack;
     public bool batUpgradeAttackPercent;
     public bool batUpgradeCoolTime;
-
+    public bool batUpgradeAttackCount;
     private int _statPoint = 1;
     public int statPoint {
         get {
@@ -96,7 +97,13 @@ public class SkillManager : MonoBehaviour
             case "소환수회피":
                 UpgradeSummonUnitDodge = true;
                 break;
-
+            case "소환수크리티컬":
+                UpgradeSummonUnitCritical = true;
+                break;
+            case "박쥐공격횟수증가":
+                batUpgradeAttackCount = true;
+                break;
+             
         }
 
         statPoint--;

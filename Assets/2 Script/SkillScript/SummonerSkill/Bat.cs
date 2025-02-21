@@ -10,11 +10,11 @@ public class Bat : MonoBehaviour
     [SerializeField]SpriteRenderer sp;
     [SerializeField]BatAttack batAttack;
     [SerializeField]SkillData skillData;
-    SummonerSkillParent summonerSkillParent;
-
+    CircleCollider2D circleCollider;
     float attackPercent;
     float attackDamage;
     int spawnNumber;
+    int attackCount;
 
     bool oneTime;
     bool isAttack;
@@ -23,18 +23,20 @@ public class Bat : MonoBehaviour
         oneTime = false;
     }
     private void Awake() {
+        circleCollider = GetComponent<CircleCollider2D>();
         attackPercent = 0.15f;
         sp = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>();
         
     }
 
-    public void Setting(Summoner summoner , float attackDamage , int spawnNumber , BatAttack batAttack , SkillData skillData , SummonerSkillParent skillParent = null){
+    public void Setting(Summoner summoner , float attackDamage , int spawnNumber , BatAttack batAttack , SkillData skillData , int attackCount){
         this.summoner = summoner;
         this.attackDamage = attackDamage;
         this.spawnNumber = spawnNumber;
         this.batAttack = batAttack;
         this.skillData = skillData;
+        this.attackCount = attackCount;
     }
 
     void Update()
@@ -62,9 +64,17 @@ public class Bat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(isAttack && other.gameObject == summoner.target.gameObject) {
-            summonerSkillParent.SkillAttack(other.gameObject , summoner.damage * attackDamage);
-            batAttack.Die(spawnNumber);
-            PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
+            batAttack.SkillAttack(other.gameObject , summoner.damage * attackDamage);
+            attackCount--;
+            if(attackCount <= 0) {
+                batAttack.Die(spawnNumber);
+                PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
+            }
+            else {
+                circleCollider.enabled = false;
+                circleCollider.enabled = true;
+            }
+            
         }
     }
 }

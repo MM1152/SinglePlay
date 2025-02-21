@@ -8,6 +8,7 @@ public class BatAttack : SummonerSkillParent
     [SerializeField] GameObject batPrefeb;
     public SkillData batUpgradeAttackPercent;
     public SkillData batUpgradeCoolTime;
+    public SkillData batUpgradeAttackCount;
     int maxSpawnCount;
     int currSpawnCount;
 
@@ -43,6 +44,9 @@ public class BatAttack : SummonerSkillParent
         if (SkillManager.Instance.batUpgradeCoolTime && batUpgradeCoolTime == null) {
             batUpgradeCoolTime = SkillManager.Instance.GetSkillData("박쥐 생성속도 증가");
         } 
+        if(SkillManager.Instance.batUpgradeAttackCount && batUpgradeAttackCount == null) {
+            batUpgradeAttackCount = SkillManager.Instance.GetSkillData("박쥐공격횟수증가");
+        }
         BatSkill();
     }
     private void BatSkill()
@@ -75,7 +79,8 @@ public class BatAttack : SummonerSkillParent
             }
 
             float damage = SetDamage(skillData.initPercent + (SkillManager.Instance.skillDatas[skillData] * skillData.levelUpPercent));
-            bat.Setting(summoner, damage , i , this , batUpgradeAttackPercent , this);
+            int attackCount = batUpgradeAttackCount != null ? SkillManager.Instance.skillDatas[batUpgradeAttackCount] + 1 : 1;
+            bat.Setting(summoner, damage , i , this , batUpgradeAttackPercent , attackCount);
         }
     }
     public void Die(int spawnNumber){

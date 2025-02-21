@@ -41,7 +41,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     public StatusEffect statusEffectMuchine;
     public bool SkillSetting;
     public float dodge;
-    public float clitical;
+    public float critical;
     [Space(75)]
     /************************************/
 
@@ -82,6 +82,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         rg = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
         rg.gravityScale = 0;
+        rg.sleepMode = RigidbodySleepMode2D.NeverSleep;
         damageShowPos = transform.Find("DamageShowPosition");
         hpbarPos =  transform.Find("HpbarPos");
         hpbarPos.transform.position -= new Vector3(0f , 0f , hpbarPos.transform.position.z);
@@ -156,7 +157,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     }
     protected virtual void SummonerSpawn(Summoner summoner)
     { 
-
+        Debug.Log($"Unit SummonerSpawn : {gameObject.name}");
         attackPrecent = GameManager.Instance.soulsInfo[unit.name].curStat.attackStat / 100f;
         hpPercent = GameManager.Instance.soulsInfo[unit.name].curStat.hpStat / 100f;
         
@@ -178,14 +179,14 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         speed = unit.speed;
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
-        clitical = summoner.clitical;
+        critical = summoner.critical;
     
         hp = maxHp;
         summonUnit = GetComponent<ISummonUnit>();
     }
     public void ChangeStats(Summoner summoner)
     {
-
+        Debug.Log($"Unit Change Stats : {gameObject.name}");
         if (SkillManager.Instance.UpgradeSummonUnitSkill)
         {
             SkillData skillData = SkillManager.Instance.GetSkillData("소환수 강화");
@@ -200,13 +201,13 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
         float thisHpPercent = hp / maxHp;
 
-        maxHp = summoner.hp * (hpPercent + bonusHp);
+        maxHp += maxHp - summoner.hp * (hpPercent + bonusHp);
         mp = unit.mp;
-        damage = summoner.damage * (attackPrecent + bonusAttack);
-        speed = unit.speed * (1 + bonusSpeed);
+        damage += damage - summoner.damage * (attackPrecent + bonusAttack);
+        speed += speed - unit.speed * (1 + bonusSpeed);
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
-        clitical = summoner.clitical;
+        critical += critical - summoner.critical;
 
         hp = maxHp * thisHpPercent;
     }
@@ -350,7 +351,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         DamageText damage = PoolingManager.Instance.ShowDamage().GetComponent<DamageText>();
         
         if(applyunit != null) {
-            bool isclitical = UnityEngine.Random.Range(0f , 1f) <= applyunit.clitical ? true : false;
+            bool isclitical = UnityEngine.Random.Range(0f , 1f) <= applyunit.critical ? true : false;
             if(isclitical) {
                 Damage = Damage * applyunit.cliticalPercent;
                 attackType = AttackType.CriticalAttack ;

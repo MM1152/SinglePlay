@@ -11,7 +11,7 @@ public class ShortRangeScipt : Unit , ISummonUnit
     public int damageMeter { get ; set ; }
     
     protected bool attackPattenChange;  // 어택이 기본 ShortRangeScript의 어택방식을 따르지 않을때 선언
-
+    
     protected void OnEnable()
     {
         Respawn();

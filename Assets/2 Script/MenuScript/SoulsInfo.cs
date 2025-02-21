@@ -124,6 +124,7 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     public void GetSoul(){
         soulCount++;
         Setting(soulCount , soulLevel);
+        ChangeStatus();
     }
     public void ChangeBonusStat(){
         unitData.curStat.attackStat = unitData.classStruct.soulInintPercent + (unitData.classStruct.soulLevelUpPercent * soulLevel) + unitData.bonusStat.attackStat;

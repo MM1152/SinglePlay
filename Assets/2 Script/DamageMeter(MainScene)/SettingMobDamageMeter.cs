@@ -30,10 +30,8 @@ public class SettingMobDamageMeter : MonoBehaviour
             Debug.LogError("unit null error");
             return;
         }
-        Debug.Log(unit.overlapDamage);
         unit.overlapDamage += overlapDamage;
         
-        Debug.Log(overlapDamage);
         mobImage.sprite = unit.unit.image;
         ChangeStatus(null);
     }
@@ -44,6 +42,7 @@ public class SettingMobDamageMeter : MonoBehaviour
             damageFillImage.fillAmount = (float)unit.overlapDamage /  (float)maxDamage;
             
             damagePercentText.text = string.Format("{0} ({1:0.00}%)" , unit.overlapDamage , damageFillImage.fillAmount * 100);
+           
             overlapDamage = unit.overlapDamage;
         }
 
@@ -52,7 +51,7 @@ public class SettingMobDamageMeter : MonoBehaviour
     public void ChangeStatus(Summoner summoner){
         maxHpText.text = $"{unit.maxHp} (+{(unit.hpPercent + unit.bonusHp) * 100f}%)";
         damageText.text = $"{unit.damage} (+{(unit.attackPrecent + unit.bonusAttack) * 100f}%)";
-        cliticalText.text = $"{unit.clitical} (+{0}%)";
+        cliticalText.text = $"{unit.critical} (+{0}%)";
         speedText.text = $"{unit.speed} (+{(unit.bonusSpeed) * 100f}%)";
     }
 

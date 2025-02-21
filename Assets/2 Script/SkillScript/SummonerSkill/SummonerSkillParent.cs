@@ -32,7 +32,7 @@ public class SummonerSkillParent : MonoBehaviour
         if(summoner.hp + (damage * summoner.drainLife) <= summoner.maxHp) {
             summoner.hp += damage * summoner.drainLife;
         }
-        hitunit.GetComponent<IDamageAble>().Hit(damage , summoner ,summoner.clitical , AttackType.SkillAttack);
+        hitunit.GetComponent<IDamageAble>().Hit(damage , summoner ,summoner.critical , AttackType.SkillAttack);
         
     }
     

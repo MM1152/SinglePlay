@@ -108,7 +108,7 @@ public class Summoner : LongRangeScript
                 break;
             
             case "Clitical":
-                clitical += value;
+                critical += value;
                 break;
             
             case "CliticalDamage":

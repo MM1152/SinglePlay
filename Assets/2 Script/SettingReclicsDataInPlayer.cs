@@ -14,7 +14,7 @@ public class SettingReclicsDataInPlayer : MonoBehaviour
         player.speed += player.unit.speed * (ReturnPercent(4) / 100f);
         player.dodge += ReturnPercent(12) / 100f;
         player.drainLife += ReturnPercent(13) / 100f;
-        player.clitical += ReturnPercent(2) / 100f;
+        player.critical += ReturnPercent(2) / 100f;
         player.hp = player.maxHp;
 
         

@@ -36,7 +36,7 @@ public class DrainLife : MonoBehaviour , SkillParent
                 if(targetPos != null && targetPos.gameObject != bigDarker.target) {
                     GameObject attack = PoolingManager.Instance.ShowObject(bigDarker.darkerAttack.name + "(Clone)" , bigDarker.darkerAttack);
                     attack.GetComponent<BigDarkerAttack>().target = targetPos;
-                    targetPos.GetComponent<IDamageAble>().Hit(bigDarker.damage , bigDarker , bigDarker.clitical , AttackType.SkillAttack);
+                    targetPos.GetComponent<IDamageAble>().Hit(bigDarker.damage , bigDarker , bigDarker.critical , AttackType.SkillAttack);
                     attackCount--;
                     //\\TODO 흡혈 기능 추가해줘야함
                 }

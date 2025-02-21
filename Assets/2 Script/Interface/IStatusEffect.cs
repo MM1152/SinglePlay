@@ -232,10 +232,15 @@ public class SpeedBuffEffect : IStatusEffect
 {
     public int overlapCount { get ; set ; }
     public float currentDuration { get ; set ; }
-    float duration = 10f;
+    float duration;
     float upgradeSpeed;
+    float upgradePercent;
     Unit unit;
     GameObject speedBuffObject;
+    public SpeedBuffEffect(float duration = 10f , float upgradePercnet = 0.3f){
+        this.duration = duration;
+        this.upgradePercent = upgradePercnet;
+    }
     public void Exit()
     {
         Debug.Log("SpeedUP Exit");
@@ -254,11 +259,11 @@ public class SpeedBuffEffect : IStatusEffect
         
         Debug.Log("SpeedUP Init");
         this.unit = unit;
-        float upgradeSpeed = unit.speed * 0.5f;
+        float upgradeSpeed = unit.speed * upgradePercent;
         speedBuffObject.SetActive(true);
 
         unit.speed += upgradeSpeed;
-       
+        Debug.Log($"unit Speed {unit.speed}");
 
         currentDuration = duration;
         overlapCount++;

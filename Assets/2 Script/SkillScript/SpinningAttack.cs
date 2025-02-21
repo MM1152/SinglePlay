@@ -87,7 +87,7 @@ public class SpinningAttack : MonoBehaviour , SkillParent
         if(other != null && other.gameObject.tag != unit.gameObject.tag && isdurationSkill) {
             IDamageAble damageAble;
             if(other.TryGetComponent<IDamageAble>(out damageAble)) {
-                damageAble.Hit(unit.damage * (soulsSkillData.attackPercent / 100f) , unit , unit.clitical , AttackType.SkillAttack);
+                damageAble.Hit(unit.damage * (soulsSkillData.attackPercent / 100f) , unit , unit.critical , AttackType.SkillAttack);
                 attackAbleTime = 0.5f;
             }
             else {
@@ -101,7 +101,7 @@ public class SpinningAttack : MonoBehaviour , SkillParent
         if(other != null && other.gameObject.tag != unit.gameObject.tag && isdurationSkill && attackAbleTime <= 0) {
             IDamageAble damageAble;
             if(other.TryGetComponent<IDamageAble>(out damageAble)) {
-                damageAble.Hit(unit.damage * (soulsSkillData.attackPercent / 100f) , unit , unit.clitical , AttackType.SkillAttack);
+                damageAble.Hit(unit.damage * (soulsSkillData.attackPercent / 100f) , unit , unit.critical , AttackType.SkillAttack);
                 attackAbleTime = 0.5f;
             }
             else {

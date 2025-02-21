@@ -17,7 +17,7 @@ public class ExplosionObject : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(!other.CompareTag(gameObject.tag)) {
-            other.GetComponent<Unit>().Hit(damage , unit , unit.clitical , AttackType.SkillAttack);
+            other.GetComponent<Unit>().Hit(damage , unit , unit.critical , AttackType.SkillAttack);
         }
     }
 

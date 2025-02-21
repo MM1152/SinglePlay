@@ -120,6 +120,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7835042bbc9a34b4f84d12b8ab7d4de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  ani: {fileID: 0}
+  summoner: {fileID: 0}
+  sp: {fileID: 0}
+  batAttack: {fileID: 0}
+  skillData: {fileID: 0}
 --- !u!58 &3103248479913844844
 CircleCollider2D:
   m_ObjectHideFlags: 0
