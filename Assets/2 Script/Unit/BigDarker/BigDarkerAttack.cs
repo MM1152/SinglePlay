@@ -14,7 +14,7 @@ public class BigDarkerAttack : MonoBehaviour
         StartCoroutine(EndforAnimation());
     }
     private void Update() {
-        transform.position = target.transform.position + Vector3.down * 0.1f;
+        transform.position = target.transform.position;
     }
     IEnumerator EndforAnimation(){
         yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);

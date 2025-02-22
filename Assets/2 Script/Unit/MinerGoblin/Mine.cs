@@ -24,7 +24,7 @@ public class Mine : MonoBehaviour
             Unit unit;
             if(other.TryGetComponent<Unit>(out unit)) {
                 unit.Hit(unit.damage * (skillData.attackPercent / 100f), unit , unit.critical , AttackType.Burn);
-                unit.statusEffectMuchine.SetStatusEffect(new BurnEffect() , unit);
+                unit.statusEffectMuchine.SetStatusEffect(new BurnEffect() , unit , 7f , 0.1f);
             }
             StartCoroutine(WaitAnimation());
         }

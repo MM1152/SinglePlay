@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,29 +23,34 @@ public class StatusEffect
         {
             if (key == value.ToString())
             {
-                statusEffect[key].Init(unit);
+                statusEffect[key].Init(unit , 0 , 0);
                 return;
             }
         }
 
         statusEffect.Add(value.ToString(), value);
-        statusEffect[value.ToString()].Init(unit);
+        statusEffect[value.ToString()].Init(unit , 0 , 0);
 
     }
-    public void SetStatusEffect(IStatusEffect value , Unit applyUnit)
+
+    /// <param name="value">적용시킬 상태이상/버프</param>
+    /// <param name="applyUnit">적용시킨 유닛</param>
+    /// <param name="durationTime">지속시간 1초 단위</param>
+    /// <param name="percent">적용시킬 퍼센트 0.1단위</param>
+    public void SetStatusEffect(IStatusEffect value , Unit applyUnit , float durationTime , float percent)
     {
 
         foreach (string key in statusEffect.Keys)
         {
             if (key == value.ToString())
             {
-                statusEffect[key].Init(unit , applyUnit);
+                statusEffect[key].Init(unit , durationTime, percent , applyUnit);
                 return;
             }
         }
 
         statusEffect.Add(value.ToString(), value);
-        statusEffect[value.ToString()].Init(unit , applyUnit);
+        statusEffect[value.ToString()].Init(unit , durationTime , percent , applyUnit);
 
     }
     public void Update()
@@ -80,19 +86,29 @@ public class AttackPowerBuffEffect : IStatusEffect
     public float currentDuration { get; set; }
     Unit unit;
 
+
     public void Exit()
     {
         unit.damage -= upgradeDamage;
+        upgradeDamage = 0;
         overlapCount = 0;
         attackBuffObj.SetActive(false);
         pools.Enqueue(attackBuffObj);
     }
 
-    public void Init(Unit unit, Unit tauntUnit = null)
+    public void Init(Unit unit, float settingDuration , float percent ,Unit tauntUnit = null)
     {
+        if(duration == 0 && percent == 0) {
+            currentDuration = duration;
+            percent = 0.3f;
+        }
+        else {
+            currentDuration = settingDuration;
+        }
+        Debug.Log("Setting CurrentDuration" + currentDuration);
         this.unit = unit;
         //\\TODO : 전달하는 유닛의 스킬 퍼센트에 맞게 바꿔줘야함.
-        upgradeDamage = unit.damage * 0.3f;
+        upgradeDamage += unit.damage * percent;
         this.unit.damage += upgradeDamage;
 
         if (pools.Count != 0)
@@ -105,9 +121,9 @@ public class AttackPowerBuffEffect : IStatusEffect
                 attackBuffObj.transform.localScale = new Vector3(3f, 3f , 3f);
                 attackBuffObj.GetComponent<SpriteRenderer>().sprite = Resources.Load<GameObject>("UseSkillFolder/AttackBuff").GetComponent<SpriteRenderer>().sprite;
             }
+
         attackBuffObj.transform.position = Vector2.zero;
         attackBuffObj.SetActive(true);
-        currentDuration = duration;
         overlapCount++;
     }
 
@@ -129,11 +145,15 @@ public class TauntEffect : IStatusEffect
     public float currentDuration { get; set; }
     public int overlapCount { get; set; }
     GameObject tauntobj;
+    Text overlapCountText;
     Unit unit;
     Unit usetauntUnit;
 
-    public void Init(Unit unit , Unit tauntUnit = null)
+    public void Init(Unit unit ,float duration , float percent , Unit tauntUnit = null)
     {
+        if(duration == 0) currentDuration = this.duration;
+        else currentDuration = duration;
+
         this.unit = unit;
         isExit = false;
         this.usetauntUnit = tauntUnit;
@@ -154,7 +174,6 @@ public class TauntEffect : IStatusEffect
         }
 
         overlapCount++;
-        currentDuration = 10f;
         
     }
 
@@ -193,6 +212,7 @@ public class BurnEffect : IStatusEffect
 
     float repeatDamageTime;
     float duration = 5f;
+    float percent;
     Unit unit;
     Unit applyUnit;
     public void Exit()
@@ -202,17 +222,27 @@ public class BurnEffect : IStatusEffect
         burnEffect.SetActive(false);
     }
 
-    public void Init(Unit unit, Unit tauntUnit = null)
+    public void Init(Unit unit,float duration , float percent, Unit tauntUnit = null)
     {
+        if(duration == 0 && percent == 0) {
+            currentDuration = this.duration;
+            this.percent = 0.1f;
+        }
+        else {
+            currentDuration = duration;
+            this.percent = percent;
+        }
+
         if(burnEffect == null) {
             burnEffect = new GameObject("Burn");
             burnEffect.transform.localScale = Vector3.one * 4f;
             burnEffect.AddComponent<SpriteRenderer>().sprite = Resources.Load<GameObject>("UseSkillFolder/BurnEffect").GetComponent<SpriteRenderer>().sprite;
         }
 
+        if(overlapCount <= 0) burnEffect.SetActive(true);
+
         this.unit = unit;
         applyUnit = tauntUnit;
-        currentDuration = duration;
                 
         if(overlapCount < 5) overlapCount++;
     }
@@ -232,7 +262,7 @@ public class BurnEffect : IStatusEffect
     }
     void RepeatDamage(){
         //\\TODO : 화상데미지는 주황색으로 표시?
-        unit.Hit(applyUnit.damage * (0.1f * overlapCount) , applyUnit , 0 , AttackType.Burn);
+        unit.Hit(applyUnit.damage * (percent * overlapCount) , applyUnit , 0 , AttackType.Burn);
     }
 }
 public class SpeedBuffEffect : IStatusEffect
@@ -244,35 +274,41 @@ public class SpeedBuffEffect : IStatusEffect
     float upgradePercent;
     Unit unit;
     GameObject speedBuffObject;
-    public SpeedBuffEffect(float duration = 10f , float upgradePercnet = 0.3f){
-        this.duration = duration;
-        this.upgradePercent = upgradePercnet;
-    }
+
     public void Exit()
     {
         Debug.Log("SpeedUP Exit");
         unit.speed -= upgradeSpeed;
+        upgradeSpeed = 0;
         speedBuffObject.SetActive(false);
         overlapCount = 0;
     }
 
-    public void Init(Unit unit, Unit tauntUnit = null)
+    public void Init(Unit unit, float settingDuration , float percent,Unit tauntUnit = null)
     {
+        if(duration == 0 && percent == 0) {
+            currentDuration = duration;
+            upgradePercent = 0.1f;
+        }
+        else {
+            currentDuration = settingDuration;
+            upgradePercent = percent;
+        }
+
         if(speedBuffObject == null) {
             speedBuffObject = new GameObject("Speedup");
             speedBuffObject.transform.localScale = Vector3.one * 4f;
             speedBuffObject.AddComponent<SpriteRenderer>().sprite = Resources.Load<GameObject>("UseSkillFolder/SpeedUpEffect").GetComponent<SpriteRenderer>().sprite;
         }
         
-        Debug.Log("SpeedUP Init");
+        
         this.unit = unit;
-        float upgradeSpeed = unit.speed * upgradePercent;
-        speedBuffObject.SetActive(true);
+        upgradeSpeed += unit.speed * upgradePercent;
+        if(overlapCount <= 0) speedBuffObject.SetActive(true);
 
         unit.speed += upgradeSpeed;
         Debug.Log($"unit Speed {unit.speed}");
 
-        currentDuration = duration;
         overlapCount++;
     }
 
@@ -286,7 +322,6 @@ public class SpeedBuffEffect : IStatusEffect
         if(currentDuration <= 0) Exit();
     }
 }
-
 public class ElectricEffect : IStatusEffect
 {
     public int overlapCount { get ; set ; }
@@ -303,8 +338,16 @@ public class ElectricEffect : IStatusEffect
         unit.speed += slowValue;
     }
 
-    public void Init(Unit unit, Unit tauntUnit = null)
+    public void Init(Unit unit, float duration , float percent, Unit tauntUnit = null)
     {
+        if(duration == 0 && percent == 0) {
+            currentDuration = this.duration;
+            percent = 0.2f;
+        }
+        else {
+            currentDuration = duration;
+        }
+
         if(effectObject == null) {
             effectObject = new GameObject("Electric");
             effectObject.transform.localScale = Vector3.one * 4f;
@@ -313,13 +356,11 @@ public class ElectricEffect : IStatusEffect
         
         Debug.Log("Electric Init");
         this.unit = unit;
-        slowValue = unit.speed * 0.2f;
-        effectObject.SetActive(true);
+        slowValue = unit.speed * percent;
+        if(overlapCount <= 0) effectObject.SetActive(true);
 
         unit.speed -= slowValue;
        
-
-        currentDuration = duration;
         overlapCount++;
     }
 
@@ -337,7 +378,7 @@ public interface IStatusEffect
 {
     public int overlapCount { get; set; }
     public float currentDuration { get; set; }
-    public void Init(Unit unit , Unit tauntUnit = null);
+    public void Init(Unit unit , float duration , float percent , Unit tauntUnit = null);
     public void Run();
     public void Exit();
 }

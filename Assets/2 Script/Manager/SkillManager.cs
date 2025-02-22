@@ -22,6 +22,7 @@ public class SkillManager : MonoBehaviour
     public bool UpgradeAutoRepairShiled;
     public bool UpgradeSummonUnitDodge;
     public bool UpgradeSummonUnitCritical;
+    public bool UpgradeSummonUnitBuff;
     [Space(50)]
     [Header("AttackSkill")]
     public bool LightningAttack;
@@ -103,7 +104,9 @@ public class SkillManager : MonoBehaviour
             case "박쥐공격횟수증가":
                 batUpgradeAttackCount = true;
                 break;
-             
+            case "소환수 랜덤버프":
+                UpgradeSummonUnitBuff = true;
+                break;
         }
 
         statPoint--;

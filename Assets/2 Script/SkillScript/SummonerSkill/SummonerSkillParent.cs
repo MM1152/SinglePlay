@@ -21,6 +21,10 @@ public class SummonerSkillParent : MonoBehaviour
         currentSkillCoolTime = skillData.coolTime;
         currentSkillCoolTime -= currentSkillCoolTime * repairSkillCoolTime;
     }
+    protected void SetCoolTime(SkillData otherSkillData) {
+        currentSkillCoolTime = otherSkillData.coolTime;
+        currentSkillCoolTime -= currentSkillCoolTime * repairSkillCoolTime;
+    }
     protected float SetDamage(float damage){ 
         damage = damage + (damage * extraSkillDamage);
         return damage;

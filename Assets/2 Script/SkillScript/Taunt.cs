@@ -61,7 +61,7 @@ public class Taunt : MonoBehaviour , SkillParent
             if(Vector2.Distance(enemy.transform.position , transform.position) <= 10f) {
                 Unit unit = enemy.GetComponent<Unit>();
                 unit.target = this.gameObject;
-                unit.statusEffectMuchine.SetStatusEffect(new TauntEffect() , unit);
+                unit.statusEffectMuchine.SetStatusEffect(new TauntEffect() , unit , 10f , 0f);
             }
         }
     }
