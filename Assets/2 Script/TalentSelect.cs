@@ -13,6 +13,7 @@ public class TalentSelect : MonoBehaviour
     Outline outline;
     TalentSelect parentSkill;
     Button button;
+    Image backGroundImage;
     public int skillLevel;
     public float skillCoolDown;
     bool _unLock;
@@ -20,8 +21,12 @@ public class TalentSelect : MonoBehaviour
         get { return _unLock; }
         set {
             _unLock = value;
+            if(_unLock) backGroundImage.color = Color.white;
+            else backGroundImage.color = Color.gray;
+            /*
             if(_unLock) button.interactable = true;
             else button.interactable = false;
+            */
         }
     }
 
@@ -32,7 +37,7 @@ public class TalentSelect : MonoBehaviour
         set
         {
             _isSelect = value;
-            if (_isSelect) outline.effectColor = new Color(1, 0, 0, 1);
+            if (_isSelect && unLock) outline.effectColor = new Color(1, 0, 0, 1);
             else outline.effectColor = new Color(1, 0, 0, 0);
         }
     }
@@ -45,7 +50,7 @@ public class TalentSelect : MonoBehaviour
         skillCoolDown = skilldata.coolTime;
         outline = GetComponent<Outline>();
         button = GetComponent<Button>();
-
+        backGroundImage = GetComponent<Image>();
 
         unLock = parentSkill == null ? true : false;
         skillLevelText.text = skillLevel + " / " + skilldata.maxSkillLevel;
@@ -53,7 +58,7 @@ public class TalentSelect : MonoBehaviour
 
     private void Update()
     {
-        if (EventSystem.current.currentSelectedGameObject == this.gameObject && unLock)
+        if (EventSystem.current.currentSelectedGameObject == this.gameObject)
         {
             isSelect = true;
             explnationText.text = skilldata.skillExplain;
@@ -68,11 +73,11 @@ public class TalentSelect : MonoBehaviour
     public void UpgrdeTalent()
     {
         if(isSelect && Input.touchCount > 0) {
-            if(Input.GetTouch(0).tapCount >= 2 && SkillManager.Instance.statPoint > 0) {
+            if(unLock && skillLevel != skilldata.maxSkillLevel && Input.GetTouch(0).tapCount >= 2 && SkillManager.Instance.statPoint > 0) {
                 skillLevelText.text = ++skillLevel + " / " + skilldata.maxSkillLevel;
                 SkillManager.Instance.UnLockSkill(skilldata);
                 RewardManager.Instance.SetSummonerStat.Invoke("None" , 0);
-                ReachMaxSkillLevel(skillLevel);
+                //ReachMaxSkillLevel(skillLevel);
             }
         }
     }
