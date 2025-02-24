@@ -24,6 +24,7 @@ public class MapInfomationTab : MonoBehaviour
         
         for(int i = 0; i < enemys.Length; i++) {
             SoulsInfo soulInfo = Instantiate(SoulsManager.Instance.soulsInfos[enemys[i].unit.typenumber - 1].gameObject , getSoulListTransform).GetComponent<SoulsInfo>(); 
+            soulInfo.slider.gameObject.SetActive(false);
             soulInfo.levelText.transform.position += Vector3.down * 35f;
         }
 

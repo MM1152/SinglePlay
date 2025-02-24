@@ -393,8 +393,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1405855127}
   - {fileID: 1547994163}
+  - {fileID: 1405855127}
   m_Father: {fileID: 1314740384}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -37169,7 +37169,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1405855126}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45019,6 +45019,8 @@ MonoBehaviour:
   bonusAttack: 0
   bonusHp: 0
   bonusSpeed: 0
+  buffAttack: 0
+  buffSpeed: 0
   overlapDamage: 0
   projectile: {fileID: 922150111110393090, guid: 3eabe396e0cf7514aa7bf016a76969cf, type: 3}
   EnemySpawn: {fileID: 7132685724295651425, guid: f5c97705d2a21eb45beccb8c0606fd8c, type: 3}

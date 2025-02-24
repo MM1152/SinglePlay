@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public GetSoulAnimation getSoulAnimation;
     /// <summary>
     /// 1: Attack , 2: Hp , 3: Clitical , 4: AttackSpeed  , 5: MoveSpeed , 6: BonusTalent , 7: BonusGoods , 8: IncreaesDamage ,
-    /// 9: IncreaesHp, 10: CoolTime, 11: SkillDamage,  12 IncreasedExp, 13 Dodge, 구현필요 [ 14 DrainLife ] 구현필요
+    /// 9: IncreaesHp, 10: CoolTime, 11: SkillDamage,  12 IncreasedExp, 13 Dodge, [ 14 DrainLife ] 구현필요
     /// </summary>
     public List<ReclicsData> reclicsDatas;
     public bool reclisFin;

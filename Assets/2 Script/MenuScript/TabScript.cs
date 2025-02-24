@@ -69,6 +69,7 @@ public class TabScript : MonoBehaviour
     }
 
     IEnumerator PlayAnimation(){
+        SoundManager.Instance.Play(SoundManager.SFX.Open);
         for(int i = 0; i <= 25; i += 5) {
             rect.sizeDelta += new Vector2(4 , 4);
             tabImage.sizeDelta += new Vector2(10, 10);

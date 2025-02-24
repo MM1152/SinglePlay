@@ -19,15 +19,19 @@ public class InWarningArea : MonoBehaviour
         attackDelay -= Time.deltaTime;
         if(attackDelay <= 0f) {
             if(hitObject.Count > 0) {
-                foreach(GameObject hit in hitObject) {
+                for(int i = 0; i  < hitObject.Count; i++) {
+                    GameObject hit = hitObject[i];
+                    
+                    if(hit == null) continue;
+
                     IDamageAble damageable;
                     if(hit.TryGetComponent<IDamageAble>(out damageable)) {
                         damageable.Hit(unit.damage * percent , unit , unit.critical , AttackType.SkillAttack);
                     }
                     else Debug.LogError("GetComponent Fail : " + damageable.ToString());
                 }
+                
             } 
-
             PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
         }
     }    

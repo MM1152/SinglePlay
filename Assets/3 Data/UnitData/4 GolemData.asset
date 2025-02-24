@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4 GolemData
   m_EditorClassIdentifier: 
   name: Golem
-  type: 30
+  type: 20
   typenumber: 4
   image: {fileID: -25428762, guid: a57bd07c90111fc4b98e7840056f030a, type: 3}
   attackSpeed: 3.5

@@ -13844,6 +13844,7 @@ MonoBehaviour:
   UpgradeAutoRepairShiled: 0
   UpgradeSummonUnitDodge: 0
   UpgradeSummonUnitCritical: 0
+  UpgradeSummonUnitBuff: 0
   LightningAttack: 0
   LightningAttackUpgrade: 0
   LightningElectricEffetUpgrade: 0
@@ -46852,6 +46853,8 @@ MonoBehaviour:
   bonusAttack: 0
   bonusHp: 0
   bonusSpeed: 0
+  buffAttack: 0
+  buffSpeed: 0
   overlapDamage: 0
   projectile: {fileID: 922150111110393090, guid: 3eabe396e0cf7514aa7bf016a76969cf, type: 3}
   EnemySpawn: {fileID: 7132685724295651425, guid: f5c97705d2a21eb45beccb8c0606fd8c, type: 3}

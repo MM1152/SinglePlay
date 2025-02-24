@@ -19,7 +19,7 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     [SerializeField] Image soulImage ;
     public SoulsInfo parentSoulsInfo; 
     public Text levelText;
-    [SerializeField] Slider slider;
+    public Slider slider;
     [SerializeField] GameObject lockObejct;
     public int cost;
     

@@ -21,6 +21,8 @@ public class SelectMap : MonoBehaviour , IPointerClickHandler
     public bool unLock {
         set {
             if(value) {
+                if(mapName == "null") return;
+                
                 image.color = UnLockColor;
                 lockGameObj.SetActive(false);
                 onClick = true;

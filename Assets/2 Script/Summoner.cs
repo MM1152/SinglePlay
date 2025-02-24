@@ -40,7 +40,7 @@ public class Summoner : LongRangeScript
         if (!isDie)
         {
             if(hp > 0 && VirtualJoyStick.instance.isInput) {
-                FindTarget(targetList);
+                target = FindTarget(targetList);
                 statusEffectMuchine.Update();
                 return;
             }
@@ -122,12 +122,11 @@ public class Summoner : LongRangeScript
     }
     private IEnumerator DieAnimation(){
         if(isDie) {
-            yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.98f);
-            DieTitle.SetActive(true);
+            yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
             GameManager.Instance.StopGame();  
-            
-            yield return new WaitUntil(() => Input.touchCount >= 1);
             GameManager.Instance.ReturnToMenu();
+            yield return new WaitUntil(() => Input.touchCount >= 1);
+            
         }
     }
     public void SpawnSoul(string key , int spawnPos = 0){

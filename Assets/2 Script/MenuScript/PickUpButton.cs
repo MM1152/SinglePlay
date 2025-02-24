@@ -23,7 +23,7 @@ public class PickUpButton : MonoBehaviour
             GameDataManger.Instance.GetGameData().gem -= pickUp_Cost;
             DailyQuestTab.ClearDailyQuest(QuestType.PickUp , count);
             GameDataManger.Instance.SaveData();
-            
+            SoundManager.Instance.Play(SoundManager.SFX.BuyItem);
             coroutine.StartCoroutine(coroutine.ShowingReclics(count));
         }
         else return;
@@ -34,7 +34,7 @@ public class PickUpButton : MonoBehaviour
             GameDataManger.Instance.GetGameData().gem -= pickUp_Cost;
             DailyQuestTab.ClearDailyQuest(QuestType.PickUp , count);
             GameDataManger.Instance.SaveData();
-
+            SoundManager.Instance.Play(SoundManager.SFX.BuyItem);
             coroutine.StartCoroutine(coroutine.ShowingSoul(count));
         }
         else return;

@@ -67,7 +67,7 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
     public void PickUp() {
         _reclicsCount++;
         levelText.text = _reclicsLevel + 1 + "";
-        
+        Setting(_reclicsCount , _reclicsLevel);
         ChangeStatus();
     }
      
