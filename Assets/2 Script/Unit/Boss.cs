@@ -21,6 +21,7 @@ public class Boss : ShortRangeScipt  , ISummonUnit
         StartCoroutine(WaitForAnimationCorutine());
     }
     protected void SetBoss(){
+        Respawn();
         Spawn(1);
 
         for (int i = 0; i < unit.soulsSkillData.Length; i++)

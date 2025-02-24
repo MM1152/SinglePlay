@@ -8,7 +8,7 @@ public class GoogleAdMobs : MonoBehaviour
 {
     public bool isTest;
     #if UNITY_ANDROID
-        private string _adUnitId = "ca-app-pub-8044713535911201/2430838782";
+        private string _adUnitId = "ca-app-pub-3940256099942544/5224354917";
     #elif UNITY_IPHONE
         private string _adUnitId = "ca-app-pub-3940256099942544/1712485313";
     #else

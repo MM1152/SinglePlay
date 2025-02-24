@@ -106,7 +106,7 @@ public class Summoner : LongRangeScript
                 break;
 
             case "ATTACKSPEED":
-                setInitAttackSpeed -= unit.attackSpeed * value;
+                setInitAttackSpeed -= setInitAttackSpeed * value;
                 break;
             
             case "Clitical":

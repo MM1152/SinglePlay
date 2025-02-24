@@ -42,15 +42,21 @@ public class ReclicsPickUp : MonoBehaviour
 
     private void Init() {
         for(int i = 0 ; i < sortReclics.reclicsInfo.Length; i++) {
-            maxPosibillity += (int) sortReclics.reclicsInfo[i].GetReclicsData().itemclass;
+            maxPosibillity += (int) sortReclics.reclicsInfo[i]
+                                .GetReclicsData()
+                                .itemclass;
 
         }
 
         for(int i = 0 ; i < sortReclics.reclicsInfo.Length; i++) {
-            spawnPosibillity.Add((int) sortReclics.reclicsInfo[i].GetReclicsData().itemclass / maxPosibillity);
+            spawnPosibillity.Add((int) sortReclics.reclicsInfo[i]
+                                    .GetReclicsData()
+                                    .itemclass / maxPosibillity);
 
-            if(showPosibilityData.ContainsKey(sortReclics.reclicsInfo[i].GetReclicsData().itemclass)) showPosibilityData[sortReclics.reclicsInfo[i].GetReclicsData().itemclass] += spawnPosibillity[i];
-            else showPosibilityData.Add(sortReclics.reclicsInfo[i].GetReclicsData().itemclass , spawnPosibillity[i]);
+            if(showPosibilityData.ContainsKey(sortReclics.reclicsInfo[i].GetReclicsData().itemclass))
+                showPosibilityData[sortReclics.reclicsInfo[i].GetReclicsData().itemclass] += spawnPosibillity[i];
+            else 
+                showPosibilityData.Add(sortReclics.reclicsInfo[i].GetReclicsData().itemclass , spawnPosibillity[i]);
         }
         pick_One_BNT.Init(this); 
         pick_Ten_BNT.Init(this);        

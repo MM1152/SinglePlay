@@ -55,7 +55,9 @@ public class DailyQuestTab : MonoBehaviour
     }
     public static void ClearDailyQuest(QuestType type, int value = 0)
     {
-        bool isClear = dailyQuestTab.transform.GetChild((int)type).GetComponent<DailyQuest>().Setting(value);
+        bool isClear = dailyQuestTab.transform.GetChild((int)type)
+                        .GetComponent<DailyQuest>()
+                        .Setting(value);
         if (isClear) dailyQuestTab.CheckClear(type);
     }
     public void CheckClear(QuestType type)

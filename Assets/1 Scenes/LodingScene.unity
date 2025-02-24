@@ -6715,7 +6715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b27cf7a62a45db4cb2e80fc30404aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTest: 0
+  isTest: 1
   isPlayAd: 0
 --- !u!114 &1541297383
 MonoBehaviour:

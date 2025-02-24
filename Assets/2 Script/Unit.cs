@@ -218,6 +218,8 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         if (canAttack)
         {
             isAttack = true;
+            if(setInitAttackSpeed >= 1) ani.SetFloat("AttackSpeed" , 1f);
+            else ani.SetFloat("AttackSpeed" , 1f / setInitAttackSpeed);
             ani?.SetBool("Attack", true);
             currentAttackSpeed = setInitAttackSpeed;
             StartCoroutine(WaitForAttackAnimationCorutine());

@@ -32,7 +32,6 @@ public class StatusEffect
         statusEffect[value.ToString()].Init(unit , 0 , 0);
 
     }
-
     /// <param name="value">적용시킬 상태이상/버프</param>
     /// <param name="applyUnit">적용시킨 유닛</param>
     /// <param name="durationTime">지속시간 1초 단위</param>
@@ -48,10 +47,8 @@ public class StatusEffect
                 return;
             }
         }
-
         statusEffect.Add(value.ToString(), value);
         statusEffect[value.ToString()].Init(unit , durationTime , percent , applyUnit);
-
     }
     public void Update()
     {
@@ -60,7 +57,6 @@ public class StatusEffect
             if (statusEffect[key].overlapCount > 0) statusEffect[key]?.Run();
         }
     }
-
     public void Exit()
     {
         foreach (string key in statusEffect.Keys)
@@ -68,7 +64,6 @@ public class StatusEffect
             statusEffect[key]?.Exit();
         }
     }
-
     public bool GetStatusEffect(IStatusEffect value)
     {
         if (statusEffect.ContainsKey(value.ToString()) && statusEffect[value.ToString()].overlapCount != 0) return false;

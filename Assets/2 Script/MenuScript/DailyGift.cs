@@ -18,7 +18,8 @@ public class DailyGift : MonoBehaviour
     private void Setting() {
         GameData gameData = GameDataManger.Instance.GetGameData();
         for(int i = 0; i < 28; i++) {
-            RewardData reward = Instantiate(RewardPrefeb, gridLayOut).GetComponent<RewardData>();
+            RewardData reward = Instantiate(RewardPrefeb, gridLayOut)
+                                .GetComponent<RewardData>();
             reward.Setting(i + 1, (i + 1) % 7 == 0 ? 30 : 10 , gameData.dailyGift[i]);
         }
 
@@ -30,7 +31,9 @@ public class DailyGift : MonoBehaviour
         GameData gameData = GameDataManger.Instance.GetGameData() ;
         for(int i = 0; i < gameData.dailyGift.Count; i++) {
             if(!gameData.dailyGift[i]) {
-                gridLayOut.GetChild(i).GetComponent<RewardData>().GetReward();
+                gridLayOut.GetChild(i)
+                .GetComponent<RewardData>()
+                .GetReward();
                 break;
             }
         }

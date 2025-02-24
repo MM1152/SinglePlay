@@ -64,12 +64,14 @@ public class MakeSellingList : MonoBehaviour
     public void SettingShopList(GameData gameData){
         for(int i = 0 ; i < sellingListTransform.childCount; i++) {
            if(gameData.sellingItemListType[i] == "Soul") {
-                sellingListTransform.GetChild(i).GetComponent<ItemList>().Setting(SoulsManager.Instance.soulsInfos[gameData.sellingItemListNum[i]].GetComponent<ISellingAble>() ,
-                                                                                 gameData.sellingGem[i] , gameData.soldOutItem[i]);
+                sellingListTransform.GetChild(i).GetComponent<ItemList>()
+                .Setting(SoulsManager.Instance.soulsInfos[gameData.sellingItemListNum[i]]
+                        .GetComponent<ISellingAble>() , gameData.sellingGem[i] , gameData.soldOutItem[i]);
            }
            else if(gameData.sellingItemListType[i] == "Reclics") {
-                sellingListTransform.GetChild(i).GetComponent<ItemList>().Setting(ReclicsManager.Instance.reclicsDatas[gameData.sellingItemListNum[i]].GetComponent<ISellingAble>() ,
-                                                                                 gameData.sellingGem[i] , gameData.soldOutItem[i]);
+                sellingListTransform.GetChild(i).GetComponent<ItemList>()
+                .Setting(ReclicsManager.Instance.reclicsDatas[gameData.sellingItemListNum[i]]
+                        .GetComponent<ISellingAble>() ,gameData.sellingGem[i] , gameData.soldOutItem[i]);
            }
         }
     }   
