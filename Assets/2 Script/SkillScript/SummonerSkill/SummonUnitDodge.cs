@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,9 +13,9 @@ public class SummonUnitDodge : SummonerSkillParent
 
     
     int criticalCount = 0;
-    IStatusEffect[] statusEffects = {
-        new AttackPowerBuffEffect(),
-        new SpeedBuffEffect()
+    Type[] statusEffects = {
+        Type.GetType("AttackPowerBuffEffect"),
+        Type.GetType("SpeedBuffEffect")
     };
 
     private void Update()
@@ -45,9 +46,9 @@ public class SummonUnitDodge : SummonerSkillParent
                     summonUnit.RemoveAt(i);
                     continue;
                 }
-                int index = Random.Range(0 , statusEffects.Length);
-                Debug.Log("BuffType : " + statusEffects[index].ToString());
-                summonUnit[i].statusEffectMuchine.SetStatusEffect(statusEffects[index] , summoner , 10f , 0.3f);
+                int index = UnityEngine.Random.Range(0 , statusEffects.Length);
+                Debug.Log("Add Buff unit : " + summonUnit[i].unit.name +" BuffType : " + statusEffects[index].ToString());
+                summonUnit[i].statusEffectMuchine.SetStatusEffect((IStatusEffect) Activator.CreateInstance(statusEffects[index]) , summoner , 10f , 0.3f);
             }
         }
         else if(randomBuffSkillData != null) {
@@ -80,4 +81,5 @@ public class SummonUnitDodge : SummonerSkillParent
             count = SkillManager.Instance.skillDatas[skillData];
         }
     }
+
 }

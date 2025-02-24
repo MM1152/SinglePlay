@@ -33,7 +33,7 @@ public class SettingMobDamageMeter : MonoBehaviour
         unit.overlapDamage += overlapDamage;
         
         mobImage.sprite = unit.unit.image;
-        ChangeStatus(null);
+        ChangeStatus();
     }
 
     public void Update()
@@ -48,7 +48,7 @@ public class SettingMobDamageMeter : MonoBehaviour
 
     }
 
-    public void ChangeStatus(Summoner summoner){
+    public void ChangeStatus(){
         maxHpText.text = $"{unit.maxHp} (+{(unit.hpPercent + unit.bonusHp) * 100f}%)";
         damageText.text = $"{unit.damage} (+{(unit.attackPrecent + unit.bonusAttack) * 100f}%)";
         cliticalText.text = $"{unit.critical} (+{0}%)";

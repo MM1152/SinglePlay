@@ -13,7 +13,7 @@ public class Summoner : LongRangeScript
         new Vector2(-1.22f , -0.97f) ,
         new Vector2(-0.72f , 0.26f)
     };
-    public Action<Summoner> changeStatus;
+    public Action changeStatus;
     [SerializeField] GameObject EnemySpawn;
     [SerializeField] GameObject DieTitle;
     public Dictionary<string , float> additionalStats = new Dictionary<string , float>();
@@ -118,7 +118,7 @@ public class Summoner : LongRangeScript
                 break;
         }
 
-        changeStatus?.Invoke(this);
+        changeStatus?.Invoke();
     }
     private IEnumerator DieAnimation(){
         if(isDie) {

@@ -84,28 +84,29 @@ public class AttackPowerBuffEffect : IStatusEffect
 
     public void Exit()
     {
-        unit.damage -= upgradeDamage;
+        unit.buffAttack -= upgradeDamage;
         upgradeDamage = 0;
         overlapCount = 0;
         attackBuffObj.SetActive(false);
         pools.Enqueue(attackBuffObj);
+        unit.ChangeStats();
     }
 
     public void Init(Unit unit, float settingDuration , float percent ,Unit tauntUnit = null)
     {
         if(duration == 0 && percent == 0) {
             currentDuration = duration;
-            percent = 0.3f;
+            upgradeDamage += 0.3f;
         }
         else {
             currentDuration = settingDuration;
+            upgradeDamage += percent;
         }
         Debug.Log("Setting CurrentDuration" + currentDuration);
         this.unit = unit;
         //\\TODO : 전달하는 유닛의 스킬 퍼센트에 맞게 바꿔줘야함.
-        upgradeDamage += unit.damage * percent;
-        this.unit.damage += upgradeDamage;
-
+        this.unit.buffAttack = upgradeDamage;
+        unit.ChangeStats();
         if (pools.Count != 0)
             {
                 attackBuffObj = pools.Dequeue();
@@ -265,7 +266,6 @@ public class SpeedBuffEffect : IStatusEffect
     public int overlapCount { get ; set ; }
     public float currentDuration { get ; set ; }
     float duration;
-    float upgradeSpeed;
     float upgradePercent;
     Unit unit;
     GameObject speedBuffObject;
@@ -273,21 +273,22 @@ public class SpeedBuffEffect : IStatusEffect
     public void Exit()
     {
         Debug.Log("SpeedUP Exit");
-        unit.speed -= upgradeSpeed;
-        upgradeSpeed = 0;
+        unit.buffSpeed -= upgradePercent;
+        upgradePercent = 0;
         speedBuffObject.SetActive(false);
         overlapCount = 0;
+        unit.ChangeStats();
     }
 
     public void Init(Unit unit, float settingDuration , float percent,Unit tauntUnit = null)
     {
         if(duration == 0 && percent == 0) {
             currentDuration = duration;
-            upgradePercent = 0.1f;
+            upgradePercent += 0.1f;
         }
         else {
             currentDuration = settingDuration;
-            upgradePercent = percent;
+            upgradePercent += percent;
         }
 
         if(speedBuffObject == null) {
@@ -298,12 +299,10 @@ public class SpeedBuffEffect : IStatusEffect
         
         
         this.unit = unit;
-        upgradeSpeed += unit.speed * upgradePercent;
         if(overlapCount <= 0) speedBuffObject.SetActive(true);
 
-        unit.speed += upgradeSpeed;
-        Debug.Log($"unit Speed {unit.speed}");
-
+        unit.buffSpeed = upgradePercent;
+        unit.ChangeStats();
         overlapCount++;
     }
 

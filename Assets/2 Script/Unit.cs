@@ -1,6 +1,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -66,6 +67,8 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     public float bonusHp = 0;
     public float bonusSpeed = 0;
 
+    public float buffAttack = 0;
+    public float buffSpeed = 0;
     //현재 소환수가 쌓은 데미지량
     public int overlapDamage;
     /************************************/
@@ -116,7 +119,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
                 return;
             }
 
-            if (!isAttack && !isSkill) {
+            if (!isAttack ) {
                 currentAttackSpeed -= Time.deltaTime;
                 Flip();
             }
@@ -160,22 +163,10 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         Debug.Log($"Unit SummonerSpawn : {gameObject.name}");
         attackPrecent = GameManager.Instance.soulsInfo[unit.name].curStat.attackStat / 100f;
         hpPercent = GameManager.Instance.soulsInfo[unit.name].curStat.hpStat / 100f;
-        
-        if (SkillManager.Instance.UpgradeSummonUnitSkill)
-        {
-            SkillData skillData = SkillManager.Instance.GetSkillData("소환수 강화");
-            bonusAttack = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
-            bonusHp = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
-        }
-        if (SkillManager.Instance.UpgradeSummonUnitSpeed)
-        {
-            SkillData skillData = SkillManager.Instance.GetSkillData("소환수 이동속도 증가");
-            bonusSpeed = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
-        }
 
-        maxHp = summoner.maxHp * (hpPercent + bonusHp);
+        maxHp = summoner.maxHp * (hpPercent);
         mp = unit.mp;
-        damage = summoner.damage * (attackPrecent + bonusAttack);
+        damage = summoner.damage * (attackPrecent);
         speed = unit.speed;
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
@@ -184,7 +175,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         hp = maxHp;
         summonUnit = GetComponent<ISummonUnit>();
     }
-    public void ChangeStats(Summoner summoner)
+    public void ChangeStats()
     {
         Debug.Log($"Unit Change Stats : {gameObject.name}");
         if (SkillManager.Instance.UpgradeSummonUnitSkill)
@@ -198,16 +189,15 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             SkillData skillData = SkillManager.Instance.GetSkillData("소환수 이동속도 증가");
             bonusSpeed = SkillManager.Instance.skillDatas[skillData] * skillData.initPercent;
         }
-
         float thisHpPercent = hp / maxHp;
 
-        maxHp = summoner.hp * (hpPercent + bonusHp);
+        maxHp = summonUnit.summoner.hp * (hpPercent + bonusHp);
         mp = unit.mp;
-        damage = summoner.damage * (attackPrecent + bonusAttack);
-        speed = unit.speed * (1 + bonusSpeed);
+        damage = summonUnit.summoner.damage * (attackPrecent + bonusAttack + buffAttack);
+        speed = unit.speed * (1 + bonusSpeed + buffSpeed); 
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
-        critical = summoner.critical;
+        critical = summonUnit.summoner.critical;
 
         hp = maxHp * thisHpPercent;
     }
@@ -339,7 +329,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
     private void DropSoul()
     {
-        float rand = Random.Range(0f, 1f);
+        float rand = UnityEngine.Random.Range(0f, 1f);
 
         if (unit.classStruct.dropSoulpercent >= rand)
         {
@@ -360,7 +350,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             }
         }
         
-        float rand = Random.Range(0f , 1f);
+        float rand = UnityEngine.Random.Range(0f , 1f);
         if(rand <= dodge) {
             damage.Setting(AttackType.Dodge);
             damage.damage = 0;
