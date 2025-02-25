@@ -133,6 +133,7 @@ public class Summoner : LongRangeScript
         SummonUnit SpawnUnit = PoolingManager.Instance.ShowObject(EnemySpawn.name + "(Clone)",EnemySpawn).GetComponent<SummonUnit>();
         SpawnUnit.transform.position = spawnPosition[spawnPos++] + (Vector2)transform.position;
         SpawnUnit.tag = tag;
+        Debug.Log(key);
         SpawnUnit.Setting(GameManager.Instance.soulsInfo[key].SummonPrefeb , SpawnUnit.transform.position , transform.parent , this);
     }
 }

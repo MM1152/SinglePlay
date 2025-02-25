@@ -9,7 +9,7 @@ public interface ISummonUnit
     public void DieSummonUnit(Unit unit){
         Debug.Log(GetType().ToString());
         summoner.changeStatus -= unit.ChangeStats;
-        summoner.GetComponent<Resurrection>().DieUnit(GetType().ToString());
+        summoner.GetComponent<Resurrection>().DieUnit(unit.unit.name);
     }
     public void AddDamage(int value){
         damageMeter += value;

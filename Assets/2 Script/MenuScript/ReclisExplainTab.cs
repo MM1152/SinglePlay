@@ -51,5 +51,12 @@ public class ReclisExplainTab : MonoBehaviour
     }
     public void SetReclicsData(ReclicsInfo data){
         reclicsInfo = data;
+        levelUpButton.gameObject.SetActive(true);
+    }
+
+    public void OpenToShop(ReclicsInfo data){
+        reclicsInfo = data;
+        levelUpButton.gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 }

@@ -1,4 +1,4 @@
-    using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 using System.Runtime.ExceptionServices;
 using UnityEngine.AI;
 
-[Serializable] 
-public class GameData{
+[Serializable]
+public class GameData
+{
     public int soul;
     public int gem;
     public List<bool> unLockMap = new List<bool>();
@@ -26,7 +27,7 @@ public class GameData{
     /// <summary>
     /// 0 : 재화로 변경 , 1 : 광고로 변경
     /// </summary>
-    public List<int> shopListChangeCount = new List<int>(); 
+    public List<int> shopListChangeCount = new List<int>();
     public List<string> sellingItemListType = new List<string>();
     public List<int> sellingItemListNum = new List<int>();
     public List<bool> sellingGem = new List<bool>();
@@ -41,90 +42,133 @@ public class GameData{
 }
 
 [Serializable]
-public class DailyQuestData {
-    public DailyQuestData(string type) {
-        
+public class DailyQuestData
+{
+    public DailyQuestData(string type)
+    {
+
         this.type = type;
         this.count = 0;
-        this.isClear = false;   
+        this.isClear = false;
 
-        if(type == "Login") count = 1;
+        if (type == "Login") count = 1;
     }
 
-    public void Setting(){
+    public void Setting()
+    {
         this.count = 0;
-        this.isClear = false;  
+        this.isClear = false;
 
-        if(type == "Login") count = 1;
+        if (type == "Login") count = 1;
     }
     public string type;
     public int count;
     public bool isClear;
 }
 
+[Serializable]
+public class CouponInfo
+{
+    public CouponInfo(string id, string type, int value)
+    {
+        couponId = id;
+        giftType = type;
+        this.value = value;
+    }
+    public string couponId;
+    public bool isAcquire = false;
+    // soul , gem ,
+    public string giftType;
+    public int value;
+}
+
+[Serializable]
+public class CouponData
+{
+    public List<CouponInfo> couponInfo = new List<CouponInfo>();
+}
 public class GameDataManger : MonoBehaviour
-{   
-    public static GameDataManger Instance { get ; private set;}
+{
+    public static GameDataManger Instance { get; private set; }
     [SerializeField] GameData data = null;
-    public Action<int ,int> goodsSetting;
+    [SerializeField] CouponData couponData = null;
+    public Action<int, int> goodsSetting;
     private string filePath;
+    private string couponFilePath;
     public bool dataDownLoad;
-    
-    private void Awake() {
-        
-        filePath  = Application.persistentDataPath + "/data.json";
+
+    private void Awake()
+    {
+
+        filePath = Application.persistentDataPath + "/data.json";
+        couponFilePath = Application.persistentDataPath + "/coupon.json";
+
         Debug.Log(filePath);
-        
-        if(Instance == null) {
+        Debug.Log(couponFilePath);
+
+        if (Instance == null)
+        {
             Instance = this;
             DontDestroyOnLoad(this);
         }
-        else {
+        else
+        {
             Destroy(this);
         }
-        
+
     }
-    private void Start() {
+    private void Start()
+    {
         data = LoadData();
+        couponData = LoadCouponData();
         DailyQuestTab.dailyQuestTab.Setting();
     }
-    public GameData LoadData(){
+    public GameData LoadData()
+    {
         GameData LoadData = new GameData();
 
         //저장된 파일이 없을때 실행
-        if(!File.Exists(filePath)) {
+        if (!File.Exists(filePath))
+        {
             LoadData.unLockMap.Add(true);
 
-            for(int i = 0 ; i < SoulsManager.Instance.soulsInfos.Length; i++) {
+            for (int i = 0; i < SoulsManager.Instance.soulsInfos.Length; i++)
+            {
                 LoadData.soulsLevel.Add(0);
                 LoadData.soulsCount.Add(0);
             }
-            
-            for(int i = 0; i < ReclicsManager.Instance.reclicsDatas.Length; i++) {
+
+            for (int i = 0; i < ReclicsManager.Instance.reclicsDatas.Length; i++)
+            {
                 LoadData.reclicsLevel.Add(0);
                 LoadData.reclicsCount.Add(0);
             }
 
-            for(int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++)
+            {
                 LoadData.soulsEquip.Add(0);
             }
 
-            for(int i = 0 ; i < 8; i++) {
+            for (int i = 0; i < 8; i++)
+            {
                 LoadData.sellingItemListType.Add("");
                 LoadData.sellingItemListNum.Add(-1);
                 LoadData.sellingGem.Add(false);
                 LoadData.soldOutItem.Add(false);
             }
 
-            for(int i = 0; i < 28; i++) {
+            for (int i = 0; i < 28; i++)
+            {
                 LoadData.dailyGift.Add(false);
             }
 
-            foreach(string type in Enum.GetNames(typeof(QuestType))) {
+            foreach (string type in Enum.GetNames(typeof(QuestType)))
+            {
                 LoadData.questData.Add(new DailyQuestData(type));
             }
 
-            for(int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++)
+            {
                 LoadData.isBoxOpen.Add(false);
             }
             LoadData.settingShopList = false;
@@ -142,49 +186,98 @@ public class GameDataManger : MonoBehaviour
             LoadData.getGift = false;
             string JsonData = JsonUtility.ToJson(LoadData);
 
-            File.WriteAllText(filePath , JsonData);
+            File.WriteAllText(filePath, JsonData);
         }
 
         string data = File.ReadAllText(filePath);
         LoadData = JsonUtility.FromJson<GameData>(data);
-        
+
         CheckChangeData(LoadData);
         CheckCompareDateTime(LoadData);
-        if(SceneManager.GetActiveScene().buildIndex == 1) goodsSetting?.Invoke(LoadData.soul , LoadData.gem);
+        if (SceneManager.GetActiveScene().buildIndex == 1) goodsSetting?.Invoke(LoadData.soul, LoadData.gem);
         dataDownLoad = true;
         return LoadData;
-    }   
+    }
     //fix : 데이터 로드이후 게임 접근시 유물 slider maxValue 설정 오류
-    public void SaveData(){
+    public void SaveData()
+    {
         string jsonData = JsonUtility.ToJson(data);
 
-        if(File.Exists(filePath)) File.WriteAllText(filePath , jsonData);
-        
+        if (File.Exists(filePath)) File.WriteAllText(filePath, jsonData);
+
         dataDownLoad = false;
         this.data = LoadData();
         Debug.Log(filePath);
     }
-    public GameData GetGameData(){
+    public GameData GetGameData()
+    {
         return data;
     }
+    public CouponData LoadCouponData()
+    {
+        CouponData couponData = new CouponData();
 
-    public static IEnumerator WaitForDownLoadData(Action GetGameData = null){
+        if (!File.Exists(couponFilePath))
+        {
+            for (int i = 0; i < Coupon.InitCoupons.Length; i++)
+            {
+                couponData.couponInfo.Add(new CouponInfo(Coupon.InitCoupons[i].couponId, Coupon.InitCoupons[i].giftType, Coupon.InitCoupons[i].value));
+            }
+            File.WriteAllText(couponFilePath, JsonUtility.ToJson(couponData));
+        }
+
+        if (File.Exists(couponFilePath))
+        {
+            couponData = JsonUtility.FromJson<CouponData>(File.ReadAllText(couponFilePath));
+
+            if (Coupon.InitCoupons.Length != couponData.couponInfo.Count)
+            {
+                for (int i = couponData.couponInfo.Count; i < Coupon.InitCoupons.Length - couponData.couponInfo.Count; i++)
+                {
+                    couponData.couponInfo.Add(new CouponInfo(Coupon.InitCoupons[i].couponId, Coupon.InitCoupons[i].giftType, Coupon.InitCoupons[i].value));
+                }
+
+                File.WriteAllText(couponFilePath, JsonUtility.ToJson(couponData));
+            }
+        }
+        couponData = JsonUtility.FromJson<CouponData>(File.ReadAllText(couponFilePath));
+        return couponData;
+    }
+    public void SaveCouponData()
+    {
+        string jsonData = JsonUtility.ToJson(couponData);
+
+        if (File.Exists(couponFilePath)) File.WriteAllText(couponFilePath, jsonData);
+
+        couponData = LoadCouponData();
+        Debug.Log(couponFilePath);
+    }
+    public CouponData GetCouponData()
+    {
+        return couponData;
+    }
+    public static IEnumerator WaitForDownLoadData(Action GetGameData = null)
+    {
         yield return new WaitUntil(() => Instance.dataDownLoad);
         GetGameData?.Invoke();
     }
     //데이터 로드시 데이터의 갯수와 내가 저장한 데이터의 길이가 다를때 실행된다.
     //EX ) 데이터 추가 등
-    void CheckChangeData(GameData LoadData){
+    void CheckChangeData(GameData LoadData)
+    {
 
         bool changeData = false;
-        if(LoadData.dateTime == null) {
+        if (LoadData.dateTime == null)
+        {
             LoadData.dateTime = GetTime.currentTime;
             this.data = LoadData;
             changeData = true;
         }
 
-        if(SoulsManager.Instance.soulsInfos.Length != 0 && SoulsManager.Instance.soulsInfos.Length != LoadData.soulsCount.Count) {
-            for(int i = 0 ; i <= SoulsManager.Instance.soulsInfos.Length - LoadData.soulsCount.Count; i++) {
+        if (SoulsManager.Instance.soulsInfos.Length != 0 && SoulsManager.Instance.soulsInfos.Length != LoadData.soulsCount.Count)
+        {
+            for (int i = 0; i <= SoulsManager.Instance.soulsInfos.Length - LoadData.soulsCount.Count; i++)
+            {
                 LoadData.soulsCount.Add(0);
                 LoadData.soulsLevel.Add(0);
             }
@@ -192,8 +285,10 @@ public class GameDataManger : MonoBehaviour
             changeData = true;
         }
 
-        if(ReclicsManager.Instance.reclicsDatas.Length != 0 && ReclicsManager.Instance.reclicsDatas.Length != LoadData.reclicsCount.Count) {
-            for(int i = 0 ; i <= ReclicsManager.Instance.reclicsDatas.Length - LoadData.reclicsCount.Count; i++){
+        if (ReclicsManager.Instance.reclicsDatas.Length != 0 && ReclicsManager.Instance.reclicsDatas.Length != LoadData.reclicsCount.Count)
+        {
+            for (int i = 0; i <= ReclicsManager.Instance.reclicsDatas.Length - LoadData.reclicsCount.Count; i++)
+            {
                 LoadData.reclicsCount.Add(0);
                 LoadData.reclicsLevel.Add(0);
             }
@@ -201,87 +296,104 @@ public class GameDataManger : MonoBehaviour
             changeData = true;
         }
 
-        if(LoadData.soldOutItem.Count == 0) {
-            for(int i = 0; i < 8; i++) {
+        if (LoadData.soldOutItem.Count == 0)
+        {
+            for (int i = 0; i < 8; i++)
+            {
                 LoadData.soldOutItem.Add(false);
             }
             this.data = LoadData;
             changeData = true;
         }
 
-        if(LoadData.dailyGift.Count == 0) {
-            for(int i = 0; i < 28; i++) {
+        if (LoadData.dailyGift.Count == 0)
+        {
+            for (int i = 0; i < 28; i++)
+            {
                 LoadData.dailyGift.Add(false);
             }
             this.data = LoadData;
             changeData = true;
         }
 
-        if(LoadData.openCount.Count == 0) {
+        if (LoadData.openCount.Count == 0)
+        {
             LoadData.openCount.Add(0);
             LoadData.openCount.Add(0);
             this.data = LoadData;
             changeData = true;
         }
 
-        if(LoadData.questData.Count == 0) {
-            foreach(string type in Enum.GetNames(typeof(QuestType))) {
+        if (LoadData.questData.Count == 0)
+        {
+            foreach (string type in Enum.GetNames(typeof(QuestType)))
+            {
                 LoadData.questData.Add(new DailyQuestData(type));
             }
             this.data = LoadData;
             changeData = true;
         }
 
-        if(LoadData.isBoxOpen.Count == 0) {
-            for(int i = 0; i < 3; i++) {
+        if (LoadData.isBoxOpen.Count == 0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
                 LoadData.isBoxOpen.Add(false);
             }
             this.data = LoadData;
             changeData = true;
         }
-        if(changeData) SaveData();
+        if (changeData) SaveData();
 
     }
-    int CheckCompareDateTime(GameData LoadData){
+    int CheckCompareDateTime(GameData LoadData)
+    {
         DateTime pastDateTime = Convert.ToDateTime(LoadData.dateTime);
         DateTime currentDateTime = Convert.ToDateTime(GetTime.currentTime);
-        int isPast = DateTime.Compare(pastDateTime , currentDateTime);
-        if(isPast < 0) {
-            Debug.Log("과거 달 : "  + pastDateTime.Month);
-            Debug.Log("현재 달 : "  + currentDateTime.Month);
-            if(pastDateTime.Month < currentDateTime.Month) {
-                for(int i = 0; i < 28; i++) {
+        int isPast = DateTime.Compare(pastDateTime, currentDateTime);
+        if (isPast < 0)
+        {
+            Debug.Log("과거 달 : " + pastDateTime.Month);
+            Debug.Log("현재 달 : " + currentDateTime.Month);
+            if (pastDateTime.Month < currentDateTime.Month)
+            {
+                for (int i = 0; i < 28; i++)
+                {
                     LoadData.dailyGift[i] = false;
                 }
             }
             LoadData.dateTime = currentDateTime.ToString("yyyy-MM-dd");
-            LoadData.settingShopList = false;    
+            LoadData.settingShopList = false;
             LoadData.shopListChangeCount[0] = 3;
             LoadData.shopListChangeCount[1] = 2;
 
             LoadData.getGift = false;
 
-            for(int i = 0; i < LoadData.questData.Count; i++) {
+            for (int i = 0; i < LoadData.questData.Count; i++)
+            {
                 LoadData.questData[i].Setting();
             }
 
-            for(int i = 0; i < LoadData.isBoxOpen.Count; i++) {
+            for (int i = 0; i < LoadData.isBoxOpen.Count; i++)
+            {
                 LoadData.isBoxOpen[i] = false;
             }
 
             data = LoadData;
             SaveData();
         }
-        else if(isPast > 0) {
+        else if (isPast > 0)
+        {
             LoadData.dateTime = currentDateTime.ToString("yyyy-MM-dd");
             data = LoadData;
             SaveData();
         }
-        
+
         return isPast;
     }
 
-    public void GetSoul(int value){
+    public void GetSoul(int value)
+    {
         data.soul += value;
         SaveData();
     }

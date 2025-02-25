@@ -21,12 +21,10 @@ public class GiftShow : MonoBehaviour {
         soulValueText.text = soulValue.ToString();
         if(giftValue != 0) { 
             giftValueText.text = giftValue.ToString();
-            giftImage.gameObject.SetActive(false);
-            giftValueText.gameObject.SetActive(true);
+            giftImage.gameObject.SetActive(true);
         }
         else {
             giftImage.gameObject.SetActive(false);
-            giftValueText.gameObject.SetActive(false);
         }
 
         gameObject.SetActive(true);

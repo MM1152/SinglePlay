@@ -24,7 +24,6 @@ public class Resurrection : SummonerSkillParent {
         }
     }
     public void DieUnit(string name){
-        name = name.Replace("(Clone)" , "");
         dieUnitList.Enqueue(name);
     }
 

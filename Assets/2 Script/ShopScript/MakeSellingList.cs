@@ -12,7 +12,7 @@ public class MakeSellingList : MonoBehaviour
     // 겜 시작하고 난뒤 데이터 가져와서 리스트에 담아놓은 뒤에 정렬한번 하는 식으로 데이터 가져와놓은 상태에서 상점판매 아이템 구현해주면 될거같음.
     [SerializeField] private SoulsInfo[] soulList;
     [SerializeField] private ReclicsInfo[] reclicsList;
-    
+
 
     private ChangeShopListButtonAd resetShopListButtonAd;
     float soulListPosibility;
@@ -24,95 +24,133 @@ public class MakeSellingList : MonoBehaviour
         sortedSoul = GameObject.FindObjectOfType<SortSoul>();
         sortedReclics = GameObject.FindObjectOfType<SortReclics>();
     }
-    private void Start() {
+    private void Start()
+    {
 
         resetShopListButtonAd = GameObject.FindObjectOfType<ChangeShopListButtonAd>();
-        
+
         resetShopListButtonAd.rewardFunction += SettingShopList;
         Init();
-       
-        GameDataManger.Instance.StartCoroutine(GameDataManger.WaitForDownLoadData(() => 
+
+        GameDataManger.Instance.StartCoroutine(GameDataManger.WaitForDownLoadData(() =>
         {
-            if(!GameDataManger.Instance.GetGameData().settingShopList) SettingShopList(); 
+            if (!GameDataManger.Instance.GetGameData().settingShopList) SettingShopList();
             else SettingShopList(GameDataManger.Instance.GetGameData());
         }));
-        
+
     }
-    public void SettingShopList(){     
-        foreach(Transform child in sellingListTransform) {
-            int rand = UnityEngine.Random.Range(0 , 2);
-            ISellingAble index = GetSellingItem(rand);
-            
-            
-            if(index == null) Debug.LogError(" Fail To Setting ShopItem List" );
-            else {
-                int childSibling = child.GetSiblingIndex();
-                float gem_or_soul = UnityEngine.Random.Range(0f , 1f);
+    public void SettingShopList()
+    {
+        foreach (Transform child in sellingListTransform)
+        {
+            int rand = UnityEngine.Random.Range(0, 2);
 
-                GameData gameData = GameDataManger.Instance.GetGameData();
-                gameData.sellingItemListType[childSibling] = index.saveDataType;
-                gameData.sellingItemListNum[childSibling] = index.saveDatanum; 
-                gameData.sellingGem[childSibling] = gem_or_soul >= 0.3 ? true : false ;
-                gameData.settingShopList = true;
-                gameData.soldOutItem[childSibling] = false;
+            ISellingAble sellingAble = null;
+            SoulsInfo soulsInfo = null;
+            ReclicsInfo reclicsInfo = null;
+            int index = GetSellingItem(rand);
 
-                child.GetComponent<ItemList>().Setting(index , gem_or_soul >= 0.3 ? true : false );
+            if (index == -1)
+            {
+                Debug.LogError(" Fail To Setting ShopItem List");
+                return;
             }
+
+            if (rand == 0)
+            {
+                soulsInfo = soulList[index];
+                sellingAble = soulsInfo.GetComponent<ISellingAble>();
+            }
+            else if (rand == 1)
+            {
+                reclicsInfo = reclicsList[index];
+                sellingAble = reclicsInfo.GetComponent<ISellingAble>();
+            }
+
+            int childSibling = child.GetSiblingIndex();
+            float gem_or_soul = UnityEngine.Random.Range(0f, 1f);
+
+            GameData gameData = GameDataManger.Instance.GetGameData();
+            gameData.sellingItemListType[childSibling] = sellingAble.saveDataType;
+            gameData.sellingItemListNum[childSibling] = sellingAble.saveDatanum;
+            gameData.sellingGem[childSibling] = gem_or_soul >= 0.3 ? true : false;
+            gameData.settingShopList = true;
+            gameData.soldOutItem[childSibling] = false;
+
+            child.GetComponent<ItemList>().Setting(sellingAble, gem_or_soul >= 0.3 ? true : false ,  soulsInfo : soulsInfo , reclicsInfo : reclicsInfo);
+
         }
         GameDataManger.Instance.SaveData();
     }
-    public void SettingShopList(GameData gameData){
-        for(int i = 0 ; i < sellingListTransform.childCount; i++) {
-           if(gameData.sellingItemListType[i] == "Soul") {
+    public void SettingShopList(GameData gameData)
+    {
+        for (int i = 0; i < sellingListTransform.childCount; i++)
+        {
+            if (gameData.sellingItemListType[i] == "Soul")
+            {
                 sellingListTransform.GetChild(i).GetComponent<ItemList>()
                 .Setting(SoulsManager.Instance.soulsInfos[gameData.sellingItemListNum[i]]
-                        .GetComponent<ISellingAble>() , gameData.sellingGem[i] , gameData.soldOutItem[i]);
-           }
-           else if(gameData.sellingItemListType[i] == "Reclics") {
+                        .GetComponent<ISellingAble>(), gameData.sellingGem[i], gameData.soldOutItem[i] , soulsInfo : SoulsManager.Instance.soulsInfos[gameData.sellingItemListNum[i]]);
+            }
+            else if (gameData.sellingItemListType[i] == "Reclics")
+            {
                 sellingListTransform.GetChild(i).GetComponent<ItemList>()
                 .Setting(ReclicsManager.Instance.reclicsDatas[gameData.sellingItemListNum[i]]
-                        .GetComponent<ISellingAble>() ,gameData.sellingGem[i] , gameData.soldOutItem[i]);
-           }
+                        .GetComponent<ISellingAble>(), gameData.sellingGem[i], gameData.soldOutItem[i] , reclicsInfo : ReclicsManager.Instance.reclicsDatas[gameData.sellingItemListNum[i]]);
+            }
         }
-    }   
-    private ISellingAble GetSellingItem(int index){
-        float posibility = UnityEngine.Random.Range(0f , 1f);
+    }
+    private int GetSellingItem(int index)
+    {
+        float posibility = UnityEngine.Random.Range(0f, 1f);
         float probability = 0;
         Debug.Log($"뽑기 index : " + index);
-        if(index == 0) {
-            for(int i = 0 ; i < soulList.Length; i++) {
+        if (index == 0)
+        {
+            for (int i = 0; i < soulList.Length; i++)
+            {
                 probability += soulList[i].spawnProbabillity / soulListPosibility;
-                if(probability >= posibility) {
+                if (probability >= posibility)
+                {
                     Debug.Log(soulList[i].GetUnitData().name);
-                    return soulList[i].GetComponent<ISellingAble>();
+                    return i;
+                    //soulList[i].GetComponent<ISellingAble>();
                 }
             }
-            return null;
-        }     
-        else if(index == 1) {
-            for(int i = 0 ; i < reclicsList.Length; i++) {
-                probability += reclicsList[i].spawnProbabillity / reclicsPosibillity;
-                if(probability >= posibility) {
-                    return reclicsList[i].GetComponent<ISellingAble>();
-                }
-            }
-            return null;
+            return -1;
         }
-        else {
-            return null;
+        else if (index == 1)
+        {
+            for (int i = 0; i < reclicsList.Length; i++)
+            {
+                probability += reclicsList[i].spawnProbabillity / reclicsPosibillity;
+                if (probability >= posibility)
+                {
+                    return i;
+                    //reclicsList[i].GetComponent<ISellingAble>();
+                }
+            }
+            return -1;
+        }
+        else
+        {
+            return -1;
         }
     }
 
-    private void Init(){
+    private void Init()
+    {
         soulList = sortedSoul.souls;
         reclicsList = sortedReclics.reclicsInfo;
 
-        for(int i = 0 ; i < soulList.Length; i++) {
-            soulList[i].spawnProbabillity = (int) soulList[i].GetUnitData().type;
+        for (int i = 0; i < soulList.Length; i++)
+        {
+            soulList[i].spawnProbabillity = (int)soulList[i].GetUnitData().type;
             soulListPosibility += soulList[i].spawnProbabillity;
         }
-        for(int i = 0; i < reclicsList.Length; i++) {
-            reclicsList[i].spawnProbabillity = (int) reclicsList[i].GetReclicsData().itemclass;
+        for (int i = 0; i < reclicsList.Length; i++)
+        {
+            reclicsList[i].spawnProbabillity = (int)reclicsList[i].GetReclicsData().itemclass;
             reclicsPosibillity += reclicsList[i].spawnProbabillity;
         }
     }

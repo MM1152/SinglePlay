@@ -17,6 +17,8 @@ public class ItemList : MonoBehaviour , IPointerClickHandler
     private bool sellingGem;
     private bool isSoldOut;
     private ISellingAble sellingAble;
+    public SoulsInfo soulsInfo;
+    public ReclicsInfo reclicsInfo;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -59,11 +61,18 @@ public class ItemList : MonoBehaviour , IPointerClickHandler
         
     }
 
-    public void Setting(ISellingAble sellingData , bool sellingGem , bool soldOut = false){
+    public void Setting(ISellingAble sellingData , bool sellingGem , bool soldOut = false , SoulsInfo soulsInfo = null , ReclicsInfo reclicsInfo = null){
+        this.soulsInfo = null;
+        this.reclicsInfo = null;
+
         if(soldOut) SoldOut();
+
         soldOutImage.SetActive(soldOut);
         this.sellingGem = sellingGem;
         sellingAble = sellingData;
+
+        if(soulsInfo != null) this.soulsInfo = soulsInfo;
+        else this.reclicsInfo = reclicsInfo;
 
         sellingImage.sprite = sellingData.image;
         

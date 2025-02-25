@@ -104,9 +104,6 @@ public class SpinningAttack : MonoBehaviour , SkillParent
                 damageAble.Hit(unit.damage * (soulsSkillData.attackPercent / 100f) , unit , unit.critical , AttackType.SkillAttack);
                 attackAbleTime = 0.5f;
             }
-            else {
-                Debug.LogError("Get Fail other IDamageAble");
-            }
         }
     }
 

@@ -28,7 +28,6 @@ public class InWarningArea : MonoBehaviour
                     if(hit.TryGetComponent<IDamageAble>(out damageable)) {
                         damageable.Hit(unit.damage * percent , unit , unit.critical , AttackType.SkillAttack);
                     }
-                    else Debug.LogError("GetComponent Fail : " + damageable.ToString());
                 }
                 
             } 
@@ -37,17 +36,17 @@ public class InWarningArea : MonoBehaviour
     }    
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(!other.CompareTag(unit.gameObject.tag)) {
+        if(!other.CompareTag(unit.gameObject.tag) && (other.CompareTag("Player") || other.CompareTag("Enemy"))){
             hitObject.Add(other.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D other) {
-         if(!other.CompareTag(unit.gameObject.tag)) {
+         if(!other.CompareTag(unit.gameObject.tag) && (other.CompareTag("Player") || other.CompareTag("Enemy"))){
             hitObject.Remove(other.gameObject);
         }
     }
     public void SetPosition(Vector2 pos){
-        transform.position = pos - new Vector2(0f , 0.5f);
+        transform.position = pos;
         transform.position += Vector3.forward * 6f;
     }
 }

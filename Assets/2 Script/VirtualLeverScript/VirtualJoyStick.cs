@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine.EventSystems;
 using System.Runtime.CompilerServices;
 
-public class VirtualJoyStick : MonoBehaviour , IBeginDragHandler , IDragHandler , IEndDragHandler
+public class VirtualJoyStick : MonoBehaviour 
 {
     public static VirtualJoyStick instance {get ; private set; }
     
@@ -21,31 +21,19 @@ public class VirtualJoyStick : MonoBehaviour , IBeginDragHandler , IDragHandler 
         instance = this;
         rectTransform = GetComponent<RectTransform>();
     }
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        ControllJoyStickLever(eventData);
-        isInput = true;
-    }
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        ControllJoyStickLever(eventData);
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        lever.anchoredPosition = Vector2.zero;
-        isInput = false;
-    }
-
-    public void ControllJoyStickLever(PointerEventData eventData) {
-        var inputDir = eventData.position - rectTransform.anchoredPosition;
+    public void ControllJoyStickLever(Vector2 position) {
+        var inputDir = position - (Vector2) rectTransform.position;
         var clampDir = inputDir.magnitude > leverRange ? inputDir.normalized * leverRange : inputDir;
+
         lever.anchoredPosition = clampDir;
         inputVector = clampDir.normalized;
     } 
     
     private void Update() {
+        if(Input.touchCount >= 1 && Input.GetTouch(0).phase == TouchPhase.Moved) {
+            ControllJoyStickLever(Input.GetTouch(0).position);
+        }
         if(isInput) controllObject.Move(inputVector);
     }
 }

@@ -12,12 +12,22 @@ public class GiftBox : MonoBehaviour , IPointerClickHandler{
     [SerializeField] Sprite[] giftSprites;
     [SerializeField] int clearCount;
     [SerializeField] Sprite boxOpenSprite;
-
+    [SerializeField] Outline outline;
     bool isOpen;
     public void Setting(bool isOpen){
+        outline = GetComponent<Outline>();
         this.isOpen = isOpen;
         if(this.isOpen) {
             GetComponent<Image>().sprite = boxOpenSprite;
+        }
+    }
+    void Update()
+    {
+        if(DailyQuestTab.dailyQuestTab.clearQuestCount >= clearCount) {
+            outline.enabled = true;
+        }
+        else {
+            outline.enabled = false;
         }
     }
     public void OnPointerClick(PointerEventData eventData)

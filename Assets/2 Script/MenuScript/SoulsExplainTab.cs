@@ -113,6 +113,15 @@ public class SoulsExplainTab : MonoBehaviour
         this.equipSouls = equip;
         equipButton.gameObject.SetActive(open_To_SoulTab);
         unEquipButton.gameObject.SetActive(!open_To_SoulTab);
+        levelUpButton.gameObject.SetActive(true);
+    }
+
+    public void OpenToShop(SoulsInfo soulsInfo){
+        UnitData = soulsInfo;
+        equipButton.gameObject.SetActive(false);
+        unEquipButton.gameObject.SetActive(false);
+        levelUpButton.gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
     void LevelUp()
     {
