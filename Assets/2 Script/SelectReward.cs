@@ -45,6 +45,10 @@ public class SelectReward : MonoBehaviour
     private void GetReward(){
         if(isSelect && Input.GetTouch(0).tapCount >= 2){
             SettingRewardAdditional();
+            if(GameManager.Instance.isPlayingTutorial) {
+                GameManager.Instance.StartTutorial(8);
+                GameManager.Instance.StopGame();
+            }
         }
     }
     public void SettingRewardAdditional(){

@@ -41,6 +41,10 @@ public class SelectMap : MonoBehaviour , IPointerClickHandler
             mapInfomationTab.maxStage = maxStage;
             mapInfomationTab.mapindex = transform.GetSiblingIndex() + 1;
             infomationTab.SetActive(true);
+
+            if(GameManager.Instance.isPlayingTutorial) {
+                GameManager.Instance.StartTutorial(2);
+            }
         }
     }
 

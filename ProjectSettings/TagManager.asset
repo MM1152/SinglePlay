@@ -10,6 +10,7 @@ TagManager:
   - Talent
   - Boss
   - SkillExplain
+  - Tutorial
   layers:
   - Default
   - TransparentFX

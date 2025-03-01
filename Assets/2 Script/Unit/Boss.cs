@@ -65,6 +65,10 @@ public class Boss : ShortRangeScipt  , ISummonUnit
 
         BossShow.SetAnimation(false);
         GameManager.Instance.playingAnimation = false;
+
+        if(GameManager.Instance.isPlayingTutorial) {
+            GameManager.Instance.StartTutorial(15);
+        }
         yield return new WaitUntil(() => isDie);
         
         BossShow.transform.GetChild(0).gameObject.SetActive(false);

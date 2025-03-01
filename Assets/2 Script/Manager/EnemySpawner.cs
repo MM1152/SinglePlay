@@ -128,6 +128,10 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
+        if(GameManager.Instance.isPlayingTutorial) {
+            GameManager.Instance.StartTutorial(6);
+        }
+
     }
 
     void SetSpawnProbabillity()
@@ -145,6 +149,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void CheckDie()
     {
+        if(GameManager.Instance.gameClear) return;
         exp.SetExpValue(10f);
         currentEnemyNumber--;
         GameManager.Instance.clearMonseter--;

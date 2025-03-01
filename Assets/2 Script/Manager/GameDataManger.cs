@@ -39,6 +39,8 @@ public class GameData
     public List<int> openCount = new List<int>(); // RandomPick Up 횟수  0 : 유물, 1 : 소울 
     public List<bool> isBoxOpen = new List<bool>();
     public List<DailyQuestData> questData = new List<DailyQuestData>();
+
+    public bool tutorial;
 }
 
 [Serializable]
@@ -122,6 +124,10 @@ public class GameDataManger : MonoBehaviour
         data = LoadData();
         couponData = LoadCouponData();
         DailyQuestTab.dailyQuestTab.Setting();
+        if(!data.tutorial && !GameManager.Instance.isPlayingTutorial) {
+            GameManager.Instance.StartTutorial(0);
+            GameManager.Instance.isPlayingTutorial = true;
+        } 
     }
     public GameData LoadData()
     {
@@ -181,6 +187,7 @@ public class GameDataManger : MonoBehaviour
 
             LoadData.gem = 0;
             LoadData.soul = 0;
+            LoadData.tutorial = false;
 
             LoadData.dateTime = GetTime.currentTime;
             LoadData.getGift = false;

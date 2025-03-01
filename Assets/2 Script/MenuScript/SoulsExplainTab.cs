@@ -85,6 +85,12 @@ public class SoulsExplainTab : MonoBehaviour
         {
             EquipSouls.isEquip = true;
             SetEquip();
+
+            
+            if(GameManager.Instance.isPlayingTutorial) {
+                GameManager.Instance.StartTutorial(24);
+            }
+            
             this.gameObject.SetActive(false);
         });
 
@@ -102,6 +108,7 @@ public class SoulsExplainTab : MonoBehaviour
             SetSkill(changeUnitData);
         });
         rect = skillExplainTab.GetComponent<RectTransform>();
+
     }
     private void OnDisable() {
         skillExplainTab.SetActive(false);

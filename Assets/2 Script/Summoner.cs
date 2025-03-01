@@ -122,11 +122,17 @@ public class Summoner : LongRangeScript
     }
     private IEnumerator DieAnimation(){
         if(isDie) {
+            if(GameManager.Instance.isPlayingTutorial) {
+                GameManager.Instance.StartTutorial(16);
+            }
             yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
+
             GameManager.Instance.StopGame();  
             GameManager.Instance.ReturnToMenu();
-            yield return new WaitUntil(() => Input.touchCount >= 1);
             
+            if(GameManager.Instance.isPlayingTutorial) {
+                GameManager.Instance.StartTutorial(17);
+            }
         }
     }
     public void SpawnSoul(string key , int spawnPos = 0){

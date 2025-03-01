@@ -64,7 +64,12 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         if(unLock) {
             if(parentSoulsInfo == null) soulsTab.SetInfo(this , true , null);
             else soulsTab.SetInfo(parentSoulsInfo , true , null);
-
+                    
+                    
+            if(GameManager.Instance.isPlayingTutorial) {
+                GameManager.Instance.StartTutorial(23);
+            }
+            
             SoundManager.Instance.Play(SoundManager.SFX.SelectItem);
         }else {
             SoundManager.Instance.Play(SoundManager.SFX.DisOpen);

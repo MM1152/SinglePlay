@@ -41,10 +41,16 @@ public class MapInfomationTab : MonoBehaviour
     }
     void EnterMap(){
         
+        if(GameManager.Instance.isPlayingTutorial) {
+            GameManager.Instance.StartTutorial(3);
+        }
+
         GameManager.Instance.mapName = name;
         GameManager.Instance.maxStage = maxStage;
         GameManager.Instance.mapindex = mapindex;
         GameManager.Instance.obtainablegoods = obtainablegoods;
         GameManager.Instance.ReturnToMain(name + "Scene");
+
+
     }
 }

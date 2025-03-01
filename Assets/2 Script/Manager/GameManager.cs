@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance {get; private set;}
     [SerializeField] GameObject curtain;
     [SerializeField] GameObject rewardViewer;
+    [SerializeField] Tutorial tutorial;
     public SettingTab setting;
     public GetSoulAnimation getSoulAnimation;
     /// <summary>
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     //DailyQuest용 몬스터 처치 횟수
     public int clearMosetCount;
+    public bool isPlayingTutorial;
     private void Awake() {
         if(Instance == null) {
             Instance = this;    
@@ -88,10 +90,20 @@ public class GameManager : MonoBehaviour
     public void SlowGame(float size){
         Time.timeScale = size;
     }
+
+    public void GoBossMapTutorial(){
+        currentStage = 9;
+        clearMonseter = 0;
+    }
     public void ReturnToMenu() {
 
         DailyQuestTab.ClearDailyQuest(QuestType.ClearMonster , clearMosetCount);
         clearMosetCount = 0;
+
+        if(isPlayingTutorial) {
+            dropSoul.Invoke(Resources.Load<GameObject>("DungeonEnemy/BasicRat").GetComponent<Unit>().unit);
+        }
+        
 
         if(dropSoul != null) {
             Delegate[] dele = dropSoul.GetInvocationList();
@@ -132,6 +144,13 @@ public class GameManager : MonoBehaviour
         };
         showingMenuTools.HideOption(true);
         ResumeGame();
+
+    }
+    public void StartTutorial(int index){
+        tutorial.StartTutorial(index);
+    }
+    public int GetTutorial(){
+        return tutorial.pastTutorialIndex;
     }
     public IEnumerator WaitForNextMap(Action action) {
 

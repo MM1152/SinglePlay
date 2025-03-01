@@ -9,6 +9,7 @@ public class Exp : MonoBehaviour
     private Slider slider;
     private Level level;
     private float bonus = 1f;
+    bool isTutorial;
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,9 +26,13 @@ public class Exp : MonoBehaviour
     }
 
     public void SetExpValue(float value){
-    
-        Debug.Log("Get Exp " + "(" + value + ")" + "(" + bonus + ")");
         
+        Debug.Log("Get Exp " + "(" + value + ")" + "(" + bonus + ")");
+        if(!isTutorial && GameManager.Instance.isPlayingTutorial) {
+            isTutorial = true;
+            level.LevelUp();
+            GameManager.Instance.StartTutorial(7);
+        }
         slider.value += value * bonus;
 
         if(slider.value >= slider.maxValue) {

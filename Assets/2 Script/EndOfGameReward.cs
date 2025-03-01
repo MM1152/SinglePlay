@@ -22,7 +22,9 @@ public class EndOfGameReward : MonoBehaviour
             GameManager.Instance.ResumeGame();
             parent.SetActive(false);
             LoadingScene.LoadScene("MenuScene");
-            
+            if(GameManager.Instance.isPlayingTutorial) {
+                GameManager.Instance.StartTutorial(20);
+            }
         });
 
         getReward_x2.onClick.AddListener(() =>
@@ -38,7 +40,9 @@ public class EndOfGameReward : MonoBehaviour
                 }
                 parent.SetActive(false);
                 LoadingScene.LoadScene("MenuScene");
-                
+                if(GameManager.Instance.isPlayingTutorial) {
+                    GameManager.Instance.StartTutorial(20);
+                }
             });
 
         });

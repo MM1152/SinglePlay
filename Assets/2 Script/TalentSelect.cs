@@ -41,6 +41,8 @@ public class TalentSelect : MonoBehaviour
             else outline.effectColor = new Color(1, 0, 0, 0);
         }
     }
+
+    bool oneTime;
     private void Awake()
     {
         if(transform.parent.GetComponent<TalentSelect>()) parentSkill = transform.parent.GetComponent<TalentSelect>();
@@ -54,6 +56,10 @@ public class TalentSelect : MonoBehaviour
 
         unLock = parentSkill == null ? true : false;
         skillLevelText.text = skillLevel + " / " + skilldata.maxSkillLevel;
+
+        if(GameManager.Instance.isPlayingTutorial) {
+            GameManager.Instance.StartTutorial(9);
+        }
     }
 
     private void Update()
@@ -62,6 +68,10 @@ public class TalentSelect : MonoBehaviour
         {
             isSelect = true;
             explnationText.text = skilldata.skillExplain;
+            if(GameManager.Instance.isPlayingTutorial && !oneTime) {
+                oneTime = true;
+                GameManager.Instance.StartTutorial(10);
+            }
         }
         else isSelect = false;
 
@@ -74,10 +84,17 @@ public class TalentSelect : MonoBehaviour
     {
         if(isSelect && Input.touchCount > 0) {
             if(unLock && skillLevel != skilldata.maxSkillLevel && Input.GetTouch(0).tapCount >= 2 && SkillManager.Instance.statPoint > 0) {
+                
+                if(GameManager.Instance.isPlayingTutorial) {
+                    Debug.Log("Select Talent");
+                    GameManager.Instance.StartTutorial(11);
+                }
+                
                 skillLevelText.text = ++skillLevel + " / " + skilldata.maxSkillLevel;
                 SkillManager.Instance.UnLockSkill(skilldata);
                 RewardManager.Instance.SetSummonerStat.Invoke("None" , 0);
                 //ReachMaxSkillLevel(skillLevel);
+                
             }
         }
     }

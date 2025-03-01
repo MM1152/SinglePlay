@@ -32,18 +32,20 @@ public class LoadingScene : MonoBehaviour
             }
             if(progressBar.value >= 0.9f) {
                 text.text = "화면을 터치하세요";
-                yield return new WaitUntil(() => {
-                    if(Input.touchCount >= 1) {
-                        op.allowSceneActivation = true;
-                        SoundManager.Instance.Stop(SoundManager.SFX.MinePlant);
-                        if(nextScene == "MenuScene") {
-                            GameManager.Instance.showingMenuTools.HideOption(false);
-                        } else {
-                            GameManager.Instance.showingMenuTools.HideOption(true);
-                        }
+                yield return new WaitUntil(() => Input.touchCount >= 1f);
+
+                op.allowSceneActivation = true;
+                SoundManager.Instance.Stop(SoundManager.SFX.MinePlant);
+
+                if(nextScene == "MenuScene") {
+                    GameManager.Instance.showingMenuTools.HideOption(false);
+                    if(GameManager.Instance.isPlayingTutorial && GameManager.Instance.GetTutorial() == 20) {
+                        GameManager.Instance.StartTutorial(21);
                     }
-                    return Input.touchCount >= 1f;
-                });
+                } else {
+                    GameManager.Instance.showingMenuTools.HideOption(true);
+                    if(GameManager.Instance.isPlayingTutorial) GameManager.Instance.StartTutorial(4);
+                }
             }
             yield return null;
         }

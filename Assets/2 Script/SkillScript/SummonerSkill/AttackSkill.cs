@@ -12,6 +12,7 @@ public class AttackSkill : SummonerSkillParent
     Animator ani;
     Heap heap;
 
+    bool oneTime;
     private void Awake()
     {
         ani = GetComponent<Animator>();
@@ -63,6 +64,12 @@ public class AttackSkill : SummonerSkillParent
                             if(electricEffect != null) nearTarget.GetComponent<Unit>().statusEffectMuchine.SetStatusEffect(new ElectricEffect());
                         }
                     }
+                }
+
+                if(GameManager.Instance.isPlayingTutorial && !oneTime) {
+                    oneTime = true;
+                    GameManager.Instance.StartTutorial(13);
+                    GameManager.Instance.StopGame();
                 }
             }
 

@@ -9,5 +9,8 @@ public class StopGame : MonoBehaviour
     }
     public void Resume() {
         GameManager.Instance.ResumeGame();
+        if(GameManager.Instance.isPlayingTutorial) {
+            GameManager.Instance.StartTutorial(12);
+        }
     }
 }

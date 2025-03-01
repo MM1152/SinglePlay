@@ -29,6 +29,16 @@ public class TabScript : MonoBehaviour
                 image.sprite = selectedImage;
                 button.interactable = false;
                 childObject.SetActive(true);
+                if(GameManager.Instance.isPlayingTutorial) {
+                    if(childObject.name == "MapListTabChild") {
+                        GameManager.Instance.StartTutorial(1);
+                    }
+                }
+                if(GameManager.Instance.isPlayingTutorial) {
+                    if(childObject.name == "SoulsTabChild") {
+                        GameManager.Instance.StartTutorial(22);
+                    }
+                }
                 StartCoroutine(PlayAnimation());
             }
             else
