@@ -41,6 +41,8 @@ public class PossiblePurchase : MonoBehaviour
         SoundManager.Instance.Play(SoundManager.SFX.BuyItem);
         DailyQuestTab.ClearDailyQuest(QuestType.BuyShop , 1);
         soldOut?.Invoke();
+
+        sellingData = null;
     }
 
     public void Setting(ISellingAble data, bool sellingGem, Action callback)

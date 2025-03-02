@@ -50,6 +50,8 @@ public class CameraMoveMent : MonoBehaviour
         }
     }
     public void SettingCameraTarget(Unit unit) {
+        if(cameratarget.isDie) return;
+        
         if(cameratarget == unit) {
             cameratarget = player;
             return;

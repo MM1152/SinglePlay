@@ -18,7 +18,7 @@ public class InWarningArea : MonoBehaviour
     private void Update() {
         attackDelay -= Time.deltaTime;
         if(attackDelay <= 0f) {
-            if(hitObject.Count > 0) {
+            if(hitObject.Count > 0 && !unit.isDie) {
                 for(int i = 0; i  < hitObject.Count; i++) {
                     GameObject hit = hitObject[i];
                     
