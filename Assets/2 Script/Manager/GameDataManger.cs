@@ -404,4 +404,9 @@ public class GameDataManger : MonoBehaviour
         data.soul += value;
         SaveData();
     }
+    public void GetGem(int value)
+    {
+        data.gem += value;
+        SaveData();
+    }
 }

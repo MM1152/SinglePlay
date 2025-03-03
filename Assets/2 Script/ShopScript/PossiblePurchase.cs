@@ -13,7 +13,10 @@ public class PossiblePurchase : MonoBehaviour
     [SerializeField] private Button puchaseBNT;
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private GameObject success;
+    
     Action soldOut;
+
+    bool sellingGem;
     private void Awake()
     {
         puchaseBNT.onClick.AddListener(() => Purchase());
@@ -32,7 +35,9 @@ public class PossiblePurchase : MonoBehaviour
                     ReclicsManager.Instance.reclicsDatas[sellingData.saveDatanum].PickUp();
                     break;
             }
-            GameDataManger.Instance.GetSoul(-sellingData.classStruct.soulCost);
+            if(sellingGem) GameDataManger.Instance.GetGem(-sellingData.classStruct.gemCost);
+            else GameDataManger.Instance.GetSoul(-sellingData.classStruct.soulCost);
+            
         }
         
         
@@ -48,7 +53,8 @@ public class PossiblePurchase : MonoBehaviour
     public void Setting(ISellingAble data, bool sellingGem, Action callback)
     {
         sellingData = data;
-        if (sellingGem)
+        this.sellingGem = sellingGem;
+        if (this.sellingGem)
         {
             text.text = String.Format("{0} 에\n구매하십니까?", data.classStruct.gemCost);
             image.sprite = sprites[0];

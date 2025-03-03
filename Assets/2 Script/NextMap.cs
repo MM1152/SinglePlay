@@ -9,7 +9,7 @@ public class NextMap : MonoBehaviour , IFollowTarget
     public float fade = 0;
 
     public bool canFollow { get ; set; }
-
+    private BoxCollider2D box;
     private void OnEnable() {
         fade = 0;
         GameManager.Instance.playingShader = true;
@@ -23,6 +23,7 @@ public class NextMap : MonoBehaviour , IFollowTarget
 
     private void Awake() {
         material = GetComponent<SpriteRenderer>();
+        box = GetComponent<BoxCollider2D>(); 
         showNextMapShader = Instantiate(GetComponent<Renderer>().material);
         material.material = showNextMapShader;  // 복사된 material 링크 시키기 
     }
@@ -33,7 +34,9 @@ public class NextMap : MonoBehaviour , IFollowTarget
     }
 
     IEnumerator WaitForShader(){
+        box.enabled = false;
         yield return new WaitUntil(() =>  fade >= 1 );
+        box.enabled = true;
         GameManager.Instance.playingShader = false;
     }
 

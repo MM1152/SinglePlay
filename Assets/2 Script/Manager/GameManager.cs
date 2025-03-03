@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour
         
         dropSoulList.Clear();
         DailyQuestTab.ClearDailyQuest(QuestType.PlayGame , 1);
+        nextStage.SetActive(false);
     }
     public void ReturnToMain(string SceneName = "MainScene"){
         LoadingScene.LoadScene(SceneName);
