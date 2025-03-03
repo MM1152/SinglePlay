@@ -44,7 +44,6 @@ public class DailyQuestTab : MonoBehaviour
             dailyQuestTab.transform.GetChild((int)index)
                                             .GetComponent<DailyQuest>()
                                             .Init(gamedata[i].type , gamedata[i].isClear , gamedata[i].count);
-            DailyQuestTab.ClearDailyQuest(index , gamedata[i].count);
         }
         
         List<bool> isBoxOpen = GameDataManger.Instance.GetGameData().isBoxOpen;
