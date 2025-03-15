@@ -41,9 +41,9 @@ public class DailyQuestTab : MonoBehaviour
         // 현재 퀘스트들이 깨졌는지 안깨졌는지 확인하는 부분
         for(int i = 0; i < gamedata.Count; i++) {
             QuestType index = (QuestType) Enum.Parse(typeof(QuestType) , gamedata[i].type);
-            dailyQuestTab.transform.GetChild((int)index)
-                                            .GetComponent<DailyQuest>()
-                                            .Init(gamedata[i].type , gamedata[i].isClear , gamedata[i].count);
+            DailyQuest dailyQuest =   dailyQuestTab.transform.GetChild((int)index).GetComponent<DailyQuest>();
+            dailyQuest.Init(gamedata[i].type , gamedata[i].isClear , gamedata[i].count);
+            if(dailyQuest.Setting(0)) ClearDailyQuest(index);
         }
         
         List<bool> isBoxOpen = GameDataManger.Instance.GetGameData().isBoxOpen;
@@ -51,7 +51,8 @@ public class DailyQuestTab : MonoBehaviour
         for(int i = 0; i < 3; i++) {
             boxGrounp.GetChild(i).GetComponent<GiftBox>().Setting(isBoxOpen[i]);
         }
-    }
+    } 
+
     public static void ClearDailyQuest(QuestType type, int value = 0)
     {
         bool isClear = dailyQuestTab.transform.GetChild((int)type)
@@ -59,14 +60,15 @@ public class DailyQuestTab : MonoBehaviour
                         .Setting(value);
         if (isClear) dailyQuestTab.CheckClear(type);
     }
+
     public void CheckClear(QuestType type)
     {
         if (clear[(int)type]) return;
-
+        Debug.Log("clearQuestCount ++"); 
         clear[(int)type] = true;
         clearQuestCount++;
         if(clearQuestCount >= 7) clearQuestCount = 7;
         Debug.Log("Clear Quest : "  +  clearQuestCount);
-        sliderImage.fillAmount = (float)    clearQuestCount / 7f;
+        sliderImage.fillAmount = (float) clearQuestCount / 7f;
     }
 }

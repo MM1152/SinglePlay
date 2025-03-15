@@ -10,9 +10,13 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set;}
+    #region Inspector
     [SerializeField] GameObject curtain;
     [SerializeField] GameObject rewardViewer;
     [SerializeField] Tutorial tutorial;
+    public CheckVesion checkVesion;
+
+    public ConnectDB connectDB;
     public SettingTab setting;
     public GetSoulAnimation getSoulAnimation;
     /// <summary>
@@ -50,11 +54,17 @@ public class GameManager : MonoBehaviour
     //DailyQuest용 몬스터 처치 횟수
     public int clearMosetCount;
     public bool isPlayingTutorial;
+    public string userName;
+    #endregion
     private void Awake() {
         if(Instance == null) {
             Instance = this;    
             showingMenuTools = GetComponent<ShowingMenuTools>();
             getSoulAnimation = GetComponent<GetSoulAnimation>();
+            connectDB = GetComponent<ConnectDB>();
+            connectDB.Init();
+            connectDB.CheckVersion((value) => checkVesion.DifferentVersion(value));
+            //connectDB.CheckUserName((value) => checkVesion.DifferentVersion(value));
             Application.targetFrameRate = 60;
             DontDestroyOnLoad(this);
         }
@@ -83,14 +93,12 @@ public class GameManager : MonoBehaviour
     public void StopGame(){
         Time.timeScale = 0;
     }
-
     public void ResumeGame(){
         Time.timeScale = 1;
     }
     public void SlowGame(float size){
         Time.timeScale = size;
     }
-
     public void GoBossMapTutorial(){
         currentStage = 9;
         clearMonseter = 0;

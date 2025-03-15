@@ -22,7 +22,7 @@ public class SoulsTab : MonoBehaviour
     }
     
     public void StartCoroutine(){
-        StartCoroutine(WaitForTouch());
+        if(gameObject.activeSelf) StartCoroutine(WaitForTouch());
     }
 
     IEnumerator WaitForTouch()
@@ -41,7 +41,6 @@ public class SoulsTab : MonoBehaviour
                 
                 if(SoulsManager.Instance.equipDic.ContainsKey(currentSoulInfo)) {
                     changesiblingIndex = SoulsManager.Instance.equipDic[currentSoulInfo].transform.GetSiblingIndex();
-
                     SoulsManager.Instance.equipDic[currentSoulInfo].SetSoulInfo(null);
                     SoulsManager.Instance.equipDic[currentSoulInfo] = equipSouls;
                 }

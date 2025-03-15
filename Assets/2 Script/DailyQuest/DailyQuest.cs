@@ -23,8 +23,6 @@ public class DailyQuest : MonoBehaviour , IPointerClickHandler
         this.count = count;
 
         index = (int)Enum.Parse(typeof(QuestType) , questType);
-
-        Setting(0);
     }
     public bool Setting(int plus){
         countText.text = $"{count}/{maxCount}";

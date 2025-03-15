@@ -6,11 +6,14 @@ using UnityEngine;
 [DefaultExecutionOrder(1)]
 public class SoulsManager : MonoBehaviour
 {
+    // 이거  처음 실행할때 플레이어 전투 팀 설정 창에 사진안나옴
     public static SoulsManager Instance { private set; get; }
 
-    [SerializeField] Transform FindequipSoulChild;
+    [SerializeField] Transform FindequipSoulChild; // SoulInfo 쪽 Euqip
+    [SerializeField] Transform FindBattleEquipChild; // 대전기능쪽 Equip
     public SoulsInfo[] soulsInfos;
     public Dictionary<SoulsInfo, EquipSouls> equipDic = new Dictionary<SoulsInfo, EquipSouls>();
+    public Dictionary<SoulsInfo, EquipSouls> battleEquipDic = new Dictionary<SoulsInfo, EquipSouls>();
     void Awake()
     {
         if (Instance == null)
@@ -55,7 +58,16 @@ public class SoulsManager : MonoBehaviour
 
                 equip.SetSoulInfo(soulsInfos[data.soulsEquip[i] - 1]);
                 equipDic.Add(soulsInfos[data.soulsEquip[i] - 1], equip);
-                
+            }
+        }
+
+        for (int i = 0; i < data.battleEquip.Count; i++)
+        {
+            if (data.battleEquip[i] != 0)
+            {
+                EquipSouls equip = FindBattleEquipChild.transform.GetChild(i).GetComponent<EquipSouls>();
+                equip.SetSoulInfoForBattle(soulsInfos[data.battleEquip[i] - 1]);
+                battleEquipDic.Add(soulsInfos[data.battleEquip[i] - 1], equip);
             }
         }
     }

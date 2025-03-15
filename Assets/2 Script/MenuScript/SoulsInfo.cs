@@ -30,7 +30,6 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     public float soulLevelUpPercent;
 
 
-
     public float spawnProbabillity { get ; set ; }
     public ClassStruct color { get ; set ; }
 
@@ -43,6 +42,8 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     public SettingSlider settingslider;
     public bool unLock;
     bool[] applyStat;
+    public int battlePower;
+
     private void Update(){
         Check();
     }
@@ -80,7 +81,6 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         if(soulCount > 0 || soulLevel > 0) {
             lockObejct.SetActive(false);
             unLock = true;
-            settingslider?.Invoke();
         }
     }
     private void Init(){
@@ -103,6 +103,8 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         CheckLevel();
         ChangeBonusStat();
         SetCost();
+        SetBattlePoint();
+        settingslider?.Invoke();
 
         levelText.text = this.soulLevel + 1 + "";
     }
@@ -121,11 +123,13 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         ChangeBonusStat();
         ChangeStatus();
         SetCost();
-        
+        SetBattlePoint();
+
         settingslider?.Invoke();
         DailyQuestTab.ClearDailyQuest(QuestType.UpgradeSoul , 1);
         return this;
     }
+    
     public void GetSoul(){
         soulCount++;
         Setting(soulCount , soulLevel);
@@ -154,6 +158,9 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         data.soulsCount[unitData.typenumber - 1] = soulCount;
         
         GameDataManger.Instance.SaveData();
+    }
+    void SetBattlePoint(){
+        battlePower = (int) (100 * (soulLevel + 1)* unitData.classStruct.battlePointPercent);
     }
     void SetCost(){
         cost = (int)(unitData.classStruct.initCost * ((soulLevel + 1)* unitData.classStruct.levelUpCost));
@@ -186,7 +193,6 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     public UnitData GetUnitData(){
         return unitData;
     }
-    
     public SoulsInfo GetSoulsInfo(){
         return this;
     }

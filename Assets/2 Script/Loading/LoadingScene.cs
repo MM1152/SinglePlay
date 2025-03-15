@@ -27,10 +27,11 @@ public class LoadingScene : MonoBehaviour
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
         while(!op.isDone) {
-            if(progressBar.value <= 0.9f) {
+            Debug.Log(GameManager.Instance.checkVesion.checkingVersion);
+            if(progressBar.value < 0.9f) {
                 progressBar.value = op.progress;
-            }
-            if(progressBar.value >= 0.9f) {
+            }  
+            else if(progressBar.value >= 0.9f && GameManager.Instance.checkVesion.checkingVersion) {
                 text.text = "화면을 터치하세요";
                 yield return new WaitUntil(() => Input.touchCount >= 1f);
 
@@ -47,7 +48,7 @@ public class LoadingScene : MonoBehaviour
                     if(GameManager.Instance.isPlayingTutorial) GameManager.Instance.StartTutorial(4);
                 }
             }
-            yield return null;
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

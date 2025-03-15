@@ -10,6 +10,7 @@ using UnityEngine.AI;
 [Serializable]
 public class GameData
 {
+    public string userName;
     public int soul;
     public int gem;
     public List<bool> unLockMap = new List<bool>();
@@ -23,6 +24,7 @@ public class GameData
     public List<int> soulsLevel = new List<int>();
     public List<int> soulsCount = new List<int>();
     public List<int> soulsEquip = new List<int>();
+    public List<int> battleEquip = new List<int>();
 
     /// <summary>
     /// 0 : 재화로 변경 , 1 : 광고로 변경
@@ -137,7 +139,6 @@ public class GameDataManger : MonoBehaviour
         if (!File.Exists(filePath))
         {
             LoadData.unLockMap.Add(true);
-
             for (int i = 0; i < SoulsManager.Instance.soulsInfos.Length; i++)
             {
                 LoadData.soulsLevel.Add(0);
@@ -176,6 +177,10 @@ public class GameDataManger : MonoBehaviour
             for (int i = 0; i < 3; i++)
             {
                 LoadData.isBoxOpen.Add(false);
+            }
+
+            for( int i = 0 ; i < 5; i++) {
+                LoadData.battleEquip.Add(0);
             }
             LoadData.settingShopList = false;
 
@@ -346,6 +351,15 @@ public class GameDataManger : MonoBehaviour
             for (int i = 0; i < 3; i++)
             {
                 LoadData.isBoxOpen.Add(false);
+            }
+            this.data = LoadData;
+            changeData = true;
+        }
+        if (LoadData.battleEquip.Count == 0)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                LoadData.battleEquip.Add(0);
             }
             this.data = LoadData;
             changeData = true;

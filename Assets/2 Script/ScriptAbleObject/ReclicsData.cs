@@ -14,6 +14,7 @@ public struct ClassStruct {
     public readonly float soulInintPercent;
     public readonly float soulLevelUpPercent;
     public readonly float dropSoulpercent;
+    public readonly float battlePointPercent;
     public readonly float initCost;
     public readonly float levelUpCost;
     public readonly int soulCost;
@@ -30,6 +31,7 @@ public struct ClassStruct {
                 soulLevelUpPercent = 0f;
                 initCost = 0f;
                 levelUpCost = 0f;
+                battlePointPercent = 0f;
                 thisItemColor = Color.clear;
                 soulCost = 0;
                 gemCost = 0;
@@ -40,6 +42,7 @@ public struct ClassStruct {
                 soulLevelUpPercent = 5f;
                 initCost = 40f;
                 levelUpCost = 2.1f;
+                battlePointPercent = 1f;
                 thisItemColor = Color.white;
                 soulCost = 500;
                 gemCost = 10;
@@ -50,6 +53,7 @@ public struct ClassStruct {
                 soulLevelUpPercent = 8f;
                 initCost = 80f;
                 levelUpCost = 2.2f;
+                battlePointPercent = 1.2f;
                 thisItemColor = Color.green;
                 soulCost = 1000;
                 gemCost = 20;
@@ -60,6 +64,7 @@ public struct ClassStruct {
                 soulLevelUpPercent = 10f;
                 initCost = 120f;
                 levelUpCost = 2.3f;
+                battlePointPercent = 1.5f;
                 thisItemColor = new Color(0.3443396f , 0.3443396f , 1f);
                 soulCost = 2500;
                 gemCost = 50;
@@ -70,6 +75,7 @@ public struct ClassStruct {
                 soulLevelUpPercent = 12f;
                 initCost = 160f;
                 levelUpCost = 2.4f;
+                battlePointPercent = 2.0f;
                 thisItemColor = new Color(0.8257728f , 0 , 0.8301887f);
                 soulCost = 5000;
                 gemCost = 100;
@@ -80,6 +86,7 @@ public struct ClassStruct {
                 soulLevelUpPercent = 17f;
                 initCost = 250f;
                 levelUpCost = 2.5f;
+                battlePointPercent = 3f;
                 thisItemColor = Color.yellow;
                 soulCost = 10000;
                 gemCost = 200;

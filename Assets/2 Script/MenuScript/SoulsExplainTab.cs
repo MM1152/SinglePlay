@@ -9,16 +9,16 @@ public class SoulsExplainTab : MonoBehaviour
 {
     private EquipSouls equipSouls;
     private UnitData changeUnitData;
-    private SoulsInfo _UnitData;
-    public SoulsInfo UnitData
+    private SoulsInfo _soulInfo;
+    public SoulsInfo soulInfo
     {
         get
         {
-            return _UnitData;
+            return _soulInfo;
         }
         set
         {
-            _UnitData = value;
+            _soulInfo = value;
             if(value.GetUnitData().changeFormInfo != null) {
                 changeForm.gameObject.SetActive(true);
                 changeUnitData = value.GetUnitData();
@@ -84,7 +84,7 @@ public class SoulsExplainTab : MonoBehaviour
         equipButton.onClick.AddListener(() =>
         {
             EquipSouls.isEquip = true;
-            SetEquip();
+            SetEquip?.Invoke();
 
             
             if(GameManager.Instance.isPlayingTutorial) {
@@ -97,7 +97,7 @@ public class SoulsExplainTab : MonoBehaviour
         unEquipButton.onClick.AddListener(() =>
         {
             equipSouls.SetSoulInfo(null);
-            GameManager.Instance.soulsInfo.Remove(UnitData.GetUnitData().name);
+            GameManager.Instance.soulsInfo.Remove(soulInfo.GetUnitData().name);
             this.gameObject.SetActive(false);
         });
 
@@ -110,13 +110,15 @@ public class SoulsExplainTab : MonoBehaviour
         rect = skillExplainTab.GetComponent<RectTransform>();
 
     }
+    
     private void OnDisable() {
         skillExplainTab.SetActive(false);
         changeForm.gameObject.SetActive(false);
     }
+
     public void SettingSoulExplainTab(SoulsInfo soulsInfo, bool open_To_SoulTab, EquipSouls equip)
     {
-        UnitData = soulsInfo;
+        soulInfo = soulsInfo;
         this.equipSouls = equip;
         equipButton.gameObject.SetActive(open_To_SoulTab);
         unEquipButton.gameObject.SetActive(!open_To_SoulTab);
@@ -124,19 +126,21 @@ public class SoulsExplainTab : MonoBehaviour
     }
 
     public void OpenToShop(SoulsInfo soulsInfo){
-        UnitData = soulsInfo;
+        soulInfo = soulsInfo;
         equipButton.gameObject.SetActive(false);
         unEquipButton.gameObject.SetActive(false);
         levelUpButton.gameObject.SetActive(false);
         gameObject.SetActive(true);
     }
+
     void LevelUp()
     {
-        if (UnitData.soulCount >= UnitData.soulMaxCount)
+        if (soulInfo.soulCount >= soulInfo.soulMaxCount)
         {
-            UnitData = UnitData.LevelUp();
+            soulInfo = soulInfo.LevelUp();
         }
     }
+
     private void Update()
     {
         if (Input.touchCount > 0)
@@ -194,7 +198,7 @@ public class SoulsExplainTab : MonoBehaviour
             }
 
             for(int i = 0 ; i < data.soulsSkillData.Length; i++) {
-                if(data.soulsSkillData[i].level <= UnitData.soulLevel + 1) {
+                if(data.soulsSkillData[i].level <= soulInfo.soulLevel + 1) {
                     skillImagesObject[i].GetComponent<SkillExplain>().lockImage.SetActive(false);
                 }
                 else {
@@ -214,12 +218,15 @@ public class SoulsExplainTab : MonoBehaviour
             reference.levelText.text = splitLevel[0];
             reference.additionalText.text = splitLevel[1];
             
-            if(_UnitData.soulLevel + 1 >= (i + 1) * 3) {
+            if(_soulInfo.soulLevel + 1 >= (i + 1) * 3) {
                 reference.lockObejct.SetActive(false);
             }
             else {
                 reference.lockObejct.SetActive(true);
             }
         }
+    }
+    public SoulsInfo GetSoulInfo(){
+        return soulInfo;
     }
 }
