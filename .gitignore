@@ -77,4 +77,5 @@ google-services.xml
 googld-services-desktop.json
 Firebase/
 StreamingAssets/
-
+ApiKey.js
+user.keystore
