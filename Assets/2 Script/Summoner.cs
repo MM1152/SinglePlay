@@ -20,6 +20,7 @@ public class Summoner : LongRangeScript
 
     bool oneTime;
     public float drainLife;
+    
     private void OnEnable() { }
     private void Start() {
         RewardManager.Instance.SetSummonerStat = ChangeStat;
@@ -35,7 +36,8 @@ public class Summoner : LongRangeScript
             SpawnSoul(key , i++);
         }
     }
-    private void Update()
+
+    protected override void Update()
     {
         if (!isDie)
         {

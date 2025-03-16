@@ -52,23 +52,28 @@ public class SoulsManager : MonoBehaviour
         GameData data = GameDataManger.Instance.GetGameData();
         for (int i = 0; i < data.soulsEquip.Count; i++)
         {
+            EquipSouls equip = FindequipSoulChild.transform.GetChild(i).GetComponent<EquipSouls>();
             if (data.soulsEquip[i] != 0)
             {
-                EquipSouls equip = FindequipSoulChild.transform.GetChild(i).GetComponent<EquipSouls>();
-
                 equip.SetSoulInfo(soulsInfos[data.soulsEquip[i] - 1]);
                 equipDic.Add(soulsInfos[data.soulsEquip[i] - 1], equip);
+            }
+            else {
+                equip.SetSoulInfo(null);
             }
         }
 
         for (int i = 0; i < data.battleEquip.Count; i++)
         {
-            if (data.battleEquip[i] != 0)
+            EquipSouls equip = FindBattleEquipChild.transform.GetChild(i).GetComponent<EquipSouls>();
+            if (data.battleEquip[i] != 0 && !battleEquipDic.ContainsKey(soulsInfos[data.battleEquip[i] - 1]))
             {
-                EquipSouls equip = FindBattleEquipChild.transform.GetChild(i).GetComponent<EquipSouls>();
+                equip = FindBattleEquipChild.transform.GetChild(i).GetComponent<EquipSouls>();
                 equip.SetSoulInfoForBattle(soulsInfos[data.battleEquip[i] - 1]);
                 battleEquipDic.Add(soulsInfos[data.battleEquip[i] - 1], equip);
             }
+            else if(data.battleEquip[i] != 0 && battleEquipDic.ContainsKey(soulsInfos[data.battleEquip[i] - 1])) equip.SetSoulInfoForBattle(null);
+            else equip.SetSoulInfoForBattle(null);
         }
     }
 }

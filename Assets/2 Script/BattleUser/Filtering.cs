@@ -26,16 +26,13 @@ public class Filtering : MonoBehaviour
         button.onClick.AddListener(() => CheckNickName());
         
     }
-    void Start()
-    {
-        GameDataManger.Instance.StartCoroutine(GameDataManger.WaitForDownLoadData(CheckData));
-        gameObject.SetActive(false);
-    }
-    void CheckData(){
+
+    public void Open(){
         if(GameDataManger.Instance.GetGameData().userName == "" && !GameManager.Instance.isPlayingTutorial) gameObject.SetActive(true);
-        
     }
+
     void CheckNickName(){
+        
         if(input.text.Length > 8) {
             failToSetNickName.text = "7글자 이하로 작성해주세요";
             failToSetNickName.gameObject.SetActive(true);
@@ -52,6 +49,7 @@ public class Filtering : MonoBehaviour
         string check = Regex.Replace(input.text , @"[^a-zA-Z0-9가-힣]" , string.Empty , RegexOptions.Singleline);
 
         if(input.text.Equals(check)) {
+            if(GameManager.Instance)
             GameDataManger.Instance.GetGameData().userName = input.text;
             GameDataManger.Instance.SaveData();
             GameManager.Instance.connectDB.WriteData(input.text);

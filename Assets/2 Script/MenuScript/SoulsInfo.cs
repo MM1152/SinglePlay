@@ -47,7 +47,7 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
     private void Update(){
         Check();
     }
-    private void Awake() {
+    public void Awake() {
         unitData.classStruct = new ClassStruct(unitData.type);
         soulInintPercent = unitData.classStruct.soulInintPercent;
         soulLevelUpPercent = unitData.classStruct.soulLevelUpPercent;
@@ -57,8 +57,7 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         unitData.curStat.speedStat = unitData.classStruct.soulInintPercent;
 
         spawnProbabillity = unitData.typenumber;      
-        Init();
-        
+        InterfaceSetting();
     }
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -83,7 +82,7 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
             unLock = true;
         }
     }
-    private void Init(){
+    private void InterfaceSetting(){
         image = unitData.image;
         classStruct = unitData.classStruct;
         saveDataType = "Soul";

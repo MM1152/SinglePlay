@@ -17,10 +17,10 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
                 soulImage.color = new Color(0 , 0 , 0 , 0);
                 return;
             }
+           
             _soulInfo = value;
             soulImage.sprite = value.GetUnitData().image;
             soulImage.color = new Color(1 , 1 , 1 , 1);
-            
         }
 
     }
@@ -29,10 +29,10 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
     [SerializeField] SoulsTab soulsTab;
     [SerializeField] BattlePower battlePower;
     public static bool isEquip;
-    private void Awake()
+
+    public void Awake()
     {
         isEquip = false;
-        soulsInfo = null;
         battlePower = FindAnyObjectByType<BattlePower>();
     }
     public void SetSoulInfo(SoulsInfo soulsInfo)
@@ -54,6 +54,7 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
         if(soulsInfo != null && !GameManager.Instance.soulsInfo.ContainsKey(soulsInfo.GetUnitData().name)){
             GameManager.Instance.soulsInfo.Add(soulsInfo.GetUnitData().name , soulsInfo.GetUnitData());
         }
+        battlePower ??= FindAnyObjectByType<BattlePower>();
         battlePower.SettingBattlePower(soulsInfo.battlePower);
     }
 
@@ -63,15 +64,13 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
         }
 
         this.soulsInfo = soulsInfo;
-
+        
         if(soulsInfo == null) {
             GameData data = GameDataManger.Instance.GetGameData();
             data.battleEquip[transform.GetSiblingIndex()] = 0;
             GameDataManger.Instance.SaveData();
             return;
         }
-        
-
     }
 
     public SoulsInfo GetSoulInfo()

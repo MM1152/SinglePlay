@@ -1,22 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class SettingBattleList : MonoBehaviour
+namespace BattleUser
 {
-    [SerializeField] GameObject battleList;
-    [SerializeField] GameObject BattleMob;
-    [SerializeField] Transform spawnPos;
-    // Start is called before the first frame update
-    void Awake()
+    public class SettingBattleList : MonoBehaviour
     {
-        for(int i = 0; i < 3; i++) {
-            CreateBattleList();
+        [SerializeField] GameObject battleList;
+        [SerializeField] GameObject BattleMob;
+        [SerializeField] Transform spawnPos;
+        [SerializeField] Filtering filtering;
+        
+        void Awake()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                CreateBattleList();
+            }
+        }
+        void OnEnable()
+        {
+            filtering.Open();
+        }
+        void CreateBattleList()
+        {
+            Instantiate(battleList, spawnPos);
         }
     }
-
-    void CreateBattleList(){
-        Instantiate(battleList , spawnPos);
-    }
-
 }
+

@@ -5,6 +5,13 @@ using Firebase.Extensions;
 using Firebase;
 using Firebase.Database;
 using System;
+using System.Threading.Tasks;
+using JetBrains.Annotations;
+
+[Serializable]
+public class SaveBattleUserData {
+    public List<BattleUserData> battleUserDatas = new List<BattleUserData>();
+}
 
 [Serializable]
 public class BattleUserData{
@@ -14,6 +21,11 @@ public class BattleUserData{
 
 [Serializable]
 public class MobData {
+    public MobData (string name , int typeNumber , int level){
+        this.name = name;
+        this.typeNumber = typeNumber;
+        this.level = level;
+    }
     public string name;
     public int typeNumber;
     public int level;
@@ -26,6 +38,8 @@ public class ConnectDB : MonoBehaviour
     FirebaseApp app;
     DatabaseReference m_Reference;
     public bool connection;
+
+    public SaveBattleUserData battleuserData;
 
     public void Init()
     {
@@ -45,6 +59,7 @@ public class ConnectDB : MonoBehaviour
             }
             connection = true;
             });
+
         } catch (Exception ex) {
             Debug.LogError(ex);
         }
@@ -79,32 +94,45 @@ public class ConnectDB : MonoBehaviour
         }
         
     }
-
-    public void CheckUserName(Action<string> getName){
+    public void CheckBattleUserData(){
         if(!connection) {
-            StartCoroutine(SettingFin(() => CheckUserName(getName)));
+            StartCoroutine(SettingFin(() => CheckBattleUserData()));
             return;
         }
         try {
-            FirebaseDatabase.DefaultInstance.GetReference("Users").GetValueAsync().ContinueWithOnMainThread(task => {
+            var task = FirebaseDatabase.DefaultInstance.GetReference("Users").GetValueAsync().ContinueWithOnMainThread(task => {
                 if(task.IsFaulted) {
-                    Debug.LogError("Fail To Get Name");
-                    getName(""); 
+                    Debug.Log("Fail To get BattleUserData");
                 }
                 else if(task.IsCompleted) {
                     DataSnapshot snapshot = task.Result; 
-                    Debug.Log(snapshot);
-                    getName(snapshot.Value.ToString());    
+                
+                    foreach(var user in snapshot.Children) {
+                        battleuserData.battleUserDatas.Add(JsonUtility.FromJson<BattleUserData>(user.GetRawJsonValue()));
+                    }
                 }
             });
+            
+
         }catch (Exception ex) {
             Debug.LogError(ex);
-            getName("");
         }
     }
 
     public void WriteData(string text){
-        string json = JsonUtility.ToJson(text);
-        m_Reference.Child("Users").Child(GameDataManger.Instance.GetGameData().userName).SetValueAsync(json);
+        
+        m_Reference.Child("Users").Child(GameDataManger.Instance.GetGameData().userName).Child("userName").SetValueAsync(text);
+
+        BattleUserData mob = new BattleUserData();
+        mob.userName = text;
+
+        string json = JsonUtility.ToJson(mob);
+        
+        m_Reference.Child("Users").Child(text).SetRawJsonValueAsync(json);
+    }
+
+    public void SettingBattleData(BattleUserData battleUserData){
+        string json = JsonUtility.ToJson(battleUserData);
+        m_Reference.Child("Users").Child(GameDataManger.Instance.GetGameData().userName).SetRawJsonValueAsync(json);
     }
 }

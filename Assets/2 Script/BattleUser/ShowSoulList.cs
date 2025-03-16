@@ -34,7 +34,6 @@ public class ShowSoulList : MonoBehaviour
     public void StartCoroutine()
     {
         if(gameObject.activeSelf) StartCoroutine(WaitForTouch());
-        
     }
 
     IEnumerator WaitForTouch()

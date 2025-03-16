@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
             connectDB = GetComponent<ConnectDB>();
             connectDB.Init();
             connectDB.CheckVersion((value) => checkVesion.DifferentVersion(value));
+            connectDB.CheckBattleUserData();
             //connectDB.CheckUserName((value) => checkVesion.DifferentVersion(value));
             Application.targetFrameRate = 60;
             DontDestroyOnLoad(this);
