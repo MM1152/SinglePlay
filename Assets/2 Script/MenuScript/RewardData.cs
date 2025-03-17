@@ -24,6 +24,6 @@ public class RewardData : MonoBehaviour
         GameDataManger.Instance.GetGameData().dailyGift[transform.GetSiblingIndex()] = true;
         GameDataManger.Instance.GetGameData().getGift = true;
         GameDataManger.Instance.GetGameData().gem += reward;
-        GameDataManger.Instance.SaveData();
+        GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
     }
 }

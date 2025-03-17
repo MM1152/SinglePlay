@@ -80,7 +80,7 @@ public class MakeSellingList : MonoBehaviour
             child.GetComponent<ItemList>().Setting(sellingAble, gem_or_soul >= 0.3 ? true : false ,  soulsInfo : soulsInfo , reclicsInfo : reclicsInfo);
 
         }
-        GameDataManger.Instance.SaveData();
+        GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
     }
     public void SettingShopList(GameData gameData)
     {

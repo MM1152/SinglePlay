@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
 {
-    //\\TODO : Tutorial을 원하는 버튼이 클릭 되면 그때 실행시키기로
     public SettingTutorial[] tutorials;
     public int pastTutorialIndex = -1;
     public void StartTutorial(int index){

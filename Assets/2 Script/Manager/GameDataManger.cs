@@ -96,19 +96,27 @@ public class GameDataManger : MonoBehaviour
     public static GameDataManger Instance { get; private set; }
     [SerializeField] GameData data = null;
     [SerializeField] CouponData couponData = null;
+    [SerializeField] BattleDatas battleData = null;
     public Action<int, int> goodsSetting;
     private string filePath;
     private string couponFilePath;
+    private string battleFilePath;
     public bool dataDownLoad;
+
+    public enum SaveType {
+        GameData , CouponData , BattleData
+    }
 
     private void Awake()
     {
 
         filePath = Application.persistentDataPath + "/data.json";
         couponFilePath = Application.persistentDataPath + "/coupon.json";
+        battleFilePath = Application.persistentDataPath + "/battle.json";
 
         Debug.Log(filePath);
         Debug.Log(couponFilePath);
+        Debug.Log(battleFilePath);
 
         if (Instance == null)
         {
@@ -123,14 +131,35 @@ public class GameDataManger : MonoBehaviour
     }
     private void Start()
     {
+        battleData = LoadBattleData();
         data = LoadData();
         couponData = LoadCouponData();
+        
         DailyQuestTab.dailyQuestTab.Setting();
         if(!data.tutorial && !GameManager.Instance.isPlayingTutorial) {
             GameManager.Instance.StartTutorial(0);
             GameManager.Instance.isPlayingTutorial = true;
         } 
     }
+    #region BattleData
+    public BattleDatas LoadBattleData(){
+        BattleDatas battleDatas = new BattleDatas();
+        if(!File.Exists(battleFilePath)){
+            string JsonData = JsonUtility.ToJson(GameManager.Instance.connectDB.battleuserData);
+            File.WriteAllText(battleFilePath , JsonData);
+        }
+
+        string battleData = File.ReadAllText(battleFilePath);
+        battleDatas = JsonUtility.FromJson<BattleDatas>(battleData);
+        return battleDatas;
+    }
+
+    public BattleDatas GetBattleData() {
+        return battleData;
+    }
+    #endregion
+    
+    #region GameData
     public GameData LoadData()
     {
         GameData LoadData = new GameData();
@@ -210,21 +239,40 @@ public class GameDataManger : MonoBehaviour
         dataDownLoad = true;
         return LoadData;
     }
-    //fix : 데이터 로드이후 게임 접근시 유물 slider maxValue 설정 오류
-    public void SaveData()
-    {
-        string jsonData = JsonUtility.ToJson(data);
+    public void SaveData(SaveType saveType)
+    {   
+        string jsonData;
+        switch (saveType) {
 
-        if (File.Exists(filePath)) File.WriteAllText(filePath, jsonData);
+            case SaveType.GameData :
+                jsonData = JsonUtility.ToJson(data);
+                if (File.Exists(filePath)) File.WriteAllText(filePath, jsonData);
+                dataDownLoad = false;
+                this.data = LoadData();
+                break;
 
-        dataDownLoad = false;
-        this.data = LoadData();
-        Debug.Log(filePath);
+            case SaveType.CouponData :
+                jsonData = JsonUtility.ToJson(couponData);
+                if (File.Exists(couponFilePath)) File.WriteAllText(couponFilePath, jsonData);
+                couponData = LoadCouponData();
+                break;
+
+            case SaveType.BattleData :
+                jsonData = JsonUtility.ToJson(battleData);
+                if (File.Exists(battleFilePath)) File.WriteAllText(battleFilePath, jsonData);
+                battleData = LoadBattleData();
+                break;
+            
+        }
+
     }
     public GameData GetGameData()
     {
         return data;
     }
+    #endregion
+    
+    #region CouponData
     public CouponData LoadCouponData()
     {
         CouponData couponData = new CouponData();
@@ -268,6 +316,8 @@ public class GameDataManger : MonoBehaviour
     {
         return couponData;
     }
+    #endregion
+    
     public static IEnumerator WaitForDownLoadData(Action GetGameData = null)
     {
         yield return new WaitUntil(() => Instance.dataDownLoad);
@@ -364,7 +414,7 @@ public class GameDataManger : MonoBehaviour
             this.data = LoadData;
             changeData = true;
         }
-        if (changeData) SaveData();
+        if (changeData) SaveData(SaveType.GameData);
 
     }
     int CheckCompareDateTime(GameData LoadData)
@@ -389,7 +439,7 @@ public class GameDataManger : MonoBehaviour
             LoadData.shopListChangeCount[1] = 2;
 
             LoadData.getGift = false;
-
+            
             for (int i = 0; i < LoadData.questData.Count; i++)
             {
                 LoadData.questData[i].Setting();
@@ -399,28 +449,34 @@ public class GameDataManger : MonoBehaviour
             {
                 LoadData.isBoxOpen[i] = false;
             }
-
+            
             data = LoadData;
-            SaveData();
+
+            GameManager.Instance.connectDB.CheckBattleUserData(GetBattleUserData);
+            
+            SaveData(SaveType.GameData);
         }
         else if (isPast > 0)
         {
             LoadData.dateTime = currentDateTime.ToString("yyyy-MM-dd");
             data = LoadData;
-            SaveData();
+            SaveData(SaveType.GameData);
         }
 
         return isPast;
     }
-
+    public void GetBattleUserData(){
+        battleData = GameManager.Instance.connectDB.battleuserData;
+        SaveData(SaveType.BattleData);
+    }
     public void GetSoul(int value)
     {
         data.soul += value;
-        SaveData();
+        SaveData(SaveType.GameData);
     }
     public void GetGem(int value)
     {
         data.gem += value;
-        SaveData();
+        SaveData(SaveType.GameData);
     }
 }

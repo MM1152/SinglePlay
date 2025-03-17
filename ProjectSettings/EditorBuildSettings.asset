@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1 Scenes/PrairieScene.unity
     guid: 93ca2bd649630014d875c59c32f9c1a7
+  - enabled: 1
+    path: Assets/1 Scenes/BattleMap.unity
+    guid: a6fe341dd41d5034696e5711073707e5
   m_configObjects: {}

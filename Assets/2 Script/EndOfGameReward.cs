@@ -18,7 +18,7 @@ public class EndOfGameReward : MonoBehaviour
     {
         getReward.onClick.AddListener(() =>
         {
-            GameDataManger.Instance.SaveData();
+            GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
             GameManager.Instance.ResumeGame();
             parent.SetActive(false);
             LoadingScene.LoadScene("MenuScene");
@@ -31,7 +31,7 @@ public class EndOfGameReward : MonoBehaviour
         {
             GoogleAdMobs.instance.ShowRewardedAd(() =>
             {
-                GameDataManger.Instance.SaveData();
+                GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
                 GameManager.Instance.ResumeGame();
                 foreach (UnitData unitData in GameManager.Instance.dropSoulList.Keys)
                 {

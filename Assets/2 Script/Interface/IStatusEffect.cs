@@ -104,7 +104,6 @@ public class AttackPowerBuffEffect : IStatusEffect
         }
         Debug.Log("Setting CurrentDuration" + currentDuration);
         this.unit = unit;
-        //\\TODO : 전달하는 유닛의 스킬 퍼센트에 맞게 바꿔줘야함.
         this.unit.buffAttack = upgradeDamage;
         unit.ChangeStats();
         if (pools.Count != 0)
@@ -257,7 +256,6 @@ public class BurnEffect : IStatusEffect
         }
     }
     void RepeatDamage(){
-        //\\TODO : 화상데미지는 주황색으로 표시?
         unit.Hit(applyUnit.damage * (percent * overlapCount) , applyUnit , 0 , AttackType.Burn);
     }
 }

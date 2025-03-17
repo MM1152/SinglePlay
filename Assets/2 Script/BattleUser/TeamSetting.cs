@@ -39,4 +39,5 @@ public class TeamSetting : MonoBehaviour
         }
         GameManager.Instance.connectDB.SettingBattleData(battleUserData);
     }
+
 }

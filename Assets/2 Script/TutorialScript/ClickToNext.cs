@@ -17,7 +17,7 @@ public class ClickToNext : MonoBehaviour , IPointerDownHandler
             if(sibling == 26) {
                 GameManager.Instance.isPlayingTutorial = false;
                 GameDataManger.Instance.GetGameData().tutorial = true;
-                GameDataManger.Instance.SaveData();
+                GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
                 gameObject.SetActive(false);
                 return;
             }

@@ -6,9 +6,15 @@ using UnityEngine;
 public class Boss : ShortRangeScipt  , ISummonUnit
 {
     [SerializeField] BossShowAnimation BossShow; // 보스 소개하는 애니메이션 접근 ( image 와 Text 설정해줌 
+    
     void OnEnable(){}
+
     protected void Start() {
-        if(summoner == null) {
+        if(GameManager.Instance.mapName == "BattleMap") {
+            Respawn();
+            UserFightSpawn(level);
+        }
+        else if(summoner == null) {
             SetBossAni();
             SetBoss();
         }

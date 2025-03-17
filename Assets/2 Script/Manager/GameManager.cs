@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public List<ReclicsData> reclicsDatas;
     public bool reclisFin;
     public Dictionary<string , UnitData> soulsInfo = new Dictionary<string, UnitData>();
+    public Dictionary<string , UnitData> battlesInfo = new Dictionary<string , UnitData>();
+    public BattleUserData otherBattleUserData;
     public bool soulsFin;
     
     public int currentStage = 10;
@@ -64,7 +66,8 @@ public class GameManager : MonoBehaviour
             connectDB = GetComponent<ConnectDB>();
             connectDB.Init();
             connectDB.CheckVersion((value) => checkVesion.DifferentVersion(value));
-            connectDB.CheckBattleUserData();
+            
+
             //connectDB.CheckUserName((value) => checkVesion.DifferentVersion(value));
             Application.targetFrameRate = 60;
             DontDestroyOnLoad(this);
@@ -82,7 +85,7 @@ public class GameManager : MonoBehaviour
         if(currentStage >= maxStage) {
             if(mapindex + 1 > GameDataManger.Instance.GetGameData().unLockMap.Count) {
                 GameDataManger.Instance.GetGameData().unLockMap.Add(true);
-                GameDataManger.Instance.SaveData();
+                GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
             }
             clearMonseter = 50;    
             ReturnToMenu();
@@ -130,11 +133,6 @@ public class GameManager : MonoBehaviour
             return;
         }
         
-        //\\TODO 여기다가 결과창 보여주면 될거같은데.
-        // 우짜지 ㅅㅂ..
-        //\\TODO 업적시스템 추가
-        //\\플레이어 자체 레벨 시스템 구현
-        //\\레벨당 보상 구현 ㄱ 
         rewardViewer.SetActive(true);
         
         dropSoulList.Clear();
@@ -150,7 +148,7 @@ public class GameManager : MonoBehaviour
             if(dropSoulList.ContainsKey(unitData)) dropSoulList[unitData]++;
             else dropSoulList.Add(unitData , 1);
             gameData.soulsCount[unitData.typenumber - 1]++;
-            GameDataManger.Instance.SaveData();
+            GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
         };
         showingMenuTools.HideOption(true);
         ResumeGame();

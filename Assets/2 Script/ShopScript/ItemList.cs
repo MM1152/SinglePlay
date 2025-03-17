@@ -91,6 +91,6 @@ public class ItemList : MonoBehaviour , IPointerClickHandler
         soldOutImage.SetActive(true);
         isSoldOut = true;
         GameDataManger.Instance.GetGameData().soldOutItem[transform.GetSiblingIndex()] = true;
-        GameDataManger.Instance.SaveData();
+        GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
     }
 }

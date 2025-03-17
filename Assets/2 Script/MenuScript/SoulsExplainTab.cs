@@ -167,7 +167,6 @@ public class SoulsExplainTab : MonoBehaviour
         {
             skillImagesObject[i].SetActive(false);
         }
-        Debug.Log("change SkillData");
         if (data.soulsSkillData.Length > 0)
         {
             if (skillImagesObject.Count >= data.soulsSkillData.Length)

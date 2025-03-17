@@ -8,11 +8,12 @@ public class LongRangeScript : Unit , ISummonUnit
     public GameObject projectile;
     public Summoner summoner { get; set; }
     public int damageMeter { get ; set ; }
-   
+    
     protected void OnEnable()
     {
         Respawn();
-        if(summoner == null) Spawn(GameManager.Instance.currentStage * GameManager.Instance.mapindex + 1);
+        if(GameManager.Instance.mapName == "BattleMap") UserFightSpawn(level);
+        else if(summoner == null) Spawn(GameManager.Instance.currentStage * GameManager.Instance.mapindex + 1);
         else SummonerSpawn(summoner);
     }
     private void Update()

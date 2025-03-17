@@ -14,6 +14,7 @@ public class SoulsManager : MonoBehaviour
     public SoulsInfo[] soulsInfos;
     public Dictionary<SoulsInfo, EquipSouls> equipDic = new Dictionary<SoulsInfo, EquipSouls>();
     public Dictionary<SoulsInfo, EquipSouls> battleEquipDic = new Dictionary<SoulsInfo, EquipSouls>();
+
     void Awake()
     {
         if (Instance == null)
@@ -25,13 +26,13 @@ public class SoulsManager : MonoBehaviour
         MergeSort<SoulsInfo> mergeSort = new MergeSort<SoulsInfo>(soulsInfos);
         soulsInfos = mergeSort.get();
         Array.Reverse(soulsInfos);
-
     }
 
     private void Start()
     {
         StartCoroutine(SetSoulInfoCoroutine());
         StartCoroutine(SetEuqipSoulsCoroutine());
+        
     }
 
     IEnumerator SetSoulInfoCoroutine()
@@ -57,10 +58,12 @@ public class SoulsManager : MonoBehaviour
             {
                 equip.SetSoulInfo(soulsInfos[data.soulsEquip[i] - 1]);
                 equipDic.Add(soulsInfos[data.soulsEquip[i] - 1], equip);
+                
             }
             else {
                 equip.SetSoulInfo(null);
             }
+            
         }
 
         for (int i = 0; i < data.battleEquip.Count; i++)
@@ -68,12 +71,12 @@ public class SoulsManager : MonoBehaviour
             EquipSouls equip = FindBattleEquipChild.transform.GetChild(i).GetComponent<EquipSouls>();
             if (data.battleEquip[i] != 0 && !battleEquipDic.ContainsKey(soulsInfos[data.battleEquip[i] - 1]))
             {
-                equip = FindBattleEquipChild.transform.GetChild(i).GetComponent<EquipSouls>();
                 equip.SetSoulInfoForBattle(soulsInfos[data.battleEquip[i] - 1]);
                 battleEquipDic.Add(soulsInfos[data.battleEquip[i] - 1], equip);
             }
             else if(data.battleEquip[i] != 0 && battleEquipDic.ContainsKey(soulsInfos[data.battleEquip[i] - 1])) equip.SetSoulInfoForBattle(null);
             else equip.SetSoulInfoForBattle(null);
         }
+
     }
 }

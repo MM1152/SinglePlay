@@ -37,7 +37,7 @@ public class GiftBox : MonoBehaviour , IPointerClickHandler{
             gameData.soul  += soulGiftCount;
             gameData.gem += gemGiftCount;
             gameData.isBoxOpen[transform.GetSiblingIndex()] = true;
-            GameDataManger.Instance.SaveData();
+            GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
 
             isOpen = true;
             GetComponent<Image>().sprite = boxOpenSprite;

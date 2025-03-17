@@ -38,7 +38,7 @@ public class ChangeShopListButton : MonoBehaviour
                     GameDataManger.Instance.GetGameData().soul -= 100;
                     GameDataManger.Instance.GetGameData().shopListChangeCount[0] = count;
                     makeSellingList.SettingShopList();
-                    GameDataManger.Instance.SaveData();
+                    GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
                 }
                 else return;
             });

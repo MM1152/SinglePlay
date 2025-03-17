@@ -17,7 +17,7 @@ public class ChangeShopListButtonAd : MonoBehaviour
             if(GoogleAdMobs.instance.ShowRewardedAd(rewardFunction)) {
                 changeBNT.count--;
                 GameDataManger.Instance.GetGameData().shopListChangeCount[1] = changeBNT.count;
-                GameDataManger.Instance.SaveData();
+                GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
             }
         });
     }

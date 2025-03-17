@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 
@@ -43,6 +44,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     public bool SkillSetting;
     public float dodge;
     public float critical;
+    public int level;
     [Space(75)]
     /************************************/
 
@@ -77,7 +79,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
 
     /************************************/
-
+    
     protected virtual void Awake()
     {
         overlapDamage = 0;
@@ -137,6 +139,22 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         }
 
     }
+    protected void UserFightSpawn(int level){
+        Debug.Log("Spawn UserFightSpawn");
+        attackPrecent = (GameManager.Instance.battlesInfo[unit.name].classStruct.soulLevelUpPercent * level + 1) / 100f;
+        hpPercent = (GameManager.Instance.battlesInfo[unit.name].classStruct.soulLevelUpPercent * level + 1) / 100f;
+
+        maxHp = 350 * (hpPercent);
+        mp = unit.mp;
+        damage = 50 * (attackPrecent);
+        speed = unit.speed;
+        attackRadious = unit.attackRadious;
+        setInitAttackSpeed = unit.attackSpeed;
+        critical = 0.1f;
+        
+        hp = maxHp;
+    }
+
     protected void Respawn()
     {
         if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss")) targetList = GameObject.Find("PlayerList");
@@ -343,7 +361,6 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
     public void Hit(float Damage, Unit applyunit, float Critical = 0, AttackType attackType = AttackType.None)
     { 
-        //\\TODO 여기서 스킬데미지증가 유물에 관해서 데미지 증가 로직 적용시켜주면 될거같음.
         DamageText damage = PoolingManager.Instance.ShowDamage().GetComponent<DamageText>();
         
         if(applyunit != null) {

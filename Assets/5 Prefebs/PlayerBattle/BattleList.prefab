@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 8037381346165881719}
   - component: {fileID: 3471860078260547375}
   - component: {fileID: 701275382177130173}
+  - component: {fileID: 7401733663633549345}
   m_Layer: 5
   m_Name: BattleList
   m_TagString: Untagged
@@ -218,6 +219,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7401733663633549345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343540382921256757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e2b8fd756c2de43befbde422b5f994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefeb: {fileID: -3489575461759281724, guid: e0ac99d8b91d5b14ea397854c683ac7f, type: 3}
+  prefebSpawnPos: {fileID: 1970328720173584208}
+  button: {fileID: 996845686017933165}
 --- !u!1 &9110942103472692134
 GameObject:
   m_ObjectHideFlags: 0

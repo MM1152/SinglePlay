@@ -101,7 +101,7 @@ public class SoulPickUp : MonoBehaviour
 
         pickingItem = false;
         SettingOpenCount();
-        GameDataManger.Instance.SaveData();
+        GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
         openCount = GameDataManger.Instance.GetGameData().openCount[1];
     }
 }

@@ -16,6 +16,7 @@ public class SummonUnit : MonoBehaviour
 
     float time;
     bool spawn ;
+    int level;
     private void Awake() {
         ani = GetComponent<Animator>();
         summonUnitViewer = FindObjectOfType<CreateSummonUnitViewer>();
@@ -33,6 +34,13 @@ public class SummonUnit : MonoBehaviour
         this.summoner = summoner;
         StartCoroutine(WaitForAnimation());
     }
+    public void Setting(GameObject spawnEnemy , Vector2 spawnPos , Transform parent , int level){
+        this.spawnEnemy = spawnEnemy;
+        this.spawnPos = spawnPos;
+        this.parent = parent;
+        this.level = level;
+        StartCoroutine(WaitForSpawnBattleMap());
+    }
     private void Update() {
         time -= Time.deltaTime;
         if(time <= 0 && gameObject.activeSelf) {
@@ -44,7 +52,7 @@ public class SummonUnit : MonoBehaviour
     //2. 재생성시에 이미 소환된 유닛창을 찾아서 다시 연결시켜줘야함함
     IEnumerator WaitForAnimation(){
         GameObject unit = Instantiate(spawnEnemy , parent);
-        unit.gameObject.AddComponent<Summon>();
+        unit.gameObject.AddComponent<Summon>().Setting();
         unit.SetActive(false);
         
         unit.transform.position = spawnPos;
@@ -69,7 +77,22 @@ public class SummonUnit : MonoBehaviour
         spawn = true;
 
         PoolingManager.Instance.ReturnObject(gameObject.name , gameObject);
-        
     }
+    IEnumerator WaitForSpawnBattleMap(){
+        GameObject unit = Instantiate(spawnEnemy , parent);
+        unit.gameObject.AddComponent<Summon>().Setting(); //\\TODO : 레벨 집어넣기 
+        unit.SetActive(false);
+        
+        unit.transform.position = spawnPos;
+        unit.transform.SetParent(parent);
+        unit.tag = this.tag;
+        unit.GetComponent<Unit>().level = level;
 
+        yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+
+        summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
+        damageMeter.Init(unit.GetComponent<Unit>());
+        unit.SetActive(true);
+        Destroy(gameObject);
+    }
 }

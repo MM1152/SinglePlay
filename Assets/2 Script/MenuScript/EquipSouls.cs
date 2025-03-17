@@ -47,7 +47,7 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
         if(soulsInfo == null) {
             GameData data = GameDataManger.Instance.GetGameData();
             data.soulsEquip[transform.GetSiblingIndex()] = 0;
-            GameDataManger.Instance.SaveData();
+            GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
             return;
         }
         
@@ -62,14 +62,18 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
         if(_soulInfo != null)  {
             SoulsManager.Instance.battleEquipDic.Remove(_soulInfo);    
         }
-
-        this.soulsInfo = soulsInfo;
         
+        this.soulsInfo = soulsInfo;
+
         if(soulsInfo == null) {
             GameData data = GameDataManger.Instance.GetGameData();
             data.battleEquip[transform.GetSiblingIndex()] = 0;
-            GameDataManger.Instance.SaveData();
+            GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
             return;
+        }
+
+        if(soulsInfo != null && !GameManager.Instance.battlesInfo.ContainsKey(soulsInfo.GetUnitData().name)){
+            GameManager.Instance.battlesInfo.Add(soulsInfo.GetUnitData().name , soulsInfo.GetUnitData());
         }
     }
 

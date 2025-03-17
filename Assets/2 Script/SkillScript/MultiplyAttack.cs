@@ -23,7 +23,6 @@ public class MultiplyAttack : MonoBehaviour , SkillParent
 
             if (soulsSkillData.skillInitPercent / 100f <= mulityPlyAttackPercent)
             {
-                //\\TODO 공격 데미지는 soulsSkillData.attackPercent 만큼만 주도록 설정
                 currentTarget = longRangeUnit.target;
                 otherTarget = default;
                 checkTarget = default; 

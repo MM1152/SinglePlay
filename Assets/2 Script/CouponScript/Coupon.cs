@@ -49,7 +49,7 @@ public class Coupon : MonoBehaviour
                     GameDataManger.Instance.GetGameData().soul += couponData.couponInfo[i].value;
                 }
 
-                GameDataManger.Instance.SaveData();
+                GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
                 GameDataManger.Instance.SaveCouponData();
                 return;
             }

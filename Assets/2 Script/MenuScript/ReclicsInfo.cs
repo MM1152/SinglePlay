@@ -104,7 +104,7 @@ public class ReclicsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibill
         data.soul -= cost;
         data.reclicsLevel[reclicsData.reclicsType - 1] = _reclicsLevel;
         data.reclicsCount[reclicsData.reclicsType - 1] = _reclicsCount;
-        GameDataManger.Instance.SaveData();
+        GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
     }
     
     private void Check(){

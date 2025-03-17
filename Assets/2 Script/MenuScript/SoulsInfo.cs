@@ -134,10 +134,12 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
         Setting(soulCount , soulLevel);
         ChangeStatus();
     }
+
     public void ChangeBonusStat(){
         unitData.curStat.attackStat = unitData.classStruct.soulInintPercent + (unitData.classStruct.soulLevelUpPercent * soulLevel) + unitData.bonusStat.attackStat;
         unitData.curStat.hpStat = unitData.classStruct.soulInintPercent + (unitData.classStruct.soulLevelUpPercent * soulLevel) + unitData.bonusStat.hpStat;
     }
+
     public void SettingBonusStat(string type , float value){
         switch(type){
             case "Hp" :
@@ -151,12 +153,13 @@ public class SoulsInfo : MonoBehaviour , IPointerClickHandler , ISpawnPosibillit
                 break;
         }
     }
+
     public void ChangeStatus(){
         GameData data = GameDataManger.Instance.GetGameData();
         data.soulsLevel[unitData.typenumber - 1] = soulLevel;
         data.soulsCount[unitData.typenumber - 1] = soulCount;
         
-        GameDataManger.Instance.SaveData();
+        GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
     }
     void SetBattlePoint(){
         battlePower = (int) (100 * (soulLevel + 1)* unitData.classStruct.battlePointPercent);

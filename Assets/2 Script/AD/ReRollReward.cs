@@ -37,7 +37,7 @@ public class ReRollReward : MonoBehaviour
             {
                 --count;
                 GameDataManger.Instance.GetGameData().shopListChangeCount[0] = count;
-                GameDataManger.Instance.SaveData();
+                GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
                 action?.Invoke();
             });
         }        

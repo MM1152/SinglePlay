@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 
 [Serializable]
-public class SaveBattleUserData {
+public class BattleDatas {
     public List<BattleUserData> battleUserDatas = new List<BattleUserData>();
 }
 
@@ -39,7 +39,7 @@ public class ConnectDB : MonoBehaviour
     DatabaseReference m_Reference;
     public bool connection;
 
-    public SaveBattleUserData battleuserData;
+    public BattleDatas battleuserData;
 
     public void Init()
     {
@@ -94,9 +94,9 @@ public class ConnectDB : MonoBehaviour
         }
         
     }
-    public void CheckBattleUserData(){
+    public void CheckBattleUserData(Action getData = null){
         if(!connection) {
-            StartCoroutine(SettingFin(() => CheckBattleUserData()));
+            StartCoroutine(SettingFin(() => CheckBattleUserData(getData)));
             return;
         }
         try {
@@ -110,6 +110,8 @@ public class ConnectDB : MonoBehaviour
                     foreach(var user in snapshot.Children) {
                         battleuserData.battleUserDatas.Add(JsonUtility.FromJson<BattleUserData>(user.GetRawJsonValue()));
                     }
+                    
+                    getData();
                 }
             });
             

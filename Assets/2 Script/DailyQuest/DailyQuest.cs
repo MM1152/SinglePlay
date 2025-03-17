@@ -42,7 +42,7 @@ public class DailyQuest : MonoBehaviour , IPointerClickHandler
         .questData[index]
         .count = count;
 
-        GameDataManger.Instance.SaveData();
+        GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
 
         return false;
     }
@@ -66,7 +66,7 @@ public class DailyQuest : MonoBehaviour , IPointerClickHandler
             .questData[index]
             .count = count;
 
-            GameDataManger.Instance.SaveData();
+            GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
         }
     }
 

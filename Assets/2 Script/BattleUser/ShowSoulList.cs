@@ -23,14 +23,12 @@ public class ShowSoulList : MonoBehaviour
             } 
 
             SoulsInfo copy = Instantiate(sortSoul.souls[i].gameObject, transform).GetComponent<SoulsInfo>();
+            copy.parentSoulsInfo = sortSoul.souls[i].gameObject.GetComponent<SoulsInfo>();
             copy.slider.gameObject.SetActive(false);
             list.Add(sortSoul.souls[i]);
         }
     }
-    void OnDisable()
-    {
-        soulsExplainTab.SetEquip -= StartCoroutine;
-    }
+
     public void StartCoroutine()
     {
         if(gameObject.activeSelf) StartCoroutine(WaitForTouch());
@@ -46,7 +44,7 @@ public class ShowSoulList : MonoBehaviour
         {
             GameObject selectObject = hit.collider.gameObject;
             EquipSouls equipSouls;
-
+            Debug.Log(currentSoulInfo);
             if (selectObject.TryGetComponent<EquipSouls>(out equipSouls))
             {
                 int changesiblingIndex = -1;
@@ -54,6 +52,7 @@ public class ShowSoulList : MonoBehaviour
                 if (SoulsManager.Instance.battleEquipDic.ContainsKey(currentSoulInfo))
                 {
                     changesiblingIndex = SoulsManager.Instance.battleEquipDic[currentSoulInfo].transform.GetSiblingIndex();
+                    Debug.Log(currentSoulInfo);
                     SoulsManager.Instance.battleEquipDic[currentSoulInfo].SetSoulInfoForBattle(null);
                     SoulsManager.Instance.battleEquipDic[currentSoulInfo] = equipSouls;
                 }
@@ -66,7 +65,7 @@ public class ShowSoulList : MonoBehaviour
                 GameData data = GameDataManger.Instance.GetGameData();
                 if (changesiblingIndex != -1) data.battleEquip[changesiblingIndex] = 0;
                 data.battleEquip[equipSouls.transform.GetSiblingIndex()] = currentSoulInfo.GetUnitData().typenumber;
-                GameDataManger.Instance.SaveData();
+                GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
             }
 
             EquipSouls.isEquip = false;

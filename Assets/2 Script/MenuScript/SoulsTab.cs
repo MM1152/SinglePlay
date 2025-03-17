@@ -52,7 +52,7 @@ public class SoulsTab : MonoBehaviour
                 GameData data = GameDataManger.Instance.GetGameData();
                 if(changesiblingIndex != -1) data.soulsEquip[changesiblingIndex] = 0;
                 data.soulsEquip[equipSouls.transform.GetSiblingIndex()] = currentSoulInfo.GetUnitData().typenumber;
-                GameDataManger.Instance.SaveData();
+                GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
 
                             
                 if(GameManager.Instance.isPlayingTutorial) {

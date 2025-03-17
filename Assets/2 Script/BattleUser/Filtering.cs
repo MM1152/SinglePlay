@@ -51,7 +51,7 @@ public class Filtering : MonoBehaviour
         if(input.text.Equals(check)) {
             if(GameManager.Instance)
             GameDataManger.Instance.GetGameData().userName = input.text;
-            GameDataManger.Instance.SaveData();
+            GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
             GameManager.Instance.connectDB.WriteData(input.text);
             gameObject.SetActive(false);
         }else {

@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    //\\TODO : 배경 음악 , 공격 효과음 , 스킬 효과음 구성
 
     [Header("BGM")]
     public AudioClip[] bgm;
@@ -20,7 +19,6 @@ public class SoundManager : MonoBehaviour
 
     public enum BGM { Menu , Main };
     public enum SFX { Open , DisOpen , BuyItem , SelectItem  , MinePlant , Hit , Dodge , NextMap , StepRock};
-    //\\TODO :  젬 획득 브금 , 스킬 사용브금 등 추가 
     private static SoundManager _instance;
     public static SoundManager Instance {
         get { return _instance; }
