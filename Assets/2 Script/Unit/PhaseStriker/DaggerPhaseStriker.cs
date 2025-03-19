@@ -8,6 +8,7 @@ public class DaggerPhaseStriker : PhaseStriker
         archorPhaseStriker = Instantiate(archor , transform.parent).GetComponent<ArchorPhaseStriker>();
         archorPhaseStriker.canFollow = false;
         archorPhaseStriker.gameObject.AddComponent<Summon>();
+        archorPhaseStriker.GetComponent<Summon>().Setting();
         archorPhaseStriker.gameObject.SetActive(false);
 
         

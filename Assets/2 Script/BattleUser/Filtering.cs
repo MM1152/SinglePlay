@@ -11,7 +11,7 @@ public class Filtering : MonoBehaviour
     [SerializeField] InputField input;
     [SerializeField] Text failToSetNickName;
     [SerializeField] Button button;
-    public string[] lines;
+    string[] lines;
     string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
     TextAsset filepath;
     
@@ -34,14 +34,12 @@ public class Filtering : MonoBehaviour
     void CheckNickName(){
         
         if(input.text.Length > 8) {
-            failToSetNickName.text = "7글자 이하로 작성해주세요";
-            failToSetNickName.gameObject.SetActive(true);
+            SetFailToSetNickName("7글자 이하로 작성해주세요");
             return;
         }
         for(int i = 0; i < lines.Length; i++) {
             if(input.text.Contains(lines[i])) {
-                failToSetNickName.text = "비속어는 사용할 수 없습니다.";
-                failToSetNickName.gameObject.SetActive(true);
+                SetFailToSetNickName("비속어는 사용할 수 없습니다.");
                 return;
             }
         }
@@ -49,14 +47,25 @@ public class Filtering : MonoBehaviour
         string check = Regex.Replace(input.text , @"[^a-zA-Z0-9가-힣]" , string.Empty , RegexOptions.Singleline);
 
         if(input.text.Equals(check)) {
-            if(GameManager.Instance)
+            BattleDatas battleDatas = GameDataManger.Instance.GetBattleData();
+            for(int i = 0; i < battleDatas.battleUserDatas.Count; i++) {
+                if(battleDatas.battleUserDatas[i].userName == check) {
+                    SetFailToSetNickName("중복되는 닉네임 입니다.");
+                    return;
+                }
+            }
+
             GameDataManger.Instance.GetGameData().userName = input.text;
             GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
             GameManager.Instance.connectDB.WriteData(input.text);
             gameObject.SetActive(false);
         }else {
-            failToSetNickName.text = "특수문자는 사용할 수 없습니다.";
-            failToSetNickName.gameObject.SetActive(true);
+            SetFailToSetNickName("특수문자는 사용할 수 없습니다.");
         }
+    }
+
+    void SetFailToSetNickName(string text){
+        failToSetNickName.text = text;
+        failToSetNickName.gameObject.SetActive(true);
     }
 }

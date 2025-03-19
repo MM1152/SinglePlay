@@ -33,6 +33,12 @@ public class SoulsManager : MonoBehaviour
         StartCoroutine(SetSoulInfoCoroutine());
         StartCoroutine(SetEuqipSoulsCoroutine());
         
+        if(GameManager.Instance.allSoulInfo.Count == 0) {
+            for(int i = 0; i < soulsInfos.Length; i++) {
+                GameManager.Instance.allSoulInfo.Add(soulsInfos[i].GetUnitData().name , soulsInfos[i].GetUnitData());
+            }
+        }
+
     }
 
     IEnumerator SetSoulInfoCoroutine()

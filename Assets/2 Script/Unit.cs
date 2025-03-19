@@ -140,10 +140,11 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
     }
     protected void UserFightSpawn(int level){
-        Debug.Log("Spawn UserFightSpawn");
-        attackPrecent = (GameManager.Instance.battlesInfo[unit.name].classStruct.soulLevelUpPercent * level + 1) / 100f;
-        hpPercent = (GameManager.Instance.battlesInfo[unit.name].classStruct.soulLevelUpPercent * level + 1) / 100f;
+        attackPrecent = (GameManager.Instance.allSoulInfo[unit.name].classStruct.soulLevelUpPercent * (level + 1)) / 100f;
+        hpPercent = (GameManager.Instance.allSoulInfo[unit.name].classStruct.soulLevelUpPercent * (level + 1)) / 100f;
 
+        Debug.Log($"AttackPercent {attackPrecent}");
+        Debug.Log($"AttackPercent {hpPercent}");
         maxHp = 350 * (hpPercent);
         mp = unit.mp;
         damage = 50 * (attackPrecent);
@@ -157,8 +158,8 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
     protected void Respawn()
     {
-        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss")) targetList = GameObject.Find("PlayerList");
-        if (gameObject.CompareTag("Player")) targetList = GameObject.Find("EnemyList");
+        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss") || gameObject.CompareTag("BattleEnemy")) targetList = GameObject.Find("PlayerList");
+        if (gameObject.CompareTag("Player") || gameObject.CompareTag("BattlePlayer")) targetList = GameObject.Find("EnemyList");
         collider.enabled = true;
         isDie = false;
         isAttack = false;
@@ -180,9 +181,9 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
     protected virtual void SummonerSpawn(Summoner summoner)
     { 
-        Debug.Log($"Unit SummonerSpawn : {gameObject.name}");
-        attackPrecent = GameManager.Instance.soulsInfo[unit.name].curStat.attackStat / 100f;
-        hpPercent = GameManager.Instance.soulsInfo[unit.name].curStat.hpStat / 100f;
+
+        attackPrecent = GameManager.Instance.allSoulInfo[unit.name].curStat.attackStat / 100f;
+        hpPercent = GameManager.Instance.allSoulInfo[unit.name].curStat.hpStat / 100f;
 
         maxHp = summoner.maxHp * (hpPercent);
         mp = unit.mp;
@@ -261,12 +262,14 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             canFollow = false;
             ani?.SetBool("Die", isDie);
             target = null;
+
             if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss") && !GameManager.Instance.gameClear)
             {
                 if(gameObject.CompareTag("Boss")) DailyQuestTab.ClearDailyQuest(QuestType.ClearBoss , 1);
-                
+            
                 EnemySpawner.Instance.CheckDie();
                 DropSoul();
+
             }else if(summonUnit != null){
                 summonUnit.DieSummonUnit(this);
             }
@@ -370,7 +373,6 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
                 attackType = AttackType.CriticalAttack ;
             }
         }
-        
         float rand = UnityEngine.Random.Range(0f , 1f);
         if(rand <= dodge) {
             damage.Setting(AttackType.Dodge);

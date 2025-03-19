@@ -20,6 +20,7 @@ public class ChangeForm : MonoBehaviour , SkillParent
     public void UseSkill()
     {
         if(unit.isDie) return;
+      
 
         if(currentCoolTime <= 0) {
             currentCoolTime = soulsSkillData.skillCoolTime;

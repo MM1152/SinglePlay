@@ -101,8 +101,9 @@ public class GameDataManger : MonoBehaviour
     private string filePath;
     private string couponFilePath;
     private string battleFilePath;
+    private bool isCheckDate;
     public bool dataDownLoad;
-
+    
     public enum SaveType {
         GameData , CouponData , BattleData
     }
@@ -233,8 +234,11 @@ public class GameDataManger : MonoBehaviour
         string data = File.ReadAllText(filePath);
         LoadData = JsonUtility.FromJson<GameData>(data);
 
-        CheckChangeData(LoadData);
-        CheckCompareDateTime(LoadData);
+        if(!isCheckDate) {
+            CheckChangeData(LoadData);
+            CheckCompareDateTime(LoadData);
+        }
+
         if (SceneManager.GetActiveScene().buildIndex == 1) goodsSetting?.Invoke(LoadData.soul, LoadData.gem);
         dataDownLoad = true;
         return LoadData;
@@ -327,7 +331,7 @@ public class GameDataManger : MonoBehaviour
     //EX ) 데이터 추가 등
     void CheckChangeData(GameData LoadData)
     {
-
+        
         bool changeData = false;
         if (LoadData.dateTime == null)
         {
@@ -437,7 +441,7 @@ public class GameDataManger : MonoBehaviour
             LoadData.settingShopList = false;
             LoadData.shopListChangeCount[0] = 3;
             LoadData.shopListChangeCount[1] = 2;
-
+            
             LoadData.getGift = false;
             
             for (int i = 0; i < LoadData.questData.Count; i++)
@@ -453,7 +457,6 @@ public class GameDataManger : MonoBehaviour
             data = LoadData;
 
             GameManager.Instance.connectDB.CheckBattleUserData(GetBattleUserData);
-            
             SaveData(SaveType.GameData);
         }
         else if (isPast > 0)
@@ -462,11 +465,19 @@ public class GameDataManger : MonoBehaviour
             data = LoadData;
             SaveData(SaveType.GameData);
         }
-
+        isCheckDate = true;
         return isPast;
     }
     public void GetBattleUserData(){
+        for(int i = 0 ; i < battleData.battleUserDatas.Count; i++){
+            if(battleData.battleUserDatas[i].userName == data.userName) {
+                GameManager.Instance.connectDB.SettingBattleData(battleData.battleUserDatas[i]);
+                break;
+            }
+        }
+       
         battleData = GameManager.Instance.connectDB.battleuserData;
+        
         SaveData(SaveType.BattleData);
     }
     public void GetSoul(int value)

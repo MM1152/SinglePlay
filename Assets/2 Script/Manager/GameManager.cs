@@ -25,8 +25,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public List<ReclicsData> reclicsDatas;
     public bool reclisFin;
-    public Dictionary<string , UnitData> soulsInfo = new Dictionary<string, UnitData>();
-    public Dictionary<string , UnitData> battlesInfo = new Dictionary<string , UnitData>();
+    public Dictionary<string , UnitData> allSoulInfo = new Dictionary<string , UnitData>();
+    public List<string> soulsInfo = new List<string>();
+    public List<string> battlesInfo = new List<string>();
     public BattleUserData otherBattleUserData;
     public bool soulsFin;
     

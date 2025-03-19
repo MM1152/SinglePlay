@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,9 +11,11 @@ public class CreateSummonUnitViewer : MonoBehaviour
 
     public void CreateViewer(Unit unit)
     {
+ 
         foreach (SummonUnitViewer view in viewerList)
         {
-            if (view.unitName == unit.name)
+            Debug.Log($"Unit Name : {view.unitName}");
+            if (view.unitName == unit.name || (unit.unit.changeFormInfo != null && view.unitName == unit.unit.changeFormInfo.SummonPrefeb.name + "(Clone)"))
             {
                 view.unit = unit;
                 return;

@@ -8,6 +8,7 @@ using System;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 
+
 [Serializable]
 public class BattleDatas {
     public List<BattleUserData> battleUserDatas = new List<BattleUserData>();
@@ -17,6 +18,7 @@ public class BattleDatas {
 public class BattleUserData{
     public string userName;
     public List<MobData> mobList  = new List<MobData>();
+    public int battleScore;
 }
 
 [Serializable]

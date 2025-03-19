@@ -27,7 +27,6 @@ public class Exp : MonoBehaviour
 
     public void SetExpValue(float value){
         
-        Debug.Log("Get Exp " + "(" + value + ")" + "(" + bonus + ")");
         if(!isTutorial && GameManager.Instance.isPlayingTutorial) {
             isTutorial = true;
             level.LevelUp();

@@ -6,11 +6,9 @@ public class CreateDamageMeter : MonoBehaviour
 {
     [SerializeField] SettingMobDamageMeter damageMeter;
     [SerializeField] Transform prefebParent;
-    GameObject on_off;
     List<SettingMobDamageMeter> damageMeterPools = new List<SettingMobDamageMeter>();
     public void Init(Unit unit)
     {
-        on_off = transform.GetChild(0).gameObject;
         if(damageMeter == null) {
             Debug.LogError("Error Find SettingMob");
             return;

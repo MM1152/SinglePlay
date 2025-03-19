@@ -10,6 +10,7 @@ public class BattleList : MonoBehaviour
     [SerializeField] BattleMob prefeb;
     [SerializeField] Transform prefebSpawnPos;
     [SerializeField] Button button;
+    [SerializeField] Text userNameText;
 
     int index;
     void Awake()
@@ -27,6 +28,10 @@ public class BattleList : MonoBehaviour
         BattleMob battlemob = Instantiate(prefeb , prefebSpawnPos).GetComponent<BattleMob>();
         Sprite mobImage = SoulsManager.Instance.soulsInfos[mob.typeNumber].image;
         this.index = index;
+         
         battlemob.Setting(mobImage , mob.level);
+    }
+    public void SetUserName(string userName){
+        userNameText.text = userName;
     }
 }

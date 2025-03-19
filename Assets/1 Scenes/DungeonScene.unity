@@ -45145,6 +45145,7 @@ MonoBehaviour:
   SkillSetting: 0
   dodge: 0
   critical: 0
+  level: 0
   isDie: 0
   tauntStatusEffect: 0
   hpbarPos: {fileID: 0}

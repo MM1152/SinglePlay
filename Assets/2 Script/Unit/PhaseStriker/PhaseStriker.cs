@@ -12,10 +12,11 @@ public class PhaseStriker : Boss
     [SerializeField] protected GameObject archor;
     [SerializeField] protected DaggerPhaseStriker daggerPhaseStriker;
     [SerializeField] protected ArchorPhaseStriker archorPhaseStriker;
-
+    protected Summon summon;
     static float c_hp;
     protected void OnEnable(){ }
     protected void Start() {
+        summon = GetComponent<Summon>();
         base.Start();
         base.OnEnable();
     }
@@ -25,12 +26,16 @@ public class PhaseStriker : Boss
 
         base.Update();
 
-        if(isDie && unit.name == "DaggerPhaseStriker" && archorPhaseStriker.gameObject != null) {
+        if(isDie && archorPhaseStriker?.gameObject != null && gameObject.name == "DaggerPhaseStriker(Clone)") {
+            summoner.changeStatus -= archorPhaseStriker.ChangeStats;
             Destroy(archorPhaseStriker.gameObject);
+            archorPhaseStriker = null;
         } 
-        else if(isDie && unit.name == "ArchorPhaseStriker" &&  daggerPhaseStriker.gameObject != null){
-            daggerPhaseStriker.summonUnit.DieSummonUnit(daggerPhaseStriker); 
+        if(isDie && daggerPhaseStriker?.gameObject != null && gameObject.name == "ArchorPhaseStriker(Clone)" ){
+            summoner.changeStatus -= daggerPhaseStriker.ChangeStats;
+            summon.ChangeFormUnit(daggerPhaseStriker.GetComponent<ChangeForm>());
             Destroy(daggerPhaseStriker.gameObject);
+            daggerPhaseStriker = null;
         }
         /*
         formChangeCoolTime -= Time.deltaTime;
@@ -45,7 +50,7 @@ public class PhaseStriker : Boss
 
     public Unit ChangeForm(){
         PhaseStriker phaseStriker = default;
-        
+        statusEffectMuchine.Exit();
         if(GetType().ToString() == "DaggerPhaseStriker") {
             phaseStriker = archorPhaseStriker;
         }

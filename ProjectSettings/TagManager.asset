@@ -11,6 +11,8 @@ TagManager:
   - Boss
   - SkillExplain
   - Tutorial
+  - BattleEnemy
+  - BattlePlayer
   layers:
   - Default
   - TransparentFX

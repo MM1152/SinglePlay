@@ -6,7 +6,9 @@ public class ArchorPhaseStriker : PhaseStriker
 {
     [SerializeField] GameObject projectile;
     void OnEnable(){ }
-    void Start(){ }
+    void Start(){
+        summon = GetComponent<Summon>();
+     }
     private void Awake() {
         Debug.Log("SettingFin ArchorPhaseStriker");
         base.Awake();
@@ -16,8 +18,11 @@ public class ArchorPhaseStriker : PhaseStriker
        
         daggerPhaseStriker = dagger;
         gameObject.tag = daggerPhaseStriker.gameObject.tag;
-
-        if(daggerPhaseStriker.summoner != null) {
+        if(GameManager.Instance.mapName == "BattleMap") {
+            Respawn();
+            UserFightSpawn(level);
+        }
+        else if(daggerPhaseStriker.summoner != null) {
             summoner = daggerPhaseStriker.summoner;
             SummonUnitSetting(); 
         }

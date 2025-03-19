@@ -13,7 +13,7 @@ public class SummonUnit : MonoBehaviour
     Summoner summoner;
     CreateSummonUnitViewer summonUnitViewer;
     CreateDamageMeter damageMeter;   
-
+    CameraMove cameraMove;
     float time;
     bool spawn ;
     int level;
@@ -21,6 +21,7 @@ public class SummonUnit : MonoBehaviour
         ani = GetComponent<Animator>();
         summonUnitViewer = FindObjectOfType<CreateSummonUnitViewer>();
         damageMeter = FindObjectOfType<CreateDamageMeter>();
+        cameraMove = FindObjectOfType<CameraMove>();
         spawn = false;
     }
     void OnEnable()
@@ -83,6 +84,8 @@ public class SummonUnit : MonoBehaviour
         unit.gameObject.AddComponent<Summon>().Setting(); //\\TODO : 레벨 집어넣기 
         unit.SetActive(false);
         
+        cameraMove.Setting(unit.transform);
+
         unit.transform.position = spawnPos;
         unit.transform.SetParent(parent);
         unit.tag = this.tag;
@@ -90,8 +93,11 @@ public class SummonUnit : MonoBehaviour
 
         yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
 
-        summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
-        damageMeter.Init(unit.GetComponent<Unit>());
+        if(tag == "Player") {
+            summonUnitViewer.CreateViewer(unit.GetComponent<Unit>());
+            damageMeter.Init(unit.GetComponent<Unit>());
+        }
+
         unit.SetActive(true);
         Destroy(gameObject);
     }

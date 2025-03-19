@@ -51,8 +51,8 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
             return;
         }
         
-        if(soulsInfo != null && !GameManager.Instance.soulsInfo.ContainsKey(soulsInfo.GetUnitData().name)){
-            GameManager.Instance.soulsInfo.Add(soulsInfo.GetUnitData().name , soulsInfo.GetUnitData());
+        if(soulsInfo != null && !GameManager.Instance.soulsInfo.Contains(soulsInfo.GetUnitData().name)){
+            GameManager.Instance.soulsInfo.Add(soulsInfo.GetUnitData().name);
         }
         battlePower ??= FindAnyObjectByType<BattlePower>();
         battlePower.SettingBattlePower(soulsInfo.battlePower);
@@ -72,8 +72,8 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
             return;
         }
 
-        if(soulsInfo != null && !GameManager.Instance.battlesInfo.ContainsKey(soulsInfo.GetUnitData().name)){
-            GameManager.Instance.battlesInfo.Add(soulsInfo.GetUnitData().name , soulsInfo.GetUnitData());
+        if(soulsInfo != null && !GameManager.Instance.battlesInfo.Contains(soulsInfo.GetUnitData().name)){
+            GameManager.Instance.battlesInfo.Add(soulsInfo.GetUnitData().name);
         }
     }
 

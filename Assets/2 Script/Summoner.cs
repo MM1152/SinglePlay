@@ -31,7 +31,7 @@ public class Summoner : LongRangeScript
         base.Awake();
         int i = 0;
 
-        foreach(string key in GameManager.Instance.soulsInfo.Keys) {
+        foreach(string key in GameManager.Instance.soulsInfo) {
             SpawnSoul(key , i++);
         }
     }
@@ -141,6 +141,6 @@ public class Summoner : LongRangeScript
         SpawnUnit.transform.position = spawnPosition[spawnPos++] + (Vector2)transform.position;
         SpawnUnit.tag = tag;
         Debug.Log(key);
-        SpawnUnit.Setting(GameManager.Instance.soulsInfo[key].SummonPrefeb , SpawnUnit.transform.position , transform.parent , this);
+        SpawnUnit.Setting(GameManager.Instance.allSoulInfo[key].SummonPrefeb , SpawnUnit.transform.position , transform.parent , this);
     }
 }
