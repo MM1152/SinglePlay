@@ -97,6 +97,7 @@ public class GameDataManger : MonoBehaviour
     [SerializeField] GameData data = null;
     [SerializeField] CouponData couponData = null;
     [SerializeField] BattleDatas battleData = null;
+    public int battlUserIndex;
     public Action<int, int> goodsSetting;
     private string filePath;
     private string couponFilePath;
@@ -152,6 +153,7 @@ public class GameDataManger : MonoBehaviour
 
         string battleData = File.ReadAllText(battleFilePath);
         battleDatas = JsonUtility.FromJson<BattleDatas>(battleData);
+
         return battleDatas;
     }
 
@@ -237,6 +239,14 @@ public class GameDataManger : MonoBehaviour
         if(!isCheckDate) {
             CheckChangeData(LoadData);
             CheckCompareDateTime(LoadData);
+            for(int i = 0 ; i < battleData.battleUserDatas.Count; i++) {
+
+                if(battleData.battleUserDatas[i].userName == LoadData.userName) {
+                  
+                    battlUserIndex = i;
+                    break;
+                }
+            }
         }
 
         if (SceneManager.GetActiveScene().buildIndex == 1) goodsSetting?.Invoke(LoadData.soul, LoadData.gem);
@@ -466,6 +476,7 @@ public class GameDataManger : MonoBehaviour
             SaveData(SaveType.GameData);
         }
         isCheckDate = true;
+        
         return isPast;
     }
     public void GetBattleUserData(){

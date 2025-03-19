@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public List<string> soulsInfo = new List<string>();
     public List<string> battlesInfo = new List<string>();
     public BattleUserData otherBattleUserData;
+    
     public bool soulsFin;
     
     public int currentStage = 10;

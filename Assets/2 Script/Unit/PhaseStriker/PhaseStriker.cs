@@ -27,12 +27,12 @@ public class PhaseStriker : Boss
         base.Update();
 
         if(isDie && archorPhaseStriker?.gameObject != null && gameObject.name == "DaggerPhaseStriker(Clone)") {
-            summoner.changeStatus -= archorPhaseStriker.ChangeStats;
+            if(summoner != null) summoner.changeStatus -= archorPhaseStriker.ChangeStats;
             Destroy(archorPhaseStriker.gameObject);
             archorPhaseStriker = null;
         } 
         if(isDie && daggerPhaseStriker?.gameObject != null && gameObject.name == "ArchorPhaseStriker(Clone)" ){
-            summoner.changeStatus -= daggerPhaseStriker.ChangeStats;
+            if(summoner != null) summoner.changeStatus -= daggerPhaseStriker.ChangeStats;
             summon.ChangeFormUnit(daggerPhaseStriker.GetComponent<ChangeForm>());
             Destroy(daggerPhaseStriker.gameObject);
             daggerPhaseStriker = null;
