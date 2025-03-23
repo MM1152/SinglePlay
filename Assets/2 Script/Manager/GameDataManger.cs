@@ -4,8 +4,6 @@ using UnityEngine;
 using System.IO;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using System.Runtime.ExceptionServices;
-using UnityEngine.AI;
 
 [Serializable]
 public class GameData
@@ -13,8 +11,9 @@ public class GameData
     public string userName;
     public int soul;
     public int gem;
+    public int playAbleCount;
     public List<bool> unLockMap = new List<bool>();
-
+    
     /// <summary>
     /// 1: Attack , 2: Hp , 3: SummonUnitHp , 4: AttackSpeed  , 5: MoveSpeed , 6: BonusTalent , 7: BonusGoods , 8: IncreaesDamage ,
     /// 9: IncreaesHp, 10: CoolTime, 11: SkillDamage, 12 IncreasedExp, 13 Dodge, 14 DrainLife
@@ -35,13 +34,18 @@ public class GameData
     public List<bool> sellingGem = new List<bool>();
     public List<bool> soldOutItem = new List<bool>();
     public bool settingShopList;
+
     public string dateTime;
     public List<bool> dailyGift = new List<bool>();
     public bool getGift;
     public List<int> openCount = new List<int>(); // RandomPick Up 횟수  0 : 유물, 1 : 소울 
     public List<bool> isBoxOpen = new List<bool>();
+
     public List<DailyQuestData> questData = new List<DailyQuestData>();
 
+    public List<BattleUserData> battleUserDatas = new List<BattleUserData>();
+    public bool settingBattleUserData;
+    
     public bool tutorial;
 }
 
@@ -111,7 +115,6 @@ public class GameDataManger : MonoBehaviour
 
     private void Awake()
     {
-
         filePath = Application.persistentDataPath + "/data.json";
         couponFilePath = Application.persistentDataPath + "/coupon.json";
         battleFilePath = Application.persistentDataPath + "/battle.json";
@@ -152,6 +155,7 @@ public class GameDataManger : MonoBehaviour
         }
 
         string battleData = File.ReadAllText(battleFilePath);
+
         battleDatas = JsonUtility.FromJson<BattleDatas>(battleData);
 
         return battleDatas;
@@ -161,6 +165,7 @@ public class GameDataManger : MonoBehaviour
         return battleData;
     }
     #endregion
+
     
     #region GameData
     public GameData LoadData()
@@ -239,9 +244,9 @@ public class GameDataManger : MonoBehaviour
         if(!isCheckDate) {
             CheckChangeData(LoadData);
             CheckCompareDateTime(LoadData);
-            for(int i = 0 ; i < battleData.battleUserDatas.Count; i++) {
+            for(int i = 0 ; i < battleData.user.Count; i++) {
 
-                if(battleData.battleUserDatas[i].userName == LoadData.userName) {
+                if(battleData.user[i].userName == LoadData.userName) {
                   
                     battlUserIndex = i;
                     break;
@@ -261,20 +266,19 @@ public class GameDataManger : MonoBehaviour
             case SaveType.GameData :
                 jsonData = JsonUtility.ToJson(data);
                 if (File.Exists(filePath)) File.WriteAllText(filePath, jsonData);
-                dataDownLoad = false;
-                this.data = LoadData();
+                data = JsonUtility.FromJson<GameData>(jsonData);
                 break;
 
             case SaveType.CouponData :
                 jsonData = JsonUtility.ToJson(couponData);
                 if (File.Exists(couponFilePath)) File.WriteAllText(couponFilePath, jsonData);
-                couponData = LoadCouponData();
+                couponData = JsonUtility.FromJson<CouponData>(jsonData);
                 break;
 
             case SaveType.BattleData :
                 jsonData = JsonUtility.ToJson(battleData);
                 if (File.Exists(battleFilePath)) File.WriteAllText(battleFilePath, jsonData);
-                battleData = LoadBattleData();
+                battleData = JsonUtility.FromJson<BattleDatas>(jsonData);
                 break;
             
         }
@@ -448,10 +452,12 @@ public class GameDataManger : MonoBehaviour
                 }
             }
             LoadData.dateTime = currentDateTime.ToString("yyyy-MM-dd");
+            LoadData.playAbleCount = 5;
             LoadData.settingShopList = false;
             LoadData.shopListChangeCount[0] = 3;
             LoadData.shopListChangeCount[1] = 2;
-            
+            LoadData.settingBattleUserData = false;
+            LoadData.battleUserDatas.Clear();
             LoadData.getGift = false;
             
             for (int i = 0; i < LoadData.questData.Count; i++)
@@ -465,8 +471,9 @@ public class GameDataManger : MonoBehaviour
             }
             
             data = LoadData;
+            
 
-            GameManager.Instance.connectDB.CheckBattleUserData(GetBattleUserData);
+
             SaveData(SaveType.GameData);
         }
         else if (isPast > 0)
@@ -476,21 +483,15 @@ public class GameDataManger : MonoBehaviour
             SaveData(SaveType.GameData);
         }
         isCheckDate = true;
+                    
+        GameManager.Instance.connectDB.ReadData<BattleUserData>(ConnectDB.ReadType.Users , callback1 : (data) => {
+            battleData.user = data;
+            SaveData(SaveType.BattleData);
+        });
         
         return isPast;
     }
-    public void GetBattleUserData(){
-        for(int i = 0 ; i < battleData.battleUserDatas.Count; i++){
-            if(battleData.battleUserDatas[i].userName == data.userName) {
-                GameManager.Instance.connectDB.SettingBattleData(battleData.battleUserDatas[i]);
-                break;
-            }
-        }
-       
-        battleData = GameManager.Instance.connectDB.battleuserData;
-        
-        SaveData(SaveType.BattleData);
-    }
+
     public void GetSoul(int value)
     {
         data.soul += value;

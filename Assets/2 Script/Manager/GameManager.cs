@@ -27,9 +27,11 @@ public class GameManager : MonoBehaviour
     public bool reclisFin;
     public Dictionary<string , UnitData> allSoulInfo = new Dictionary<string , UnitData>();
     public List<string> soulsInfo = new List<string>();
+
     public List<string> battlesInfo = new List<string>();
     public BattleUserData otherBattleUserData;
-    
+    public bool battleWin;
+
     public bool soulsFin;
     
     public int currentStage = 10;
@@ -67,7 +69,7 @@ public class GameManager : MonoBehaviour
             getSoulAnimation = GetComponent<GetSoulAnimation>();
             connectDB = GetComponent<ConnectDB>();
             connectDB.Init();
-            connectDB.CheckVersion((value) => checkVesion.DifferentVersion(value));
+            connectDB.ReadData<string>(ConnectDB.ReadType.Version , (value) => checkVesion.DifferentVersion(value));
             
 
             //connectDB.CheckUserName((value) => checkVesion.DifferentVersion(value));

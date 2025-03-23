@@ -37,7 +37,7 @@ public class TeamSetting : MonoBehaviour
             SoulsInfo info = equip.GetSoulInfo();
             if(info != null) battleUserData.mobList.Add(new MobData(info.GetUnitData().name , info.GetUnitData().typenumber - 1 , info.soulLevel));
         }
-        GameManager.Instance.connectDB.SettingBattleData(battleUserData);
+        GameManager.Instance.connectDB.WriteBattleData(battleUserData);
     }
 
 }

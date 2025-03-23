@@ -7,11 +7,14 @@ using Firebase.Database;
 using System;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using System.Text.RegularExpressions;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 
 [Serializable]
 public class BattleDatas {
-    public List<BattleUserData> battleUserDatas = new List<BattleUserData>();
+    public List<BattleUserData> user = new List<BattleUserData>();
 }
 
 [Serializable]
@@ -37,6 +40,12 @@ public class MobData {
 public class ConnectDB : MonoBehaviour
 {
     // Start is called before the first frame update
+    public enum ReadType {
+        None , Users , Version , BattleScore
+    }
+    public enum WriteType {
+        None , BattleScore , Users
+    }
     FirebaseApp app;
     DatabaseReference m_Reference;
     public bool connection;
@@ -51,7 +60,6 @@ public class ConnectDB : MonoBehaviour
             var dependencyStatus = task.Result;
             if (dependencyStatus == Firebase.DependencyStatus.Available)
             {
-                app = Firebase.FirebaseApp.DefaultInstance;
                 m_Reference = FirebaseDatabase.DefaultInstance.RootReference;
             }
             else
@@ -63,7 +71,7 @@ public class ConnectDB : MonoBehaviour
             });
 
         } catch (Exception ex) {
-            Debug.LogError(ex);
+            UnityEngine.Debug.LogError(ex);
         }
     }
 
@@ -73,70 +81,52 @@ public class ConnectDB : MonoBehaviour
     }
 
 
-    public void CheckVersion(Action<string> getVersion){
+    public T ReadData<T>(ReadType type , Action<T> callback = null , Action<List<T>> callback1 = null){
         if(!connection) {
-            StartCoroutine(SettingFin(() => CheckVersion(getVersion)));
-            return;
-        }
-        try {
-            FirebaseDatabase.DefaultInstance.GetReference("Version").GetValueAsync().ContinueWithOnMainThread(task => {
-                if(task.IsFaulted) {
-                    Debug.LogError("Fail To Get Version");
-                    getVersion(""); 
-                }
-                else if(task.IsCompleted) {
-                    DataSnapshot snapshot = task.Result; 
-                    Debug.Log(snapshot);
-                    getVersion(snapshot.Value.ToString());    
-                }
-            });
-        }catch (Exception ex) {
-            Debug.LogError(ex);
-            getVersion("");
-        }
+            StartCoroutine(SettingFin(() => ReadData<T>(type , callback , callback1)));
+            return default;
+        } 
+
+        DatabaseReference _reference = FirebaseDatabase.DefaultInstance.GetReference(type.ToString());
         
-    }
-    public void CheckBattleUserData(Action getData = null){
-        if(!connection) {
-            StartCoroutine(SettingFin(() => CheckBattleUserData(getData)));
-            return;
-        }
-        try {
-            var task = FirebaseDatabase.DefaultInstance.GetReference("Users").GetValueAsync().ContinueWithOnMainThread(task => {
-                if(task.IsFaulted) {
-                    Debug.Log("Fail To get BattleUserData");
-                }
-                else if(task.IsCompleted) {
-                    DataSnapshot snapshot = task.Result; 
+        _reference.GetValueAsync().ContinueWithOnMainThread(task => {
+            if(task.IsCompleted) {
+                DataSnapshot snapshot = task.Result;
+
+                if(type == ReadType.Version) callback?.Invoke((T)snapshot.Value);
                 
+                if(type == ReadType.Users){
+                    List<T> returnValue = new List<T>();
+
                     foreach(var user in snapshot.Children) {
-                        battleuserData.battleUserDatas.Add(JsonUtility.FromJson<BattleUserData>(user.GetRawJsonValue()));
+                        returnValue.Add(JsonUtility.FromJson<T>(user.GetRawJsonValue()));  
                     }
                     
-                    getData();
+                    callback1?.Invoke(returnValue);
                 }
-            });
-            
-
-        }catch (Exception ex) {
-            Debug.LogError(ex);
-        }
+            }
+        });
+        return default;
     }
 
-    public void WriteData(string text){
-        
-        m_Reference.Child("Users").Child(GameDataManger.Instance.GetGameData().userName).Child("userName").SetValueAsync(text);
-
+    public void WriteUserData(){
         BattleUserData mob = new BattleUserData();
-        mob.userName = text;
+        mob.userName = GameDataManger.Instance.GetGameData().userName;
 
         string json = JsonUtility.ToJson(mob);
         
-        m_Reference.Child("Users").Child(text).SetRawJsonValueAsync(json);
+        m_Reference.Child("Users").Child(mob.userName).SetRawJsonValueAsync(json);
     }
 
-    public void SettingBattleData(BattleUserData battleUserData){
+    public void WriteBattleData(BattleUserData battleUserData){
         string json = JsonUtility.ToJson(battleUserData);
+
         m_Reference.Child("Users").Child(GameDataManger.Instance.GetGameData().userName).SetRawJsonValueAsync(json);
+    }
+
+    public void WriteBattleScore(){
+        BattleUserData mob = GameDataManger.Instance.GetBattleData().user[GameDataManger.Instance.battlUserIndex];
+        UnityEngine.Debug.Log(m_Reference.Child("Users").Child(mob.userName).GetValueAsync());
+        m_Reference.Child("Users").Child(mob.userName).UpdateChildrenAsync(new Dictionary<string, object>() {{"battleScore" , mob.battleScore}});
     }
 }

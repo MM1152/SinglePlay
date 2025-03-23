@@ -48,8 +48,8 @@ public class Filtering : MonoBehaviour
 
         if(input.text.Equals(check)) {
             BattleDatas battleDatas = GameDataManger.Instance.GetBattleData();
-            for(int i = 0; i < battleDatas.battleUserDatas.Count; i++) {
-                if(battleDatas.battleUserDatas[i].userName == check) {
+            for(int i = 0; i < battleDatas.user.Count; i++) {
+                if(battleDatas.user[i].userName == check) {
                     SetFailToSetNickName("중복되는 닉네임 입니다.");
                     return;
                 }
@@ -57,7 +57,7 @@ public class Filtering : MonoBehaviour
 
             GameDataManger.Instance.GetGameData().userName = input.text;
             GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
-            GameManager.Instance.connectDB.WriteData(input.text);
+            GameManager.Instance.connectDB.WriteUserData();
             gameObject.SetActive(false);
         }else {
             SetFailToSetNickName("특수문자는 사용할 수 없습니다.");

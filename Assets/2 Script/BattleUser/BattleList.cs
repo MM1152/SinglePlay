@@ -12,16 +12,21 @@ public class BattleList : MonoBehaviour
     [SerializeField] Transform prefebSpawnPos;
     [SerializeField] Button button;
     [SerializeField] Text userNameText;
-    [SerializeField] Text score;
+    [SerializeField] Tier tier;
     
     BattleUserData otherUserData;
     void Awake()
     {
         button.onClick.AddListener(() => {
+            if(GameDataManger.Instance.GetGameData().playAbleCount < 1) return;
             GameManager.Instance.otherBattleUserData = otherUserData;
+            GameDataManger.Instance.GetGameData().playAbleCount--;
+            GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
             GameManager.Instance.mapName = "BattleMap";
             LoadingScene.LoadScene("BattleMap");
         });
+
+        tier = transform.GetComponentInChildren<Tier>();
     }
     /// <param name="index">BattleUserData에 index값으로 접근하기 위함</param>
     /// <param name="mob">Use MobData</param>
@@ -36,7 +41,7 @@ public class BattleList : MonoBehaviour
         }
         
         userNameText.text = mob.userName;
-        score.text = mob.battleScore + "";
+        tier.Init(mob.battleScore);
         
     }
     public void SetUserName(string userName){

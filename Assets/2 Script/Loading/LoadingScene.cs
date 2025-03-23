@@ -27,7 +27,6 @@ public class LoadingScene : MonoBehaviour
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
         while(!op.isDone) {
-            Debug.Log(GameManager.Instance.checkVesion.checkingVersion);
             if(progressBar.value < 0.9f) {
                 progressBar.value = op.progress;
             }  

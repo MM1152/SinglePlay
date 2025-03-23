@@ -49,7 +49,8 @@ public class SpawnBattleMob : MonoBehaviour
         }
 
         BattleUserData battleUserData = GameManager.Instance.otherBattleUserData;
-
+        count = 0;
+        
         for(int i = 0 ; i < battleUserData.mobList.Count; i++) {
             SummonUnit spawn = Instantiate(summonUnit , otherPlayerSpawn).GetComponent<SummonUnit>();
 
