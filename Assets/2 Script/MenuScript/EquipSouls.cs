@@ -40,6 +40,7 @@ public class EquipSouls : MonoBehaviour , IPointerEnterHandler
         if(_soulInfo != null)  {
             battlePower.SettingBattlePower(-_soulInfo.battlePower);
             SoulsManager.Instance.equipDic.Remove(_soulInfo);    
+            GameManager.Instance.soulsInfo.Remove(_soulInfo.GetUnitData().name);
         }
 
         this.soulsInfo = soulsInfo;

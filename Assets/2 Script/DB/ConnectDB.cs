@@ -18,10 +18,12 @@ public class BattleDatas {
 }
 
 [Serializable]
-public class BattleUserData{
+public class BattleUserData : ISpawnPosibillity{
     public string userName;
     public List<MobData> mobList  = new List<MobData>();
     public int battleScore;
+
+    public float spawnProbabillity { get ; set ; }
 }
 
 [Serializable]

@@ -101,6 +101,7 @@ public class GameDataManger : MonoBehaviour
     [SerializeField] GameData data = null;
     [SerializeField] CouponData couponData = null;
     [SerializeField] BattleDatas battleData = null;
+    UI_UserFightReward ui_UserFightReward;
     public int battlUserIndex;
     public Action<int, int> goodsSetting;
     private string filePath;
@@ -118,7 +119,7 @@ public class GameDataManger : MonoBehaviour
         filePath = Application.persistentDataPath + "/data.json";
         couponFilePath = Application.persistentDataPath + "/coupon.json";
         battleFilePath = Application.persistentDataPath + "/battle.json";
-
+     
         Debug.Log(filePath);
         Debug.Log(couponFilePath);
         Debug.Log(battleFilePath);
@@ -136,10 +137,12 @@ public class GameDataManger : MonoBehaviour
     }
     private void Start()
     {
+        
         battleData = LoadBattleData();
         data = LoadData();
         couponData = LoadCouponData();
-        
+
+
         DailyQuestTab.dailyQuestTab.Setting();
         if(!data.tutorial && !GameManager.Instance.isPlayingTutorial) {
             GameManager.Instance.StartTutorial(0);
@@ -155,7 +158,8 @@ public class GameDataManger : MonoBehaviour
         }
 
         string battleData = File.ReadAllText(battleFilePath);
-
+        if(Key.IsEncrypted(battleData)) battleData = Key.Decrypt(battleData);
+        
         battleDatas = JsonUtility.FromJson<BattleDatas>(battleData);
 
         return battleDatas;
@@ -239,7 +243,9 @@ public class GameDataManger : MonoBehaviour
         }
 
         string data = File.ReadAllText(filePath);
+        if(Key.IsEncrypted(data)) data = Key.Decrypt(data);
         LoadData = JsonUtility.FromJson<GameData>(data);
+        
 
         if(!isCheckDate) {
             CheckChangeData(LoadData);
@@ -265,19 +271,28 @@ public class GameDataManger : MonoBehaviour
 
             case SaveType.GameData :
                 jsonData = JsonUtility.ToJson(data);
+                jsonData = Key.Encrypt(jsonData);
                 if (File.Exists(filePath)) File.WriteAllText(filePath, jsonData);
+                
+                jsonData = Key.Decrypt(jsonData);
                 data = JsonUtility.FromJson<GameData>(jsonData);
                 break;
 
             case SaveType.CouponData :
                 jsonData = JsonUtility.ToJson(couponData);
+                jsonData = Key.Encrypt(jsonData);
                 if (File.Exists(couponFilePath)) File.WriteAllText(couponFilePath, jsonData);
+
+                jsonData = Key.Decrypt(jsonData);
                 couponData = JsonUtility.FromJson<CouponData>(jsonData);
                 break;
 
             case SaveType.BattleData :
                 jsonData = JsonUtility.ToJson(battleData);
+                jsonData = Key.Encrypt(jsonData);
                 if (File.Exists(battleFilePath)) File.WriteAllText(battleFilePath, jsonData);
+
+                jsonData = Key.Decrypt(jsonData);
                 battleData = JsonUtility.FromJson<BattleDatas>(jsonData);
                 break;
             
@@ -318,7 +333,9 @@ public class GameDataManger : MonoBehaviour
                 File.WriteAllText(couponFilePath, JsonUtility.ToJson(couponData));
             }
         }
-        couponData = JsonUtility.FromJson<CouponData>(File.ReadAllText(couponFilePath));
+        string coupon = File.ReadAllText(couponFilePath);
+        if(Key.IsEncrypted(coupon)) coupon = Key.Decrypt(coupon);
+        couponData = JsonUtility.FromJson<CouponData>(coupon);
         return couponData;
     }
     public void SaveCouponData()
@@ -451,6 +468,14 @@ public class GameDataManger : MonoBehaviour
                     LoadData.dailyGift[i] = false;
                 }
             }
+
+            if(currentDateTime.DayOfWeek == DayOfWeek.Monday) {
+                MenuScene.menuScene.StartCoroutine(MenuScene.menuScene.GetUi(typeof(UI_UserFightReward) , (component) => {
+                    ui_UserFightReward = component.GetComponent<UI_UserFightReward>();
+                    ui_UserFightReward.Init();
+                }));
+            }
+
             LoadData.dateTime = currentDateTime.ToString("yyyy-MM-dd");
             LoadData.playAbleCount = 5;
             LoadData.settingShopList = false;

@@ -43,6 +43,7 @@ public class LongRangeScript : Unit , ISummonUnit
         GameObject attackObj = PoolingManager.Instance.ShowObject(projectile.name+"(Clone)", projectile);
         ProjecTile projecTile = attackObj.GetComponent<ProjecTile>();
 
+        if(target == null) PoolingManager.Instance.ReturnObject(attackObj.name , gameObject);
         projecTile.tag = gameObject.tag;
         projecTile.target = target.transform;
         projecTile.unitData = this;

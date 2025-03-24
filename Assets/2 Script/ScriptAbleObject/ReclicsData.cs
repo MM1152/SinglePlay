@@ -37,7 +37,7 @@ public struct ClassStruct {
                 gemCost = 0;
                 break;
             case ItemClass.COMMON :
-                dropSoulpercent = 0.015f;
+                dropSoulpercent = 0.0015f;
                 soulInintPercent = 30f;
                 soulLevelUpPercent = 5f;
                 initCost = 40f;
@@ -48,7 +48,7 @@ public struct ClassStruct {
                 gemCost = 10;
                 break;
             case ItemClass.UNCOMMON :
-                dropSoulpercent = 0.008f;
+                dropSoulpercent = 0.015f;
                 soulInintPercent = 40f;
                 soulLevelUpPercent = 8f;
                 initCost = 80f;
@@ -59,7 +59,7 @@ public struct ClassStruct {
                 gemCost = 20;
                 break;
             case ItemClass.RARE :
-                dropSoulpercent = 0.003f;
+                dropSoulpercent = 0.005f;
                 soulInintPercent = 50f;
                 soulLevelUpPercent = 10f;
                 initCost = 120f;
@@ -70,7 +70,7 @@ public struct ClassStruct {
                 gemCost = 50;
                 break;
             case ItemClass.UNIQUE :
-                dropSoulpercent = 0.0008f;
+                dropSoulpercent = 0.001f;
                 soulInintPercent = 65f;
                 soulLevelUpPercent = 12f;
                 initCost = 160f;
@@ -81,7 +81,7 @@ public struct ClassStruct {
                 gemCost = 100;
                 break;
             case ItemClass.LEGENDARY :
-                dropSoulpercent = 0.0002f;
+                dropSoulpercent = 0.0008f;
                 soulInintPercent = 80f;
                 soulLevelUpPercent = 17f;
                 initCost = 250f;

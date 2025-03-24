@@ -13,19 +13,30 @@ public class BattleList : MonoBehaviour
     [SerializeField] Button button;
     [SerializeField] Text userNameText;
     [SerializeField] Tier tier;
-    
+    [SerializeField] Image trophy;
     BattleUserData otherUserData;
-    void Awake()
-    {
-        button.onClick.AddListener(() => {
-            if(GameDataManger.Instance.GetGameData().playAbleCount < 1) return;
-            GameManager.Instance.otherBattleUserData = otherUserData;
-            GameDataManger.Instance.GetGameData().playAbleCount--;
-            GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
-            GameManager.Instance.mapName = "BattleMap";
-            LoadingScene.LoadScene("BattleMap");
-        });
 
+    [SerializeField] Sprite[] trophyImages; 
+
+    public void Init(bool inList , Action callback = null) {
+        if(inList) {
+                button?.onClick.AddListener(() => {
+                    if(GameDataManger.Instance.GetGameData().playAbleCount < 1) return;
+
+                    GameDataManger.Instance.GetGameData().settingBattleUserData = false;
+                    GameManager.Instance.otherBattleUserData = otherUserData;
+                    GameDataManger.Instance.GetGameData().playAbleCount--;
+                    GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
+
+                    callback?.Invoke();
+                    GameManager.Instance.mapName = "BattleMap";
+                    LoadingScene.LoadScene("BattleMap");
+                });
+                button.gameObject.SetActive(true);
+        }
+        else {
+            trophy.gameObject.SetActive(true);
+        }
         tier = transform.GetComponentInChildren<Tier>();
     }
     /// <param name="index">BattleUserData에 index값으로 접근하기 위함</param>
@@ -42,7 +53,9 @@ public class BattleList : MonoBehaviour
         
         userNameText.text = mob.userName;
         tier.Init(mob.battleScore);
-        
+    }
+    public void SettingRank(int index){
+        trophy.sprite = trophyImages[index];
     }
     public void SetUserName(string userName){
         userNameText.text = userName;

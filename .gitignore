@@ -79,3 +79,4 @@ Firebase/
 StreamingAssets/
 ApiKey.js
 user.keystore
+@SavePrivateKey

@@ -1,10 +1,12 @@
 using System;
-using UnityEditorInternal;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 public class BaseUI
 {
+    
     static BaseUI _instance;
     public static BaseUI instance { get { return Init(); } }
 
@@ -16,24 +18,22 @@ public class BaseUI
         return _instance;
     }
 
-    public void LoadUi(string filePath , Action<GameObject> getUiData = null){
+    public ResourceRequest AsyncLoadUi(string filePath , Action<GameObject> getUiData = null){
         ResourceRequest load = Resources.LoadAsync<GameObject>("UI/" + filePath);
+        
         load.completed += (task) => {
             if(task.isDone) {
                 GameObject go = (GameObject) load.asset;
                 getUiData?.Invoke(go);
             }
         };
+
+        return load;
     }
 
-    public T GetAddUiData<T>(GameObject go) where T : Component{
-        T componet = go.GetComponent<T>();
-
-        if(componet == null) {
-            componet = go.AddComponent<T>();
-        }
-
-        return componet;
+    public GameObject SynchLoadUi(string filePath){
+        GameObject load = Resources.Load<GameObject>("UI/" + filePath);
+        return load;
     }
 
 }

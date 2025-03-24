@@ -10,7 +10,9 @@ public class SoulsTab : MonoBehaviour
     
     private void Start()
     {
+        soulsExplainTab.Init(this);
         soulsExplainTab.SetEquip += StartCoroutine;
+        
     }
 
     public void SetInfo(SoulsInfo info , bool open_To_SoulTab , EquipSouls equip)

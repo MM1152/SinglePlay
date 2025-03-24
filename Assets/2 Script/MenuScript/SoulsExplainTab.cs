@@ -76,7 +76,9 @@ public class SoulsExplainTab : MonoBehaviour
     private RectTransform rect;
 
     public Action SetEquip;
-    public Action SetUnEquip;
+    public Action SetUnEquuip;
+    
+    SoulsTab soulsTab;
     private void Awake()
     {
         
@@ -96,9 +98,16 @@ public class SoulsExplainTab : MonoBehaviour
 
         unEquipButton.onClick.AddListener(() =>
         {
-            equipSouls.SetSoulInfo(null);
-            GameManager.Instance.soulsInfo.Remove(soulInfo.GetUnitData().name);
-            this.gameObject.SetActive(false);
+            if(!soulsTab.gameObject.activeSelf) {
+                equipSouls.SetSoulInfoForBattle(null);
+                GameManager.Instance.battlesInfo.Remove(soulInfo.GetUnitData().name);
+                this.gameObject.SetActive(false);
+            }
+            else {
+                equipSouls.SetSoulInfo(null);
+                GameManager.Instance.soulsInfo.Remove(soulInfo.GetUnitData().name);
+                this.gameObject.SetActive(false);
+            }
         });
 
         changeForm.onClick.AddListener(() => {
@@ -115,8 +124,10 @@ public class SoulsExplainTab : MonoBehaviour
         skillExplainTab.SetActive(false);
         changeForm.gameObject.SetActive(false);
     }
-
-    public void SettingSoulExplainTab(SoulsInfo soulsInfo, bool open_To_SoulTab, EquipSouls equip)
+    public void Init(SoulsTab soulsTab) {
+        this.soulsTab = soulsTab;
+    }
+    public void SettingSoulExplainTab(SoulsInfo soulsInfo, bool open_To_SoulTab, EquipSouls equip )
     {
         soulInfo = soulsInfo;
         this.equipSouls = equip;

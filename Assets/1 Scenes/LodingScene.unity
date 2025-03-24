@@ -15260,6 +15260,7 @@ MonoBehaviour:
     userName: 
     mobList: []
     battleScore: 0
+  battleWin: 0
   soulsFin: 0
   currentStage: 1
   clearMonseter: 50
@@ -15308,7 +15309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connection: 0
   battleuserData:
-    battleUserDatas: []
+    user: []
 --- !u!1 &1544798385
 GameObject:
   m_ObjectHideFlags: 0

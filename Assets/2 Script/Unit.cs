@@ -79,7 +79,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
 
     /************************************/
-    
+
     protected virtual void Awake()
     {
         overlapDamage = 0;
@@ -89,18 +89,19 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         rg.gravityScale = 0;
         rg.sleepMode = RigidbodySleepMode2D.NeverSleep;
         damageShowPos = transform.Find("DamageShowPosition");
-        hpbarPos =  transform.Find("HpbarPos");
-        hpbarPos.transform.position -= new Vector3(0f , 0f , hpbarPos.transform.position.z);
+        hpbarPos = transform.Find("HpbarPos");
+        hpbarPos.transform.position -= new Vector3(0f, 0f, hpbarPos.transform.position.z);
 
         skillData = new List<SkillParent>();
-        if(!GameManager.Instance.setting.showHpButton.isSelect) hpBar = Resources.Load<GameObject>("UI/HpCanvas");
+        if (!GameManager.Instance.setting.showHpButton.isSelect) hpBar = Resources.Load<GameObject>("UI/HpCanvas");
         statusEffectMuchine = new StatusEffect(this);
         sp = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>() ? GetComponent<Animator>() : null;
         canFollow = true;
-        
-        if(hpBar != null) {
-            GameObject hpbarCanvas = Instantiate(this.hpBar , hpbarPos);
+
+        if (hpBar != null)
+        {
+            GameObject hpbarCanvas = Instantiate(this.hpBar, hpbarPos);
             Hpbar hpbar = hpbarCanvas.transform.GetComponentInChildren<Hpbar>();
             hpbarCanvas.transform.position = hpbarPos.position;
             hpbarCanvas.transform.position += Vector3.forward * 1f;
@@ -121,7 +122,8 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
                 return;
             }
 
-            if (!isAttack ) {
+            if (!isAttack)
+            {
                 currentAttackSpeed -= Time.deltaTime;
                 Flip();
             }
@@ -133,13 +135,14 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
                     skill.UseSkill();
                 }
             }
-            
+
             ani?.SetBool("Move", FollowTarget());
 
         }
 
     }
-    protected void UserFightSpawn(int level){
+    protected void UserFightSpawn(int level)
+    {
         attackPrecent = (GameManager.Instance.allSoulInfo[unit.name].classStruct.soulLevelUpPercent * (level + 1)) / 100f;
         hpPercent = (GameManager.Instance.allSoulInfo[unit.name].classStruct.soulLevelUpPercent * (level + 1)) / 100f;
 
@@ -152,7 +155,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
         critical = 0.1f;
-        
+
         hp = maxHp;
     }
 
@@ -180,7 +183,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     }
 
     protected virtual void SummonerSpawn(Summoner summoner)
-    { 
+    {
 
         attackPrecent = GameManager.Instance.allSoulInfo[unit.name].curStat.attackStat / 100f;
         hpPercent = GameManager.Instance.allSoulInfo[unit.name].curStat.hpStat / 100f;
@@ -192,7 +195,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
         critical = summoner.critical;
-    
+
         hp = maxHp;
         summonUnit = GetComponent<ISummonUnit>();
     }
@@ -216,14 +219,14 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         maxHp = summonUnit.summoner.hp * (hpPercent + bonusHp);
         mp = unit.mp;
         damage = summonUnit.summoner.damage * (attackPrecent + bonusAttack + buffAttack);
-        speed = unit.speed * (1 + bonusSpeed + buffSpeed); 
+        speed = unit.speed * (1 + bonusSpeed + buffSpeed);
         attackRadious = unit.attackRadious;
         setInitAttackSpeed = unit.attackSpeed;
         critical = summonUnit.summoner.critical;
 
         hp = maxHp * thisHpPercent;
     }
-    
+
     protected virtual void Attack()
     {
         canAttack = !isSkill && !isAttack && target != null && attackRadious > Vector2.Distance(target.transform.position, transform.position) && currentAttackSpeed <= 0;
@@ -231,14 +234,14 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         if (canAttack)
         {
             isAttack = true;
-            if(setInitAttackSpeed >= 1) ani.SetFloat("AttackSpeed" , 1f);
-            else ani.SetFloat("AttackSpeed" , 1f / setInitAttackSpeed);
+            if (setInitAttackSpeed >= 1) ani.SetFloat("AttackSpeed", 1f);
+            else ani.SetFloat("AttackSpeed", 1f / setInitAttackSpeed);
             ani?.SetBool("Attack", true);
             currentAttackSpeed = setInitAttackSpeed;
             StartCoroutine(WaitForAttackAnimationCorutine());
         }
 
-        
+
 
     }
     /*
@@ -265,12 +268,14 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
 
             if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Boss") && !GameManager.Instance.gameClear)
             {
-                if(gameObject.CompareTag("Boss")) DailyQuestTab.ClearDailyQuest(QuestType.ClearBoss , 1);
-            
+                if (gameObject.CompareTag("Boss")) DailyQuestTab.ClearDailyQuest(QuestType.ClearBoss, 1);
+
                 EnemySpawner.Instance.CheckDie();
                 DropSoul();
 
-            }else if(summonUnit != null){
+            }
+            else if (summonUnit != null)
+            {
                 summonUnit.DieSummonUnit(this);
             }
 
@@ -283,38 +288,37 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     }
     protected bool FollowTarget()
     {
-            if (target != null && !target.GetComponent<IFollowTarget>().canFollow) target = null;
+        if (target != null && !target.GetComponent<IFollowTarget>().canFollow) target = null;
 
-            if (target == null)
-            {
-                target = FindTarget(targetList);
-                return false;
-            }
+        if (target == null)
+        {
+            target = FindTarget(targetList);
+            return false;
+        }
 
-            // 도발 상태이상에 걸린 상태라면 FindTarget을 수행하지 않도록 변경
-            if (target?.name != "NextStage" && statusEffectMuchine.GetStatusEffect(new TauntEffect()))
-            {
-                target = FindTarget(targetList);
-            }
+        // 도발 상태이상에 걸린 상태라면 FindTarget을 수행하지 않도록 변경
+        if (target?.name != "NextStage" && statusEffectMuchine.GetStatusEffect(new TauntEffect()))
+        {
+            target = FindTarget(targetList);
+        }
 
-            if (target?.name != "NextStage" && Vector2.Distance(target.transform.position, transform.position) < attackRadious || isAttack) return false;
-            if (isAttack || isSkill) return false;
+        if (target?.name != "NextStage" && Vector2.Distance(target.transform.position, transform.position) < attackRadious || isAttack) return false;
+        if (isAttack || isSkill) return false;
 
-        
+
 
         transform.position += (target.transform.position - transform.position).normalized * speed * Time.deltaTime;
         return true;
     }
     protected GameObject FindTarget(GameObject TargetList)
     {
-
         GameObject returnGameObject = null;
         float minDistance = 9999999f;
 
         foreach (Transform targets in TargetList.transform)
         {
-
-            if (targets.GetComponent<IFollowTarget>().canFollow && Vector2.Distance(targets.position, transform.position) < minDistance )
+            IFollowTarget followTarget;
+            if (targets.TryGetComponent<IFollowTarget>(out followTarget) && followTarget.canFollow && Vector2.Distance(targets.position, transform.position) < minDistance)
             {
                 minDistance = Vector2.Distance(targets.position, transform.position);
                 returnGameObject = targets.gameObject;
@@ -339,7 +343,7 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
             PoolingManager.Instance.ReturnObject(gameObject.name, gameObject);
         }
         else
-        {     
+        {
             Destroy(gameObject);
         }
 
@@ -363,18 +367,21 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
     }
 
     public void Hit(float Damage, Unit applyunit, float Critical = 0, AttackType attackType = AttackType.None)
-    { 
+    {
         DamageText damage = PoolingManager.Instance.ShowDamage().GetComponent<DamageText>();
-        
-        if(applyunit != null) {
-            bool isclitical = UnityEngine.Random.Range(0f , 1f) <= applyunit.critical ? true : false;
-            if(isclitical) {
+
+        if (applyunit != null)
+        {
+            bool isclitical = UnityEngine.Random.Range(0f, 1f) <= applyunit.critical ? true : false;
+            if (isclitical)
+            {
                 Damage = Damage * applyunit.cliticalPercent;
-                attackType = AttackType.CriticalAttack ;
+                attackType = AttackType.CriticalAttack;
             }
         }
-        float rand = UnityEngine.Random.Range(0f , 1f);
-        if(rand <= dodge) {
+        float rand = UnityEngine.Random.Range(0f, 1f);
+        if (rand <= dodge)
+        {
             damage.Setting(AttackType.Dodge);
             damage.damage = 0;
             damage.target = damageShowPos;
@@ -383,15 +390,16 @@ public class Unit : MonoBehaviour, IFollowTarget, ISpawnPosibillity, IDamageAble
         }
         SoundManager.Instance.Play(SoundManager.SFX.Hit);
         damage.Setting(attackType);
-        damage.damage = (int) Damage;
+        damage.damage = (int)Damage;
         damage.target = damageShowPos;
 
-        
-        if(applyunit.GetComponent<ISummonUnit>().summoner != null) {
-            applyunit.overlapDamage += (int) Damage;
-            SettingMobDamageMeter.maxDamage += (int) Damage;
+
+        if (applyunit.GetComponent<ISummonUnit>().summoner != null)
+        {
+            applyunit.overlapDamage += (int)Damage;
+            SettingMobDamageMeter.maxDamage += (int)Damage;
         }
-        
+
         if (shild >= Damage) shild -= Damage;
         else if (shild < Damage)
         {
