@@ -80,12 +80,14 @@ public class PhaseStriker : Boss
         changeUnit.transform.position = gameObject.transform.position;
         canFollow = false;
         isSkill = false;
+        statusEffectMuchine.Exit();
+        
         gameObject.SetActive(false);
     }
 
     IEnumerator WaitShowAnimation(){
         yield return new WaitUntil(() =>  ani.GetCurrentAnimatorStateInfo(0).IsName("Show") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f);
-        if(GetType().ToString() == "DaggerPhaseStriker" && Vector2.Distance(target.transform.position , gameObject.transform.position) <= unit.attackRadious) {
+        if(GetType().ToString() == "DaggerPhaseStriker" && target != null && Vector2.Distance(target.transform.position , gameObject.transform.position) <= unit.attackRadious) {
             target.GetComponent<IDamageAble>().Hit(damage , this , critical , AttackType.SkillAttack);
         }
         canFollow = true;
