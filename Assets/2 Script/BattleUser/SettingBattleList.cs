@@ -18,7 +18,8 @@ namespace BattleUser
 
         [SerializeField] Button rankButton;
         [SerializeField] Button rankInfoButton;
-
+        [SerializeField] Button AD_playCountButton; // 유저 전투 기능 횟수 추가 버튼
+        [SerializeField] Button rerollBattleListButton;
         Dictionary<ItemClass , List<UnitData>> unitDatas = new Dictionary<ItemClass, List<UnitData>>();
 
         
@@ -37,6 +38,29 @@ namespace BattleUser
             playAbleCount.text = GameDataManger.Instance.GetGameData().playAbleCount + "/" + 5;
 
             tier.Init(GameDataManger.Instance.GetBattleData().user[GameDataManger.Instance.battlUserIndex].battleScore);
+
+            AD_playCountButton.transform.GetComponentInChildren<Text>().text = GameDataManger.Instance.GetGameData().Ad_playAbleCount + "/" + 3;
+            AD_playCountButton.onClick.AddListener(() =>{ 
+                if(GameDataManger.Instance.GetGameData().playAbleCount > 5 && GameDataManger.Instance.GetGameData().Ad_playAbleCount > 0) {
+                    GoogleAdMobs.instance.ShowRewardedAd(() => {
+                        GameDataManger.Instance.GetGameData().playAbleCount++;
+                        GameDataManger.Instance.GetGameData().Ad_playAbleCount--;
+                        GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
+                        playAbleCount.text = GameDataManger.Instance.GetGameData().playAbleCount + "/" + 5;
+                    });
+                }
+            });
+
+            rerollBattleListButton.transform.GetComponentInChildren<Text>().text = GameDataManger.Instance.GetGameData().userBattleListReRoll + "/" + 3;
+            rerollBattleListButton.onClick.AddListener(() => {
+                if(GameDataManger.Instance.GetGameData().userBattleListReRoll > 0) {
+                    GameDataManger.Instance.GetGameData().userBattleListReRoll--;
+                    GameDataManger.Instance.GetGameData().settingBattleUserData = false;
+                    GameDataManger.Instance.SaveData(GameDataManger.SaveType.GameData);
+
+                    CreateBattleList();
+                }
+            });
         }
         void OnEnable()
         {
@@ -68,6 +92,10 @@ namespace BattleUser
                 return;
             }
 
+            foreach(Transform child in spawnPos) {
+                Destroy(child.gameObject);
+            }
+            
             BattleDatas userData = GameDataManger.Instance.GetBattleData();
             List<int> pickCount = new List<int>();
             GameDataManger.Instance.GetGameData().battleUserDatas = new List<BattleUserData>();
@@ -81,7 +109,8 @@ namespace BattleUser
                     
                     while((pickCount.Contains(userRandomIndex) 
                     || GameDataManger.Instance.battlUserIndex == userRandomIndex 
-                    || userData.user[userRandomIndex].mobList.Count == 0) 
+                    || userData.user[userRandomIndex].mobList.Count == 0
+                    || math.abs(userData.user[userRandomIndex].battleScore - userData.user[GameDataManger.Instance.battlUserIndex].battleScore) >= 100) 
                     && limit < 5) {
                         userRandomIndex = UnityEngine.Random.Range(0 , userData.user.Count);    
                         limit++;

@@ -45,6 +45,8 @@ public class GameData
 
     public List<BattleUserData> battleUserDatas = new List<BattleUserData>();
     public bool settingBattleUserData;
+    public int userBattleListReRoll;
+    public int Ad_playAbleCount;
     
     public bool tutorial;
 }
@@ -98,17 +100,18 @@ public class CouponData
 public class GameDataManger : MonoBehaviour
 {
     public static GameDataManger Instance { get; private set; }
+    public bool isTest; // 데이터 암호화 유무 
     [SerializeField] GameData data = null;
     [SerializeField] CouponData couponData = null;
     [SerializeField] BattleDatas battleData = null;
     UI_UserFightReward ui_UserFightReward;
-    public int battlUserIndex;
-    public Action<int, int> goodsSetting;
+    [HideInInspector] public int battlUserIndex;
+    [HideInInspector] public Action<int, int> goodsSetting;
     private string filePath;
     private string couponFilePath;
     private string battleFilePath;
     private bool isCheckDate;
-    public bool dataDownLoad;
+    [HideInInspector] public bool dataDownLoad;
     
     public enum SaveType {
         GameData , CouponData , BattleData
@@ -116,6 +119,12 @@ public class GameDataManger : MonoBehaviour
 
     private void Awake()
     {
+        #if UNITY_EDITOR 
+            isTest = true;
+        #elif UNITY_ANDROID 
+            isTest = false;
+        #endif
+
         filePath = Application.persistentDataPath + "/data.json";
         couponFilePath = Application.persistentDataPath + "/coupon.json";
         battleFilePath = Application.persistentDataPath + "/battle.json";
@@ -268,31 +277,31 @@ public class GameDataManger : MonoBehaviour
     {   
         string jsonData;
         switch (saveType) {
-
+            
             case SaveType.GameData :
                 jsonData = JsonUtility.ToJson(data);
-                jsonData = Key.Encrypt(jsonData);
+                if(!isTest) jsonData = Key.Encrypt(jsonData);
                 if (File.Exists(filePath)) File.WriteAllText(filePath, jsonData);
                 
-                jsonData = Key.Decrypt(jsonData);
+                if(!isTest) jsonData = Key.Decrypt(jsonData);
                 data = JsonUtility.FromJson<GameData>(jsonData);
                 break;
 
             case SaveType.CouponData :
                 jsonData = JsonUtility.ToJson(couponData);
-                jsonData = Key.Encrypt(jsonData);
+                if(!isTest) jsonData = Key.Encrypt(jsonData);
                 if (File.Exists(couponFilePath)) File.WriteAllText(couponFilePath, jsonData);
 
-                jsonData = Key.Decrypt(jsonData);
+                if(!isTest) jsonData = Key.Decrypt(jsonData);
                 couponData = JsonUtility.FromJson<CouponData>(jsonData);
                 break;
 
             case SaveType.BattleData :
                 jsonData = JsonUtility.ToJson(battleData);
-                jsonData = Key.Encrypt(jsonData);
+                if(!isTest) jsonData = Key.Encrypt(jsonData);
                 if (File.Exists(battleFilePath)) File.WriteAllText(battleFilePath, jsonData);
 
-                jsonData = Key.Decrypt(jsonData);
+                if(!isTest) jsonData = Key.Decrypt(jsonData);
                 battleData = JsonUtility.FromJson<BattleDatas>(jsonData);
                 break;
             
@@ -484,7 +493,9 @@ public class GameDataManger : MonoBehaviour
             LoadData.settingBattleUserData = false;
             LoadData.battleUserDatas.Clear();
             LoadData.getGift = false;
-            
+            LoadData.Ad_playAbleCount = 3;
+            LoadData.userBattleListReRoll = 3;
+
             for (int i = 0; i < LoadData.questData.Count; i++)
             {
                 LoadData.questData[i].Setting();

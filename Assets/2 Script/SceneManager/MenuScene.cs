@@ -26,7 +26,8 @@ public class MenuScene : MonoBehaviour
         if(init) {
             return;
         }
-
+        
+        init = true;
         menuScene = this;
         canvas = GameObject.Find("MenuCanvas").gameObject;
         Transform path = canvas.transform.Find("BackGround");
